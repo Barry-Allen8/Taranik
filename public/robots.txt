@@ -1,0 +1,7 @@
+# robots.txt for Taranik IT
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://taranik.com/sitemap.xml
