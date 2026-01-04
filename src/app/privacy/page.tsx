@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Політика конфіденційності - Taranik IT",
+  title: "Політика конфіденційності - IT-service",
   description: "Політика конфіденційності та обробки персональних даних",
 };
 
@@ -22,7 +22,7 @@ export default function PrivacyPage() {
             <h2>1. Загальні положення</h2>
             <p>
               Ця Політика конфіденційності визначає порядок обробки та захисту персональних даних
-              користувачів сайту Taranik IT.
+              користувачів сайту IT-service.
             </p>
 
             <h2>2. Збір інформації</h2>

@@ -6,7 +6,7 @@ import { Globe, Bot, Brain, Smartphone, Cloud, Lightbulb } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Наші послуги - Taranik IT",
+  title: "Наші послуги - IT-service",
   description: "Розробка сайтів, чат-ботів, AI-рішень, мобільних додатків та IT-консалтинг",
 };
 

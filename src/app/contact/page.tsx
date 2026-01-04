@@ -4,7 +4,7 @@ import { Mail, MapPin, Phone, Clock } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Контакти - Taranik IT",
+  title: "Контакти - IT-service",
   description: "Зв'яжіться з нами для обговорення вашого проєкту",
 };
 

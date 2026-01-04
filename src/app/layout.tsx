@@ -4,12 +4,12 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "Taranik IT - Професійні IT-рішення для вашого бізнесу",
+  title: "IT-service - Професійні IT-рішення для вашого бізнесу",
   description: "Розробка сайтів, чат-ботів, AI-рішень та IT-консалтинг. Допомагаємо бізнесу рости з сучасними технологіями.",
   keywords: ["розробка сайтів", "чат-боти", "AI рішення", "IT консалтинг", "веб розробка", "Україна"],
-  authors: [{ name: "Taranik IT" }],
+  authors: [{ name: "IT-service" }],
   openGraph: {
-    title: "Taranik IT - Професійні IT-рішення",
+    title: "IT-service - Професійні IT-рішення",
     description: "Розробка сайтів, чат-ботів, AI-рішень та IT-консалтинг",
     type: "website",
     locale: "uk_UA",

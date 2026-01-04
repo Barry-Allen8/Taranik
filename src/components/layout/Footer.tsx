@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Info */}
           <div>
-            <h3 className="text-2xl font-bold mb-4 gradient-text">Taranik IT</h3>
+            <h3 className="text-2xl font-bold mb-4 gradient-text">IT-service</h3>
             <p className="text-gray-300 mb-6">
               Професійні IT-рішення для вашого бізнесу. Розробка сайтів, чат-ботів та впровдження AI-технологій.
             </p>
@@ -122,7 +122,7 @@ export default function Footer() {
 
         <div className="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-400 text-sm">
-            © {currentYear} Taranik IT. Всі права захищено.
+            © {currentYear} IT-service. Всі права захищено.
           </p>
           <div className="flex gap-6 text-sm">
             <Link href="/privacy" className="text-gray-400 hover:text-primary transition-colors">

@@ -1,4 +1,4 @@
-# robots.txt for Taranik IT
+# robots.txt for IT-service
 
 User-agent: *
 Allow: /

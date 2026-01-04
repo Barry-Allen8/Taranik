@@ -4,7 +4,7 @@ import { Calendar, User } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Блог - Taranik IT",
+  title: "Блог - IT-service",
   description: "Статті про IT, веб-розробку, AI та бізнес",
 };
 

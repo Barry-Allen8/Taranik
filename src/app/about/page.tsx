@@ -3,7 +3,7 @@ import { Target, Award, Users, TrendingUp } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Про нас - Taranik IT",
+  title: "Про нас - IT-service",
   description: "Дізнайтеся більше про нашу команду, місію та цінності",
 };
 
@@ -29,7 +29,7 @@ export default function AboutPage() {
             <h2 className="text-3xl font-bold text-center mb-8">Наша історія</h2>
             <div className="prose prose-lg mx-auto text-muted">
               <p>
-                Taranik IT була заснована у 2020 році з метою надання якісних IT-послуг українському бізнесу.
+                IT-service була заснована у 2020 році з метою надання якісних IT-послуг українському бізнесу.
                 За цей час ми реалізували понад 150 проєктів у різних галузях - від невеликих стартапів до великих корпорацій.
               </p>
               <p>

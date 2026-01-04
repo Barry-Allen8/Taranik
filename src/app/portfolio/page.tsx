@@ -3,7 +3,7 @@ import { ExternalLink } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Портфоліо - Taranik IT",
+  title: "Портфоліо - IT-service",
   description: "Наші реалізовані проєкти та кейси",
 };
 

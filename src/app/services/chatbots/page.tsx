@@ -5,7 +5,7 @@ import { Bot, MessageCircle, Zap } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Чат-боти - Taranik IT",
+  title: "Чат-боти - IT-service",
   description: "Розробка чат-ботів для Telegram, Viber, WhatsApp. Автоматизація комунікації з клієнтами",
 };
 

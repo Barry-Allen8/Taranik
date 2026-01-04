@@ -37,7 +37,7 @@ export default function Header() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="text-2xl font-bold gradient-text">
-            Taranik IT
+            IT-service
           </Link>
 
           {/* Desktop Navigation */}

@@ -5,7 +5,7 @@ import { Brain, Sparkles } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "AI-рішення - Taranik IT",
+  title: "AI-рішення - IT-service",
   description: "Впровадження штучного інтелекту в бізнес. ChatGPT, Claude, автоматизація процесів",
 };
 

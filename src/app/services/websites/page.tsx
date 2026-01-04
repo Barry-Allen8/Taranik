@@ -5,7 +5,7 @@ import { Check, Globe } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Розробка сайтів - Taranik IT",
+  title: "Розробка сайтів - IT-service",
   description: "Професійна розробка сайтів: лендінги, корпоративні сайти, інтернет-магазини",
 };
 

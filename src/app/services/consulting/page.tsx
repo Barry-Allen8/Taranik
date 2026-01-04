@@ -5,7 +5,7 @@ import { Lightbulb } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "IT-консалтинг - Taranik IT",
+  title: "IT-консалтинг - IT-service",
   description: "Професійна IT-консультація, аудит інфраструктури, цифрова трансформація",
 };
 

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Умови використання - Taranik IT",
+  title: "Умови використання - IT-service",
   description: "Умови використання сайту та послуг",
 };
 
@@ -26,7 +26,7 @@ export default function TermsPage() {
 
             <h2>2. Послуги</h2>
             <p>
-              Taranik IT надає послуги з розробки сайтів, чат-ботів, AI-рішень та IT-консалтингу
+              IT-service надає послуги з розробки сайтів, чат-ботів, AI-рішень та IT-консалтингу
               відповідно до умов договору з клієнтом.
             </p>
 

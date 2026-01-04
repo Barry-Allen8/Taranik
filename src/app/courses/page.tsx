@@ -6,7 +6,7 @@ import { Clock, BookOpen, Award } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Курси - Taranik IT",
+  title: "Курси - IT-service",
   description: "Онлайн-курси з веб-розробки, AI та чат-ботів",
 };
 
