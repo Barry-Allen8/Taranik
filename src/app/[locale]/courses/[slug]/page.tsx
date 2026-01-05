@@ -1,6 +1,5 @@
 "use client";
 
-import { courses } from "@/data/courses";
 import { notFound } from "next/navigation";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
@@ -9,34 +8,82 @@ import { Clock, BookOpen, Award, Check, User } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 
+// Course mapping from slug to translation key
+const courseMapping: Record<string, { key: string; lessons: number; prices: { standard: number; premium: number } }> = {
+  "web-development-fundamentals": { key: "web_dev", lessons: 30, prices: { standard: 5000, premium: 8000 } },
+  "ai-chatbots-development": { key: "ai_chatbots", lessons: 20, prices: { standard: 6000, premium: 9500 } },
+};
+
 export default function CoursePage({ params }: { params: { slug: string } }) {
   const t = useTranslations("courses");
   const tCommon = useTranslations("common");
-  const course = courses.find((c) => c.slug === params.slug);
+  const courseData = courseMapping[params.slug];
 
-  if (!course) {
+  if (!courseData) {
     notFound();
   }
+
+  const courseKey = courseData.key;
+  
+  // Get translated arrays using t.raw()
+  const benefits = t.raw(`course_list.${courseKey}.benefits`) as string[];
+  const targetAudience = t.raw(`course_list.${courseKey}.targetAudience`) as string[];
+  
+  // Get modules
+  const modules = [
+    {
+      title: t(`course_list.${courseKey}.modules.module1.title`),
+      lessons: t.raw(`course_list.${courseKey}.modules.module1.lessons`) as string[],
+    },
+    {
+      title: t(`course_list.${courseKey}.modules.module2.title`),
+      lessons: t.raw(`course_list.${courseKey}.modules.module2.lessons`) as string[],
+    },
+    {
+      title: t(`course_list.${courseKey}.modules.module3.title`),
+      lessons: t.raw(`course_list.${courseKey}.modules.module3.lessons`) as string[],
+    },
+  ];
+  
+  // Get pricing
+  const pricing = [
+    {
+      name: t(`course_list.${courseKey}.pricing.standard.name`),
+      price: courseData.prices.standard,
+      features: t.raw(`course_list.${courseKey}.pricing.standard.features`) as string[],
+      recommended: false,
+    },
+    {
+      name: t(`course_list.${courseKey}.pricing.premium.name`),
+      price: courseData.prices.premium,
+      features: t.raw(`course_list.${courseKey}.pricing.premium.features`) as string[],
+      recommended: true,
+    },
+  ];
 
   return (
     <div className="min-h-screen">
       <section className="section bg-gradient-to-br from-primary/10 to-accent/10">
         <div className="container">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">{course.title}</h1>
-            <p className="text-xl text-muted mb-8">{course.description}</p>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              {t(`course_list.${courseKey}.title`)}
+            </h1>
+            <p className="text-xl text-muted mb-8">
+              {t(`course_list.${courseKey}.description`)}
+            </p>
             <div className="flex flex-wrap gap-6 mb-8">
               <div className="flex items-center gap-2">
                 <Clock className="w-5 h-5 text-primary" />
-                <span>{course.duration}</span>
+                <span>{t(`course_list.${courseKey}.duration`)}</span>
               </div>
               <div className="flex items-center gap-2">
                 <BookOpen className="w-5 h-5 text-primary" />
-                <span>{course.lessons} {t("lessons")}</span>
+                <span>{courseData.lessons} {t("lessons")}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Award className="w-5 h-5 text-primary" />
-                <span>{course.format}</span>
+                <span>{t(`course_list.${courseKey}.format`)}</span>
               </div>
             </div>
             <Button size="lg" asChild>
@@ -50,7 +97,7 @@ export default function CoursePage({ params }: { params: { slug: string } }) {
         <div className="container">
           <h2 className="text-3xl font-bold text-center mb-12">{t("for_whom")}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {course.targetAudience.map((audience, idx) => (
+            {targetAudience.map((audience, idx) => (
               <Card key={idx} className="text-center">
                 <User className="w-12 h-12 mx-auto mb-4 text-primary" />
                 <p>{audience}</p>
@@ -64,7 +111,7 @@ export default function CoursePage({ params }: { params: { slug: string } }) {
         <div className="container">
           <h2 className="text-3xl font-bold text-center mb-12">{t("benefits")}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {course.benefits.map((benefit, idx) => (
+            {benefits.map((benefit, idx) => (
               <div key={idx} className="flex items-start gap-3">
                 <Check className="w-6 h-6 text-secondary flex-shrink-0 mt-1" />
                 <span className="text-lg">{benefit}</span>
@@ -83,9 +130,15 @@ export default function CoursePage({ params }: { params: { slug: string } }) {
                 <User className="w-16 h-16 text-white" />
               </div>
               <div>
-                <h3 className="text-2xl font-bold mb-2">{course.instructor.name}</h3>
-                <p className="text-primary mb-4">{course.instructor.experience}</p>
-                <p className="text-muted">{course.instructor.bio}</p>
+                <h3 className="text-2xl font-bold mb-2">
+                  {t(`course_list.${courseKey}.instructor.name`)}
+                </h3>
+                <p className="text-primary mb-4">
+                  {t(`course_list.${courseKey}.instructor.experience`)}
+                </p>
+                <p className="text-muted">
+                  {t(`course_list.${courseKey}.instructor.bio`)}
+                </p>
               </div>
             </div>
           </Card>
@@ -96,7 +149,7 @@ export default function CoursePage({ params }: { params: { slug: string } }) {
         <div className="container">
           <h2 className="text-3xl font-bold text-center mb-12">{t("pricing")}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {course.pricing.map((plan, idx) => (
+            {pricing.map((plan, idx) => (
               <Card
                 key={idx}
                 className={`relative ${plan.recommended ? "border-2 border-primary" : ""}`}
@@ -136,7 +189,7 @@ export default function CoursePage({ params }: { params: { slug: string } }) {
           <h2 className="text-3xl font-bold text-center mb-12">{t("program")}</h2>
           <div className="max-w-3xl mx-auto">
             <Accordion
-              items={course.modules.map((module) => ({
+              items={modules.map((module) => ({
                 title: module.title,
                 content: (
                   <ul className="space-y-2">
