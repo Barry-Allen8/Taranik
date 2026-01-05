@@ -113,33 +113,7 @@ export default function Hero() {
               className="text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl font-bold mb-6 tracking-tight"
             >
               {t("title")}{" "}
-              <span className="relative inline">
-                <span className="gradient-text">{t("title_gradient")}</span>
-                <svg
-                  className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-[90%] h-3 overflow-visible"
-                  viewBox="0 0 100 12"
-                  preserveAspectRatio="none"
-                  fill="none"
-                >
-                  <motion.path
-                    d="M5 8 C25 4, 45 4, 50 6 C55 8, 75 8, 95 5"
-                    stroke="url(#heroUnderlineGradient)"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    fill="none"
-                    initial={{ pathLength: 0, opacity: 0 }}
-                    animate={{ pathLength: 1, opacity: 1 }}
-                    transition={{ duration: 1.2, delay: 0.8, ease: "easeOut" }}
-                  />
-                  <defs>
-                    <linearGradient id="heroUnderlineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#2563eb" />
-                      <stop offset="50%" stopColor="#8b5cf6" />
-                      <stop offset="100%" stopColor="#10b981" />
-                    </linearGradient>
-                  </defs>
-                </svg>
-              </span>
+              <span className="gradient-text drop-shadow-[0_0_25px_rgba(37,99,235,0.3)]">{t("title_gradient")}</span>
           </motion.h1>
 
           <motion.p
