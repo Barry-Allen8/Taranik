@@ -166,12 +166,16 @@
     "services_title": "Services",
     "company_title": "Company",
     "contact_title": "Contact",
-    "address": "Warsaw, Marszałkowska St. 1",
+    "address": "Warsaw, Poland",
     "working_hours": "Mon-Fri: 9:00 AM - 6:00 PM",
     "weekend": "Sat-Sun: Closed",
     "rights": "All rights reserved.",
     "privacy": "Privacy Policy",
-    "terms": "Terms of Use"
+    "terms": "Terms of Use",
+    "newsletter_title": "Stay updated",
+    "newsletter_desc": "Subscribe to our newsletter and receive the latest information about technologies and IT trends.",
+    "newsletter_placeholder": "Your email",
+    "newsletter_button": "Subscribe"
   },
   "contact": {
     "title": "Contact Us",
@@ -296,5 +300,27 @@
     "try_again": "Try again",
     "home": "Home",
     "currency": "$"
+  },
+  "trusted": {
+    "title": "Technologies we use"
+  },
+  "cases": {
+    "badge": "Case Studies",
+    "title": "Our Projects",
+    "description": "Examples of completed projects and achieved results",
+    "case_1_title": "E-commerce Platform",
+    "case_1_desc": "Modern online store with payment integration and process automation",
+    "case_1_result_1": "Sales increase",
+    "case_1_result_2": "Load time",
+    "case_2_title": "AI Customer Support Chatbot",
+    "case_2_desc": "Intelligent assistant automating customer support and reservations",
+    "case_2_result_1": "Query automation",
+    "case_2_result_2": "Availability",
+    "case_3_title": "Business Automation System",
+    "case_3_desc": "Comprehensive solution for business process automation",
+    "case_3_result_1": "Time savings",
+    "case_3_result_2": "Productivity increase",
+    "view_case": "View details",
+    "view_all": "View all projects"
   }
 }

@@ -166,12 +166,16 @@
     "services_title": "Usługi",
     "company_title": "Firma",
     "contact_title": "Kontakt",
-    "address": "Warszawa, ul. Marszałkowska 1",
+    "address": "Warszawa, Polska",
     "working_hours": "Pn-Pt: 9:00 - 18:00",
     "weekend": "Sb-Nd: Wolne",
     "rights": "Wszelkie prawa zastrzeżone.",
     "privacy": "Polityka prywatności",
-    "terms": "Warunki użytkowania"
+    "terms": "Warunki użytkowania",
+    "newsletter_title": "Bądź na bieżąco",
+    "newsletter_desc": "Zapisz się do newslettera i otrzymuj najnowsze informacje o technologiach i trendach IT.",
+    "newsletter_placeholder": "Twój email",
+    "newsletter_button": "Zapisz się"
   },
   "contact": {
     "title": "Skontaktuj się z nami",
@@ -296,5 +300,27 @@
     "try_again": "Spróbuj ponownie",
     "home": "Strona główna",
     "currency": "zł"
+  },
+  "trusted": {
+    "title": "Technologie, których używamy"
+  },
+  "cases": {
+    "badge": "Case Studies",
+    "title": "Nasze projekty",
+    "description": "Przykłady zrealizowanych projektów i osiągniętych rezultatów",
+    "case_1_title": "Platforma E-commerce",
+    "case_1_desc": "Nowoczesny sklep internetowy z integracją płatności i automatyzacją procesów",
+    "case_1_result_1": "Wzrost sprzedaży",
+    "case_1_result_2": "Czas ładowania",
+    "case_2_title": "Chatbot AI dla obsługi klienta",
+    "case_2_desc": "Inteligentny asystent automatyzujący obsługę klienta i rezerwacje",
+    "case_2_result_1": "Automatyzacja zapytań",
+    "case_2_result_2": "Dostępność",
+    "case_3_title": "System automatyzacji biznesu",
+    "case_3_desc": "Kompleksowe rozwiązanie do automatyzacji procesów biznesowych",
+    "case_3_result_1": "Oszczędność czasu",
+    "case_3_result_2": "Wzrost produktywności",
+    "view_case": "Zobacz szczegóły",
+    "view_all": "Zobacz wszystkie projekty"
   }
 }
