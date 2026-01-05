@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { portfolioProjects } from "@/data/portfolio";
 import Card from "@/components/ui/Card";
 import { ExternalLink, Filter } from "lucide-react";
@@ -63,8 +64,16 @@ export default function PortfolioPage() {
                 transition={{ duration: 0.3, delay: idx * 0.1 }}
               >
                 <Card className="group cursor-pointer h-full">
-                  <div className="w-full h-48 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg mb-4 flex items-center justify-center group-hover:scale-105 transition-transform overflow-hidden">
-                    <ExternalLink className="w-12 h-12 text-primary opacity-50 group-hover:opacity-100 transition-opacity" />
+                  <div className="relative w-full h-48 rounded-lg mb-4 overflow-hidden">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                      <ExternalLink className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
                   </div>
                   <div className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm mb-3">
                     {project.category}
