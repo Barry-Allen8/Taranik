@@ -3,7 +3,7 @@
 import { courses } from "@/data/courses";
 import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { Clock, BookOpen, Award } from "lucide-react";
 import { useTranslations } from "next-intl";
 

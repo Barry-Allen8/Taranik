@@ -258,6 +258,29 @@
     "contact_us": "Skontaktuj się",
     "related": "Podobne artykuły"
   },
+  "blog_posts": {
+    "ai_trends": {
+      "title": "AI w biznesie: trendy 2024",
+      "excerpt": "Jak sztuczna inteligencja zmienia procesy biznesowe i co powinni wiedzieć przedsiębiorcy",
+      "category": "AI",
+      "author": "Andrzej Kowalski",
+      "date": "2024-01-15"
+    },
+    "chatbot_automation": {
+      "title": "Automatyzacja biznesu za pomocą chatbotów",
+      "excerpt": "Praktyczne porady dotyczące wdrażania chatbotów w Twojej firmie",
+      "category": "Chatboty",
+      "author": "Maria Nowak",
+      "date": "2024-01-10"
+    },
+    "web_development": {
+      "title": "Trendy web developmentu w 2024",
+      "excerpt": "Co nowego w świecie web developmentu i jakie technologie warto poznać",
+      "category": "Web Development",
+      "author": "Andrzej Kowalski",
+      "date": "2024-01-05"
+    }
+  },
   "not_found": {
     "title": "Strona nie znaleziona",
     "description": "Przepraszamy, ale strona, której szukasz, nie istnieje lub została przeniesiona.",

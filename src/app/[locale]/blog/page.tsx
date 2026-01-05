@@ -1,13 +1,15 @@
 "use client";
 
-import { blogPosts } from "@/data/blog";
 import Card from "@/components/ui/Card";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { Calendar, User } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
 
+const blogPostKeys = ["ai_trends", "chatbot_automation", "web_development"];
+
 export default function BlogPage() {
   const t = useTranslations("blog");
+  const tPosts = useTranslations("blog_posts");
   const locale = useLocale();
 
   const getDateLocale = () => {
@@ -33,24 +35,24 @@ export default function BlogPage() {
       <section className="section">
         <div className="container">
           <div className="max-w-4xl mx-auto space-y-8">
-            {blogPosts.map((post) => (
-              <Link key={post.slug} href={`/blog/${post.slug}`}>
+            {blogPostKeys.map((postKey) => (
+              <Link key={postKey} href={`/blog/${postKey}`}>
                 <Card className="cursor-pointer hover:shadow-xl transition-shadow">
                   <div className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm mb-3">
-                    {post.category}
+                    {tPosts(`${postKey}.category`)}
                   </div>
                   <h2 className="text-2xl font-bold mb-3 hover:text-primary transition-colors">
-                    {post.title}
+                    {tPosts(`${postKey}.title`)}
                   </h2>
-                  <p className="text-muted mb-4">{post.excerpt}</p>
+                  <p className="text-muted mb-4">{tPosts(`${postKey}.excerpt`)}</p>
                   <div className="flex items-center gap-6 text-sm text-muted">
                     <div className="flex items-center gap-2">
                       <User className="w-4 h-4" />
-                      <span>{post.author.name}</span>
+                      <span>{tPosts(`${postKey}.author`)}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Calendar className="w-4 h-4" />
-                      <span>{new Date(post.publishedAt).toLocaleDateString(getDateLocale())}</span>
+                      <span>{new Date(tPosts(`${postKey}.date`)).toLocaleDateString(getDateLocale())}</span>
                     </div>
                   </div>
                 </Card>

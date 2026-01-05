@@ -4,7 +4,7 @@ import { blogPosts } from "@/data/blog";
 import { notFound } from "next/navigation";
 import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { Calendar, User, ArrowLeft, Tag } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
 

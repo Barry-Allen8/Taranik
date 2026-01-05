@@ -2,7 +2,7 @@
 
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { Check, Lightbulb } from "lucide-react";
 import { useTranslations } from "next-intl";
 

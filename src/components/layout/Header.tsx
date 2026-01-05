@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Button from "@/components/ui/Button";
@@ -71,6 +70,7 @@ export default function Header() {
     return pathname;
   };
 
+  const router = useRouter();
   const pathWithoutLocale = getPathWithoutLocale();
 
   // Check if link is active
@@ -84,8 +84,7 @@ export default function Header() {
   const isServicesActive = pathWithoutLocale.startsWith("/services");
 
   const switchLocale = (newLocale: Locale) => {
-    const newPath = newLocale === "pl" ? pathWithoutLocale : `/${newLocale}${pathWithoutLocale}`;
-    window.location.href = newPath;
+    router.replace(pathWithoutLocale || "/", { locale: newLocale });
   };
 
   return (

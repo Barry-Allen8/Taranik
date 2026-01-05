@@ -258,6 +258,29 @@
     "contact_us": "Contact us",
     "related": "Related articles"
   },
+  "blog_posts": {
+    "ai_trends": {
+      "title": "AI in Business: 2024 Trends",
+      "excerpt": "How artificial intelligence is changing business processes and what entrepreneurs should know",
+      "category": "AI",
+      "author": "Andrew Smith",
+      "date": "2024-01-15"
+    },
+    "chatbot_automation": {
+      "title": "Business Automation with Chatbots",
+      "excerpt": "Practical tips for implementing chatbots in your business",
+      "category": "Chatbots",
+      "author": "Mary Johnson",
+      "date": "2024-01-10"
+    },
+    "web_development": {
+      "title": "Web Development Trends in 2024",
+      "excerpt": "What's new in web development and what technologies are worth learning",
+      "category": "Web Development",
+      "author": "Andrew Smith",
+      "date": "2024-01-05"
+    }
+  },
   "not_found": {
     "title": "Page Not Found",
     "description": "Sorry, but the page you are looking for does not exist or has been moved.",
