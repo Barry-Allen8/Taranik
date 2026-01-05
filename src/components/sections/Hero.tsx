@@ -115,30 +115,13 @@ export default function Hero() {
               {t("title")}{" "}
               <span className="relative inline-block">
                 <span className="gradient-text">{t("title_gradient")}</span>
-                <svg
-                  className="absolute -bottom-1 left-0 w-full h-3"
-                  viewBox="0 0 100 12"
-                  preserveAspectRatio="none"
-                  fill="none"
-                >
-                  <motion.path
-                    d="M0 8 Q25 2, 50 6 T100 4"
-                    stroke="url(#heroGradient)"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    fill="none"
-                    initial={{ pathLength: 0, opacity: 0 }}
-                    animate={{ pathLength: 1, opacity: 1 }}
-                    transition={{ duration: 1, delay: 1, ease: "easeOut" }}
-                  />
-                  <defs>
-                    <linearGradient id="heroGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#2563eb" />
-                      <stop offset="50%" stopColor="#8b5cf6" />
-                      <stop offset="100%" stopColor="#10b981" />
-                    </linearGradient>
-                  </defs>
-                </svg>
+                <motion.span
+                  className="absolute -bottom-1 left-0 w-full h-[3px] rounded-full bg-gradient-to-r from-primary via-accent to-secondary"
+                  initial={{ scaleX: 0, opacity: 0 }}
+                  animate={{ scaleX: 1, opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 1, ease: "easeOut" }}
+                  style={{ transformOrigin: "left" }}
+                />
               </span>
           </motion.h1>
 
