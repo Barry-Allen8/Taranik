@@ -113,16 +113,16 @@ export default function Hero() {
               className="text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl font-bold mb-6 tracking-tight"
             >
               {t("title")}{" "}
-              <span className="relative inline-block">
+              <span className="relative inline">
                 <span className="gradient-text">{t("title_gradient")}</span>
                 <svg
-                  className="absolute -bottom-2 left-0 w-full h-3 overflow-visible"
+                  className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-[90%] h-3 overflow-visible"
                   viewBox="0 0 100 12"
                   preserveAspectRatio="none"
                   fill="none"
                 >
                   <motion.path
-                    d="M0 9 C20 3, 40 3, 50 6 C60 9, 80 9, 100 5"
+                    d="M5 8 C25 4, 45 4, 50 6 C55 8, 75 8, 95 5"
                     stroke="url(#heroUnderlineGradient)"
                     strokeWidth="2.5"
                     strokeLinecap="round"
