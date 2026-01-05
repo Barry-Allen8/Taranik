@@ -10,7 +10,7 @@ export default function Hero() {
   const t = useTranslations("hero");
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5 hexagon-animated">
+    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5 hexagon-animated overflow-x-clip">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Floating orbs */}
