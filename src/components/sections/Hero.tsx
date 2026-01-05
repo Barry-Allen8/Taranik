@@ -113,31 +113,32 @@ export default function Hero() {
               className="text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl font-bold mb-6 tracking-tight"
             >
               {t("title")}{" "}
-              <span className="relative">
+              <span className="relative inline-block">
                 <span className="gradient-text">{t("title_gradient")}</span>
-                <motion.svg
-                  className="absolute -bottom-2 left-0 w-full"
-                  viewBox="0 0 300 12"
+                <svg
+                  className="absolute -bottom-1 left-0 w-full h-3"
+                  viewBox="0 0 100 12"
+                  preserveAspectRatio="none"
                   fill="none"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  animate={{ pathLength: 1, opacity: 1 }}
-                  transition={{ duration: 1, delay: 1 }}
                 >
                   <motion.path
-                    d="M2 10C50 4 100 4 150 6C200 8 250 4 298 8"
-                    stroke="url(#gradient)"
+                    d="M0 8 Q25 2, 50 6 T100 4"
+                    stroke="url(#heroGradient)"
                     strokeWidth="3"
                     strokeLinecap="round"
                     fill="none"
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    animate={{ pathLength: 1, opacity: 1 }}
+                    transition={{ duration: 1, delay: 1, ease: "easeOut" }}
                   />
                   <defs>
-                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <linearGradient id="heroGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                       <stop offset="0%" stopColor="#2563eb" />
                       <stop offset="50%" stopColor="#8b5cf6" />
                       <stop offset="100%" stopColor="#10b981" />
                     </linearGradient>
                   </defs>
-                </motion.svg>
+                </svg>
               </span>
           </motion.h1>
 
