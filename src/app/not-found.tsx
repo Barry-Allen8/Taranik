@@ -1,4 +1,4 @@
-import { Link } from "@/i18n/navigation";
+import Link from "next/link";
 
 export default function NotFound() {
   return (
@@ -17,13 +17,13 @@ export default function NotFound() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
-                href="/"
+                href="/pl"
                 className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors inline-flex items-center gap-2"
               >
                 🏠 Home
               </Link>
               <Link
-                href="/contact"
+                href="/pl/contact"
                 className="px-6 py-3 border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-600 hover:text-white transition-colors inline-flex items-center gap-2"
               >
                 ✉️ Contact us
@@ -35,4 +35,3 @@ export default function NotFound() {
     </html>
   );
 }
-
