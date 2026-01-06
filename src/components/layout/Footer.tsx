@@ -70,8 +70,8 @@ export default function Footer() {
           >
             <Link href="/" locale={locale} className="flex items-center gap-2 mb-4">
               <svg 
-                viewBox="130 345 280 245" 
-                className="h-10 w-auto"
+                viewBox="0 0 265 229" 
+                className="h-9 w-auto"
                 aria-label="VektaDev Logo"
               >
                 <defs>
@@ -82,9 +82,9 @@ export default function Footer() {
                   </linearGradient>
                 </defs>
                 <g fill="url(#footerLogoGradient)">
-                  <polygon points="402.85 350.64 388.87 374.86 270.35 580.13 255.54 554.48 270.35 528.81 314.8 451.84 359.24 374.86 270.35 374.86 284.33 350.64 402.85 350.64"/>
-                  <polygon points="315.63 399.08 270.35 477.49 270.32 477.43 255.5 503.09 240.69 528.75 225.9 503.13 151.84 374.86 137.86 350.64 167.48 350.64 181.46 374.86 240.71 477.47 255.52 451.81 270.33 426.15 270.35 426.18 286 399.08 315.63 399.08"/>
-                  <polygon points="255.63 400.69 254.97 401.83 240.93 426.16 226.88 401.83 211.3 374.86 197.31 350.64 225.92 350.64 239.54 374.22 239.91 374.86 255.13 401.23 255.54 400.53 255.63 400.69"/>
+                  <polygon points="265 0 251 24 133 229 118 203 133 178 177 101 221 24 133 24 147 0 265 0"/>
+                  <polygon points="178 48 133 126 118 152 103 178 88 152 14 24 0 0 30 0 44 24 103 126 118 101 133 76 149 48 178 48"/>
+                  <polygon points="118 50 103 76 88 50 59 0 88 0 118 50"/>
                 </g>
               </svg>
               <span className="text-xl font-bold gradient-text">VektaDev</span>
