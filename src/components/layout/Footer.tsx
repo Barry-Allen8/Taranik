@@ -68,8 +68,26 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
           >
-            <Link href="/" locale={locale} className="inline-block mb-4">
-              <span className="text-2xl font-bold gradient-text">VektaDev</span>
+            <Link href="/" locale={locale} className="flex items-center gap-2 mb-4">
+              <svg 
+                viewBox="130 345 280 245" 
+                className="h-10 w-auto"
+                aria-label="VektaDev Logo"
+              >
+                <defs>
+                  <linearGradient id="footerLogoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#2563eb" />
+                    <stop offset="50%" stopColor="#8b5cf6" />
+                    <stop offset="100%" stopColor="#10b981" />
+                  </linearGradient>
+                </defs>
+                <g fill="url(#footerLogoGradient)">
+                  <polygon points="402.85 350.64 388.87 374.86 270.35 580.13 255.54 554.48 270.35 528.81 314.8 451.84 359.24 374.86 270.35 374.86 284.33 350.64 402.85 350.64"/>
+                  <polygon points="315.63 399.08 270.35 477.49 270.32 477.43 255.5 503.09 240.69 528.75 225.9 503.13 151.84 374.86 137.86 350.64 167.48 350.64 181.46 374.86 240.71 477.47 255.52 451.81 270.33 426.15 270.35 426.18 286 399.08 315.63 399.08"/>
+                  <polygon points="255.63 400.69 254.97 401.83 240.93 426.16 226.88 401.83 211.3 374.86 197.31 350.64 225.92 350.64 239.54 374.22 239.91 374.86 255.13 401.23 255.54 400.53 255.63 400.69"/>
+                </g>
+              </svg>
+              <span className="text-xl font-bold gradient-text">VektaDev</span>
             </Link>
             <p className="text-gray-400 mb-6 leading-relaxed">
               {t("description")}
