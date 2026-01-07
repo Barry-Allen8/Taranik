@@ -177,16 +177,6 @@ export default function Header() {
               {t("about")}
             </Link>
             <Link 
-              href="/blog" 
-              locale={locale}
-              className={cn(
-                "transition-colors font-medium",
-                isActive("/blog") ? "text-primary" : "hover:text-primary"
-              )}
-            >
-              {t("blog")}
-            </Link>
-            <Link 
               href="/contact" 
               locale={locale}
               className={cn(
@@ -359,17 +349,6 @@ export default function Header() {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {t("about")}
-            </Link>
-            <Link 
-              href="/blog" 
-              locale={locale}
-              className={cn(
-                "block py-3 font-medium border-b border-gray-100 transition-colors",
-                isActive("/blog") ? "text-primary" : "hover:text-primary"
-              )} 
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {t("blog")}
             </Link>
             <Link 
               href="/contact" 
