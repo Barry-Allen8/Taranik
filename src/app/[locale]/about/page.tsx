@@ -75,26 +75,32 @@ export default function AboutPage() {
         <div className="container">
           <h2 className="text-3xl font-bold text-center mb-12">{t("team_title")}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamMembers.map((member, index) => (
-              <motion.div
-                key={member.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <Card className="text-center h-full">
-                  <div className="w-24 h-24 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-3xl font-bold text-white">
-                      {member.name.charAt(0)}
-                    </span>
-                  </div>
-                  <h3 className="text-lg font-semibold mb-1">{member.name}</h3>
-                  <p className="text-primary text-sm mb-3">{member.position}</p>
-                  <p className="text-muted text-sm">{member.bio}</p>
-                </Card>
-              </motion.div>
-            ))}
+            {teamMembers.map((member, index) => {
+              const name = t(`team.${member.id}.name`);
+              const position = t(`team.${member.id}.position`);
+              const bio = t(`team.${member.id}.bio`);
+              
+              return (
+                <motion.div
+                  key={member.id}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <Card className="text-center h-full">
+                    <div className="w-24 h-24 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                      <span className="text-3xl font-bold text-white">
+                        {name.charAt(0)}
+                      </span>
+                    </div>
+                    <h3 className="text-lg font-semibold mb-1">{name}</h3>
+                    <p className="text-primary text-sm mb-3">{position}</p>
+                    <p className="text-muted text-sm">{bio}</p>
+                  </Card>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>

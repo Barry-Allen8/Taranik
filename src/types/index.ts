@@ -46,18 +46,8 @@ export interface Testimonial {
   rating: number;
 }
 
-export interface TeamMember {
-  id: string;
-  name: string;
-  position: string;
-  image: string;
-  bio: string;
-  social?: {
-    linkedin?: string;
-    github?: string;
-    twitter?: string;
-  };
-}
+// TeamMember type is now defined in src/data/team.ts as TeamMemberData
+// Translatable fields (name, position, bio) are stored in messages/*.json under about.team
 
 export interface ContactFormData {
   name: string;

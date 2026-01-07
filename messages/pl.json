@@ -632,6 +632,33 @@
       "innovation": { "title": "Innowacje", "description": "Używamy najnowszych technologii i podejść" }
     },
     "team_title": "Nasz zespół",
+    "team": {
+      "andriy": {
+        "name": "Andrzej Kowalenko",
+        "position": "CEO i Lead Developer",
+        "bio": "Założyciel VektaDev z 8-letnim doświadczeniem w web development. Specjalizuje się w Next.js i integracjach AI."
+      },
+      "maria": {
+        "name": "Maria Petrenko",
+        "position": "Deweloper AI i Chatbotów",
+        "bio": "Ekspertka ds. AI i chatbotów. Stworzyła ponad 50 botów dla różnych firm."
+      },
+      "oleksiy": {
+        "name": "Aleksy Sydorenko",
+        "position": "Frontend Developer",
+        "bio": "Senior Frontend developer z doświadczeniem w React i Vue.js. Skupia się na UX/UI."
+      },
+      "kateryna": {
+        "name": "Katarzyna Melnyk",
+        "position": "Projektantka UX/UI",
+        "bio": "Utalentowana projektantka z doświadczeniem w Figma i Adobe. Tworzy intuicyjne interfejsy."
+      },
+      "igor": {
+        "name": "Igor Bondarenko",
+        "position": "Backend Developer",
+        "bio": "Backend developer z doświadczeniem w Node.js, Python i DevOps. Specjalizuje się w rozwiązaniach chmurowych."
+      }
+    },
     "stats": { "years": "Lat na rynku", "projects": "Zrealizowanych projektów", "clients": "Zadowolonych klientów", "team": "Specjalistów" },
     "cta_title": "Gotowy do współpracy?",
     "cta_description": "Skontaktuj się z nami, aby omówić Twój projekt",
