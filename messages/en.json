@@ -781,6 +781,12 @@
     "home": "Home",
     "currency": "$"
   },
+  "error": {
+    "title": "Something went wrong",
+    "description": "An error occurred while loading the page. Please try refreshing or return to the home page.",
+    "try_again": "Try again",
+    "go_home": "Go to home"
+  },
   "trusted": {
     "title": "Technologies we use"
   },

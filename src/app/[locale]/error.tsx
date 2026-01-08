@@ -4,6 +4,7 @@ import Button from "@/components/ui/Button";
 import { useEffect } from "react";
 import { RefreshCw, Home } from "lucide-react";
 import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 export default function Error({
   error,
@@ -12,6 +13,8 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  const t = useTranslations("error");
+
   useEffect(() => {
     console.error(error);
   }, [error]);
@@ -24,20 +27,20 @@ export default function Error({
             <span className="text-5xl">⚠️</span>
           </div>
           <h1 className="text-3xl md:text-4xl font-bold mb-4">
-            Щось пішло не так
+            {t("title")}
           </h1>
           <p className="text-xl text-muted mb-8">
-            Виникла помилка при завантаженні сторінки. Спробуйте оновити або поверніться на головну.
+            {t("description")}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button onClick={reset}>
               <RefreshCw className="w-5 h-5" />
-              Спробувати знову
+              {t("try_again")}
             </Button>
             <Button variant="outline" asChild>
               <Link href="/">
                 <Home className="w-5 h-5" />
-                На головну
+                {t("go_home")}
               </Link>
             </Button>
           </div>

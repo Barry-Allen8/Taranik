@@ -781,6 +781,12 @@
     "home": "Strona główna",
     "currency": "zł"
   },
+  "error": {
+    "title": "Coś poszło nie tak",
+    "description": "Wystąpił błąd podczas ładowania strony. Spróbuj odświeżyć lub wróć na stronę główną.",
+    "try_again": "Spróbuj ponownie",
+    "go_home": "Strona główna"
+  },
   "trusted": {
     "title": "Technologie, których używamy"
   },
