@@ -3,7 +3,6 @@
     "services": "Usługi",
     "portfolio": "Portfolio",
     "about": "O nas",
-    "blog": "Blog",
     "contact": "Kontakt",
     "consultation": "Zamów konsultację"
   },
@@ -40,6 +39,11 @@
     "websites": {
       "title": "Tworzenie stron",
       "description": "Tworzymy nowoczesne, szybkie i wygodne strony dla Twojego biznesu",
+      "metadata": {
+        "title": "Tworzenie Stron Internetowych | Profesjonalne Strony WWW | VektaDev",
+        "description": "Profesjonalne tworzenie stron internetowych - landing page, strony firmowe, sklepy internetowe. Nowoczesny design, szybkość, optymalizacja SEO. Zamów bezpłatną wycenę!",
+        "keywords": "tworzenie stron internetowych, strona www, landing page, strona firmowa, sklep internetowy, e-commerce, responsywny design, SEO, web development Polska"
+      },
       "hero_title": "Rozwiń Swój Biznes z Profesjonalną Stroną WWW",
       "hero_subtitle": "Szybkie, responsywne strony, które zamieniają odwiedzających w klientów",
       "hero_description": "Tworzymy nowoczesne, szybkie i wygodne strony, które pomagają biznesowi rosnąć",
@@ -138,6 +142,11 @@
     "chatbots": {
       "title": "Chatboty",
       "description": "Automatyzuj komunikację z klientami za pomocą inteligentnych botów",
+      "metadata": {
+        "title": "Tworzenie Chatbotów | Telegram, WhatsApp, Strona WWW | VektaDev",
+        "description": "Tworzenie chatbotów dla Telegram, WhatsApp, Viber i stron internetowych. Automatyzacja obsługi klienta 24/7, integracja z CRM, odpowiedzi AI. Bezpłatna konsultacja!",
+        "keywords": "chatbot, bot telegram, bot whatsapp, automatyzacja obsługi klienta, chatbot AI, tworzenie chatbotów, bot messenger, integracja CRM"
+      },
       "hero_title": "Automatyzuj Obsługę Klienta i Oszczędzaj Czas",
       "hero_subtitle": "Dostępność 24/7 bez zatrudniania dodatkowego personelu",
       "hero_description": "Inteligentne chatboty dla Telegram, WhatsApp i Twojej strony. Odpowiadają na pytania klientów, przyjmują zamówienia i rezerwacje — nawet gdy śpisz.",
@@ -223,6 +232,11 @@
     "ai_solutions": {
       "title": "Rozwiązania AI",
       "description": "Wdrażamy sztuczną inteligencję dla optymalizacji procesów biznesowych",
+      "metadata": {
+        "title": "Rozwiązania AI dla Firm | Integracja ChatGPT | VektaDev",
+        "description": "Praktyczne rozwiązania AI dla biznesu - integracja ChatGPT/Claude, automatyzacja procesów, asystenci AI, analityka danych. Przekształć swój biznes z AI. Bezpłatna konsultacja!",
+        "keywords": "rozwiązania AI, sztuczna inteligencja, integracja ChatGPT, Claude AI, automatyzacja biznesu, asystent AI, machine learning, automatyzacja procesów"
+      },
       "hero_title": "Przekształć swój biznes dzięki praktycznym rozwiązaniom AI",
       "hero_subtitle": "Od pomysłu do wdrożenia — AI, które naprawdę działa",
       "hero_description": "Integracja ChatGPT, asystenci AI i automatyzacja procesów dostosowane do Twojego biznesu. Bez pustych obietnic — tylko konkretne rezultaty.",
@@ -310,6 +324,11 @@
     "consulting": {
       "title": "Konsulting IT",
       "description": "Profesjonalne doradztwo w zakresie transformacji cyfrowej",
+      "metadata": {
+        "title": "Konsulting IT | Transformacja Cyfrowa | VektaDev",
+        "description": "Ekspercki konsulting IT - audyty IT, strategia transformacji cyfrowej, dobór technologii, optymalizacja kosztów. Podejmuj mądrzejsze decyzje technologiczne. Zarezerwuj sesję!",
+        "keywords": "konsulting IT, transformacja cyfrowa, audyt IT, doradztwo technologiczne, strategia IT, dobór technologii, konsulting biznesowy IT"
+      },
       "hero_title": "Podejmuj mądrzejsze decyzje technologiczne",
       "hero_subtitle": "Eksperckie wsparcie przed inwestycją w technologię",
       "hero_description": "Audyty IT, strategia transformacji cyfrowej i dobór technologii. Pomagamy firmom inwestować w technologię z pewnością — bez kosztownych błędów.",
@@ -388,6 +407,11 @@
     "mobile_apps": {
       "title": "Aplikacje mobilne",
       "description": "Tworzenie natywnych i cross-platformowych aplikacji mobilnych",
+      "metadata": {
+        "title": "Tworzenie Aplikacji Mobilnych | iOS i Android | VektaDev",
+        "description": "Profesjonalne tworzenie aplikacji mobilnych na iOS i Android. React Native, Flutter - cross-platformowe aplikacje z jednego kodu. Design UX/UI w cenie. Omów swój pomysł!",
+        "keywords": "tworzenie aplikacji mobilnych, aplikacja iOS, aplikacja Android, React Native, Flutter, aplikacja cross-platform, aplikacja mobilna, firma tworząca aplikacje"
+      },
       "hero_title": "Twój pomysł na aplikację, profesjonalnie zrealizowany",
       "hero_subtitle": "iOS i Android z jednego kodu źródłowego",
       "hero_description": "Tworzymy aplikacje mobilne, które zachwycają użytkowników i napędzają Twój biznes. React Native, Flutter — nowoczesne technologie dla szybszego time-to-market.",
@@ -466,6 +490,11 @@
     "cloud": {
       "title": "Rozwiązania chmurowe",
       "description": "DevOps, hosting i konfiguracja infrastruktury chmurowej",
+      "metadata": {
+        "title": "Rozwiązania Chmurowe i DevOps | AWS, GCP, Azure | VektaDev",
+        "description": "Profesjonalna konfiguracja infrastruktury chmurowej - AWS, Google Cloud, Azure. CI/CD, Docker, Kubernetes, monitoring i bezpieczeństwo. Niezawodna infrastruktura. Bezpłatny audyt!",
+        "keywords": "rozwiązania chmurowe, DevOps, AWS, Google Cloud, Azure, CI/CD, Docker, Kubernetes, infrastruktura chmurowa, migracja do chmury"
+      },
       "hero_title": "Niezawodna infrastruktura, która skaluje się razem z Tobą",
       "hero_subtitle": "Skup się na produkcie — my zajmiemy się serwerami",
       "hero_description": "AWS, GCP, Azure, CI/CD, Docker, Kubernetes. Profesjonalna konfiguracja i zarządzanie infrastrukturą chmurową, żebyś mógł skupić się na rozwijaniu biznesu.",
@@ -705,39 +734,6 @@
       }
     }
   },
-  "blog": {
-    "title": "Blog",
-    "description": "Przydatne artykuły o IT, technologiach i biznesie",
-    "back": "Powrót do bloga",
-    "author": "Autor artykułu",
-    "need_help": "Potrzebujesz pomocy z projektem?",
-    "get_consultation": "Uzyskaj bezpłatną konsultację od naszych ekspertów",
-    "contact_us": "Skontaktuj się",
-    "related": "Podobne artykuły"
-  },
-  "blog_posts": {
-    "ai_trends": {
-      "title": "AI w biznesie: trendy 2024",
-      "excerpt": "Jak sztuczna inteligencja zmienia procesy biznesowe i co powinni wiedzieć przedsiębiorcy",
-      "category": "AI",
-      "author": "Andrzej Kowalski",
-      "date": "2024-01-15"
-    },
-    "chatbot_automation": {
-      "title": "Automatyzacja biznesu za pomocą chatbotów",
-      "excerpt": "Praktyczne porady dotyczące wdrażania chatbotów w Twojej firmie",
-      "category": "Chatboty",
-      "author": "Maria Nowak",
-      "date": "2024-01-10"
-    },
-    "web_development": {
-      "title": "Trendy web developmentu w 2024",
-      "excerpt": "Co nowego w świecie web developmentu i jakie technologie warto poznać",
-      "category": "Web Development",
-      "author": "Andrzej Kowalski",
-      "date": "2024-01-05"
-    }
-  },
   "not_found": {
     "title": "Strona nie znaleziona",
     "description": "Przepraszamy, ale strona, której szukasz, nie istnieje lub została przeniesiona.",
@@ -746,18 +742,81 @@
   },
   "privacy": {
     "title": "Polityka prywatności",
-    "general": "1. Postanowienia ogólne",
-    "general_text": "Niniejsza Polityka prywatności określa zasady przetwarzania i ochrony danych osobowych użytkowników strony VektaDev.",
-    "collection": "2. Zbieranie informacji",
-    "collection_text": "Zbieramy następujące informacje:",
-    "collection_items": ["Imię i nazwisko", "Dane kontaktowe (email, telefon)", "Informacje o zapytaniach"],
-    "usage": "3. Wykorzystanie informacji",
-    "usage_text": "Zebrane informacje są wykorzystywane do:",
-    "usage_items": ["Świadczenia naszych usług", "Kontaktu z klientami", "Poprawy jakości obsługi"],
-    "protection": "4. Ochrona danych",
-    "protection_text": "Podejmujemy wszelkie niezbędne środki w celu ochrony danych osobowych.",
-    "contact_title": "5. Kontakt",
-    "contact_text": "W sprawach dotyczących polityki prywatności prosimy o kontakt: vektadev@gmail.com"
+    "last_updated": "Ostatnia aktualizacja: styczeń 2026",
+    "intro": {
+      "title": "1. Wprowadzenie",
+      "text": "VektaDev (\"my\", \"nas\" lub \"nasz\") szanuje Twoją prywatność i zobowiązuje się do ochrony Twoich danych osobowych. Niniejsza Polityka prywatności wyjaśnia, w jaki sposób zbieramy, wykorzystujemy i chronimy Twoje dane podczas odwiedzania naszej strony internetowej i korzystania z formularza kontaktowego."
+    },
+    "controller": {
+      "title": "2. Administrator danych",
+      "text": "Administratorem Twoich danych osobowych jest:",
+      "details": ["VektaDev", "ul. Michała Kajki 10-12", "10-547 Olsztyn, Polska", "Email: vektadev@gmail.com", "Telefon: +48 537 890 776"]
+    },
+    "collection": {
+      "title": "3. Jakie dane zbieramy",
+      "text": "Zbieramy dane osobowe, które dobrowolnie podajesz podczas korzystania z formularza kontaktowego:",
+      "items": ["Imię — aby zwracać się do Ciebie odpowiednio w naszej odpowiedzi", "Adres email — aby odpowiedzieć na Twoje zapytanie", "Numer telefonu (opcjonalnie) — do kontaktu zwrotnego na Twoją prośbę", "Treść wiadomości — aby zrozumieć Twoje zapytanie lub potrzeby projektowe"],
+      "automatic_title": "Dane techniczne",
+      "automatic_text": "Nasza strona może również zbierać podstawowe dane techniczne niezbędne do prawidłowego funkcjonowania, takie jak adres IP, typ przeglądarki i czas dostępu. Dane te są przetwarzane przez naszego dostawcę hostingu."
+    },
+    "purpose": {
+      "title": "4. Jak wykorzystujemy Twoje dane",
+      "text": "Przetwarzamy Twoje dane osobowe w następujących celach:",
+      "items": ["Odpowiadanie na Twoje zapytania i prośby", "Komunikacja w sprawie potencjalnych projektów i usług", "Zapewnianie obsługi klienta", "Ulepszanie naszej strony i usług"]
+    },
+    "legal_basis": {
+      "title": "5. Podstawa prawna przetwarzania",
+      "text": "Zgodnie z RODO przetwarzamy Twoje dane na podstawie:",
+      "items": ["Twojej zgody — gdy wysyłasz formularz kontaktowy", "Prawnie uzasadnionego interesu — aby odpowiedzieć na Twoje zapytanie i świadczyć usługi", "Niezbędności umownej — gdy przetwarzanie jest wymagane do realizacji umowy o usługi"]
+    },
+    "third_parties": {
+      "title": "6. Usługi zewnętrzne",
+      "text": "Do obsługi naszej strony i komunikacji z Tobą korzystamy z zaufanych usług zewnętrznych:",
+      "items": [
+        "Resend — do wysyłki emaili. Wiadomości z formularza kontaktowego są wysyłane przez bezpieczną infrastrukturę Resend. Ich polityka prywatności jest dostępna na resend.com/legal/privacy-policy",
+        "Vercel — do hostingu strony. Nasza strona jest hostowana na platformie chmurowej Vercel, która może przetwarzać dane techniczne jak adresy IP dla celów bezpieczeństwa i wydajności. Ich polityka prywatności jest dostępna na vercel.com/legal/privacy-policy"
+      ],
+      "note": "Starannie dobieramy naszych dostawców usług, aby zapewnić zgodność z RODO i odpowiednie standardy bezpieczeństwa."
+    },
+    "cookies": {
+      "title": "7. Pliki cookie i analityka",
+      "text": "Nasza strona obecnie używa tylko niezbędnych plików cookie wymaganych do podstawowej funkcjonalności. Nie używamy śledzących plików cookie ani zewnętrznych usług analitycznych. Jeśli w przyszłości wdrożymy analitykę, zaktualizujemy tę politykę i poprosimy o Twoją zgodę tam, gdzie jest to wymagane."
+    },
+    "retention": {
+      "title": "8. Okres przechowywania danych",
+      "text": "Przechowujemy Twoje dane osobowe tylko tak długo, jak jest to niezbędne do realizacji celów opisanych w tej polityce. Zapytania z formularza kontaktowego są zazwyczaj przechowywane do 12 miesięcy od ostatniej komunikacji z nami, chyba że dłuższy okres przechowywania jest wymagany ze względów prawnych lub biznesowych."
+    },
+    "rights": {
+      "title": "9. Twoje prawa wynikające z RODO",
+      "text": "Zgodnie z Ogólnym Rozporządzeniem o Ochronie Danych (RODO) przysługują Ci następujące prawa:",
+      "items": [
+        "Prawo dostępu — możesz zażądać kopii danych osobowych, które posiadamy na Twój temat",
+        "Prawo do sprostowania — możesz poprosić o poprawienie niedokładnych lub niekompletnych danych",
+        "Prawo do usunięcia — możesz zażądać usunięcia swoich danych osobowych ('prawo do bycia zapomnianym')",
+        "Prawo do ograniczenia przetwarzania — możesz poprosić o ograniczenie sposobu wykorzystywania Twoich danych",
+        "Prawo do przenoszenia danych — możesz zażądać swoich danych w formacie umożliwiającym przeniesienie",
+        "Prawo do sprzeciwu — możesz sprzeciwić się przetwarzaniu Twoich danych",
+        "Prawo do wycofania zgody — możesz wycofać swoją zgodę w dowolnym momencie"
+      ],
+      "exercise": "Aby skorzystać z któregokolwiek z tych praw, skontaktuj się z nami pod adresem vektadev@gmail.com. Odpowiemy na Twoje żądanie w ciągu 30 dni."
+    },
+    "security": {
+      "title": "10. Bezpieczeństwo danych",
+      "text": "Wdrażamy odpowiednie środki techniczne i organizacyjne w celu ochrony Twoich danych osobowych przed nieautoryzowanym dostępem, zmianą, ujawnieniem lub zniszczeniem. Obejmuje to korzystanie z bezpiecznych połączeń HTTPS, szyfrowanej transmisji email oraz ograniczenie dostępu do danych osobowych tylko do upoważnionego personelu."
+    },
+    "changes": {
+      "title": "11. Zmiany w polityce",
+      "text": "Możemy od czasu do czasu aktualizować niniejszą Politykę prywatności. Wszelkie zmiany zostaną opublikowane na tej stronie z zaktualizowaną datą rewizji. Zachęcamy do okresowego przeglądania tej polityki."
+    },
+    "contact": {
+      "title": "12. Kontakt",
+      "text": "Jeśli masz pytania dotyczące tej Polityki prywatności, swoich danych osobowych lub chcesz skorzystać ze swoich praw, skontaktuj się z nami:",
+      "details": ["Email: vektadev@gmail.com", "Telefon: +48 537 890 776", "Adres: ul. Michała Kajki 10-12, 10-547 Olsztyn, Polska"]
+    },
+    "complaints": {
+      "title": "13. Skargi",
+      "text": "Jeśli uważasz, że Twoje prawa do ochrony danych zostały naruszone, masz prawo złożyć skargę do Prezesa Urzędu Ochrony Danych Osobowych (UODO) lub innego właściwego organu nadzorczego."
+    }
   },
   "terms": {
     "title": "Warunki użytkowania",

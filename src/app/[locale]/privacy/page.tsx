@@ -11,7 +11,8 @@ export default function PrivacyPage() {
       <section className="section bg-gradient-to-br from-primary/10 to-accent/10">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">{t("title")}</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">{t("title")}</h1>
+            <p className="text-muted">{t("last_updated")}</p>
           </div>
         </div>
       </section>
@@ -20,30 +21,96 @@ export default function PrivacyPage() {
         <div className="container">
           <div className="max-w-4xl mx-auto">
             <Card className="prose prose-lg max-w-none">
-              <h2>{t("general")}</h2>
-              <p>{t("general_text")}</p>
+              {/* 1. Introduction */}
+              <h2>{t("intro.title")}</h2>
+              <p>{t("intro.text")}</p>
 
-              <h2>{t("collection")}</h2>
-              <p>{t("collection_text")}</p>
+              {/* 2. Data Controller */}
+              <h2>{t("controller.title")}</h2>
+              <p>{t("controller.text")}</p>
               <ul>
-                {(t.raw("collection_items") as string[]).map((item: string, i: number) => (
+                {(t.raw("controller.details") as string[]).map((item: string, i: number) => (
                   <li key={i}>{item}</li>
                 ))}
               </ul>
 
-              <h2>{t("usage")}</h2>
-              <p>{t("usage_text")}</p>
+              {/* 3. Data We Collect */}
+              <h2>{t("collection.title")}</h2>
+              <p>{t("collection.text")}</p>
               <ul>
-                {(t.raw("usage_items") as string[]).map((item: string, i: number) => (
+                {(t.raw("collection.items") as string[]).map((item: string, i: number) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </ul>
+              <h3>{t("collection.automatic_title")}</h3>
+              <p>{t("collection.automatic_text")}</p>
+
+              {/* 4. How We Use Your Data */}
+              <h2>{t("purpose.title")}</h2>
+              <p>{t("purpose.text")}</p>
+              <ul>
+                {(t.raw("purpose.items") as string[]).map((item: string, i: number) => (
                   <li key={i}>{item}</li>
                 ))}
               </ul>
 
-              <h2>{t("protection")}</h2>
-              <p>{t("protection_text")}</p>
+              {/* 5. Legal Basis */}
+              <h2>{t("legal_basis.title")}</h2>
+              <p>{t("legal_basis.text")}</p>
+              <ul>
+                {(t.raw("legal_basis.items") as string[]).map((item: string, i: number) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </ul>
 
-              <h2>{t("contact_title")}</h2>
-              <p>{t("contact_text")}</p>
+              {/* 6. Third-Party Services */}
+              <h2>{t("third_parties.title")}</h2>
+              <p>{t("third_parties.text")}</p>
+              <ul>
+                {(t.raw("third_parties.items") as string[]).map((item: string, i: number) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </ul>
+              <p className="text-sm text-muted italic">{t("third_parties.note")}</p>
+
+              {/* 7. Cookies */}
+              <h2>{t("cookies.title")}</h2>
+              <p>{t("cookies.text")}</p>
+
+              {/* 8. Data Retention */}
+              <h2>{t("retention.title")}</h2>
+              <p>{t("retention.text")}</p>
+
+              {/* 9. Your Rights Under GDPR */}
+              <h2>{t("rights.title")}</h2>
+              <p>{t("rights.text")}</p>
+              <ul>
+                {(t.raw("rights.items") as string[]).map((item: string, i: number) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </ul>
+              <p className="font-medium">{t("rights.exercise")}</p>
+
+              {/* 10. Data Security */}
+              <h2>{t("security.title")}</h2>
+              <p>{t("security.text")}</p>
+
+              {/* 11. Changes */}
+              <h2>{t("changes.title")}</h2>
+              <p>{t("changes.text")}</p>
+
+              {/* 12. Contact */}
+              <h2>{t("contact.title")}</h2>
+              <p>{t("contact.text")}</p>
+              <ul>
+                {(t.raw("contact.details") as string[]).map((item: string, i: number) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </ul>
+
+              {/* 13. Complaints */}
+              <h2>{t("complaints.title")}</h2>
+              <p>{t("complaints.text")}</p>
             </Card>
           </div>
         </div>

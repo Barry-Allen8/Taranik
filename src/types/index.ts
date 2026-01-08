@@ -20,22 +20,6 @@ export interface PortfolioProject {
   link?: string;
 }
 
-export interface BlogPost {
-  id: string;
-  slug: string;
-  title: string;
-  excerpt: string;
-  content: string;
-  image: string;
-  author: {
-    name: string;
-    image: string;
-  };
-  publishedAt: string;
-  category: string;
-  tags: string[];
-}
-
 export interface Testimonial {
   id: string;
   name: string;

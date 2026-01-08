@@ -4,7 +4,7 @@ import { locales, defaultLocale } from "@/i18n";
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://vektadev.com";
 
-  // Static page paths (blog removed - not localized yet)
+  // Static page paths
   const staticPaths = [
     { path: "", priority: 1, changeFrequency: "monthly" as const },
     { path: "/about", priority: 0.8, changeFrequency: "monthly" as const },
