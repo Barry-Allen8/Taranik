@@ -16,6 +16,7 @@ interface ApiContactFormData extends ContactFormData {
 
 export default function ContactForm() {
   const t = useTranslations("contact.form");
+  const tErrors = useTranslations("contact.form.errors");
   const tServices = useTranslations("services_menu");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(null);
@@ -29,6 +30,15 @@ export default function ContactForm() {
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
   });
+
+  const translateError = (code?: string) => {
+    if (!code) return undefined;
+    try {
+      return tErrors(code);
+    } catch {
+      return t("error");
+    }
+  };
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
@@ -53,10 +63,10 @@ export default function ContactForm() {
         body: JSON.stringify(payload),
       });
 
-      const result = await response.json();
-
       if (!response.ok) {
-        throw new Error(result.error || "Failed to send message");
+        const parsedBody = await response.json().catch(() => null);
+        const serverError = response.status === 429 ? t("rate_limit") : null;
+        throw new Error(serverError || parsedBody?.error || t("error"));
       }
 
       setSubmitStatus("success");
@@ -91,7 +101,7 @@ export default function ContactForm() {
         label={t("name")}
         placeholder={t("name_placeholder")}
         {...register("name")}
-        error={errors.name?.message}
+        error={translateError(errors.name?.message)}
       />
 
       <Input
@@ -99,7 +109,7 @@ export default function ContactForm() {
         type="email"
         placeholder={t("email_placeholder")}
         {...register("email")}
-        error={errors.email?.message}
+        error={translateError(errors.email?.message)}
       />
 
       <Input
@@ -107,7 +117,7 @@ export default function ContactForm() {
         type="tel"
         placeholder={t("phone_placeholder")}
         {...register("phone")}
-        error={errors.phone?.message}
+        error={translateError(errors.phone?.message)}
       />
 
       <div>
@@ -130,7 +140,7 @@ export default function ContactForm() {
         label={t("message")}
         placeholder={t("message_placeholder")}
         {...register("message")}
-        error={errors.message?.message}
+        error={translateError(errors.message?.message)}
       />
 
       <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>

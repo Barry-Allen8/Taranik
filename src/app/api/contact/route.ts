@@ -1,16 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
+import { contactFormSchema } from "@/lib/validations";
 
-// Server-side validation schema
-const contactSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Invalid email format"),
-  phone: z.string().optional(),
-  service: z.string().optional(),
-  message: z.string().min(10, "Message must be at least 10 characters"),
+// Server-side validation schema using shared error codes
+const contactSchema = contactFormSchema.extend({
   // Honeypot field - should be empty for real submissions
-  website: z.string().max(0, "Bot detected").optional(),
+  website: z.string().max(0, { message: "bot.detected" }).optional(),
 });
 
 // Simple rate limiting using in-memory store
@@ -18,7 +14,17 @@ const rateLimit = new Map<string, { count: number; timestamp: number }>();
 const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
 const MAX_REQUESTS = 3; // Max 3 submissions per minute per IP
 
+function cleanupRateLimit() {
+  const now = Date.now();
+  for (const [ip, entry] of rateLimit.entries()) {
+    if (now - entry.timestamp > RATE_LIMIT_WINDOW) {
+      rateLimit.delete(ip);
+    }
+  }
+}
+
 function isRateLimited(ip: string): boolean {
+  cleanupRateLimit();
   const now = Date.now();
   const entry = rateLimit.get(ip);
 
@@ -35,24 +41,17 @@ function isRateLimited(ip: string): boolean {
   return false;
 }
 
-// Cleanup old rate limit entries periodically
-setInterval(() => {
-  const now = Date.now();
-  for (const [ip, entry] of rateLimit.entries()) {
-    if (now - entry.timestamp > RATE_LIMIT_WINDOW) {
-      rateLimit.delete(ip);
-    }
-  }
-}, RATE_LIMIT_WINDOW);
-
 export async function POST(request: NextRequest) {
   try {
     // Get client IP for rate limiting
     const forwardedFor = request.headers.get("x-forwarded-for");
-    const ip = forwardedFor?.split(",")[0] ?? "unknown";
+    const ip =
+      forwardedFor?.split(",")[0]?.trim() ||
+      request.ip ||
+      null;
 
-    // Check rate limit
-    if (isRateLimited(ip)) {
+    // Check rate limit when IP is available; skip otherwise
+    if (ip && isRateLimited(ip)) {
       return NextResponse.json(
         { error: "Too many requests. Please try again later." },
         { status: 429 }
@@ -77,7 +76,7 @@ export async function POST(request: NextRequest) {
     // Check if Resend API key is configured
     const resendApiKey = process.env.RESEND_API_KEY;
     if (!resendApiKey) {
-      console.error("RESEND_API_KEY environment variable is not set");
+      console.error("contact_api_missing_resend_key");
       return NextResponse.json(
         { error: "Email service not configured" },
         { status: 500 }
@@ -126,7 +125,7 @@ This email was sent from the VektaDev website contact form.
     });
 
     if (error) {
-      console.error("Resend error:", error);
+      console.error("contact_api_send_error", error?.name ?? "unknown_error");
       return NextResponse.json(
         { error: "Failed to send email" },
         { status: 500 }
@@ -138,7 +137,7 @@ This email was sent from the VektaDev website contact form.
       { status: 200 }
     );
   } catch (error) {
-    console.error("Contact form error:", error);
+    console.error("contact_api_unhandled_error", (error as Error)?.message);
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }

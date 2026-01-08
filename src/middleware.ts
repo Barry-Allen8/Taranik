@@ -14,16 +14,6 @@ const intlMiddleware = createMiddleware({
 export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Handle redirects for removed locales (French and German → English)
-  const removedLocalesPattern = /^\/(fr|de)(\/.*)?$/;
-  const removedLocalesMatch = pathname.match(removedLocalesPattern);
-  
-  if (removedLocalesMatch) {
-    const restOfPath = removedLocalesMatch[2] || "";
-    const redirectUrl = new URL(`/en${restOfPath}`, request.url);
-    return NextResponse.redirect(redirectUrl, 301);
-  }
-
   // Handle redirects for removed /courses routes
   // Check for courses path in any locale
   const coursesPattern = /^\/(pl|en)?\/courses(\/.*)?$/;

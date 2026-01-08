@@ -1,36 +1,30 @@
 import type { Metadata, Viewport } from "next";
+import { defaultLocale } from "@/i18n";
+import "./globals.css";
+
+const BASE_URL = "https://vektadev.com";
+const SITE_TITLE = "VektaDev - Profesjonalne rozwiązania IT dla Twojego biznesu";
+const SITE_DESCRIPTION =
+  "Tworzymy nowoczesne strony internetowe, chat boty, rozwiązania AI i konsulting IT, które pozwalają firmom rozwijać się z nowoczesnymi technologiami.";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(BASE_URL),
   title: {
-    default: "VektaDev - Profesjonalne rozwiązania IT dla Twojego biznesu",
+    default: SITE_TITLE,
     template: "%s | VektaDev",
   },
-  description: "Tworzenie stron, chatbotów, rozwiązań AI i konsulting IT. Pomagamy firmom rozwijać się dzięki nowoczesnym technologiom.",
-  keywords: ["tworzenie stron", "chatboty", "rozwiązania AI", "konsulting IT", "web development", "Polska"],
-  authors: [{ name: "VektaDev" }],
-  creator: "VektaDev",
-  publisher: "VektaDev",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  metadataBase: new URL("https://vektadev.com"),
-  alternates: {
-    canonical: "/",
-  },
+  description: SITE_DESCRIPTION,
   openGraph: {
-    title: "VektaDev - Profesjonalne rozwiązania IT",
-    description: "Tworzenie stron, chatbotów, rozwiązań AI i konsulting IT",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     type: "website",
-    locale: "pl_PL",
-    url: "https://vektadev.com",
+    url: BASE_URL,
     siteName: "VektaDev",
   },
   twitter: {
     card: "summary_large_image",
-    title: "VektaDev - Profesjonalne rozwiązania IT",
-    description: "Tworzenie stron, chatbotów, rozwiązań AI i konsulting IT",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
   },
   robots: {
     index: true,
@@ -55,16 +49,18 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#2563eb",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
+  themeColor: "#2563eb",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return children;
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang={defaultLocale}>
+      <body className="font-sans antialiased">
+        {children}
+      </body>
+    </html>
+  );
 }

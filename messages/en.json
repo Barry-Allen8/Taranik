@@ -6,6 +6,24 @@
     "contact": "Contact",
     "consultation": "Book consultation"
   },
+  "seo": {
+    "home": {
+      "title": "Professional IT Partner for Growing Businesses | VektaDev",
+      "description": "VektaDev delivers web development, chatbots, and AI-powered automation that convert visitors into customers and streamline operations."
+    },
+    "about": {
+      "title": "About VektaDev | Experienced IT Team",
+      "description": "Meet the VektaDev team of developers, AI specialists, and strategists who build reliable digital products with clarity and care."
+    },
+    "services": {
+      "title": "Full-Stack IT Services | Web, Chatbots & AI | VektaDev",
+      "description": "From modern websites to intelligent automation and IT consulting, VektaDev scopes, builds, and supports solutions that accelerate growth."
+    },
+    "contact": {
+      "title": "Contact VektaDev | Book a Consultation",
+      "description": "Share your project goals and book a discovery call to explore how VektaDev can support your digital transformation."
+    }
+  },
   "services_menu": {
     "websites": "Web Development",
     "chatbots": "Chatbots",
@@ -628,6 +646,8 @@
     "phone": "Phone",
     "email": "Email",
     "hours": "Working Hours",
+    "phones": ["+48 537 890 776", "+48 733 264 543"],
+    "email_address": "vektadev@gmail.com",
     "form": {
       "name": "Name *",
       "name_placeholder": "Your name",
@@ -643,7 +663,18 @@
       "submitting": "Sending...",
       "success": "Thank you! Your message has been sent. We will contact you shortly.",
       "error": "An error occurred. Please try again later.",
-      "rate_limit": "Too many requests. Please wait a moment and try again."
+      "rate_limit": "Too many requests. Please wait a moment and try again.",
+      "errors": {
+        "name": {
+          "too_short": "Name must be at least 2 characters"
+        },
+        "email": {
+          "invalid": "Invalid email format"
+        },
+        "message": {
+          "too_short": "Message must be at least 10 characters"
+        }
+      }
     }
   },
   "about": {

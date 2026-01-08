@@ -23,6 +23,8 @@ export default function ConsultingPageClient() {
   const t = useTranslations("services");
 
   const benefits = ["audit", "strategy", "optimization", "training"];
+  const benefitIcons = [FileCheck, Target, Shield, Users];
+  const benefitKeys = benefits.slice(0, Math.min(benefits.length, benefitIcons.length));
   
   const bestFor = t.raw("consulting.who_its_for.best_for") as string[];
   const notFor = t.raw("consulting.who_its_for.not_for") as string[];
@@ -178,9 +180,9 @@ export default function ConsultingPageClient() {
         <div className="container">
           <h2 className="text-3xl font-bold text-center mb-12">{t("what_you_get")}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {benefits.map((key, index) => {
-              const icons = [FileCheck, Target, Shield, Users];
-              const Icon = icons[index];
+            {benefitKeys.map((key, index) => {
+              const Icon = benefitIcons[index];
+              if (!Icon) return null;
               return (
                 <Card key={key} className="group hover:border-primary/50 transition-colors">
                   <div className="flex items-start gap-4">
