@@ -10,42 +10,41 @@ export interface TeamMemberData {
 
 export const teamMembers: TeamMemberData[] = [
   {
-    id: "andriy",
-    image: "/images/team/andriy.jpg",
+    id: "ievgenii",
+    image: "/images/team/ievgenii.jpg",
     social: {
-      linkedin: "https://linkedin.com/in/andriy-kovalenko",
-      github: "https://github.com/andriy-kovalenko",
+      linkedin: "https://linkedin.com/in/ievgenii-bigun",
+      github: "https://github.com/ievgenii-bigun",
     },
   },
   {
-    id: "maria",
-    image: "/images/team/maria.jpg",
+    id: "vladyslav",
+    image: "/images/team/vladyslav.jpg",
     social: {
-      linkedin: "https://linkedin.com/in/maria-petrenko",
-      github: "https://github.com/maria-petrenko",
+      linkedin: "https://linkedin.com/in/vladyslav-bereza",
+      github: "https://github.com/vladyslav-bereza",
     },
   },
   {
-    id: "oleksiy",
-    image: "/images/team/oleksiy.jpg",
+    id: "alex",
+    image: "/images/team/alex.jpg",
     social: {
-      linkedin: "https://linkedin.com/in/oleksiy-sydorenko",
-      github: "https://github.com/oleksiy-sydorenko",
+      linkedin: "https://linkedin.com/in/alex-sydorenko",
     },
   },
   {
-    id: "kateryna",
-    image: "/images/team/kateryna.jpg",
+    id: "katherine",
+    image: "/images/team/katherine.jpg",
     social: {
-      linkedin: "https://linkedin.com/in/kateryna-melnyk",
+      linkedin: "https://linkedin.com/in/katherine-melnyk",
     },
   },
   {
-    id: "igor",
-    image: "/images/team/igor.jpg",
+    id: "pawel",
+    image: "/images/team/pawel.jpg",
     social: {
-      linkedin: "https://linkedin.com/in/igor-bondarenko",
-      github: "https://github.com/igor-bondarenko",
+      linkedin: "https://linkedin.com/in/pawel-koterski",
+      github: "https://github.com/pawel-koterski",
     },
   },
 ];

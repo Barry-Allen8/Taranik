@@ -7,6 +7,7 @@ import { Target, Award, Users, Lightbulb } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 export default function AboutPageClient() {
   const t = useTranslations("about");
@@ -89,10 +90,14 @@ export default function AboutPageClient() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
                   <Card className="text-center h-full">
-                    <div className="w-24 h-24 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-4">
-                      <span className="text-3xl font-bold text-white">
-                        {name.charAt(0)}
-                      </span>
+                    <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-4 relative">
+                      <Image
+                        src={member.image}
+                        alt={name}
+                        fill
+                        className="object-cover"
+                        sizes="96px"
+                      />
                     </div>
                     <h3 className="text-lg font-semibold mb-1">{name}</h3>
                     <p className="text-primary text-sm mb-3">{position}</p>
