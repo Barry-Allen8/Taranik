@@ -1,6 +1,9 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Metadata } from "next";
+import { getSeoAlternates } from "@/lib/seo";
 import CloudPageClient from "./CloudPageClient";
+
+const ROUTE = "/services/cloud";
 
 type Props = {
   params: { locale: string };
@@ -13,6 +16,7 @@ export async function generateMetadata({ params: { locale } }: Props): Promise<M
     title: t("cloud.metadata.title"),
     description: t("cloud.metadata.description"),
     keywords: t("cloud.metadata.keywords"),
+    alternates: getSeoAlternates(locale, ROUTE),
     openGraph: {
       title: t("cloud.metadata.title"),
       description: t("cloud.metadata.description"),

@@ -1,6 +1,9 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Metadata } from "next";
+import { getSeoAlternates } from "@/lib/seo";
 import ChatbotsPageClient from "./ChatbotsPageClient";
+
+const ROUTE = "/services/chatbots";
 
 type Props = {
   params: { locale: string };
@@ -13,6 +16,7 @@ export async function generateMetadata({ params: { locale } }: Props): Promise<M
     title: t("chatbots.metadata.title"),
     description: t("chatbots.metadata.description"),
     keywords: t("chatbots.metadata.keywords"),
+    alternates: getSeoAlternates(locale, ROUTE),
     openGraph: {
       title: t("chatbots.metadata.title"),
       description: t("chatbots.metadata.description"),

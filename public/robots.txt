@@ -1,8 +1,0 @@
-# robots.txt for IT-service
-
-User-agent: *
-Allow: /
-Disallow: /api/
-
-# Sitemap
-Sitemap: https://vektadev.com/sitemap.xml
