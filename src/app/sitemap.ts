@@ -1,41 +1,42 @@
 import type { MetadataRoute } from "next";
-import { locales, defaultLocale } from "@/i18n";
-import { getCanonicalUrl, getHreflangAlternates } from "@/lib/seo";
 
-// All static routes in the application
-const STATIC_ROUTES = [
-  "/",
-  "/about",
-  "/services",
-  "/services/mobile-apps",
-  "/services/chatbots",
-  "/services/ai-solutions",
-  "/services/websites",
-  "/services/consulting",
-  "/services/cloud",
-  "/contact",
-  "/portfolio",
-  "/privacy",
-  "/terms",
-];
+const BASE_URL = "https://vektadev.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const urls: MetadataRoute.Sitemap = [];
+  const routes = [
+    "/",
+    "/about",
+    "/contact",
+    "/portfolio",
+    "/privacy",
+    "/terms",
 
-  for (const route of STATIC_ROUTES) {
-    for (const locale of locales) {
-      const url = getCanonicalUrl(locale, route);
-      const alternates = getHreflangAlternates(route);
+    "/pl",
+    "/pl/about",
+    "/pl/contact",
+    "/pl/portfolio",
+    "/pl/privacy",
+    "/pl/terms",
 
-      urls.push({
-        url,
-        lastModified: new Date(),
-        alternates: {
-          languages: alternates,
-        },
-      });
-    }
-  }
+    "/services",
+    "/services/mobile-apps",
+    "/services/chatbots",
+    "/services/ai-solutions",
+    "/services/websites",
+    "/services/consulting",
+    "/services/cloud",
 
-  return urls;
+    "/pl/services",
+    "/pl/services/mobile-apps",
+    "/pl/services/chatbots",
+    "/pl/services/ai-solutions",
+    "/pl/services/websites",
+    "/pl/services/consulting",
+    "/pl/services/cloud",
+  ];
+
+  return routes.map((path) => ({
+    url: `${BASE_URL}${path}`,
+    lastModified: new Date(),
+  }));
 }
