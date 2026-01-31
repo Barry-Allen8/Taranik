@@ -24,10 +24,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     );
 
     if (asChild && children) {
-      return cloneElement(children as ReactElement, {
-        className: cn((children as ReactElement).props.className, classes),
+      const child = children as ReactElement<{ className?: string }>;
+      return cloneElement(child, {
+        className: cn(child.props.className, classes),
         ...props,
-      });
+      } as React.HTMLAttributes<HTMLElement>);
     }
 
     return (
