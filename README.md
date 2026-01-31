@@ -1,15 +1,15 @@
 # IT-service - Професійні IT-рішення
 
-Сучасний вебсайт для української IT-компанії, створений з використанням Next.js 16, TypeScript та Tailwind CSS v4.
+Сучасний вебсайт для української IT-компанії, створений з використанням Next.js 16, TypeScript та Tailwind CSS.
 
 ## 🚀 Технології
 
 - **Framework:** Next.js 16+ (App Router, React Compiler, Cache Components)
 - **UI Library:** React 19.2
-- **Styling:** Tailwind CSS 4.x (CSS-based config, 100x faster builds)
+- **Styling:** Tailwind CSS 3.4
 - **Animations:** Framer Motion 12.x
 - **Icons:** Lucide React
-- **Forms:** React Hook Form 7.x + Zod 4.x validation
+- **Forms:** React Hook Form 7.x + Zod 3.x validation
 - **i18n:** next-intl 4.x
 - **Email:** Resend API
 - **Мова:** TypeScript 5.9
