@@ -13,7 +13,7 @@ export default function Footer() {
   const tServices = useTranslations("services_menu");
   const locale = useLocale() as Locale;
   const currentYear = new Date().getFullYear();
-  
+
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -21,16 +21,16 @@ export default function Footer() {
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || isLoading) return;
-    
+
     setIsLoading(true);
-    
+
     // Simulate API call - replace with actual newsletter API
     await new Promise(resolve => setTimeout(resolve, 800));
-    
+
     setIsSubmitted(true);
     setEmail("");
     setIsLoading(false);
-    
+
     // Reset success state after 5 seconds
     setTimeout(() => setIsSubmitted(false), 5000);
   };
@@ -71,11 +71,10 @@ export default function Footer() {
                 <button
                   type="submit"
                   disabled={isLoading || isSubmitted}
-                  className={`px-6 py-4 rounded-xl font-semibold flex items-center gap-2 transition-all duration-300 ${
-                    isSubmitted
+                  className={`px-6 py-4 rounded-xl font-semibold flex items-center gap-2 transition-all duration-300 ${isSubmitted
                       ? "bg-green-500 text-white"
                       : "bg-gradient-to-r from-primary to-accent hover:shadow-lg hover:shadow-primary/25 text-white"
-                  } ${isLoading ? "opacity-70 cursor-wait" : ""}`}
+                    } ${isLoading ? "opacity-70 cursor-wait" : ""}`}
                 >
                   {isSubmitted ? (
                     <Check className="w-5 h-5" />
@@ -103,8 +102,8 @@ export default function Footer() {
             transition={{ delay: 0.1 }}
           >
             <Link href="/" locale={locale} className="flex items-center gap-2 mb-4">
-              <svg 
-                viewBox="0 0 265 229" 
+              <svg
+                viewBox="0 0 265 229"
                 className="h-9 w-auto"
                 aria-label="VektaDev Logo"
               >
@@ -116,9 +115,9 @@ export default function Footer() {
                   </linearGradient>
                 </defs>
                 <g fill="url(#footerLogoGradient)">
-                  <polygon points="265 0 251 24 133 229 118 203 133 178 177 101 221 24 133 24 147 0 265 0"/>
-                  <polygon points="178 48 133 126 118 152 103 178 88 152 14 24 0 0 30 0 44 24 103 126 118 101 133 76 149 48 178 48"/>
-                  <polygon points="118 50 103 76 88 50 59 0 88 0 118 50"/>
+                  <polygon points="265 0 251 24 133 229 118 203 133 178 177 101 221 24 133 24 147 0 265 0" />
+                  <polygon points="178 48 133 126 118 152 103 178 88 152 14 24 0 0 30 0 44 24 103 126 118 101 133 76 149 48 178 48" />
+                  <polygon points="118 50 103 76 88 50 59 0 88 0 118 50" />
                 </g>
               </svg>
               <span className="text-xl font-bold gradient-text">VektaDev</span>
@@ -162,10 +161,7 @@ export default function Footer() {
               {[
                 { href: "/services/websites", key: "websites" },
                 { href: "/services/chatbots", key: "chatbots" },
-                { href: "/services/ai-solutions", key: "ai_solutions" },
                 { href: "/services/mobile-apps", key: "mobile_apps" },
-                { href: "/services/cloud", key: "cloud" },
-                { href: "/services/consulting", key: "consulting" },
               ].map((item) => (
                 <li key={item.key}>
                   <Link

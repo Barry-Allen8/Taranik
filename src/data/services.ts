@@ -28,19 +28,6 @@ export const services: Service[] = [
     ],
   },
   {
-    id: "ai-solutions",
-    title: "AI-рішення",
-    description: "Впроваджуємо штучний інтелект для оптимізації бізнес-процесів",
-    icon: "brain",
-    href: "/services/ai-solutions",
-    features: [
-      "ChatGPT інтеграція",
-      "AI-асистенти",
-      "Автоматизація процесів",
-      "Аналітика даних",
-    ],
-  },
-  {
     id: "mobile-apps",
     title: "Мобільні додатки",
     description: "Розробка нативних та крос-платформних мобільних додатків",
@@ -51,32 +38,6 @@ export const services: Service[] = [
       "React Native / Flutter",
       "Дизайн UX/UI",
       "Підтримка та оновлення",
-    ],
-  },
-  {
-    id: "cloud",
-    title: "Хмарні рішення",
-    description: "DevOps, хостинг та налаштування хмарної інфраструктури",
-    icon: "cloud",
-    href: "/services/cloud",
-    features: [
-      "AWS / Google Cloud / Azure",
-      "CI/CD налаштування",
-      "Docker / Kubernetes",
-      "Моніторинг та безпека",
-    ],
-  },
-  {
-    id: "consulting",
-    title: "IT-консалтинг",
-    description: "Професійна консультація з питань цифрової трансформації",
-    icon: "lightbulb",
-    href: "/services/consulting",
-    features: [
-      "Аудит IT-інфраструктури",
-      "Стратегія розвитку",
-      "Вибір технологій",
-      "Оптимізація процесів",
     ],
   },
 ];

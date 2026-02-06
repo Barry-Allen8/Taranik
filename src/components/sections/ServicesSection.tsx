@@ -1,7 +1,7 @@
 "use client";
 
 import Card from "@/components/ui/Card";
-import { Globe, Bot, Brain, Smartphone, Cloud, Lightbulb, ArrowRight } from "lucide-react";
+import { Globe, Bot, Smartphone, ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { motion } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
@@ -10,10 +10,7 @@ import { type Locale } from "@/i18n";
 const serviceKeys = [
   { key: "websites", icon: Globe, href: "/services/websites", color: "from-blue-500 to-cyan-500", shadow: "hover:shadow-blue-500/25" },
   { key: "chatbots", icon: Bot, href: "/services/chatbots", color: "from-violet-500 to-purple-500", shadow: "hover:shadow-violet-500/25" },
-  { key: "ai_solutions", icon: Brain, href: "/services/ai-solutions", color: "from-pink-500 to-rose-500", shadow: "hover:shadow-pink-500/25" },
   { key: "mobile_apps", icon: Smartphone, href: "/services/mobile-apps", color: "from-orange-500 to-amber-500", shadow: "hover:shadow-orange-500/25" },
-  { key: "cloud", icon: Cloud, href: "/services/cloud", color: "from-emerald-500 to-teal-500", shadow: "hover:shadow-emerald-500/25" },
-  { key: "consulting", icon: Lightbulb, href: "/services/consulting", color: "from-indigo-500 to-blue-500", shadow: "hover:shadow-indigo-500/25" },
 ];
 
 const containerVariants = {

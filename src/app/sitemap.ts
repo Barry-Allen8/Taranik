@@ -21,18 +21,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/services",
     "/services/mobile-apps",
     "/services/chatbots",
-    "/services/ai-solutions",
     "/services/websites",
-    "/services/consulting",
-    "/services/cloud",
 
     "/pl/services",
     "/pl/services/mobile-apps",
     "/pl/services/chatbots",
-    "/pl/services/ai-solutions",
     "/pl/services/websites",
-    "/pl/services/consulting",
-    "/pl/services/cloud",
   ];
 
   return routes.map((path) => ({

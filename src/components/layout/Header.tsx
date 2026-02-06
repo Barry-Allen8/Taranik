@@ -18,7 +18,7 @@ export default function Header() {
   const tServices = useTranslations("services_menu");
   const locale = useLocale() as Locale;
   const pathname = usePathname();
-  
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
@@ -56,10 +56,7 @@ export default function Header() {
   const services = [
     { name: tServices("websites"), href: "/services/websites" },
     { name: tServices("chatbots"), href: "/services/chatbots" },
-    { name: tServices("ai_solutions"), href: "/services/ai-solutions" },
     { name: tServices("mobile_apps"), href: "/services/mobile-apps" },
-    { name: tServices("cloud"), href: "/services/cloud" },
-    { name: tServices("consulting"), href: "/services/consulting" },
   ];
 
   // Get path without locale
@@ -99,8 +96,8 @@ export default function Header() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" locale={locale} className="flex items-center gap-2">
-            <svg 
-              viewBox="0 0 265 229" 
+            <svg
+              viewBox="0 0 265 229"
               className="h-9 w-auto"
               aria-label="VektaDev Logo"
             >
@@ -112,9 +109,9 @@ export default function Header() {
                 </linearGradient>
               </defs>
               <g fill="url(#logoGradient)">
-                <polygon points="265 0 251 24 133 229 118 203 133 178 177 101 221 24 133 24 147 0 265 0"/>
-                <polygon points="178 48 133 126 118 152 103 178 88 152 14 24 0 0 30 0 44 24 103 126 118 101 133 76 149 48 178 48"/>
-                <polygon points="118 50 103 76 88 50 59 0 88 0 118 50"/>
+                <polygon points="265 0 251 24 133 229 118 203 133 178 177 101 221 24 133 24 147 0 265 0" />
+                <polygon points="178 48 133 126 118 152 103 178 88 152 14 24 0 0 30 0 44 24 103 126 118 101 133 76 149 48 178 48" />
+                <polygon points="118 50 103 76 88 50 59 0 88 0 118 50" />
               </g>
             </svg>
             <span className="text-xl font-bold gradient-text hidden sm:inline">VektaDev</span>
@@ -146,8 +143,8 @@ export default function Header() {
                         locale={locale}
                         className={cn(
                           "block px-4 py-3 transition-colors",
-                          isActive(service.href) 
-                            ? "bg-primary text-white" 
+                          isActive(service.href)
+                            ? "bg-primary text-white"
                             : "hover:bg-primary hover:text-white"
                         )}
                       >
@@ -158,8 +155,8 @@ export default function Header() {
                 </div>
               )}
             </div>
-            <Link 
-              href="/portfolio" 
+            <Link
+              href="/portfolio"
               locale={locale}
               className={cn(
                 "transition-colors font-medium",
@@ -168,8 +165,8 @@ export default function Header() {
             >
               {t("portfolio")}
             </Link>
-            <Link 
-              href="/about" 
+            <Link
+              href="/about"
               locale={locale}
               className={cn(
                 "transition-colors font-medium",
@@ -178,8 +175,8 @@ export default function Header() {
             >
               {t("about")}
             </Link>
-            <Link 
-              href="/contact" 
+            <Link
+              href="/contact"
               locale={locale}
               className={cn(
                 "transition-colors font-medium",
@@ -198,13 +195,13 @@ export default function Header() {
 
             {/* Modern Language Switcher - Pill Style */}
             <div className="relative" data-lang-switcher>
-              <button 
+              <button
                 onClick={() => setLangOpen(!langOpen)}
                 className={cn(
                   "flex items-center gap-1.5 px-4 py-2.5 rounded-full border-2 transition-all duration-200",
                   "text-sm font-semibold tracking-wide",
-                  langOpen 
-                    ? "border-primary bg-primary/5 text-primary" 
+                  langOpen
+                    ? "border-primary bg-primary/5 text-primary"
                     : "border-gray-200 hover:border-primary/50 text-gray-700 hover:text-primary"
                 )}
               >
@@ -214,7 +211,7 @@ export default function Header() {
                   langOpen && "rotate-180"
                 )} />
               </button>
-              
+
               {langOpen && (
                 <div className="absolute top-full right-0 mt-2 z-50">
                   <div className="bg-white shadow-lg rounded-xl border border-gray-100 overflow-hidden min-w-[100px]">
@@ -227,8 +224,8 @@ export default function Header() {
                         }}
                         className={cn(
                           "w-full px-4 py-2.5 text-sm font-medium transition-all duration-150 text-left",
-                          locale === loc 
-                            ? "bg-primary text-white" 
+                          locale === loc
+                            ? "bg-primary text-white"
                             : "text-gray-700 hover:bg-gray-50 hover:text-primary"
                         )}
                       >
@@ -261,7 +258,7 @@ export default function Header() {
         </div>
 
         {/* Mobile Menu - Accordion Style */}
-        <div 
+        <div
           ref={mobileMenuRef}
           className={cn(
             "lg:hidden overflow-hidden transition-all duration-500 ease-out",
@@ -277,8 +274,8 @@ export default function Header() {
                   onClick={() => switchLocale(loc)}
                   className={cn(
                     "px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200",
-                    locale === loc 
-                      ? "bg-primary text-white shadow-md" 
+                    locale === loc
+                      ? "bg-primary text-white shadow-md"
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                   )}
                 >
@@ -316,8 +313,8 @@ export default function Header() {
                       locale={locale}
                       className={cn(
                         "block py-2.5 px-3 rounded-lg transition-all duration-200",
-                        isActive(service.href) 
-                          ? "text-primary bg-primary/10 font-medium" 
+                        isActive(service.href)
+                          ? "text-primary bg-primary/10 font-medium"
                           : "text-gray-600 hover:text-primary hover:bg-gray-50"
                       )}
                       onClick={() => setIsMobileMenuOpen(false)}
@@ -330,40 +327,40 @@ export default function Header() {
             </div>
 
             {/* Other Links */}
-            <Link 
-              href="/portfolio" 
+            <Link
+              href="/portfolio"
               locale={locale}
               className={cn(
                 "block py-3 font-medium border-b border-gray-100 transition-colors",
                 isActive("/portfolio") ? "text-primary" : "hover:text-primary"
-              )} 
+              )}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {t("portfolio")}
             </Link>
-            <Link 
-              href="/about" 
+            <Link
+              href="/about"
               locale={locale}
               className={cn(
                 "block py-3 font-medium border-b border-gray-100 transition-colors",
                 isActive("/about") ? "text-primary" : "hover:text-primary"
-              )} 
+              )}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {t("about")}
             </Link>
-            <Link 
-              href="/contact" 
+            <Link
+              href="/contact"
               locale={locale}
               className={cn(
                 "block py-3 font-medium border-b border-gray-100 transition-colors",
                 isActive("/contact") ? "text-primary" : "hover:text-primary"
-              )} 
+              )}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {t("contact")}
             </Link>
-            
+
             <Button className="w-full mt-4" asChild>
               <Link href="/contact" locale={locale} onClick={() => setIsMobileMenuOpen(false)}>
                 {t("consultation")}

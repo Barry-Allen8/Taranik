@@ -27,10 +27,7 @@
   "services_menu": {
     "websites": "Tworzenie stron",
     "chatbots": "Chatboty",
-    "ai_solutions": "Rozwiązania AI",
-    "consulting": "Konsulting IT",
-    "mobile_apps": "Aplikacje mobilne",
-    "cloud": "Rozwiązania chmurowe"
+    "mobile_apps": "Aplikacje mobilne"
   },
   "hero": {
     "badge": "Innowacyjne rozwiązania IT od 2020 roku",
@@ -66,14 +63,37 @@
       "hero_subtitle": "Szybkie, responsywne strony, które zamieniają odwiedzających w klientów",
       "hero_description": "Tworzymy nowoczesne, szybkie i wygodne strony, które pomagają biznesowi rosnąć",
       "hero_cta": "Zamów bezpłatną wycenę",
-      "features": ["Landing page i strony promocyjne", "Strony korporacyjne", "Sklepy internetowe", "Aplikacje webowe"],
+      "features": [
+        "Landing page i strony promocyjne",
+        "Strony korporacyjne",
+        "Sklepy internetowe",
+        "Aplikacje webowe"
+      ],
       "benefits": {
-        "design": { "title": "Nowoczesny design", "description": "Unikalny design odzwierciedlający Twoją indywidualność" },
-        "speed": { "title": "Szybka praca", "description": "Optymalizacja dla maksymalnej szybkości ładowania" },
-        "responsive": { "title": "Responsywność", "description": "Idealny wygląd na wszystkich urządzeniach i ekranach" },
-        "seo": { "title": "Optymalizacja SEO", "description": "Ustawienia dla wysokich pozycji w wyszukiwarkach" },
-        "security": { "title": "Bezpieczeństwo", "description": "Ochrona przed atakami hakerskimi i utratą danych" },
-        "support": { "title": "Wsparcie", "description": "Wsparcie techniczne po uruchomieniu projektu" }
+        "design": {
+          "title": "Nowoczesny design",
+          "description": "Unikalny design odzwierciedlający Twoją indywidualność"
+        },
+        "speed": {
+          "title": "Szybka praca",
+          "description": "Optymalizacja dla maksymalnej szybkości ładowania"
+        },
+        "responsive": {
+          "title": "Responsywność",
+          "description": "Idealny wygląd na wszystkich urządzeniach i ekranach"
+        },
+        "seo": {
+          "title": "Optymalizacja SEO",
+          "description": "Ustawienia dla wysokich pozycji w wyszukiwarkach"
+        },
+        "security": {
+          "title": "Bezpieczeństwo",
+          "description": "Ochrona przed atakami hakerskimi i utratą danych"
+        },
+        "support": {
+          "title": "Wsparcie",
+          "description": "Wsparcie techniczne po uruchomieniu projektu"
+        }
       },
       "who_its_for": {
         "title": "Czy ta usługa jest dla Ciebie?",
@@ -103,10 +123,22 @@
       "trust_signals": {
         "title": "Dlaczego my",
         "items": [
-          { "title": "Indywidualny design", "description": "Żadnych szablonów — każda strona jest projektowana specjalnie dla Twojej marki i celów" },
-          { "title": "Mobile-First", "description": "Ponad 60% ruchu pochodzi z urządzeń mobilnych. Projektujemy najpierw dla smartfonów" },
-          { "title": "SEO w standardzie", "description": "Techniczna optymalizacja SEO w cenie, abyś mógł być znaleziony w Google" },
-          { "title": "Wsparcie po uruchomieniu", "description": "Nie znikamy po starcie. Oferujemy bieżące wsparcie i konserwację" }
+          {
+            "title": "Indywidualny design",
+            "description": "Żadnych szablonów — każda strona jest projektowana specjalnie dla Twojej marki i celów"
+          },
+          {
+            "title": "Mobile-First",
+            "description": "Ponad 60% ruchu pochodzi z urządzeń mobilnych. Projektujemy najpierw dla smartfonów"
+          },
+          {
+            "title": "SEO w standardzie",
+            "description": "Techniczna optymalizacja SEO w cenie, abyś mógł być znaleziony w Google"
+          },
+          {
+            "title": "Wsparcie po uruchomieniu",
+            "description": "Nie znikamy po starcie. Oferujemy bieżące wsparcie i konserwację"
+          }
         ]
       },
       "faq": {
@@ -143,17 +175,37 @@
         "landing": {
           "name": "Landing",
           "price": "od €1 500",
-          "features": ["Do 5 sekcji", "Responsywny design", "Formularz kontaktowy", "Optymalizacja SEO", "Szybkie ładowanie"]
+          "features": [
+            "Do 5 sekcji",
+            "Responsywny design",
+            "Formularz kontaktowy",
+            "Optymalizacja SEO",
+            "Szybkie ładowanie"
+          ]
         },
         "corporate": {
           "name": "Strona korporacyjna",
           "price": "od €3 500",
-          "features": ["Do 15 stron", "Unikalny design", "System zarządzania", "Wielojęzyczność", "Integracje", "Wsparcie 3 miesiące"]
+          "features": [
+            "Do 15 stron",
+            "Unikalny design",
+            "System zarządzania",
+            "Wielojęzyczność",
+            "Integracje",
+            "Wsparcie 3 miesiące"
+          ]
         },
         "ecommerce": {
           "name": "Sklep internetowy",
           "price": "od €8 000",
-          "features": ["Katalog produktów", "Koszyk i płatności", "System zamówień", "Integracja z CRM", "Analityka", "Wsparcie 6 miesięcy"]
+          "features": [
+            "Katalog produktów",
+            "Koszyk i płatności",
+            "System zamówień",
+            "Integracja z CRM",
+            "Analityka",
+            "Wsparcie 6 miesięcy"
+          ]
         }
       }
     },
@@ -169,12 +221,29 @@
       "hero_subtitle": "Dostępność 24/7 bez zatrudniania dodatkowego personelu",
       "hero_description": "Inteligentne chatboty dla Telegram, WhatsApp i Twojej strony. Odpowiadają na pytania klientów, przyjmują zamówienia i rezerwacje — nawet gdy śpisz.",
       "hero_cta": "Zamów konsultację",
-      "features": ["Boty Telegram", "Boty Viber/WhatsApp", "Czaty na stronie", "Integracja z CRM"],
+      "features": [
+        "Boty Telegram",
+        "Boty Viber/WhatsApp",
+        "Czaty na stronie",
+        "Integracja z CRM"
+      ],
       "benefits": {
-        "support": { "title": "Wsparcie 24/7", "description": "Bot pracuje całą dobę bez przerw i weekendów" },
-        "instant": { "title": "Natychmiastowe odpowiedzi", "description": "Klienci otrzymują odpowiedzi w ciągu sekund" },
-        "cost": { "title": "Redukcja kosztów", "description": "Oszczędność na pracownikach wsparcia" },
-        "integration": { "title": "Integracja z CRM", "description": "Automatyczne dodawanie leadów do systemu" }
+        "support": {
+          "title": "Wsparcie 24/7",
+          "description": "Bot pracuje całą dobę bez przerw i weekendów"
+        },
+        "instant": {
+          "title": "Natychmiastowe odpowiedzi",
+          "description": "Klienci otrzymują odpowiedzi w ciągu sekund"
+        },
+        "cost": {
+          "title": "Redukcja kosztów",
+          "description": "Oszczędność na pracownikach wsparcia"
+        },
+        "integration": {
+          "title": "Integracja z CRM",
+          "description": "Automatyczne dodawanie leadów do systemu"
+        }
       },
       "who_its_for": {
         "title": "Czy chatbot jest dla Ciebie?",
@@ -203,10 +272,22 @@
       "trust_signals": {
         "title": "Dlaczego my",
         "items": [
-          { "title": "Indywidualna logika bota", "description": "Żadnych gotowych szablonów — bot jest dostosowany do Twojego biznesu i procesów" },
-          { "title": "Integracja z CRM/ERP", "description": "Bot łączy się z Twoimi systemami — zamówienia, rezerwacje, baza klientów" },
-          { "title": "Panel analityczny", "description": "Śledź statystyki rozmów, najpopularniejsze pytania i efektywność bota" },
-          { "title": "Przekazanie do człowieka", "description": "Gdy bot nie zna odpowiedzi, płynnie przekazuje rozmowę do Twojego zespołu" }
+          {
+            "title": "Indywidualna logika bota",
+            "description": "Żadnych gotowych szablonów — bot jest dostosowany do Twojego biznesu i procesów"
+          },
+          {
+            "title": "Integracja z CRM/ERP",
+            "description": "Bot łączy się z Twoimi systemami — zamówienia, rezerwacje, baza klientów"
+          },
+          {
+            "title": "Panel analityczny",
+            "description": "Śledź statystyki rozmów, najpopularniejsze pytania i efektywność bota"
+          },
+          {
+            "title": "Przekazanie do człowieka",
+            "description": "Gdy bot nie zna odpowiedzi, płynnie przekazuje rozmowę do Twojego zespołu"
+          }
         ]
       },
       "faq": {
@@ -250,17 +331,32 @@
         "basic": {
           "name": "Basic Bot",
           "price": "od €2 500",
-          "features": ["FAQ / scenariusze", "Telegram lub strona", "Podstawowa analityka", "Wsparcie przy uruchomieniu"]
+          "features": [
+            "FAQ / scenariusze",
+            "Telegram lub strona",
+            "Podstawowa analityka",
+            "Wsparcie przy uruchomieniu"
+          ]
         },
         "business": {
           "name": "Business Bot",
           "price": "od €5 500",
-          "features": ["Formularze leadów", "Integracja z CRM", "Multi-kanał (Telegram/WhatsApp/strona)", "Panel administracyjny"]
+          "features": [
+            "Formularze leadów",
+            "Integracja z CRM",
+            "Multi-kanał (Telegram/WhatsApp/strona)",
+            "Panel administracyjny"
+          ]
         },
         "ai": {
           "name": "AI Bot",
           "price": "od €12 000",
-          "features": ["LLM + baza wiedzy (RAG)", "Zaawansowana analityka", "Integracje API", "Bezpieczeństwo i role"]
+          "features": [
+            "LLM + baza wiedzy (RAG)",
+            "Zaawansowana analityka",
+            "Integracje API",
+            "Bezpieczeństwo i role"
+          ]
         }
       }
     },
@@ -276,12 +372,29 @@
       "hero_subtitle": "Od pomysłu do wdrożenia — AI, które naprawdę działa",
       "hero_description": "Integracja ChatGPT, asystenci AI i automatyzacja procesów dostosowane do Twojego biznesu. Bez pustych obietnic — tylko konkretne rezultaty.",
       "hero_cta": "Omów AI dla Twojej firmy",
-      "features": ["Integracja ChatGPT", "Asystenci AI", "Automatyzacja procesów", "Analiza danych"],
+      "features": [
+        "Integracja ChatGPT",
+        "Asystenci AI",
+        "Automatyzacja procesów",
+        "Analiza danych"
+      ],
       "benefits": {
-        "automation": { "title": "Automatyzacja", "description": "Automatyzacja rutynowych zadań i procesów — godziny pracy zamienione w minuty" },
-        "analytics": { "title": "Analityka", "description": "Głęboka analiza danych i prognozowanie na podstawie rzeczywistych danych" },
-        "personalization": { "title": "Personalizacja", "description": "Indywidualne podejście do każdego klienta w skali" },
-        "efficiency": { "title": "Efektywność", "description": "Zwiększenie produktywności zespołu o 30-50%" }
+        "automation": {
+          "title": "Automatyzacja",
+          "description": "Automatyzacja rutynowych zadań i procesów — godziny pracy zamienione w minuty"
+        },
+        "analytics": {
+          "title": "Analityka",
+          "description": "Głęboka analiza danych i prognozowanie na podstawie rzeczywistych danych"
+        },
+        "personalization": {
+          "title": "Personalizacja",
+          "description": "Indywidualne podejście do każdego klienta w skali"
+        },
+        "efficiency": {
+          "title": "Efektywność",
+          "description": "Zwiększenie produktywności zespołu o 30-50%"
+        }
       },
       "who_its_for": {
         "title": "Czy AI jest dla Twojej firmy?",
@@ -310,10 +423,22 @@
       "trust_signals": {
         "title": "Dlaczego my",
         "items": [
-          { "title": "Praktyczne, nie eksperymentalne AI", "description": "Wdrażamy sprawdzone rozwiązania, które działają od pierwszego dnia" },
-          { "title": "Prywatność danych przede wszystkim", "description": "Twoje dane zostają Twoje. Projektujemy z myślą o bezpieczeństwie i zgodności z RODO" },
-          { "title": "Szkolenie w cenie", "description": "Twój zespół nauczy się efektywnie korzystać z nowych narzędzi" },
-          { "title": "Fokus na mierzalne rezultaty", "description": "Przed wdrożeniem definiujemy KPI, aby móc zmierzyć rzeczywisty ROI" }
+          {
+            "title": "Praktyczne, nie eksperymentalne AI",
+            "description": "Wdrażamy sprawdzone rozwiązania, które działają od pierwszego dnia"
+          },
+          {
+            "title": "Prywatność danych przede wszystkim",
+            "description": "Twoje dane zostają Twoje. Projektujemy z myślą o bezpieczeństwie i zgodności z RODO"
+          },
+          {
+            "title": "Szkolenie w cenie",
+            "description": "Twój zespół nauczy się efektywnie korzystać z nowych narzędzi"
+          },
+          {
+            "title": "Fokus na mierzalne rezultaty",
+            "description": "Przed wdrożeniem definiujemy KPI, aby móc zmierzyć rzeczywisty ROI"
+          }
         ]
       },
       "faq": {
@@ -349,27 +474,54 @@
       "use_cases": {
         "title": "Jak firmy wykorzystują nasze rozwiązania AI",
         "cases": [
-          { "title": "Automatyzacja obsługi klienta", "description": "Asystent AI odpowiada na 80% zapytań, pracując 24/7" },
-          { "title": "Analiza dokumentów", "description": "Automatyczne wyciąganie danych z faktur, umów i formularzy" },
-          { "title": "Generowanie treści", "description": "Tworzenie opisów produktów, emaili i raportów w sekundy" },
-          { "title": "Wsparcie decyzji", "description": "Analiza danych i rekomendacje oparte na AI" }
+          {
+            "title": "Automatyzacja obsługi klienta",
+            "description": "Asystent AI odpowiada na 80% zapytań, pracując 24/7"
+          },
+          {
+            "title": "Analiza dokumentów",
+            "description": "Automatyczne wyciąganie danych z faktur, umów i formularzy"
+          },
+          {
+            "title": "Generowanie treści",
+            "description": "Tworzenie opisów produktów, emaili i raportów w sekundy"
+          },
+          {
+            "title": "Wsparcie decyzji",
+            "description": "Analiza danych i rekomendacje oparte na AI"
+          }
         ]
       },
       "packages": {
         "discovery": {
           "name": "AI Discovery",
           "price": "od €3 000",
-          "features": ["Audyt procesów", "Identyfikacja możliwości AI", "Raport z rekomendacjami", "Plan wdrożenia"]
+          "features": [
+            "Audyt procesów",
+            "Identyfikacja możliwości AI",
+            "Raport z rekomendacjami",
+            "Plan wdrożenia"
+          ]
         },
         "assistant": {
           "name": "AI Assistant MVP",
           "price": "od €9 000",
-          "features": ["Integracja ChatGPT/Claude", "Baza wiedzy firmy", "Interfejs web", "Szkolenie zespołu"]
+          "features": [
+            "Integracja ChatGPT/Claude",
+            "Baza wiedzy firmy",
+            "Interfejs web",
+            "Szkolenie zespołu"
+          ]
         },
         "automation": {
           "name": "AI Automation Suite",
           "price": "od €18 000",
-          "features": ["Automatyzacja wielu procesów", "Integracje z systemami", "Dashboard analityczny", "Wsparcie 6 miesięcy"]
+          "features": [
+            "Automatyzacja wielu procesów",
+            "Integracje z systemami",
+            "Dashboard analityczny",
+            "Wsparcie 6 miesięcy"
+          ]
         }
       }
     },
@@ -385,12 +537,29 @@
       "hero_subtitle": "Eksperckie wsparcie przed inwestycją w technologię",
       "hero_description": "Audyty IT, strategia transformacji cyfrowej i dobór technologii. Pomagamy firmom inwestować w technologię z pewnością — bez kosztownych błędów.",
       "hero_cta": "Zarezerwuj sesję strategiczną",
-      "features": ["Audyt infrastruktury IT", "Strategia rozwoju", "Wybór technologii", "Optymalizacja procesów"],
+      "features": [
+        "Audyt infrastruktury IT",
+        "Strategia rozwoju",
+        "Wybór technologii",
+        "Optymalizacja procesów"
+      ],
       "benefits": {
-        "audit": { "title": "Audyt IT", "description": "Kompleksowa analiza obecnej infrastruktury, procesów i narzędzi" },
-        "strategy": { "title": "Strategia cyfrowa", "description": "Jasny plan transformacji z konkretnymi krokami i harmonogramem" },
-        "optimization": { "title": "Optymalizacja kosztów", "description": "Identyfikacja oszczędności i eliminacja zbędnych wydatków na IT" },
-        "training": { "title": "Wsparcie wdrożeniowe", "description": "Pomoc we wdrożeniu rekomendacji i szkolenie zespołu" }
+        "audit": {
+          "title": "Audyt IT",
+          "description": "Kompleksowa analiza obecnej infrastruktury, procesów i narzędzi"
+        },
+        "strategy": {
+          "title": "Strategia cyfrowa",
+          "description": "Jasny plan transformacji z konkretnymi krokami i harmonogramem"
+        },
+        "optimization": {
+          "title": "Optymalizacja kosztów",
+          "description": "Identyfikacja oszczędności i eliminacja zbędnych wydatków na IT"
+        },
+        "training": {
+          "title": "Wsparcie wdrożeniowe",
+          "description": "Pomoc we wdrożeniu rekomendacji i szkolenie zespołu"
+        }
       },
       "who_its_for": {
         "title": "Czy konsulting IT jest dla Ciebie?",
@@ -419,10 +588,22 @@
       "trust_signals": {
         "title": "Dlaczego warto nam zaufać",
         "items": [
-          { "title": "Niezależne doradztwo", "description": "Nie sprzedajemy konkretnych narzędzi — rekomendujemy to, co najlepsze dla Twojego biznesu" },
-          { "title": "Podejście biznesowe", "description": "Myślimy najpierw o celach biznesowych, potem o technologii" },
-          { "title": "Jasne rezultaty", "description": "Otrzymujesz konkretny raport z rekomendacjami i planem działania" },
-          { "title": "Wsparcie we wdrożeniu", "description": "Pomagamy wdrożyć rekomendacje — nie zostawiamy Cię z samym raportem" }
+          {
+            "title": "Niezależne doradztwo",
+            "description": "Nie sprzedajemy konkretnych narzędzi — rekomendujemy to, co najlepsze dla Twojego biznesu"
+          },
+          {
+            "title": "Podejście biznesowe",
+            "description": "Myślimy najpierw o celach biznesowych, potem o technologii"
+          },
+          {
+            "title": "Jasne rezultaty",
+            "description": "Otrzymujesz konkretny raport z rekomendacjami i planem działania"
+          },
+          {
+            "title": "Wsparcie we wdrożeniu",
+            "description": "Pomagamy wdrożyć rekomendacje — nie zostawiamy Cię z samym raportem"
+          }
         ]
       },
       "faq": {
@@ -454,17 +635,32 @@
         "audit": {
           "name": "Audyt IT",
           "price": "od €2 500",
-          "features": ["Analiza infrastruktury", "Przegląd procesów", "Raport z rekomendacjami", "Plan działania"]
+          "features": [
+            "Analiza infrastruktury",
+            "Przegląd procesów",
+            "Raport z rekomendacjami",
+            "Plan działania"
+          ]
         },
         "strategy": {
           "name": "Strategia cyfrowa",
           "price": "od €6 000",
-          "features": ["Pełna analiza firmy", "Roadmapa transformacji", "Dobór technologii", "Estymacja kosztów"]
+          "features": [
+            "Pełna analiza firmy",
+            "Roadmapa transformacji",
+            "Dobór technologii",
+            "Estymacja kosztów"
+          ]
         },
         "advisory": {
           "name": "Doradztwo",
           "price": "€95/godz.",
-          "features": ["Konsultacje na żądanie", "Wsparcie decyzji", "Review rozwiązań", "Nadzór nad projektami"]
+          "features": [
+            "Konsultacje na żądanie",
+            "Wsparcie decyzji",
+            "Review rozwiązań",
+            "Nadzór nad projektami"
+          ]
         }
       },
       "cta_section": {
@@ -485,12 +681,29 @@
       "hero_subtitle": "iOS i Android z jednego kodu źródłowego",
       "hero_description": "Tworzymy aplikacje mobilne, które zachwycają użytkowników i napędzają Twój biznes. React Native, Flutter — nowoczesne technologie dla szybszego time-to-market.",
       "hero_cta": "Omów swój pomysł na aplikację",
-      "features": ["iOS i Android", "React Native / Flutter", "Design UX/UI", "Wsparcie i aktualizacje"],
+      "features": [
+        "iOS i Android",
+        "React Native / Flutter",
+        "Design UX/UI",
+        "Wsparcie i aktualizacje"
+      ],
       "benefits": {
-        "native": { "title": "Natywna jakość", "description": "Wysoka wydajność i płynne animacje jak w natywnych aplikacjach" },
-        "cross": { "title": "Cross-platform", "description": "Jeden kod dla iOS i Android — szybszy rozwój, niższe koszty" },
-        "ux": { "title": "UX/UI w cenie", "description": "Projektujemy intuicyjny interfejs, który użytkownicy pokochają" },
-        "support": { "title": "Wsparcie po premierze", "description": "Aktualizacje, poprawki błędów i rozwój funkcji po uruchomieniu" }
+        "native": {
+          "title": "Natywna jakość",
+          "description": "Wysoka wydajność i płynne animacje jak w natywnych aplikacjach"
+        },
+        "cross": {
+          "title": "Cross-platform",
+          "description": "Jeden kod dla iOS i Android — szybszy rozwój, niższe koszty"
+        },
+        "ux": {
+          "title": "UX/UI w cenie",
+          "description": "Projektujemy intuicyjny interfejs, który użytkownicy pokochają"
+        },
+        "support": {
+          "title": "Wsparcie po premierze",
+          "description": "Aktualizacje, poprawki błędów i rozwój funkcji po uruchomieniu"
+        }
       },
       "who_its_for": {
         "title": "Czy budowa aplikacji mobilnej jest dla Ciebie?",
@@ -519,10 +732,22 @@
       "trust_signals": {
         "title": "Dlaczego my",
         "items": [
-          { "title": "Ekspertyza cross-platform", "description": "Specjalizujemy się w React Native i Flutter — sprawdzonych technologiach używanych przez największe firmy" },
-          { "title": "Publikacja w sklepach w cenie", "description": "Pomagamy z całym procesem publikacji w App Store i Google Play" },
-          { "title": "Wsparcie po premierze", "description": "Nie znikamy po uruchomieniu. Oferujemy pakiety wsparcia i rozwoju aplikacji" },
-          { "title": "Design UX/UI w standardzie", "description": "Każda aplikacja zawiera profesjonalny design dopasowany do Twojej marki" }
+          {
+            "title": "Ekspertyza cross-platform",
+            "description": "Specjalizujemy się w React Native i Flutter — sprawdzonych technologiach używanych przez największe firmy"
+          },
+          {
+            "title": "Publikacja w sklepach w cenie",
+            "description": "Pomagamy z całym procesem publikacji w App Store i Google Play"
+          },
+          {
+            "title": "Wsparcie po premierze",
+            "description": "Nie znikamy po uruchomieniu. Oferujemy pakiety wsparcia i rozwoju aplikacji"
+          },
+          {
+            "title": "Design UX/UI w standardzie",
+            "description": "Każda aplikacja zawiera profesjonalny design dopasowany do Twojej marki"
+          }
         ]
       },
       "faq": {
@@ -554,17 +779,32 @@
         "mvp": {
           "name": "MVP",
           "price": "od €18 000",
-          "features": ["iOS + Android", "Podstawowe funkcje", "Design UX/UI", "Publikacja w sklepach"]
+          "features": [
+            "iOS + Android",
+            "Podstawowe funkcje",
+            "Design UX/UI",
+            "Publikacja w sklepach"
+          ]
         },
         "standard": {
           "name": "Standard App",
           "price": "od €35 000",
-          "features": ["Rozbudowana funkcjonalność", "Backend + API", "Integracje", "Wsparcie 3 miesiące"]
+          "features": [
+            "Rozbudowana funkcjonalność",
+            "Backend + API",
+            "Integracje",
+            "Wsparcie 3 miesiące"
+          ]
         },
         "enterprise": {
           "name": "Enterprise",
           "price": "od €70 000",
-          "features": ["Złożone integracje", "Offline mode", "Role i uprawnienia", "Wsparcie 12 miesięcy"]
+          "features": [
+            "Złożone integracje",
+            "Offline mode",
+            "Role i uprawnienia",
+            "Wsparcie 12 miesięcy"
+          ]
         }
       },
       "cta_section": {
@@ -585,12 +825,29 @@
       "hero_subtitle": "Skup się na produkcie — my zajmiemy się serwerami",
       "hero_description": "AWS, GCP, Azure, CI/CD, Docker, Kubernetes. Profesjonalna konfiguracja i zarządzanie infrastrukturą chmurową, żebyś mógł skupić się na rozwijaniu biznesu.",
       "hero_cta": "Zamów audyt infrastruktury",
-      "features": ["AWS / Google Cloud / Azure", "Konfiguracja CI/CD", "Docker / Kubernetes", "Monitoring i bezpieczeństwo"],
+      "features": [
+        "AWS / Google Cloud / Azure",
+        "Konfiguracja CI/CD",
+        "Docker / Kubernetes",
+        "Monitoring i bezpieczeństwo"
+      ],
       "benefits": {
-        "scalability": { "title": "Skalowalność", "description": "Automatyczne skalowanie pod obciążenie — płacisz tylko za to, czego używasz" },
-        "reliability": { "title": "Niezawodność", "description": "99,9% uptime dzięki redundancji i automatycznemu failover" },
-        "security": { "title": "Bezpieczeństwo", "description": "Szyfrowanie, backup, zgodność z RODO i najlepsze praktyki" },
-        "automation": { "title": "Automatyzacja", "description": "CI/CD pipelines — każdy commit automatycznie na produkcji" }
+        "scalability": {
+          "title": "Skalowalność",
+          "description": "Automatyczne skalowanie pod obciążenie — płacisz tylko za to, czego używasz"
+        },
+        "reliability": {
+          "title": "Niezawodność",
+          "description": "99,9% uptime dzięki redundancji i automatycznemu failover"
+        },
+        "security": {
+          "title": "Bezpieczeństwo",
+          "description": "Szyfrowanie, backup, zgodność z RODO i najlepsze praktyki"
+        },
+        "automation": {
+          "title": "Automatyzacja",
+          "description": "CI/CD pipelines — każdy commit automatycznie na produkcji"
+        }
       },
       "who_its_for": {
         "title": "Czy usługi cloud są dla Ciebie?",
@@ -619,10 +876,22 @@
       "trust_signals": {
         "title": "Dlaczego my",
         "items": [
-          { "title": "Ekspertyza multi-cloud", "description": "AWS, GCP, Azure — dobieramy rozwiązanie do Twoich potrzeb, nie do naszych preferencji" },
-          { "title": "Security-first", "description": "Bezpieczeństwo wbudowane od początku — szyfrowanie, audyty, zgodność z regulacjami" },
-          { "title": "Monitoring w cenie", "description": "Proaktywny monitoring i alerty — problemy rozwiązujemy zanim wpłyną na użytkowników" },
-          { "title": "Optymalizacja kosztów", "description": "Regularny przegląd i optymalizacja wydatków na chmurę — oszczędzasz średnio 30%" }
+          {
+            "title": "Ekspertyza multi-cloud",
+            "description": "AWS, GCP, Azure — dobieramy rozwiązanie do Twoich potrzeb, nie do naszych preferencji"
+          },
+          {
+            "title": "Security-first",
+            "description": "Bezpieczeństwo wbudowane od początku — szyfrowanie, audyty, zgodność z regulacjami"
+          },
+          {
+            "title": "Monitoring w cenie",
+            "description": "Proaktywny monitoring i alerty — problemy rozwiązujemy zanim wpłyną na użytkowników"
+          },
+          {
+            "title": "Optymalizacja kosztów",
+            "description": "Regularny przegląd i optymalizacja wydatków na chmurę — oszczędzasz średnio 30%"
+          }
         ]
       },
       "faq": {
@@ -654,17 +923,32 @@
         "starter": {
           "name": "CI/CD Setup",
           "price": "od €3 500",
-          "features": ["Pipeline CI/CD", "Konteneryzacja", "Podstawowa infrastruktura", "Dokumentacja"]
+          "features": [
+            "Pipeline CI/CD",
+            "Konteneryzacja",
+            "Podstawowa infrastruktura",
+            "Dokumentacja"
+          ]
         },
         "migration": {
           "name": "Cloud Migration",
           "price": "od €12 000",
-          "features": ["Audyt infrastruktury", "Plan migracji", "Migracja danych", "Optymalizacja kosztów"]
+          "features": [
+            "Audyt infrastruktury",
+            "Plan migracji",
+            "Migracja danych",
+            "Optymalizacja kosztów"
+          ]
         },
         "managed": {
           "name": "Managed DevOps",
           "price": "od €1 500/mies.",
-          "features": ["Monitoring 24/7", "Automatyczne skalowanie", "Bezpieczeństwo", "Optymalizacja kosztów"]
+          "features": [
+            "Monitoring 24/7",
+            "Automatyczne skalowanie",
+            "Bezpieczeństwo",
+            "Optymalizacja kosztów"
+          ]
         }
       },
       "cta_section": {
@@ -677,20 +961,47 @@
   "why_us": {
     "title": "Dlaczego my",
     "description": "Łączymy ekspertyzę, nowoczesne technologie i podejście zorientowane na klienta",
-    "professionalism": { "title": "Profesjonalizm", "description": "Zespół doświadczonych specjalistów z ponad 5-letnim doświadczeniem" },
-    "speed": { "title": "Szybkość", "description": "Dotrzymujemy terminów i zapewniamy szybki start projektów" },
-    "reliability": { "title": "Niezawodność", "description": "Gwarantujemy jakość, bezpieczeństwo i wsparcie po uruchomieniu" },
-    "individual": { "title": "Indywidualne podejście", "description": "Rozumiemy potrzeby każdego klienta i proponujemy optymalne rozwiązania" }
+    "professionalism": {
+      "title": "Profesjonalizm",
+      "description": "Zespół doświadczonych specjalistów z ponad 5-letnim doświadczeniem"
+    },
+    "speed": {
+      "title": "Szybkość",
+      "description": "Dotrzymujemy terminów i zapewniamy szybki start projektów"
+    },
+    "reliability": {
+      "title": "Niezawodność",
+      "description": "Gwarantujemy jakość, bezpieczeństwo i wsparcie po uruchomieniu"
+    },
+    "individual": {
+      "title": "Indywidualne podejście",
+      "description": "Rozumiemy potrzeby każdego klienta i proponujemy optymalne rozwiązania"
+    }
   },
   "process": {
     "title": "Nasz proces pracy",
     "description": "Przejrzysty i zrozumiały proces od pomysłu do uruchomienia",
     "steps": {
-      "consultation": { "title": "Konsultacja i analiza", "description": "Omawiamy Twoje cele, analizujemy potrzeby i tworzymy specyfikację" },
-      "design": { "title": "Projektowanie i design", "description": "Tworzymy architekturę projektu i rozwijamy unikalny design" },
-      "development": { "title": "Rozwój", "description": "Realizujemy projekt używając nowoczesnych technologii" },
-      "testing": { "title": "Testowanie", "description": "Dokładnie testujemy wszystkie funkcje i optymalizujemy wydajność" },
-      "launch": { "title": "Uruchomienie i wsparcie", "description": "Uruchamiamy projekt i zapewniamy wsparcie techniczne" }
+      "consultation": {
+        "title": "Konsultacja i analiza",
+        "description": "Omawiamy Twoje cele, analizujemy potrzeby i tworzymy specyfikację"
+      },
+      "design": {
+        "title": "Projektowanie i design",
+        "description": "Tworzymy architekturę projektu i rozwijamy unikalny design"
+      },
+      "development": {
+        "title": "Rozwój",
+        "description": "Realizujemy projekt używając nowoczesnych technologii"
+      },
+      "testing": {
+        "title": "Testowanie",
+        "description": "Dokładnie testujemy wszystkie funkcje i optymalizujemy wydajność"
+      },
+      "launch": {
+        "title": "Uruchomienie i wsparcie",
+        "description": "Uruchamiamy projekt i zapewniamy wsparcie techniczne"
+      }
     }
   },
   "cta": {
@@ -727,7 +1038,10 @@
     "phone": "Telefon",
     "email": "Email",
     "hours": "Godziny pracy",
-    "phones": ["+48 537 890 776", "+48 733 264 543"],
+    "phones": [
+      "+48 537 890 776",
+      "+48 733 264 543"
+    ],
     "email_address": "vektadev@gmail.com",
     "form": {
       "name": "Imię *",
@@ -815,10 +1129,22 @@
     ],
     "values_title": "Nasze wartości",
     "values": {
-      "focus": { "title": "Skupienie na rezultatach", "description": "Koncentrujemy się na osiąganiu celów biznesowych klientów" },
-      "quality": { "title": "Jakość przede wszystkim", "description": "Przestrzegamy najwyższych standardów w każdym projekcie" },
-      "partnership": { "title": "Partnerstwo", "description": "Budujemy długoterminowe relacje z klientami" },
-      "innovation": { "title": "Innowacje", "description": "Używamy najnowszych technologii i podejść" }
+      "focus": {
+        "title": "Skupienie na rezultatach",
+        "description": "Koncentrujemy się na osiąganiu celów biznesowych klientów"
+      },
+      "quality": {
+        "title": "Jakość przede wszystkim",
+        "description": "Przestrzegamy najwyższych standardów w każdym projekcie"
+      },
+      "partnership": {
+        "title": "Partnerstwo",
+        "description": "Budujemy długoterminowe relacje z klientami"
+      },
+      "innovation": {
+        "title": "Innowacje",
+        "description": "Używamy najnowszych technologii i podejść"
+      }
     },
     "team_title": "Nasz zespół",
     "team": {
@@ -848,7 +1174,12 @@
         "bio": "Backend developer z doświadczeniem w Node.js, Python i DevOps. Specjalizuje się w rozwiązaniach chmurowych."
       }
     },
-    "stats": { "years": "Lat na rynku", "projects": "Zrealizowanych projektów", "clients": "Zadowolonych klientów", "team": "Specjalistów" },
+    "stats": {
+      "years": "Lat na rynku",
+      "projects": "Zrealizowanych projektów",
+      "clients": "Zadowolonych klientów",
+      "team": "Specjalistów"
+    },
     "cta_title": "Porozmawiajmy o Twoim projekcie",
     "cta_description": "Umów się na bezpłatną, niezobowiązującą rozmowę. Poznamy Twoje cele i powiemy szczerze, czy i jak możemy pomóc.",
     "cta_button": "Umów rozmowę"
@@ -910,24 +1241,44 @@
     "controller": {
       "title": "2. Administrator danych",
       "text": "Administratorem Twoich danych osobowych jest:",
-      "details": ["VektaDev", "ul. Michała Kajki 10-12", "10-547 Olsztyn, Polska", "Email: vektadev@gmail.com", "Telefon: +48 537 890 776"]
+      "details": [
+        "VektaDev",
+        "ul. Michała Kajki 10-12",
+        "10-547 Olsztyn, Polska",
+        "Email: vektadev@gmail.com",
+        "Telefon: +48 537 890 776"
+      ]
     },
     "collection": {
       "title": "3. Jakie dane zbieramy",
       "text": "Zbieramy dane osobowe, które dobrowolnie podajesz podczas korzystania z formularza kontaktowego:",
-      "items": ["Imię — aby zwracać się do Ciebie odpowiednio w naszej odpowiedzi", "Adres email — aby odpowiedzieć na Twoje zapytanie", "Numer telefonu (opcjonalnie) — do kontaktu zwrotnego na Twoją prośbę", "Treść wiadomości — aby zrozumieć Twoje zapytanie lub potrzeby projektowe"],
+      "items": [
+        "Imię — aby zwracać się do Ciebie odpowiednio w naszej odpowiedzi",
+        "Adres email — aby odpowiedzieć na Twoje zapytanie",
+        "Numer telefonu (opcjonalnie) — do kontaktu zwrotnego na Twoją prośbę",
+        "Treść wiadomości — aby zrozumieć Twoje zapytanie lub potrzeby projektowe"
+      ],
       "automatic_title": "Dane techniczne",
       "automatic_text": "Nasza strona może również zbierać podstawowe dane techniczne niezbędne do prawidłowego funkcjonowania, takie jak adres IP, typ przeglądarki i czas dostępu. Dane te są przetwarzane przez naszego dostawcę hostingu."
     },
     "purpose": {
       "title": "4. Jak wykorzystujemy Twoje dane",
       "text": "Przetwarzamy Twoje dane osobowe w następujących celach:",
-      "items": ["Odpowiadanie na Twoje zapytania i prośby", "Komunikacja w sprawie potencjalnych projektów i usług", "Zapewnianie obsługi klienta", "Ulepszanie naszej strony i usług"]
+      "items": [
+        "Odpowiadanie na Twoje zapytania i prośby",
+        "Komunikacja w sprawie potencjalnych projektów i usług",
+        "Zapewnianie obsługi klienta",
+        "Ulepszanie naszej strony i usług"
+      ]
     },
     "legal_basis": {
       "title": "5. Podstawa prawna przetwarzania",
       "text": "Zgodnie z RODO przetwarzamy Twoje dane na podstawie:",
-      "items": ["Twojej zgody — gdy wysyłasz formularz kontaktowy", "Prawnie uzasadnionego interesu — aby odpowiedzieć na Twoje zapytanie i świadczyć usługi", "Niezbędności umownej — gdy przetwarzanie jest wymagane do realizacji umowy o usługi"]
+      "items": [
+        "Twojej zgody — gdy wysyłasz formularz kontaktowy",
+        "Prawnie uzasadnionego interesu — aby odpowiedzieć na Twoje zapytanie i świadczyć usługi",
+        "Niezbędności umownej — gdy przetwarzanie jest wymagane do realizacji umowy o usługi"
+      ]
     },
     "third_parties": {
       "title": "6. Usługi zewnętrzne",
@@ -971,7 +1322,11 @@
     "contact": {
       "title": "12. Kontakt",
       "text": "Jeśli masz pytania dotyczące tej Polityki prywatności, swoich danych osobowych lub chcesz skorzystać ze swoich praw, skontaktuj się z nami:",
-      "details": ["Email: vektadev@gmail.com", "Telefon: +48 537 890 776", "Adres: ul. Michała Kajki 10-12, 10-547 Olsztyn, Polska"]
+      "details": [
+        "Email: vektadev@gmail.com",
+        "Telefon: +48 537 890 776",
+        "Adres: ul. Michała Kajki 10-12, 10-547 Olsztyn, Polska"
+      ]
     },
     "complaints": {
       "title": "13. Skargi",

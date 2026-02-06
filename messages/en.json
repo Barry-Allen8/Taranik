@@ -27,10 +27,7 @@
   "services_menu": {
     "websites": "Web Development",
     "chatbots": "Chatbots",
-    "ai_solutions": "AI Solutions",
-    "consulting": "IT Consulting",
-    "mobile_apps": "Mobile Apps",
-    "cloud": "Cloud Solutions"
+    "mobile_apps": "Mobile Apps"
   },
   "hero": {
     "badge": "Innovative IT solutions since 2020",
@@ -66,14 +63,37 @@
       "hero_subtitle": "Fast-loading, mobile-first websites that convert visitors into customers",
       "hero_description": "We create modern, fast and user-friendly websites that help businesses grow",
       "hero_cta": "Get a Free Quote",
-      "features": ["Landing pages and promo sites", "Corporate websites", "E-commerce stores", "Web applications"],
+      "features": [
+        "Landing pages and promo sites",
+        "Corporate websites",
+        "E-commerce stores",
+        "Web applications"
+      ],
       "benefits": {
-        "design": { "title": "Modern design", "description": "Unique design reflecting your individuality" },
-        "speed": { "title": "Fast performance", "description": "Optimization for maximum loading speed" },
-        "responsive": { "title": "Responsiveness", "description": "Perfect look on all devices and screens" },
-        "seo": { "title": "SEO optimization", "description": "Settings for high positions in search engines" },
-        "security": { "title": "Security", "description": "Protection against hacker attacks and data loss" },
-        "support": { "title": "Support", "description": "Technical support after project launch" }
+        "design": {
+          "title": "Modern design",
+          "description": "Unique design reflecting your individuality"
+        },
+        "speed": {
+          "title": "Fast performance",
+          "description": "Optimization for maximum loading speed"
+        },
+        "responsive": {
+          "title": "Responsiveness",
+          "description": "Perfect look on all devices and screens"
+        },
+        "seo": {
+          "title": "SEO optimization",
+          "description": "Settings for high positions in search engines"
+        },
+        "security": {
+          "title": "Security",
+          "description": "Protection against hacker attacks and data loss"
+        },
+        "support": {
+          "title": "Support",
+          "description": "Technical support after project launch"
+        }
       },
       "who_its_for": {
         "title": "Is This Service Right for You?",
@@ -103,10 +123,22 @@
       "trust_signals": {
         "title": "Why Choose Us",
         "items": [
-          { "title": "Custom Design", "description": "No templates — every website is designed specifically for your brand and goals" },
-          { "title": "Mobile-First", "description": "Over 60% of traffic comes from mobile. We design for smartphones first" },
-          { "title": "SEO Built-In", "description": "Technical SEO optimization included so you can be found on Google" },
-          { "title": "Post-Launch Support", "description": "We don't disappear after launch. Ongoing support and maintenance available" }
+          {
+            "title": "Custom Design",
+            "description": "No templates — every website is designed specifically for your brand and goals"
+          },
+          {
+            "title": "Mobile-First",
+            "description": "Over 60% of traffic comes from mobile. We design for smartphones first"
+          },
+          {
+            "title": "SEO Built-In",
+            "description": "Technical SEO optimization included so you can be found on Google"
+          },
+          {
+            "title": "Post-Launch Support",
+            "description": "We don't disappear after launch. Ongoing support and maintenance available"
+          }
         ]
       },
       "faq": {
@@ -143,17 +175,37 @@
         "landing": {
           "name": "Landing",
           "price": "from €1,500",
-          "features": ["Up to 5 sections", "Responsive design", "Contact form", "SEO optimization", "Fast loading"]
+          "features": [
+            "Up to 5 sections",
+            "Responsive design",
+            "Contact form",
+            "SEO optimization",
+            "Fast loading"
+          ]
         },
         "corporate": {
           "name": "Corporate website",
           "price": "from €3,500",
-          "features": ["Up to 15 pages", "Unique design", "CMS", "Multi-language", "Integrations", "3 months support"]
+          "features": [
+            "Up to 15 pages",
+            "Unique design",
+            "CMS",
+            "Multi-language",
+            "Integrations",
+            "3 months support"
+          ]
         },
         "ecommerce": {
           "name": "E-commerce store",
           "price": "from €8,000",
-          "features": ["Product catalog", "Cart and payments", "Order system", "CRM integration", "Analytics", "6 months support"]
+          "features": [
+            "Product catalog",
+            "Cart and payments",
+            "Order system",
+            "CRM integration",
+            "Analytics",
+            "6 months support"
+          ]
         }
       }
     },
@@ -169,12 +221,29 @@
       "hero_subtitle": "24/7 availability without hiring additional staff",
       "hero_description": "Intelligent chatbots for Telegram, WhatsApp, and your website. Answer customer questions, take orders and bookings — even while you sleep.",
       "hero_cta": "Get chatbot consultation",
-      "features": ["Telegram bots", "Viber/WhatsApp bots", "Website chats", "CRM integration"],
+      "features": [
+        "Telegram bots",
+        "Viber/WhatsApp bots",
+        "Website chats",
+        "CRM integration"
+      ],
       "benefits": {
-        "support": { "title": "24/7 Support", "description": "Bot works around the clock without breaks and weekends" },
-        "instant": { "title": "Instant responses", "description": "Clients get answers in seconds" },
-        "cost": { "title": "Cost reduction", "description": "Savings on support staff" },
-        "integration": { "title": "CRM integration", "description": "Automatic lead addition to the system" }
+        "support": {
+          "title": "24/7 Support",
+          "description": "Bot works around the clock without breaks and weekends"
+        },
+        "instant": {
+          "title": "Instant responses",
+          "description": "Clients get answers in seconds"
+        },
+        "cost": {
+          "title": "Cost reduction",
+          "description": "Savings on support staff"
+        },
+        "integration": {
+          "title": "CRM integration",
+          "description": "Automatic lead addition to the system"
+        }
       },
       "who_its_for": {
         "title": "Is a chatbot right for you?",
@@ -203,10 +272,22 @@
       "trust_signals": {
         "title": "Why Choose Us",
         "items": [
-          { "title": "Custom bot logic", "description": "No generic templates — the bot is tailored to your business and processes" },
-          { "title": "CRM/ERP integration", "description": "Bot connects to your systems — orders, bookings, customer database" },
-          { "title": "Analytics dashboard", "description": "Track conversation stats, popular questions, and bot performance" },
-          { "title": "Human handoff", "description": "When the bot can't answer, it smoothly transfers to your team" }
+          {
+            "title": "Custom bot logic",
+            "description": "No generic templates — the bot is tailored to your business and processes"
+          },
+          {
+            "title": "CRM/ERP integration",
+            "description": "Bot connects to your systems — orders, bookings, customer database"
+          },
+          {
+            "title": "Analytics dashboard",
+            "description": "Track conversation stats, popular questions, and bot performance"
+          },
+          {
+            "title": "Human handoff",
+            "description": "When the bot can't answer, it smoothly transfers to your team"
+          }
         ]
       },
       "faq": {
@@ -250,17 +331,32 @@
         "basic": {
           "name": "Basic Bot",
           "price": "from €2,500",
-          "features": ["FAQ / scenarios", "Telegram or website", "Basic analytics", "Launch support"]
+          "features": [
+            "FAQ / scenarios",
+            "Telegram or website",
+            "Basic analytics",
+            "Launch support"
+          ]
         },
         "business": {
           "name": "Business Bot",
           "price": "from €5,500",
-          "features": ["Lead forms", "CRM integration", "Multi-channel (Telegram/WhatsApp/website)", "Admin panel"]
+          "features": [
+            "Lead forms",
+            "CRM integration",
+            "Multi-channel (Telegram/WhatsApp/website)",
+            "Admin panel"
+          ]
         },
         "ai": {
           "name": "AI Bot",
           "price": "from €12,000",
-          "features": ["LLM + knowledge base (RAG)", "Advanced analytics", "API integrations", "Security & roles"]
+          "features": [
+            "LLM + knowledge base (RAG)",
+            "Advanced analytics",
+            "API integrations",
+            "Security & roles"
+          ]
         }
       }
     },
@@ -276,12 +372,29 @@
       "hero_subtitle": "From idea to implementation — AI that actually works",
       "hero_description": "ChatGPT integration, AI assistants, and process automation tailored to your business. No empty promises — just concrete results.",
       "hero_cta": "Discuss AI for your business",
-      "features": ["ChatGPT integration", "AI assistants", "Process automation", "Data analytics"],
+      "features": [
+        "ChatGPT integration",
+        "AI assistants",
+        "Process automation",
+        "Data analytics"
+      ],
       "benefits": {
-        "automation": { "title": "Automation", "description": "Automation of routine tasks and processes — hours of work turned into minutes" },
-        "analytics": { "title": "Analytics", "description": "Deep data analysis and forecasting based on real data" },
-        "personalization": { "title": "Personalization", "description": "Individual approach to each client at scale" },
-        "efficiency": { "title": "Efficiency", "description": "Increase team productivity by 30-50%" }
+        "automation": {
+          "title": "Automation",
+          "description": "Automation of routine tasks and processes — hours of work turned into minutes"
+        },
+        "analytics": {
+          "title": "Analytics",
+          "description": "Deep data analysis and forecasting based on real data"
+        },
+        "personalization": {
+          "title": "Personalization",
+          "description": "Individual approach to each client at scale"
+        },
+        "efficiency": {
+          "title": "Efficiency",
+          "description": "Increase team productivity by 30-50%"
+        }
       },
       "who_its_for": {
         "title": "Is AI right for your business?",
@@ -310,10 +423,22 @@
       "trust_signals": {
         "title": "Why Choose Us",
         "items": [
-          { "title": "Practical, not experimental AI", "description": "We implement proven solutions that work from day one" },
-          { "title": "Data privacy first", "description": "Your data stays yours. We design with security and GDPR compliance in mind" },
-          { "title": "Training included", "description": "Your team will learn to effectively use the new tools" },
-          { "title": "Focus on measurable results", "description": "Before implementation, we define KPIs to measure actual ROI" }
+          {
+            "title": "Practical, not experimental AI",
+            "description": "We implement proven solutions that work from day one"
+          },
+          {
+            "title": "Data privacy first",
+            "description": "Your data stays yours. We design with security and GDPR compliance in mind"
+          },
+          {
+            "title": "Training included",
+            "description": "Your team will learn to effectively use the new tools"
+          },
+          {
+            "title": "Focus on measurable results",
+            "description": "Before implementation, we define KPIs to measure actual ROI"
+          }
         ]
       },
       "faq": {
@@ -349,27 +474,54 @@
       "use_cases": {
         "title": "How businesses use our AI solutions",
         "cases": [
-          { "title": "Customer service automation", "description": "AI assistant handles 80% of inquiries, working 24/7" },
-          { "title": "Document analysis", "description": "Automatic extraction of data from invoices, contracts, and forms" },
-          { "title": "Content generation", "description": "Creating product descriptions, emails, and reports in seconds" },
-          { "title": "Decision support", "description": "Data analysis and AI-based recommendations" }
+          {
+            "title": "Customer service automation",
+            "description": "AI assistant handles 80% of inquiries, working 24/7"
+          },
+          {
+            "title": "Document analysis",
+            "description": "Automatic extraction of data from invoices, contracts, and forms"
+          },
+          {
+            "title": "Content generation",
+            "description": "Creating product descriptions, emails, and reports in seconds"
+          },
+          {
+            "title": "Decision support",
+            "description": "Data analysis and AI-based recommendations"
+          }
         ]
       },
       "packages": {
         "discovery": {
           "name": "AI Discovery",
           "price": "from €3,000",
-          "features": ["Process audit", "AI opportunity identification", "Recommendations report", "Implementation plan"]
+          "features": [
+            "Process audit",
+            "AI opportunity identification",
+            "Recommendations report",
+            "Implementation plan"
+          ]
         },
         "assistant": {
           "name": "AI Assistant MVP",
           "price": "from €9,000",
-          "features": ["ChatGPT/Claude integration", "Company knowledge base", "Web interface", "Team training"]
+          "features": [
+            "ChatGPT/Claude integration",
+            "Company knowledge base",
+            "Web interface",
+            "Team training"
+          ]
         },
         "automation": {
           "name": "AI Automation Suite",
           "price": "from €18,000",
-          "features": ["Multi-process automation", "System integrations", "Analytics dashboard", "6 months support"]
+          "features": [
+            "Multi-process automation",
+            "System integrations",
+            "Analytics dashboard",
+            "6 months support"
+          ]
         }
       }
     },
@@ -385,12 +537,29 @@
       "hero_subtitle": "Expert guidance before you invest",
       "hero_description": "IT audits, digital transformation strategy, and technology selection. We help businesses invest in technology with confidence — without costly mistakes.",
       "hero_cta": "Book strategy session",
-      "features": ["IT infrastructure audit", "Development strategy", "Technology selection", "Process optimization"],
+      "features": [
+        "IT infrastructure audit",
+        "Development strategy",
+        "Technology selection",
+        "Process optimization"
+      ],
       "benefits": {
-        "audit": { "title": "IT Audit", "description": "Comprehensive analysis of current infrastructure, processes, and tools" },
-        "strategy": { "title": "Digital Strategy", "description": "Clear transformation roadmap with concrete steps and timeline" },
-        "optimization": { "title": "Cost Optimization", "description": "Identify savings and eliminate unnecessary IT spending" },
-        "training": { "title": "Implementation Support", "description": "Help implementing recommendations and training your team" }
+        "audit": {
+          "title": "IT Audit",
+          "description": "Comprehensive analysis of current infrastructure, processes, and tools"
+        },
+        "strategy": {
+          "title": "Digital Strategy",
+          "description": "Clear transformation roadmap with concrete steps and timeline"
+        },
+        "optimization": {
+          "title": "Cost Optimization",
+          "description": "Identify savings and eliminate unnecessary IT spending"
+        },
+        "training": {
+          "title": "Implementation Support",
+          "description": "Help implementing recommendations and training your team"
+        }
       },
       "who_its_for": {
         "title": "Is IT consulting right for you?",
@@ -419,10 +588,22 @@
       "trust_signals": {
         "title": "Why trust us",
         "items": [
-          { "title": "Vendor-neutral advice", "description": "We don't sell specific tools — we recommend what's best for your business" },
-          { "title": "Business-first approach", "description": "We think about business goals first, technology second" },
-          { "title": "Clear deliverables", "description": "You get a concrete report with recommendations and action plan" },
-          { "title": "Implementation support", "description": "We help implement recommendations — we don't leave you with just a report" }
+          {
+            "title": "Vendor-neutral advice",
+            "description": "We don't sell specific tools — we recommend what's best for your business"
+          },
+          {
+            "title": "Business-first approach",
+            "description": "We think about business goals first, technology second"
+          },
+          {
+            "title": "Clear deliverables",
+            "description": "You get a concrete report with recommendations and action plan"
+          },
+          {
+            "title": "Implementation support",
+            "description": "We help implement recommendations — we don't leave you with just a report"
+          }
         ]
       },
       "faq": {
@@ -454,17 +635,32 @@
         "audit": {
           "name": "IT Audit",
           "price": "from €2,500",
-          "features": ["Infrastructure analysis", "Process review", "Recommendations report", "Action plan"]
+          "features": [
+            "Infrastructure analysis",
+            "Process review",
+            "Recommendations report",
+            "Action plan"
+          ]
         },
         "strategy": {
           "name": "Digital Strategy",
           "price": "from €6,000",
-          "features": ["Full company analysis", "Transformation roadmap", "Technology selection", "Cost estimation"]
+          "features": [
+            "Full company analysis",
+            "Transformation roadmap",
+            "Technology selection",
+            "Cost estimation"
+          ]
         },
         "advisory": {
           "name": "Advisory",
           "price": "€95/hour",
-          "features": ["On-demand consulting", "Decision support", "Solution review", "Project oversight"]
+          "features": [
+            "On-demand consulting",
+            "Decision support",
+            "Solution review",
+            "Project oversight"
+          ]
         }
       },
       "cta_section": {
@@ -485,12 +681,29 @@
       "hero_subtitle": "iOS & Android from One Codebase",
       "hero_description": "We build mobile apps that delight users and drive your business. React Native, Flutter — modern technologies for faster time-to-market.",
       "hero_cta": "Discuss Your App Idea",
-      "features": ["iOS and Android", "React Native / Flutter", "UX/UI design", "Support and updates"],
+      "features": [
+        "iOS and Android",
+        "React Native / Flutter",
+        "UX/UI design",
+        "Support and updates"
+      ],
       "benefits": {
-        "native": { "title": "Native quality", "description": "High performance and smooth animations like native apps" },
-        "cross": { "title": "Cross-platform", "description": "One codebase for iOS and Android — faster development, lower costs" },
-        "ux": { "title": "UX/UI included", "description": "We design intuitive interfaces that users will love" },
-        "support": { "title": "Post-launch support", "description": "Updates, bug fixes, and feature development after launch" }
+        "native": {
+          "title": "Native quality",
+          "description": "High performance and smooth animations like native apps"
+        },
+        "cross": {
+          "title": "Cross-platform",
+          "description": "One codebase for iOS and Android — faster development, lower costs"
+        },
+        "ux": {
+          "title": "UX/UI included",
+          "description": "We design intuitive interfaces that users will love"
+        },
+        "support": {
+          "title": "Post-launch support",
+          "description": "Updates, bug fixes, and feature development after launch"
+        }
       },
       "who_its_for": {
         "title": "Is Mobile App Development Right for You?",
@@ -519,10 +732,22 @@
       "trust_signals": {
         "title": "Why Choose Us",
         "items": [
-          { "title": "Cross-platform expertise", "description": "We specialize in React Native and Flutter — proven technologies used by top companies" },
-          { "title": "App store submission included", "description": "We handle the entire publishing process for App Store and Google Play" },
-          { "title": "Post-launch support", "description": "We don't disappear after launch. We offer support and development packages" },
-          { "title": "UX/UI design included", "description": "Every app includes professional design tailored to your brand" }
+          {
+            "title": "Cross-platform expertise",
+            "description": "We specialize in React Native and Flutter — proven technologies used by top companies"
+          },
+          {
+            "title": "App store submission included",
+            "description": "We handle the entire publishing process for App Store and Google Play"
+          },
+          {
+            "title": "Post-launch support",
+            "description": "We don't disappear after launch. We offer support and development packages"
+          },
+          {
+            "title": "UX/UI design included",
+            "description": "Every app includes professional design tailored to your brand"
+          }
         ]
       },
       "faq": {
@@ -554,17 +779,32 @@
         "mvp": {
           "name": "MVP",
           "price": "from €18,000",
-          "features": ["iOS + Android", "Core features", "UX/UI design", "App store publishing"]
+          "features": [
+            "iOS + Android",
+            "Core features",
+            "UX/UI design",
+            "App store publishing"
+          ]
         },
         "standard": {
           "name": "Standard App",
           "price": "from €35,000",
-          "features": ["Extended functionality", "Backend + API", "Integrations", "3 months support"]
+          "features": [
+            "Extended functionality",
+            "Backend + API",
+            "Integrations",
+            "3 months support"
+          ]
         },
         "enterprise": {
           "name": "Enterprise",
           "price": "from €70,000",
-          "features": ["Complex integrations", "Offline mode", "Roles & permissions", "12 months support"]
+          "features": [
+            "Complex integrations",
+            "Offline mode",
+            "Roles & permissions",
+            "12 months support"
+          ]
         }
       },
       "cta_section": {
@@ -585,12 +825,29 @@
       "hero_subtitle": "Focus on your product — we'll handle the servers",
       "hero_description": "AWS, GCP, Azure, CI/CD, Docker, Kubernetes. Professional cloud infrastructure setup and management so you can focus on growing your business.",
       "hero_cta": "Get infrastructure audit",
-      "features": ["AWS / Google Cloud / Azure", "CI/CD setup", "Docker / Kubernetes", "Monitoring and security"],
+      "features": [
+        "AWS / Google Cloud / Azure",
+        "CI/CD setup",
+        "Docker / Kubernetes",
+        "Monitoring and security"
+      ],
       "benefits": {
-        "scalability": { "title": "Scalability", "description": "Auto-scaling based on demand — pay only for what you use" },
-        "reliability": { "title": "Reliability", "description": "99.9% uptime with redundancy and automatic failover" },
-        "security": { "title": "Security", "description": "Encryption, backups, GDPR compliance, and best practices" },
-        "automation": { "title": "Automation", "description": "CI/CD pipelines — every commit automatically deployed to production" }
+        "scalability": {
+          "title": "Scalability",
+          "description": "Auto-scaling based on demand — pay only for what you use"
+        },
+        "reliability": {
+          "title": "Reliability",
+          "description": "99.9% uptime with redundancy and automatic failover"
+        },
+        "security": {
+          "title": "Security",
+          "description": "Encryption, backups, GDPR compliance, and best practices"
+        },
+        "automation": {
+          "title": "Automation",
+          "description": "CI/CD pipelines — every commit automatically deployed to production"
+        }
       },
       "who_its_for": {
         "title": "Are cloud services right for you?",
@@ -619,10 +876,22 @@
       "trust_signals": {
         "title": "Why Choose Us",
         "items": [
-          { "title": "Multi-cloud expertise", "description": "AWS, GCP, Azure — we choose the solution based on your needs, not our preferences" },
-          { "title": "Security-first approach", "description": "Security built in from the start — encryption, audits, regulatory compliance" },
-          { "title": "Monitoring included", "description": "Proactive monitoring and alerts — we solve problems before they impact users" },
-          { "title": "Cost optimization focus", "description": "Regular review and optimization of cloud spending — save 30% on average" }
+          {
+            "title": "Multi-cloud expertise",
+            "description": "AWS, GCP, Azure — we choose the solution based on your needs, not our preferences"
+          },
+          {
+            "title": "Security-first approach",
+            "description": "Security built in from the start — encryption, audits, regulatory compliance"
+          },
+          {
+            "title": "Monitoring included",
+            "description": "Proactive monitoring and alerts — we solve problems before they impact users"
+          },
+          {
+            "title": "Cost optimization focus",
+            "description": "Regular review and optimization of cloud spending — save 30% on average"
+          }
         ]
       },
       "faq": {
@@ -654,17 +923,32 @@
         "starter": {
           "name": "CI/CD Setup",
           "price": "from €3,500",
-          "features": ["CI/CD pipeline", "Containerization", "Basic infrastructure", "Documentation"]
+          "features": [
+            "CI/CD pipeline",
+            "Containerization",
+            "Basic infrastructure",
+            "Documentation"
+          ]
         },
         "migration": {
           "name": "Cloud Migration",
           "price": "from €12,000",
-          "features": ["Infrastructure audit", "Migration plan", "Data migration", "Cost optimization"]
+          "features": [
+            "Infrastructure audit",
+            "Migration plan",
+            "Data migration",
+            "Cost optimization"
+          ]
         },
         "managed": {
           "name": "Managed DevOps",
           "price": "from €1,500/mo",
-          "features": ["24/7 monitoring", "Auto-scaling", "Security", "Cost optimization"]
+          "features": [
+            "24/7 monitoring",
+            "Auto-scaling",
+            "Security",
+            "Cost optimization"
+          ]
         }
       },
       "cta_section": {
@@ -677,20 +961,47 @@
   "why_us": {
     "title": "Why Choose Us",
     "description": "We combine expertise, modern technologies and client-oriented approach",
-    "professionalism": { "title": "Professionalism", "description": "Team of experienced specialists with over 5 years of experience" },
-    "speed": { "title": "Speed", "description": "We meet deadlines and ensure quick project starts" },
-    "reliability": { "title": "Reliability", "description": "We guarantee quality, security and post-launch support" },
-    "individual": { "title": "Individual Approach", "description": "We understand each client's needs and offer optimal solutions" }
+    "professionalism": {
+      "title": "Professionalism",
+      "description": "Team of experienced specialists with over 5 years of experience"
+    },
+    "speed": {
+      "title": "Speed",
+      "description": "We meet deadlines and ensure quick project starts"
+    },
+    "reliability": {
+      "title": "Reliability",
+      "description": "We guarantee quality, security and post-launch support"
+    },
+    "individual": {
+      "title": "Individual Approach",
+      "description": "We understand each client's needs and offer optimal solutions"
+    }
   },
   "process": {
     "title": "Our Work Process",
     "description": "Transparent and clear process from idea to launch",
     "steps": {
-      "consultation": { "title": "Consultation and Analysis", "description": "We discuss your goals, analyze needs and create specifications" },
-      "design": { "title": "Design and Planning", "description": "We create project architecture and develop unique design" },
-      "development": { "title": "Development", "description": "We implement the project using modern technologies" },
-      "testing": { "title": "Testing", "description": "We thoroughly test all functions and optimize performance" },
-      "launch": { "title": "Launch and Support", "description": "We launch the project and provide technical support" }
+      "consultation": {
+        "title": "Consultation and Analysis",
+        "description": "We discuss your goals, analyze needs and create specifications"
+      },
+      "design": {
+        "title": "Design and Planning",
+        "description": "We create project architecture and develop unique design"
+      },
+      "development": {
+        "title": "Development",
+        "description": "We implement the project using modern technologies"
+      },
+      "testing": {
+        "title": "Testing",
+        "description": "We thoroughly test all functions and optimize performance"
+      },
+      "launch": {
+        "title": "Launch and Support",
+        "description": "We launch the project and provide technical support"
+      }
     }
   },
   "cta": {
@@ -727,7 +1038,10 @@
     "phone": "Phone",
     "email": "Email",
     "hours": "Working Hours",
-    "phones": ["+48 537 890 776", "+48 733 264 543"],
+    "phones": [
+      "+48 537 890 776",
+      "+48 733 264 543"
+    ],
     "email_address": "vektadev@gmail.com",
     "form": {
       "name": "Name *",
@@ -815,10 +1129,22 @@
     ],
     "values_title": "Our Values",
     "values": {
-      "focus": { "title": "Result Focus", "description": "We focus on achieving our clients' business goals" },
-      "quality": { "title": "Quality First", "description": "We maintain the highest standards in every project" },
-      "partnership": { "title": "Partnership", "description": "We build long-term relationships with clients" },
-      "innovation": { "title": "Innovation", "description": "We use the latest technologies and approaches" }
+      "focus": {
+        "title": "Result Focus",
+        "description": "We focus on achieving our clients' business goals"
+      },
+      "quality": {
+        "title": "Quality First",
+        "description": "We maintain the highest standards in every project"
+      },
+      "partnership": {
+        "title": "Partnership",
+        "description": "We build long-term relationships with clients"
+      },
+      "innovation": {
+        "title": "Innovation",
+        "description": "We use the latest technologies and approaches"
+      }
     },
     "team_title": "Our Team",
     "team": {
@@ -848,7 +1174,12 @@
         "bio": "Backend developer with experience in Node.js, Python and DevOps. Specializes in cloud solutions."
       }
     },
-    "stats": { "years": "Years in market", "projects": "Completed projects", "clients": "Satisfied clients", "team": "Specialists" },
+    "stats": {
+      "years": "Years in market",
+      "projects": "Completed projects",
+      "clients": "Satisfied clients",
+      "team": "Specialists"
+    },
     "cta_title": "Let's Talk About Your Project",
     "cta_description": "Book a free, no-obligation call. We'll learn about your goals and tell you honestly if and how we can help.",
     "cta_button": "Book a Call"
@@ -910,24 +1241,44 @@
     "controller": {
       "title": "2. Data Controller",
       "text": "The data controller responsible for your personal data is:",
-      "details": ["VektaDev", "ul. Michała Kajki 10-12", "10-547 Olsztyn, Poland", "Email: vektadev@gmail.com", "Phone: +48 537 890 776"]
+      "details": [
+        "VektaDev",
+        "ul. Michała Kajki 10-12",
+        "10-547 Olsztyn, Poland",
+        "Email: vektadev@gmail.com",
+        "Phone: +48 537 890 776"
+      ]
     },
     "collection": {
       "title": "3. Data We Collect",
       "text": "We collect personal data that you voluntarily provide when using our contact form:",
-      "items": ["Name — to address you properly in our response", "Email address — to reply to your inquiry", "Phone number (optional) — for callback if requested", "Message content — to understand your inquiry or project needs"],
+      "items": [
+        "Name — to address you properly in our response",
+        "Email address — to reply to your inquiry",
+        "Phone number (optional) — for callback if requested",
+        "Message content — to understand your inquiry or project needs"
+      ],
       "automatic_title": "Technical Data",
       "automatic_text": "Our website may also collect basic technical data necessary for proper functioning, such as IP address, browser type, and access times. This data is processed by our hosting provider."
     },
     "purpose": {
       "title": "4. How We Use Your Data",
       "text": "We process your personal data for the following purposes:",
-      "items": ["Responding to your inquiries and requests", "Communicating about potential projects and services", "Providing customer support", "Improving our website and services"]
+      "items": [
+        "Responding to your inquiries and requests",
+        "Communicating about potential projects and services",
+        "Providing customer support",
+        "Improving our website and services"
+      ]
     },
     "legal_basis": {
       "title": "5. Legal Basis for Processing",
       "text": "Under GDPR, we process your data based on:",
-      "items": ["Your consent — when you submit the contact form", "Legitimate interest — to respond to your inquiry and provide services", "Contractual necessity — when processing is required to fulfill a service agreement"]
+      "items": [
+        "Your consent — when you submit the contact form",
+        "Legitimate interest — to respond to your inquiry and provide services",
+        "Contractual necessity — when processing is required to fulfill a service agreement"
+      ]
     },
     "third_parties": {
       "title": "6. Third-Party Services",
@@ -971,7 +1322,11 @@
     "contact": {
       "title": "12. Contact Us",
       "text": "If you have any questions about this Privacy Policy, your personal data, or wish to exercise your rights, please contact us:",
-      "details": ["Email: vektadev@gmail.com", "Phone: +48 537 890 776", "Address: ul. Michała Kajki 10-12, 10-547 Olsztyn, Poland"]
+      "details": [
+        "Email: vektadev@gmail.com",
+        "Phone: +48 537 890 776",
+        "Address: ul. Michała Kajki 10-12, 10-547 Olsztyn, Poland"
+      ]
     },
     "complaints": {
       "title": "13. Complaints",

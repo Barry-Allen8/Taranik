@@ -129,10 +129,7 @@ export default function ContactForm() {
           <option value="">{t("service_placeholder")}</option>
           <option value="websites">{tServices("websites")}</option>
           <option value="chatbots">{tServices("chatbots")}</option>
-          <option value="ai">{tServices("ai_solutions")}</option>
           <option value="mobile">{tServices("mobile_apps")}</option>
-          <option value="cloud">{tServices("cloud")}</option>
-          <option value="consulting">{tServices("consulting")}</option>
         </select>
       </div>
 
@@ -150,14 +147,13 @@ export default function ContactForm() {
 
       {submitStatus && (
         <div
-          className={`p-4 rounded-lg ${
-            submitStatus === "success"
+          className={`p-4 rounded-lg ${submitStatus === "success"
               ? "bg-green-50 text-green-800 dark:bg-green-900/20 dark:text-green-400"
               : "bg-red-50 text-red-800 dark:bg-red-900/20 dark:text-red-400"
-          }`}
+            }`}
         >
-          {submitStatus === "success" 
-            ? t("success") 
+          {submitStatus === "success"
+            ? t("success")
             : errorMessage || t("error")}
         </div>
       )}
