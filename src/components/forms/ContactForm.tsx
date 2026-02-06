@@ -7,7 +7,7 @@ import { contactFormSchema, type ContactFormData } from "@/lib/validations";
 import Input from "@/components/ui/Input";
 import Textarea from "@/components/ui/Textarea";
 import Button from "@/components/ui/Button";
-import { Send } from "lucide-react";
+import { Send, ChevronDown } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 interface ApiContactFormData extends ContactFormData {
@@ -202,15 +202,20 @@ export default function ContactForm() {
 
       <div>
         <label className="block text-sm font-medium mb-2">{t("service")}</label>
-        <select
-          {...register("service")}
-          className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-        >
-          <option value="">{t("service_placeholder")}</option>
-          <option value="websites">{tServices("websites")}</option>
-          <option value="chatbots">{tServices("chatbots")}</option>
-          <option value="mobile_apps">{tServices("mobile_apps")}</option>
-        </select>
+        <div className="relative">
+          <select
+            {...register("service")}
+            className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent appearance-none bg-transparent pr-10"
+          >
+            <option value="">{t("service_placeholder")}</option>
+            <option value="websites">{tServices("websites")}</option>
+            <option value="chatbots">{tServices("chatbots")}</option>
+            <option value="mobile_apps">{tServices("mobile_apps")}</option>
+          </select>
+          <div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-muted-foreground">
+            <ChevronDown className="w-5 h-5" />
+          </div>
+        </div>
       </div>
 
       <Textarea
@@ -225,20 +230,22 @@ export default function ContactForm() {
         <Send className="w-5 h-5" />
       </Button>
 
-      {submitStatus && (
-        <div
-          role="status"
-          aria-live="polite"
-          className={`p-4 rounded-lg ${submitStatus === "success"
+      {
+        submitStatus && (
+          <div
+            role="status"
+            aria-live="polite"
+            className={`p-4 rounded-lg ${submitStatus === "success"
               ? "bg-green-50 text-green-800 dark:bg-green-900/20 dark:text-green-400"
               : "bg-red-50 text-red-800 dark:bg-red-900/20 dark:text-red-400"
-            }`}
-        >
-          {submitStatus === "success"
-            ? t("success")
-            : errorMessage || t("error")}
-        </div>
-      )}
-    </form>
+              }`}
+          >
+            {submitStatus === "success"
+              ? t("success")
+              : errorMessage || t("error")}
+          </div>
+        )
+      }
+    </form >
   );
 }
