@@ -72,17 +72,32 @@ const itemVariants = {
   },
 };
 
+const floatingParticles = [
+  { size: 4, left: "7%", top: "18%", duration: 10, delay: 0.2 },
+  { size: 5, left: "14%", top: "64%", duration: 12, delay: 1.1 },
+  { size: 6, left: "23%", top: "32%", duration: 9, delay: 2.2 },
+  { size: 4, left: "31%", top: "80%", duration: 11, delay: 1.9 },
+  { size: 5, left: "40%", top: "48%", duration: 13, delay: 0.7 },
+  { size: 6, left: "49%", top: "22%", duration: 10, delay: 1.5 },
+  { size: 4, left: "58%", top: "70%", duration: 12.5, delay: 2.8 },
+  { size: 5, left: "67%", top: "39%", duration: 9.5, delay: 0.9 },
+  { size: 6, left: "75%", top: "55%", duration: 11.5, delay: 2.1 },
+  { size: 4, left: "84%", top: "26%", duration: 10.5, delay: 1.3 },
+  { size: 5, left: "92%", top: "68%", duration: 12.8, delay: 2.5 },
+  { size: 6, left: "97%", top: "44%", duration: 9.8, delay: 0.5 },
+];
+
 export default function CaseStudiesSection() {
   const t = useTranslations("cases");
   const locale = useLocale() as Locale;
 
   return (
-    <section className="section bg-gradient-to-b from-white to-gray-50 overflow-hidden relative">
+    <section className="section bg-gradient-to-b from-slate-900 to-slate-950 overflow-hidden relative">
       {/* Animated background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Animated gradient blobs */}
         <motion.div
-          className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-primary/5 to-accent/5 rounded-full blur-3xl"
+          className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-primary/12 to-accent/10 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.4, 0.7, 0.4],
@@ -94,7 +109,7 @@ export default function CaseStudiesSection() {
           }}
         />
         <motion.div
-          className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-br from-secondary/5 to-primary/5 rounded-full blur-3xl"
+          className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-br from-secondary/12 to-primary/10 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.15, 1],
             opacity: [0.4, 0.6, 0.4],
@@ -108,24 +123,24 @@ export default function CaseStudiesSection() {
         />
 
         {/* Floating particles */}
-        {Array.from({ length: 12 }).map((_, i) => (
+        {floatingParticles.map((particle, i) => (
           <motion.div
             key={i}
-            className="absolute rounded-full bg-primary/5"
+            className="absolute rounded-full bg-primary/20"
             style={{
-              width: `${Math.random() * 6 + 3}px`,
-              height: `${Math.random() * 6 + 3}px`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              width: `${particle.size}px`,
+              height: `${particle.size}px`,
+              left: particle.left,
+              top: particle.top,
             }}
             animate={{
               y: [0, -90, 0],
               opacity: [0, 0.6, 0],
             }}
             transition={{
-              duration: Math.random() * 9 + 7,
+              duration: particle.duration,
               repeat: Infinity,
-              delay: Math.random() * 4,
+              delay: particle.delay,
               ease: "easeInOut",
             }}
           />
@@ -133,7 +148,7 @@ export default function CaseStudiesSection() {
 
         {/* Subtle geometric pattern */}
         <motion.div
-          className="absolute inset-0 bg-[radial-gradient(circle_at_2px_2px,rgba(37,99,235,0.03)_1px,transparent_0)] bg-[size:40px_40px] opacity-50"
+          className="absolute inset-0 bg-[radial-gradient(circle_at_2px_2px,rgba(148,163,184,0.12)_1px,transparent_0)] bg-[size:40px_40px] opacity-35"
           animate={{
             backgroundPosition: ['0px 0px', '40px 40px', '0px 0px'],
           }}
@@ -157,8 +172,8 @@ export default function CaseStudiesSection() {
             <TrendingUp className="w-4 h-4 text-primary" />
             <span className="text-sm font-medium text-primary">{t("badge")}</span>
           </div>
-          <h2>{t("title")}</h2>
-          <p>{t("description")}</p>
+          <h2 className="text-slate-100">{t("title")}</h2>
+          <p className="text-slate-300">{t("description")}</p>
         </motion.div>
 
         {/* Case Studies Grid */}
@@ -177,7 +192,7 @@ export default function CaseStudiesSection() {
                 variants={itemVariants}
                 className="group"
               >
-                <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 h-full flex flex-col border border-gray-100">
+                <div className="bg-slate-900/75 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 h-full flex flex-col border border-slate-800 hover:border-slate-700">
                   {/* Image */}
                   <div className="relative h-48 overflow-hidden">
                     <Image
@@ -191,7 +206,7 @@ export default function CaseStudiesSection() {
 
                     {/* Category badge */}
                     <div className="absolute top-4 left-4">
-                      <span className="px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-medium text-foreground">
+                      <span className="px-3 py-1 bg-slate-950/85 border border-slate-700/80 backdrop-blur-sm rounded-full text-xs font-medium text-slate-100">
                         {study.category}
                       </span>
                     </div>
@@ -204,21 +219,21 @@ export default function CaseStudiesSection() {
 
                   {/* Content */}
                   <div className="p-6 flex-1 flex flex-col">
-                    <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+                    <h3 className="text-xl font-bold mb-2 text-slate-100 group-hover:text-primary transition-colors">
                       {t(study.titleKey)}
                     </h3>
-                    <p className="text-muted text-sm mb-4 flex-1">
+                    <p className="text-slate-300 text-sm mb-4 flex-1">
                       {t(study.descriptionKey)}
                     </p>
 
                     {/* Results */}
-                    <div className="grid grid-cols-2 gap-4 mb-4 p-4 bg-gray-50 rounded-xl">
+                    <div className="grid grid-cols-2 gap-4 mb-4 p-4 bg-slate-800/70 rounded-xl border border-slate-700/70">
                       {study.results.map((result, idx) => (
                         <div key={idx} className="text-center">
                           <div className={`text-2xl font-bold bg-gradient-to-r ${study.color} bg-clip-text text-transparent`}>
                             {result.value}
                           </div>
-                          <div className="text-xs text-muted">{t(result.labelKey)}</div>
+                          <div className="text-xs text-slate-300">{t(result.labelKey)}</div>
                         </div>
                       ))}
                     </div>
@@ -228,7 +243,7 @@ export default function CaseStudiesSection() {
                       {study.technologies.map((tech) => (
                         <span
                           key={tech}
-                          className="px-2 py-1 bg-gray-100 text-xs font-medium text-muted rounded"
+                          className="px-2 py-1 bg-slate-800 border border-slate-700 text-xs font-medium text-slate-300 rounded"
                         >
                           {tech}
                         </span>
@@ -262,7 +277,7 @@ export default function CaseStudiesSection() {
           <Link
             href="/portfolio"
             locale={locale}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-primary/5 hover:bg-primary/10 text-primary font-medium rounded-full transition-all duration-300 group"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-primary/10 hover:bg-primary/20 text-primary font-medium rounded-full transition-all duration-300 group border border-primary/20"
           >
             {t("view_all")}
             <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />

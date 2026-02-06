@@ -92,7 +92,9 @@ export default function Header() {
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled ? "bg-white/95 backdrop-blur-md shadow-lg py-3" : "bg-white/90 backdrop-blur-sm py-4"
+        isScrolled
+          ? "bg-slate-950/90 backdrop-blur-xl shadow-[0_14px_40px_rgba(2,6,23,0.45)] border-b border-slate-800/70 py-3"
+          : "bg-slate-950/70 backdrop-blur-md border-b border-slate-900/70 py-4"
       )}
     >
       <div className="container">
@@ -129,7 +131,7 @@ export default function Header() {
             >
               <button
                 className={cn(
-                  "flex items-center gap-1 transition-colors font-medium",
+                  "flex items-center gap-1 transition-colors font-medium text-slate-200",
                   isServicesActive ? "text-primary" : "hover:text-primary"
                 )}
               >
@@ -138,7 +140,7 @@ export default function Header() {
               </button>
               {servicesOpen && (
                 <div className="absolute top-full left-0 pt-2">
-                  <div className="bg-white shadow-xl rounded-lg overflow-hidden w-56">
+                  <div className="bg-slate-900/95 shadow-2xl rounded-lg overflow-hidden w-56 border border-slate-800">
                     {services.map((service) => (
                       <Link
                         key={service.href}
@@ -148,7 +150,7 @@ export default function Header() {
                           "block px-4 py-3 transition-colors",
                           isActive(service.href)
                             ? "bg-primary text-white"
-                            : "hover:bg-primary hover:text-white"
+                            : "text-slate-200 hover:bg-primary hover:text-white"
                         )}
                       >
                         {service.name}
@@ -162,7 +164,7 @@ export default function Header() {
               href="/portfolio"
               locale={locale}
               className={cn(
-                "transition-colors font-medium",
+                "transition-colors font-medium text-slate-200",
                 isActive("/portfolio") ? "text-primary" : "hover:text-primary"
               )}
             >
@@ -172,7 +174,7 @@ export default function Header() {
               href="/insights"
               locale={locale}
               className={cn(
-                "transition-colors font-medium",
+                "transition-colors font-medium text-slate-200",
                 isActive("/insights") ? "text-primary" : "hover:text-primary"
               )}
             >
@@ -182,7 +184,7 @@ export default function Header() {
               href="/about"
               locale={locale}
               className={cn(
-                "transition-colors font-medium",
+                "transition-colors font-medium text-slate-200",
                 isActive("/about") ? "text-primary" : "hover:text-primary"
               )}
             >
@@ -192,7 +194,7 @@ export default function Header() {
               href="/contact"
               locale={locale}
               className={cn(
-                "transition-colors font-medium",
+                "transition-colors font-medium text-slate-200",
                 isActive("/contact") ? "text-primary" : "hover:text-primary"
               )}
             >
@@ -214,8 +216,8 @@ export default function Header() {
                   "flex items-center gap-1.5 px-4 py-2.5 rounded-full border-2 transition-all duration-200",
                   "text-sm font-semibold tracking-wide",
                   langOpen
-                    ? "border-primary bg-primary/5 text-primary"
-                    : "border-gray-200 hover:border-primary/50 text-gray-700 hover:text-primary"
+                    ? "border-primary bg-primary/10 text-primary"
+                    : "border-slate-700 hover:border-primary/50 text-slate-300 hover:text-primary"
                 )}
               >
                 {localeLabels[locale]}
@@ -227,7 +229,7 @@ export default function Header() {
 
               {langOpen && (
                 <div className="absolute top-full right-0 mt-2 z-50">
-                  <div className="bg-white shadow-lg rounded-xl border border-gray-100 overflow-hidden min-w-[100px]">
+                  <div className="bg-slate-900 shadow-lg rounded-xl border border-slate-800 overflow-hidden min-w-[100px]">
                     {locales.map((loc) => (
                       <button
                         key={loc}
@@ -239,7 +241,7 @@ export default function Header() {
                           "w-full px-4 py-2.5 text-sm font-medium transition-all duration-150 text-left",
                           locale === loc
                             ? "bg-primary text-white"
-                            : "text-gray-700 hover:bg-gray-50 hover:text-primary"
+                            : "text-slate-200 hover:bg-slate-800 hover:text-primary"
                         )}
                       >
                         {localeLabels[loc]}
@@ -253,7 +255,7 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            className="lg:hidden p-2 rounded-lg hover:bg-slate-800 text-slate-200 transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -278,9 +280,9 @@ export default function Header() {
             isMobileMenuOpen ? "max-h-[800px] opacity-100 mt-4" : "max-h-0 opacity-0 mt-0"
           )}
         >
-          <nav className="py-4 border-t border-gray-100">
+          <nav className="py-4 border-t border-slate-800">
             {/* Language Switcher Mobile - Pill Style */}
-            <div className="flex gap-2 pb-4 mb-4 border-b border-gray-100">
+            <div className="flex gap-2 pb-4 mb-4 border-b border-slate-800">
               {locales.map((loc) => (
                 <button
                   key={loc}
@@ -289,7 +291,7 @@ export default function Header() {
                     "px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200",
                     locale === loc
                       ? "bg-primary text-white shadow-md"
-                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                      : "bg-slate-800 text-slate-200 hover:bg-slate-700"
                   )}
                 >
                   {localeLabels[loc]}
@@ -298,10 +300,10 @@ export default function Header() {
             </div>
 
             {/* Services Accordion */}
-            <div className="border-b border-gray-100">
+            <div className="border-b border-slate-800">
               <button
                 className={cn(
-                  "w-full text-left flex items-center justify-between py-3 font-medium transition-colors",
+                  "w-full text-left flex items-center justify-between py-3 font-medium transition-colors text-slate-200",
                   isServicesActive ? "text-primary" : "hover:text-primary"
                 )}
                 onClick={() => setServicesOpen(!servicesOpen)}
@@ -328,7 +330,7 @@ export default function Header() {
                         "block py-2.5 px-3 rounded-lg transition-all duration-200",
                         isActive(service.href)
                           ? "text-primary bg-primary/10 font-medium"
-                          : "text-gray-600 hover:text-primary hover:bg-gray-50"
+                          : "text-slate-300 hover:text-primary hover:bg-slate-800"
                       )}
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
@@ -344,7 +346,7 @@ export default function Header() {
               href="/portfolio"
               locale={locale}
               className={cn(
-                "block py-3 font-medium border-b border-gray-100 transition-colors",
+                "block py-3 font-medium border-b border-slate-800 transition-colors text-slate-200",
                 isActive("/portfolio") ? "text-primary" : "hover:text-primary"
               )}
               onClick={() => setIsMobileMenuOpen(false)}
@@ -355,7 +357,7 @@ export default function Header() {
               href="/about"
               locale={locale}
               className={cn(
-                "block py-3 font-medium border-b border-gray-100 transition-colors",
+                "block py-3 font-medium border-b border-slate-800 transition-colors text-slate-200",
                 isActive("/about") ? "text-primary" : "hover:text-primary"
               )}
               onClick={() => setIsMobileMenuOpen(false)}
@@ -366,7 +368,7 @@ export default function Header() {
               href="/insights"
               locale={locale}
               className={cn(
-                "block py-3 font-medium border-b border-gray-100 transition-colors",
+                "block py-3 font-medium border-b border-slate-800 transition-colors text-slate-200",
                 isActive("/insights") ? "text-primary" : "hover:text-primary"
               )}
               onClick={() => setIsMobileMenuOpen(false)}
@@ -377,7 +379,7 @@ export default function Header() {
               href="/contact"
               locale={locale}
               className={cn(
-                "block py-3 font-medium border-b border-gray-100 transition-colors",
+                "block py-3 font-medium border-b border-slate-800 transition-colors text-slate-200",
                 isActive("/contact") ? "text-primary" : "hover:text-primary"
               )}
               onClick={() => setIsMobileMenuOpen(false)}

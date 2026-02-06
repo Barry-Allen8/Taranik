@@ -7,15 +7,30 @@ import { motion } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import { type Locale } from "@/i18n";
 
+const floatingParticles = [
+  { size: 3, left: "7%", top: "18%", duration: 6.2, delay: 0.3 },
+  { size: 4, left: "16%", top: "72%", duration: 7.1, delay: 1.2 },
+  { size: 5, left: "27%", top: "38%", duration: 5.8, delay: 2.1 },
+  { size: 3, left: "36%", top: "80%", duration: 6.9, delay: 0.9 },
+  { size: 4, left: "45%", top: "24%", duration: 7.4, delay: 1.8 },
+  { size: 5, left: "55%", top: "60%", duration: 6.1, delay: 2.5 },
+  { size: 3, left: "64%", top: "32%", duration: 7.2, delay: 1.1 },
+  { size: 4, left: "73%", top: "76%", duration: 5.9, delay: 2.2 },
+  { size: 5, left: "82%", top: "44%", duration: 6.7, delay: 0.7 },
+  { size: 3, left: "90%", top: "20%", duration: 7.3, delay: 1.6 },
+  { size: 4, left: "95%", top: "66%", duration: 6.4, delay: 2.8 },
+  { size: 5, left: "99%", top: "50%", duration: 5.6, delay: 0.4 },
+];
+
 export default function CTASection() {
   const t = useTranslations("cta");
   const locale = useLocale() as Locale;
 
   return (
-    <section className="section relative overflow-hidden bg-gradient-to-r from-primary via-accent to-secondary">
+    <section className="section relative overflow-hidden bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 border-y border-slate-800">
       {/* Animated hexagon overlay */}
       <motion.div
-        className="absolute inset-0 opacity-10"
+        className="absolute inset-0 opacity-25"
         animate={{
           backgroundPosition: ['0px 0px', '100px 86.8px', '0px 0px'],
         }}
@@ -31,7 +46,7 @@ export default function CTASection() {
               <polygon
                 points="24.8,22 37.3,29.2 37.3,43.7 24.8,50.9 12.3,43.7 12.3,29.2"
                 fill="none"
-                stroke="white"
+                stroke="rgba(59,130,246,0.5)"
                 strokeWidth="0.5"
               />
             </pattern>
@@ -42,7 +57,7 @@ export default function CTASection() {
 
       {/* Animated gradient blobs */}
       <motion.div
-        className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-2xl"
+        className="absolute top-10 left-10 w-32 h-32 bg-primary/20 rounded-full blur-2xl"
         animate={{
           scale: [1, 1.3, 1],
           x: [0, 20, 0],
@@ -55,7 +70,7 @@ export default function CTASection() {
         }}
       />
       <motion.div
-        className="absolute bottom-10 right-10 w-40 h-40 bg-white/10 rounded-full blur-2xl"
+        className="absolute bottom-10 right-10 w-40 h-40 bg-secondary/20 rounded-full blur-2xl"
         animate={{
           scale: [1, 1.2, 1],
           x: [0, -25, 0],
@@ -70,15 +85,15 @@ export default function CTASection() {
       />
 
       {/* Additional floating particles */}
-      {Array.from({ length: 12 }).map((_, i) => (
+      {floatingParticles.map((particle, i) => (
         <motion.div
           key={i}
-          className="absolute rounded-full bg-white/5"
+          className="absolute rounded-full bg-sky-300/20"
           style={{
-            width: `${Math.random() * 4 + 2}px`,
-            height: `${Math.random() * 4 + 2}px`,
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
+            width: `${particle.size}px`,
+            height: `${particle.size}px`,
+            left: particle.left,
+            top: particle.top,
           }}
           animate={{
             y: [0, -60, 0],
@@ -86,9 +101,9 @@ export default function CTASection() {
             scale: [0, 1, 0],
           }}
           transition={{
-            duration: Math.random() * 6 + 4,
+            duration: particle.duration,
             repeat: Infinity,
-            delay: Math.random() * 3,
+            delay: particle.delay,
             ease: "easeInOut",
           }}
         />
@@ -96,7 +111,7 @@ export default function CTASection() {
 
       {/* Pulsing glow effect */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-white/5 to-transparent"
+        className="absolute inset-0 bg-gradient-to-r from-primary/10 via-accent/5 to-transparent"
         animate={{
           opacity: [0.3, 0.6, 0.3],
         }}
@@ -124,7 +139,7 @@ export default function CTASection() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button
               size="lg"
-              className="bg-white text-primary hover:bg-gray-100 btn-shine"
+              className="bg-slate-100 text-slate-900 hover:bg-white btn-shine"
               asChild
             >
               <Link href="/contact" locale={locale}>
@@ -135,7 +150,7 @@ export default function CTASection() {
             <Button
               size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-primary"
+              className="border-slate-100 text-slate-100 hover:bg-slate-100 hover:text-slate-900"
               asChild
             >
               <Link href="/portfolio" locale={locale}>{t("button_secondary")}</Link>

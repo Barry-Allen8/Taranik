@@ -12,16 +12,29 @@ const stepKeys = [
   { key: "launch", icon: Rocket },
 ];
 
+const floatingParticles = [
+  { size: 3, left: "9%", top: "20%", duration: 10, delay: 0.2 },
+  { size: 5, left: "18%", top: "72%", duration: 12.5, delay: 1.3 },
+  { size: 4, left: "29%", top: "44%", duration: 11.2, delay: 2.1 },
+  { size: 3, left: "38%", top: "83%", duration: 13.3, delay: 0.7 },
+  { size: 5, left: "47%", top: "26%", duration: 10.8, delay: 1.8 },
+  { size: 4, left: "58%", top: "58%", duration: 12.9, delay: 2.6 },
+  { size: 3, left: "67%", top: "34%", duration: 11.5, delay: 0.9 },
+  { size: 5, left: "76%", top: "78%", duration: 13.8, delay: 2.3 },
+  { size: 4, left: "87%", top: "50%", duration: 10.4, delay: 1.4 },
+  { size: 3, left: "95%", top: "18%", duration: 12.2, delay: 2.9 },
+];
+
 export default function ProcessSection() {
   const t = useTranslations("process");
 
   return (
-    <section className="section bg-white relative overflow-hidden">
+    <section className="section bg-slate-950 relative overflow-hidden">
       {/* Animated background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Animated gradient spots */}
         <motion.div
-          className="absolute top-20 left-20 w-64 h-64 bg-gradient-to-br from-primary/5 to-accent/5 rounded-full blur-3xl"
+          className="absolute top-20 left-20 w-64 h-64 bg-gradient-to-br from-primary/10 to-accent/10 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.5, 0.8, 0.5],
@@ -33,7 +46,7 @@ export default function ProcessSection() {
           }}
         />
         <motion.div
-          className="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-br from-secondary/5 to-primary/5 rounded-full blur-3xl"
+          className="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-br from-secondary/12 to-primary/10 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.15, 1],
             opacity: [0.5, 0.7, 0.5],
@@ -47,24 +60,24 @@ export default function ProcessSection() {
         />
 
         {/* Floating particles */}
-        {Array.from({ length: 10 }).map((_, i) => (
+        {floatingParticles.map((particle, i) => (
           <motion.div
             key={i}
-            className="absolute rounded-full bg-primary/5"
+            className="absolute rounded-full bg-primary/20"
             style={{
-              width: `${Math.random() * 5 + 2}px`,
-              height: `${Math.random() * 5 + 2}px`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              width: `${particle.size}px`,
+              height: `${particle.size}px`,
+              left: particle.left,
+              top: particle.top,
             }}
             animate={{
               y: [0, -100, 0],
               opacity: [0, 0.5, 0],
             }}
             transition={{
-              duration: Math.random() * 10 + 8,
+              duration: particle.duration,
               repeat: Infinity,
-              delay: Math.random() * 4,
+              delay: particle.delay,
               ease: "easeInOut",
             }}
           />
@@ -72,7 +85,7 @@ export default function ProcessSection() {
 
         {/* Subtle grid pattern */}
         <motion.div
-          className="absolute inset-0 bg-[linear-gradient(rgba(37,99,235,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(37,99,235,0.02)_1px,transparent_1px)] bg-[size:100px_100px] opacity-40"
+          className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.08)_1px,transparent_1px)] bg-[size:100px_100px] opacity-35"
           animate={{
             backgroundPosition: ['0px 0px', '100px 100px', '0px 0px'],
           }}
@@ -86,13 +99,13 @@ export default function ProcessSection() {
 
       <div className="container relative z-10">
         <div className="section-title">
-          <h2>{t("title")}</h2>
-          <p>{t("description")}</p>
+          <h2 className="text-slate-100">{t("title")}</h2>
+          <p className="text-slate-300">{t("description")}</p>
         </div>
 
         <div className="relative">
           {/* Timeline line */}
-          <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-border -translate-x-1/2" />
+          <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-slate-700 -translate-x-1/2" />
 
           <div className="space-y-12">
             {stepKeys.map((step, index) => (
@@ -107,13 +120,13 @@ export default function ProcessSection() {
               >
                 <div className="flex-1 lg:text-right">
                   <div
-                    className={`inline-block ${index % 2 === 0 ? "lg:text-right" : "lg:text-left"
+                    className={`inline-block rounded-2xl border border-slate-800 bg-slate-900/60 p-6 ${index % 2 === 0 ? "lg:text-right" : "lg:text-left"
                       }`}
                   >
-                    <h3 className="text-2xl font-semibold mb-2">
+                    <h3 className="text-2xl font-semibold mb-2 text-slate-100">
                       {t(`steps.${step.key}.title`)}
                     </h3>
-                    <p className="text-muted max-w-md">
+                    <p className="text-slate-300 max-w-md">
                       {t(`steps.${step.key}.description`)}
                     </p>
                   </div>

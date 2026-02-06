@@ -16,7 +16,7 @@ export default function TrustedBySection() {
   const t = useTranslations("trusted");
 
   return (
-    <section className="py-12 bg-white border-y border-gray-100">
+    <section className="py-12 bg-slate-950 border-y border-slate-800">
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -25,7 +25,7 @@ export default function TrustedBySection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-8"
         >
-          <p className="text-sm font-medium text-muted uppercase tracking-wider">
+          <p className="text-sm font-medium text-slate-400 uppercase tracking-wider">
             {t("title")}
           </p>
         </motion.div>
@@ -43,8 +43,8 @@ export default function TrustedBySection() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <div className="w-32 h-16 flex items-center justify-center rounded-lg bg-gray-50 border border-gray-100 hover:border-primary/20 hover:bg-primary/5 transition-all duration-300 group">
-                  <span className="text-2xl font-bold text-gray-400 group-hover:text-primary transition-colors">
+                <div className="w-32 h-16 flex items-center justify-center rounded-lg bg-slate-900/70 border border-slate-800 hover:border-primary/30 hover:bg-primary/10 transition-all duration-300 group">
+                  <span className="text-2xl font-bold text-slate-500 group-hover:text-primary transition-colors">
                     {partner.logo}
                   </span>
                 </div>
@@ -53,8 +53,8 @@ export default function TrustedBySection() {
           </div>
 
           {/* Gradient overlays */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent pointer-events-none z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent pointer-events-none z-10" />
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-slate-950 to-transparent pointer-events-none z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-slate-950 to-transparent pointer-events-none z-10" />
         </div>
 
         {/* Tech stack badges */}
@@ -69,7 +69,7 @@ export default function TrustedBySection() {
             (tech, index) => (
               <motion.span
                 key={tech}
-                className="px-4 py-2 text-sm font-medium bg-gray-50 text-muted rounded-full border border-gray-200 hover:border-primary/30 hover:bg-primary/5 hover:text-primary transition-all duration-300 cursor-default"
+                className="px-4 py-2 text-sm font-medium bg-slate-900/70 text-slate-300 rounded-full border border-slate-800 hover:border-primary/30 hover:bg-primary/10 hover:text-primary transition-all duration-300 cursor-default"
                 whileHover={{ scale: 1.05 }}
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -102,4 +102,3 @@ export default function TrustedBySection() {
     </section>
   );
 }
-

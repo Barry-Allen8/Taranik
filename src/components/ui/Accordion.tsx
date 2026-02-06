@@ -27,7 +27,7 @@ export default function Accordion({ items, className }: AccordionProps) {
         <div key={index} className="border border-border rounded-lg overflow-hidden">
           <button
             onClick={() => toggle(index)}
-            className="w-full px-6 py-4 flex justify-between items-center bg-card hover:bg-gray-100 transition-colors"
+            className="w-full px-6 py-4 flex justify-between items-center bg-card hover:bg-slate-800/60 transition-colors"
           >
             <span className="font-semibold text-left">{item.title}</span>
             <ChevronDown

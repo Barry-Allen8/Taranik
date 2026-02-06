@@ -29,6 +29,32 @@ const itemVariants = {
   },
 };
 
+const floatingParticles = [
+  { size: 6, left: "8%", top: "22%", duration: 16, delay: 0 },
+  { size: 7, left: "16%", top: "72%", duration: 19, delay: 1.2 },
+  { size: 5, left: "24%", top: "46%", duration: 15, delay: 2.4 },
+  { size: 8, left: "32%", top: "18%", duration: 21, delay: 0.8 },
+  { size: 6, left: "40%", top: "84%", duration: 18, delay: 3.2 },
+  { size: 5, left: "48%", top: "34%", duration: 17, delay: 1.5 },
+  { size: 7, left: "56%", top: "64%", duration: 20, delay: 2.7 },
+  { size: 6, left: "64%", top: "14%", duration: 16, delay: 0.4 },
+  { size: 8, left: "72%", top: "52%", duration: 22, delay: 2.1 },
+  { size: 5, left: "80%", top: "28%", duration: 15, delay: 3.5 },
+  { size: 6, left: "88%", top: "70%", duration: 18, delay: 1.8 },
+  { size: 7, left: "94%", top: "40%", duration: 19, delay: 2.9 },
+];
+
+const glowingOrbs = [
+  { size: 18, left: "12%", top: "30%", duration: 8, delay: 0.3 },
+  { size: 22, left: "22%", top: "58%", duration: 10, delay: 1.4 },
+  { size: 16, left: "36%", top: "24%", duration: 7, delay: 2.2 },
+  { size: 24, left: "51%", top: "68%", duration: 9, delay: 0.9 },
+  { size: 14, left: "63%", top: "36%", duration: 8, delay: 1.7 },
+  { size: 20, left: "74%", top: "20%", duration: 11, delay: 2.8 },
+  { size: 18, left: "83%", top: "62%", duration: 9, delay: 0.5 },
+  { size: 15, left: "92%", top: "44%", duration: 7, delay: 1.9 },
+];
+
 export default function Hero() {
   const t = useTranslations("hero");
   const locale = useLocale() as Locale;
@@ -37,12 +63,12 @@ export default function Hero() {
 
   return (
     <LazyMotion features={domAnimation}>
-      <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/50 to-violet-50/30">
+      <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
         {/* Animated gradient background */}
         <div className="absolute inset-0 overflow-hidden">
           {/* Animated mesh gradient */}
           <m.div
-            className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(37,99,235,0.15),transparent)]"
+            className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(37,99,235,0.28),transparent)]"
             animate={{
               opacity: [0.5, 1, 0.5],
               scale: [1, 1.1, 1],
@@ -54,7 +80,7 @@ export default function Hero() {
             }}
           />
           <m.div
-            className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_100%_100%,rgba(139,92,246,0.1),transparent)]"
+            className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_100%_100%,rgba(16,185,129,0.12),transparent)]"
             animate={{
               opacity: [0.6, 1, 0.6],
               scale: [1, 1.15, 1],
@@ -69,7 +95,7 @@ export default function Hero() {
 
           {/* Animated floating blobs */}
           <m.div
-            className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full blur-3xl"
+            className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-primary/25 to-accent/20 rounded-full blur-3xl"
             animate={{
               x: [0, 30, -20, 0],
               y: [0, -40, 20, 0],
@@ -82,7 +108,7 @@ export default function Hero() {
             }}
           />
           <m.div
-            className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-gradient-to-br from-accent/15 to-secondary/15 rounded-full blur-3xl"
+            className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-gradient-to-br from-accent/20 to-secondary/20 rounded-full blur-3xl"
             animate={{
               x: [0, -40, 30, 0],
               y: [0, 30, -20, 0],
@@ -96,7 +122,7 @@ export default function Hero() {
             }}
           />
           <m.div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-br from-secondary/10 to-primary/10 rounded-full blur-3xl"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-br from-secondary/15 to-primary/15 rounded-full blur-3xl"
             animate={{
               x: [0, 20, -30, 0],
               y: [0, -20, 40, 0],
@@ -112,7 +138,7 @@ export default function Hero() {
 
           {/* Animated grid pattern */}
           <m.div
-            className="absolute inset-0 bg-[linear-gradient(rgba(37,99,235,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(37,99,235,0.03)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black,transparent)]"
+            className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.1)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black,transparent)]"
             animate={{
               backgroundPosition: ['0px 0px', '60px 60px', '0px 0px'],
             }}
@@ -124,15 +150,15 @@ export default function Hero() {
           />
 
           {/* Floating particles */}
-          {Array.from({ length: 15 }).map((_, i) => (
+          {floatingParticles.map((particle, i) => (
             <m.div
               key={i}
-              className="absolute rounded-full bg-primary/10"
+              className="absolute rounded-full bg-sky-300/20"
               style={{
-                width: `${Math.random() * 8 + 4}px`,
-                height: `${Math.random() * 8 + 4}px`,
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
+                width: `${particle.size}px`,
+                height: `${particle.size}px`,
+                left: particle.left,
+                top: particle.top,
               }}
               animate={{
                 y: [0, -100, 0],
@@ -140,33 +166,33 @@ export default function Hero() {
                 scale: [0, 1, 0],
               }}
               transition={{
-                duration: Math.random() * 10 + 10,
+                duration: particle.duration,
                 repeat: Infinity,
-                delay: Math.random() * 5,
+                delay: particle.delay,
                 ease: "easeInOut",
               }}
             />
           ))}
 
           {/* Additional small glowing orbs */}
-          {Array.from({ length: 8 }).map((_, i) => (
+          {glowingOrbs.map((orb, i) => (
             <m.div
               key={`orb-${i}`}
               className="absolute rounded-full bg-gradient-to-br from-primary/20 to-accent/20 blur-sm"
               style={{
-                width: `${Math.random() * 20 + 10}px`,
-                height: `${Math.random() * 20 + 10}px`,
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
+                width: `${orb.size}px`,
+                height: `${orb.size}px`,
+                left: orb.left,
+                top: orb.top,
               }}
               animate={{
                 scale: [0.5, 1.5, 0.5],
                 opacity: [0.2, 0.6, 0.2],
               }}
               transition={{
-                duration: Math.random() * 8 + 6,
+                duration: orb.duration,
                 repeat: Infinity,
-                delay: Math.random() * 3,
+                delay: orb.delay,
                 ease: "easeInOut",
               }}
             />
@@ -183,15 +209,15 @@ export default function Hero() {
               className="text-center lg:text-left"
             >
               <m.div variants={itemVariants}>
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full shadow-lg border border-primary/10 mb-6">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-900/70 backdrop-blur-sm rounded-full shadow-lg border border-primary/30 mb-6">
                   <Sparkles className="w-4 h-4 text-primary" />
-                  <span className="text-sm font-medium text-foreground">{t("badge")}</span>
+                  <span className="text-sm font-medium text-slate-100">{t("badge")}</span>
                 </div>
               </m.div>
 
               <m.h1
                 variants={itemVariants}
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl font-bold mb-6 tracking-tight"
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl font-bold mb-6 tracking-tight text-slate-100"
               >
                 {t("title")}{" "}
                 <span className="gradient-text drop-shadow-[0_0_25px_rgba(37,99,235,0.3)]">{t("title_gradient")}</span>
@@ -199,7 +225,7 @@ export default function Hero() {
 
               <m.p
                 variants={itemVariants}
-                className="text-lg md:text-xl text-muted mb-8 max-w-xl mx-auto lg:mx-0"
+                className="text-lg md:text-xl text-slate-300 mb-8 max-w-xl mx-auto lg:mx-0"
               >
                 {t("description")}
               </m.p>
@@ -237,12 +263,12 @@ export default function Hero() {
                   return (
                     <div
                       key={index}
-                      className="text-center p-4 rounded-xl bg-white/70 backdrop-blur-sm border border-white/80 shadow-sm hover:shadow-lg hover:bg-white hover:-translate-y-1 transition-all duration-300 group"
+                      className="text-center p-4 rounded-xl bg-slate-900/70 backdrop-blur-sm border border-slate-700 shadow-sm hover:shadow-lg hover:border-slate-600 hover:bg-slate-900 hover:-translate-y-1 transition-all duration-300 group"
                     >
                       <div className={`w-10 h-10 mx-auto mb-2 rounded-lg bg-gradient-to-br ${stat.color} flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300`}>
                         <Icon className="w-5 h-5 text-white" />
                       </div>
-                      <div className="text-xs text-muted font-medium leading-tight">{stat.label}</div>
+                      <div className="text-xs text-slate-300 font-medium leading-tight">{stat.label}</div>
                     </div>
                   );
                 })}
@@ -257,8 +283,8 @@ export default function Hero() {
               className="relative hidden lg:block"
             >
               <div className="relative max-w-[560px] ml-auto">
-                <div className="absolute -inset-6 bg-gradient-to-r from-primary/30 to-accent/30 blur-3xl" />
-                <div className="relative overflow-hidden rounded-3xl border border-white/70 shadow-2xl">
+                <div className="absolute -inset-6 bg-gradient-to-r from-primary/35 to-accent/35 blur-3xl" />
+                <div className="relative overflow-hidden rounded-3xl border border-slate-700/80 shadow-2xl">
                   <div className="relative aspect-[4/3]">
                     <Image
                       src={heroImage}
@@ -270,7 +296,7 @@ export default function Hero() {
                     />
                   </div>
                 </div>
-                <div className="absolute bottom-4 left-4 right-4 rounded-xl bg-black/55 px-4 py-3 backdrop-blur-sm">
+                <div className="absolute bottom-4 left-4 right-4 rounded-xl bg-slate-950/70 px-4 py-3 backdrop-blur-sm border border-slate-700/70">
                   <p className="text-sm font-medium text-white">{t("description")}</p>
                 </div>
               </div>

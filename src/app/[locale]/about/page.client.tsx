@@ -248,7 +248,7 @@ export default function AboutPageClient() {
           <div className="max-w-3xl mx-auto text-center text-white">
             <h2 className="text-3xl font-bold mb-6">{t("cta_title")}</h2>
             <p className="text-xl mb-8 text-white/90">{t("cta_description")}</p>
-            <Button size="lg" className="bg-white text-primary hover:bg-gray-100" asChild>
+            <Button size="lg" className="bg-slate-100 text-slate-900 hover:bg-white" asChild>
               <Link href="/contact">{t("cta_button")}</Link>
             </Button>
           </div>

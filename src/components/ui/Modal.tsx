@@ -31,7 +31,7 @@ export default function Modal({ isOpen, onClose, title, children, className }: M
       <div className="absolute inset-0 bg-black/50" onClick={onClose} />
       <div
         className={cn(
-          "relative bg-white rounded-xl shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-auto",
+          "relative bg-slate-900 rounded-xl shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-auto border border-slate-800",
           className
         )}
       >
@@ -39,7 +39,7 @@ export default function Modal({ isOpen, onClose, title, children, className }: M
           {title && <h3 className="text-2xl font-bold">{title}</h3>}
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors ml-auto"
+            className="p-2 hover:bg-slate-800 rounded-lg transition-colors ml-auto"
           >
             <X className="w-5 h-5" />
           </button>
