@@ -10,15 +10,15 @@
   "seo": {
     "home": {
       "title": "Professional IT Partner for Growing Businesses | VektaDev",
-      "description": "VektaDev delivers web development, chatbots, and AI-powered automation that convert visitors into customers and streamline operations."
+      "description": "VektaDev delivers web development, chatbots, and mobile apps that convert visitors into customers and streamline operations."
     },
     "about": {
-      "title": "About VektaDev | Poland-Based Software House | Web Development & AI",
-      "description": "VektaDev is a Poland-based software house specializing in web development, automation, and AI solutions for businesses across Europe. Meet our team and learn how we work."
+      "title": "About VektaDev | Poland-Based Software House | Web Development, Chatbots & Mobile Apps",
+      "description": "VektaDev is a Poland-based software house specializing in web development, chatbot solutions, and mobile apps for businesses across Europe. Meet our team and learn how we work."
     },
     "services": {
-      "title": "Full-Stack IT Services | Web, Chatbots & AI | VektaDev",
-      "description": "From modern websites to intelligent automation and IT consulting, VektaDev scopes, builds, and supports solutions that accelerate growth."
+      "title": "IT Services | Web Development, Chatbots & Mobile Apps | VektaDev",
+      "description": "From modern websites to chatbots and mobile apps, VektaDev scopes, builds, and supports solutions that accelerate growth."
     },
     "contact": {
       "title": "Contact VektaDev | Book a Consultation",
@@ -44,16 +44,13 @@
   "services_menu": {
     "websites": "Web Development",
     "chatbots": "Chatbots",
-    "ai_solutions": "AI Solutions",
-    "mobile_apps": "Mobile Apps",
-    "cloud": "Cloud Solutions",
-    "consulting": "IT Consulting"
+    "mobile_apps": "Mobile Apps"
   },
   "hero": {
     "badge": "Innovative IT solutions since 2020",
     "title": "Transforming ideas into",
     "title_gradient": "digital solutions",
-    "description": "Web development, chatbots, AI solutions and comprehensive IT consulting for your business success",
+    "description": "Web development, chatbots and mobile apps for your business success",
     "cta_primary": "Book consultation",
     "cta_secondary": "Our services",
     "stats": {
@@ -380,315 +377,6 @@
         }
       }
     },
-    "ai_solutions": {
-      "title": "AI Solutions",
-      "description": "We implement artificial intelligence to optimize business processes",
-      "metadata": {
-        "title": "AI Solutions for Business | ChatGPT Integration | VektaDev",
-        "description": "Practical AI solutions for business - ChatGPT/Claude integration, process automation, AI assistants, data analytics. Transform your business with AI. Free consultation!",
-        "keywords": "AI solutions, artificial intelligence, ChatGPT integration, Claude AI, business automation, AI assistant, machine learning, process automation"
-      },
-      "hero_title": "Transform your business with practical AI solutions",
-      "hero_subtitle": "From idea to implementation — AI that actually works",
-      "hero_description": "ChatGPT integration, AI assistants, and process automation tailored to your business. No empty promises — just concrete results.",
-      "hero_cta": "Discuss AI for your business",
-      "features": [
-        "ChatGPT integration",
-        "AI assistants",
-        "Process automation",
-        "Data analytics"
-      ],
-      "benefits": {
-        "automation": {
-          "title": "Automation",
-          "description": "Automation of routine tasks and processes — hours of work turned into minutes"
-        },
-        "analytics": {
-          "title": "Analytics",
-          "description": "Deep data analysis and forecasting based on real data"
-        },
-        "personalization": {
-          "title": "Personalization",
-          "description": "Individual approach to each client at scale"
-        },
-        "efficiency": {
-          "title": "Efficiency",
-          "description": "Increase team productivity by 30-50%"
-        }
-      },
-      "who_its_for": {
-        "title": "Is AI right for your business?",
-        "best_for_title": "Best for:",
-        "best_for": [
-          "Businesses with repetitive manual processes eating up time",
-          "Companies wanting to leverage ChatGPT/Claude in practice",
-          "Teams drowning in data analysis and reports",
-          "Customer service departments seeking optimization"
-        ],
-        "not_for_title": "Not for:",
-        "not_for": [
-          "Those expecting magic solutions overnight",
-          "Businesses without a clear process to automate"
-        ]
-      },
-      "problem_solution": {
-        "title": "From problem to competitive advantage",
-        "problem_title": "The Problem",
-        "problem_text": "Manual processes consume hours of your team's work. Competitors are already using AI for faster decisions and better customer service. Every day of delay is lost advantage.",
-        "solution_title": "Our Solution",
-        "solution_text": "We design and implement AI solutions tailored to your workflow. ChatGPT/Claude integration, process automation, intelligent assistants — everything customized to your needs.",
-        "result_title": "The Result",
-        "result_text": "Hours saved weekly, faster and smarter decisions, edge over competitors. Measurable results you see within the first weeks."
-      },
-      "trust_signals": {
-        "title": "Why Choose Us",
-        "items": [
-          {
-            "title": "Practical, not experimental AI",
-            "description": "We implement proven solutions that work from day one"
-          },
-          {
-            "title": "Data privacy first",
-            "description": "Your data stays yours. We design with security and GDPR compliance in mind"
-          },
-          {
-            "title": "Training included",
-            "description": "Your team will learn to effectively use the new tools"
-          },
-          {
-            "title": "Focus on measurable results",
-            "description": "Before implementation, we define KPIs to measure actual ROI"
-          }
-        ]
-      },
-      "faq": {
-        "title": "Frequently Asked Questions",
-        "items": [
-          {
-            "question": "What kind of AI can you implement?",
-            "answer": "We specialize in language model integration (ChatGPT, Claude), creating AI assistants for customer service, automating document analysis, generating reports and summaries, and automating repetitive business processes."
-          },
-          {
-            "question": "Do we need technical knowledge?",
-            "answer": "No. We design user-friendly solutions for non-technical users. After implementation, we train your team, and the interfaces are intuitive and simple to use."
-          },
-          {
-            "question": "How long until we see results?",
-            "answer": "First implementations take 2-4 weeks. Concrete time savings and improvements are visible within the first month of use."
-          },
-          {
-            "question": "Is our data secure?",
-            "answer": "Absolutely. We design with data privacy in mind. We can implement solutions running locally without sending data to external servers. All implementations are GDPR compliant."
-          },
-          {
-            "question": "What's the ROI timeline?",
-            "answer": "ROI depends on the scale of automation, but most clients see returns within 2-4 months through time savings and increased process efficiency."
-          }
-        ]
-      },
-      "cta_section": {
-        "title": "Ready for AI in your business?",
-        "description": "Book a free consultation. We'll analyze your processes and show you where AI will bring the greatest benefits.",
-        "button": "Discuss AI for your business"
-      },
-      "use_cases": {
-        "title": "How businesses use our AI solutions",
-        "cases": [
-          {
-            "title": "Customer service automation",
-            "description": "AI assistant handles 80% of inquiries, working 24/7"
-          },
-          {
-            "title": "Document analysis",
-            "description": "Automatic extraction of data from invoices, contracts, and forms"
-          },
-          {
-            "title": "Content generation",
-            "description": "Creating product descriptions, emails, and reports in seconds"
-          },
-          {
-            "title": "Decision support",
-            "description": "Data analysis and AI-based recommendations"
-          }
-        ]
-      },
-      "packages": {
-        "discovery": {
-          "name": "AI Discovery",
-          "price": "from €3,000",
-          "features": [
-            "Process audit",
-            "AI opportunity identification",
-            "Recommendations report",
-            "Implementation plan"
-          ]
-        },
-        "assistant": {
-          "name": "AI Assistant MVP",
-          "price": "from €9,000",
-          "features": [
-            "ChatGPT/Claude integration",
-            "Company knowledge base",
-            "Web interface",
-            "Team training"
-          ]
-        },
-        "automation": {
-          "name": "AI Automation Suite",
-          "price": "from €18,000",
-          "features": [
-            "Multi-process automation",
-            "System integrations",
-            "Analytics dashboard",
-            "6 months support"
-          ]
-        }
-      }
-    },
-    "consulting": {
-      "title": "IT Consulting",
-      "description": "Professional consulting on digital transformation",
-      "metadata": {
-        "title": "IT Consulting Services | Digital Transformation | VektaDev",
-        "description": "Expert IT consulting - IT audits, digital transformation strategy, technology selection, cost optimization. Make smarter technology decisions. Book free strategy session!",
-        "keywords": "IT consulting, digital transformation, IT audit, technology consulting, IT strategy, technology selection, business IT consulting"
-      },
-      "hero_title": "Make smarter technology decisions",
-      "hero_subtitle": "Expert guidance before you invest",
-      "hero_description": "IT audits, digital transformation strategy, and technology selection. We help businesses invest in technology with confidence — without costly mistakes.",
-      "hero_cta": "Book strategy session",
-      "features": [
-        "IT infrastructure audit",
-        "Development strategy",
-        "Technology selection",
-        "Process optimization"
-      ],
-      "benefits": {
-        "audit": {
-          "title": "IT Audit",
-          "description": "Comprehensive analysis of current infrastructure, processes, and tools"
-        },
-        "strategy": {
-          "title": "Digital Strategy",
-          "description": "Clear transformation roadmap with concrete steps and timeline"
-        },
-        "optimization": {
-          "title": "Cost Optimization",
-          "description": "Identify savings and eliminate unnecessary IT spending"
-        },
-        "training": {
-          "title": "Implementation Support",
-          "description": "Help implementing recommendations and training your team"
-        }
-      },
-      "who_its_for": {
-        "title": "Is IT consulting right for you?",
-        "best_for_title": "Best for:",
-        "best_for": [
-          "Companies planning digital transformation or IT modernization",
-          "Businesses unsure which technology to choose",
-          "Teams with underperforming IT systems slowing growth",
-          "Startups needing expert technical direction"
-        ],
-        "not_for_title": "Not for:",
-        "not_for": [
-          "Those looking for free advice only with no commitment",
-          "Companies with a complete internal IT strategy team"
-        ]
-      },
-      "problem_solution": {
-        "title": "From chaos to clarity",
-        "problem_title": "The Problem",
-        "problem_text": "Wrong technology choices cost businesses tens of thousands. Investing in the wrong tools, inefficient processes, and lack of strategy — that's wasted budget, lost time, and team frustration.",
-        "solution_title": "Our Solution",
-        "solution_text": "Independent expert analysis, clear recommendations, and a concrete action plan. We examine your processes, identify problems, and propose solutions tailored to your business goals and budget.",
-        "result_title": "The Result",
-        "result_text": "Confident technology decisions, optimized IT spending, and faster business growth. You invest only in what will actually deliver results."
-      },
-      "trust_signals": {
-        "title": "Why trust us",
-        "items": [
-          {
-            "title": "Vendor-neutral advice",
-            "description": "We don't sell specific tools — we recommend what's best for your business"
-          },
-          {
-            "title": "Business-first approach",
-            "description": "We think about business goals first, technology second"
-          },
-          {
-            "title": "Clear deliverables",
-            "description": "You get a concrete report with recommendations and action plan"
-          },
-          {
-            "title": "Implementation support",
-            "description": "We help implement recommendations — we don't leave you with just a report"
-          }
-        ]
-      },
-      "faq": {
-        "title": "Frequently Asked Questions",
-        "items": [
-          {
-            "question": "What does the consulting process look like?",
-            "answer": "We start with a free discovery call (30 min) to understand your needs. Then we conduct detailed analysis — team interviews, systems and processes review. Finally, we deliver a report with specific recommendations and an action plan."
-          },
-          {
-            "question": "How much does a consultation cost?",
-            "answer": "Pricing depends on project scope. A one-time IT audit starts from €2,500. Comprehensive digital transformation strategy from €6,000. The first consultation call is free — we'll determine the exact scope and pricing during it."
-          },
-          {
-            "question": "Do you implement recommendations too?",
-            "answer": "Yes. We can help implement recommendations — from vendor selection, to project oversight, to team training. We determine the support scope individually."
-          },
-          {
-            "question": "How long is a typical engagement?",
-            "answer": "A quick IT audit takes 1-2 weeks. Comprehensive digital transformation strategy 3-6 weeks. Long-term advisory can last several months — depending on the scale of changes in the organization."
-          },
-          {
-            "question": "What industries do you work with?",
-            "answer": "We work with companies from various industries — e-commerce, services, manufacturing, finance. Our approach is universal: we analyze business processes and match technology to specific needs."
-          }
-        ]
-      },
-      "packages": {
-        "audit": {
-          "name": "IT Audit",
-          "price": "from €2,500",
-          "features": [
-            "Infrastructure analysis",
-            "Process review",
-            "Recommendations report",
-            "Action plan"
-          ]
-        },
-        "strategy": {
-          "name": "Digital Strategy",
-          "price": "from €6,000",
-          "features": [
-            "Full company analysis",
-            "Transformation roadmap",
-            "Technology selection",
-            "Cost estimation"
-          ]
-        },
-        "advisory": {
-          "name": "Advisory",
-          "price": "€95/hour",
-          "features": [
-            "On-demand consulting",
-            "Decision support",
-            "Solution review",
-            "Project oversight"
-          ]
-        }
-      },
-      "cta_section": {
-        "title": "Start with a free conversation",
-        "description": "30-minute strategy session where we'll discuss your challenges and show how we can help. No commitment required.",
-        "button": "Book strategy session"
-      }
-    },
     "mobile_apps": {
       "title": "Mobile Apps",
       "description": "Development of native and cross-platform mobile applications",
@@ -832,150 +520,6 @@
         "description": "Free consultation where we'll discuss your idea, recommend technology, and provide a preliminary estimate. No obligation.",
         "button": "Discuss Your App Idea"
       }
-    },
-    "cloud": {
-      "title": "Cloud Solutions",
-      "description": "DevOps, hosting and cloud infrastructure setup",
-      "metadata": {
-        "title": "Cloud Solutions & DevOps | AWS, GCP, Azure | VektaDev",
-        "description": "Professional cloud infrastructure setup - AWS, Google Cloud, Azure. CI/CD, Docker, Kubernetes, monitoring and security. Scalable and reliable infrastructure. Get free audit!",
-        "keywords": "cloud solutions, DevOps, AWS, Google Cloud, Azure, CI/CD, Docker, Kubernetes, cloud infrastructure, cloud migration"
-      },
-      "hero_title": "Reliable Infrastructure That Scales With You",
-      "hero_subtitle": "Focus on your product — we'll handle the servers",
-      "hero_description": "AWS, GCP, Azure, CI/CD, Docker, Kubernetes. Professional cloud infrastructure setup and management so you can focus on growing your business.",
-      "hero_cta": "Get infrastructure audit",
-      "features": [
-        "AWS / Google Cloud / Azure",
-        "CI/CD setup",
-        "Docker / Kubernetes",
-        "Monitoring and security"
-      ],
-      "benefits": {
-        "scalability": {
-          "title": "Scalability",
-          "description": "Auto-scaling based on demand — pay only for what you use"
-        },
-        "reliability": {
-          "title": "Reliability",
-          "description": "99.9% uptime with redundancy and automatic failover"
-        },
-        "security": {
-          "title": "Security",
-          "description": "Encryption, backups, GDPR compliance, and best practices"
-        },
-        "automation": {
-          "title": "Automation",
-          "description": "CI/CD pipelines — every commit automatically deployed to production"
-        }
-      },
-      "who_its_for": {
-        "title": "Are cloud services right for you?",
-        "best_for_title": "Best for:",
-        "best_for": [
-          "Growing startups hitting scaling issues",
-          "Teams spending too much time on DevOps instead of product",
-          "Companies migrating to cloud",
-          "Businesses needing CI/CD setup"
-        ],
-        "not_for_title": "Not for:",
-        "not_for": [
-          "Simple static websites",
-          "Companies with dedicated DevOps teams"
-        ]
-      },
-      "problem_solution": {
-        "title": "From chaos to stability",
-        "problem_title": "The Problem",
-        "problem_text": "Downtime at critical moments, slow deployments, unpredictable costs. Scaling is a nightmare, and every update is stressful. Your team fights fires instead of building product.",
-        "solution_title": "Our Solution",
-        "solution_text": "Modern cloud infrastructure with full automation. CI/CD, containerization, monitoring, alerts, and auto-scaling. Everything configured according to best practices.",
-        "result_title": "The Result",
-        "result_text": "99.9% uptime, deployments in minutes instead of hours, predictable and optimized costs. Your team focuses on product while infrastructure just works."
-      },
-      "trust_signals": {
-        "title": "Why Choose Us",
-        "items": [
-          {
-            "title": "Multi-cloud expertise",
-            "description": "AWS, GCP, Azure — we choose the solution based on your needs, not our preferences"
-          },
-          {
-            "title": "Security-first approach",
-            "description": "Security built in from the start — encryption, audits, regulatory compliance"
-          },
-          {
-            "title": "Monitoring included",
-            "description": "Proactive monitoring and alerts — we solve problems before they impact users"
-          },
-          {
-            "title": "Cost optimization focus",
-            "description": "Regular review and optimization of cloud spending — save 30% on average"
-          }
-        ]
-      },
-      "faq": {
-        "title": "Frequently Asked Questions",
-        "items": [
-          {
-            "question": "Which cloud provider do you recommend?",
-            "answer": "It depends on your needs. AWS offers the widest variety of services, GCP is excellent for data/ML projects, Azure integrates well with the Microsoft ecosystem. We'll analyze your requirements and recommend the best option — or a multi-cloud solution."
-          },
-          {
-            "question": "Can you migrate our existing infrastructure?",
-            "answer": "Yes, we perform full migrations from on-premise to cloud and between providers. We start with an audit, plan the migration with minimal downtime, and execute in stages with a full rollback plan."
-          },
-          {
-            "question": "What about security and compliance?",
-            "answer": "Security is our priority. We configure according to best practices: encryption at rest and in transit, secrets management, VPC, firewall, IAM. We also help with GDPR, SOC 2, and other compliance standards."
-          },
-          {
-            "question": "How much does cloud hosting cost?",
-            "answer": "Costs depend on scale and requirements. A small startup might start at €15-50/month, a medium app is €150-500, large projects several thousand. During the audit, we'll provide a detailed cost estimate."
-          },
-          {
-            "question": "Do you provide 24/7 monitoring?",
-            "answer": "Yes, we set up monitoring with alerts and can provide 24/7 response as part of support packages. Monitoring covers application metrics, infrastructure, costs, and security."
-          }
-        ]
-      },
-      "packages": {
-        "starter": {
-          "name": "CI/CD Setup",
-          "price": "from €3,500",
-          "features": [
-            "CI/CD pipeline",
-            "Containerization",
-            "Basic infrastructure",
-            "Documentation"
-          ]
-        },
-        "migration": {
-          "name": "Cloud Migration",
-          "price": "from €12,000",
-          "features": [
-            "Infrastructure audit",
-            "Migration plan",
-            "Data migration",
-            "Cost optimization"
-          ]
-        },
-        "managed": {
-          "name": "Managed DevOps",
-          "price": "from €1,500/mo",
-          "features": [
-            "24/7 monitoring",
-            "Auto-scaling",
-            "Security",
-            "Cost optimization"
-          ]
-        }
-      },
-      "cta_section": {
-        "title": "Ready for stable infrastructure?",
-        "description": "Get a free infrastructure audit. We'll analyze your current setup and show you where we can improve performance and reduce costs.",
-        "button": "Get infrastructure audit"
-      }
     }
   },
   "why_us": {
@@ -1031,7 +575,7 @@
     "button_secondary": "View portfolio"
   },
   "footer": {
-    "description": "Professional IT solutions for your business. Web development, chatbots and AI technology implementation.",
+    "description": "Professional IT solutions for your business. Web development, chatbots and mobile apps.",
     "services_title": "Services",
     "company_title": "Company",
     "contact_title": "Contact",
@@ -1098,7 +642,7 @@
   },
   "about": {
     "title": "We Build Software That Grows Businesses",
-    "description": "We help ambitious companies across Poland and Europe create websites, automations, and AI solutions that drive measurable results — more customers, higher efficiency, and faster growth.",
+    "description": "We help ambitious companies across Poland and Europe create websites, chatbots, and mobile apps that drive measurable results — more customers, higher efficiency, and faster growth.",
     "value_prop_title": "Why Companies Choose VektaDev",
     "value_prop_intro": "We're not a typical IT agency. We combine solid development craftsmanship with business thinking to deliver solutions that actually work.",
     "value_prop_points": [
@@ -1111,7 +655,7 @@
     "story_title": "Our Story",
     "story_p1": "VektaDev was founded in 2020 based on a simple observation: many businesses need professional IT solutions but struggle to find teams that understand both technology and business. Too often, we saw projects that looked good on paper but failed to deliver real results.",
     "story_p2": "We started VektaDev to change that. Our team includes developers, designers, and AI specialists who've worked on projects ranging from startups to international enterprises. That experience taught us that successful IT projects depend not just on code, but on truly understanding client needs and translating them into working solutions.",
-    "story_p3": "Today we work with companies from Poland, Germany, and across Europe, helping them build websites that convert, automations that save time, and AI solutions that create competitive advantage. We treat every project as a partnership — because that's the only way to deliver something that truly works.",
+    "story_p3": "Today we work with companies from Poland, Germany, and across Europe, helping them build websites that convert, chatbots that save time, and mobile apps that create competitive advantage. We treat every project as a partnership — because that's the only way to deliver something that truly works.",
     "approach_title": "How We Work",
     "approach_intro": "Working with us is transparent and predictable. We know your time is valuable, so we've built a process that minimizes uncertainty and maximizes efficiency.",
     "approach_steps": [
@@ -1364,7 +908,7 @@
     "acceptance": "1. Acceptance of Terms",
     "acceptance_text": "By using this website, you agree to the terms of use.",
     "services_section": "2. Services",
-    "services_text": "VektaDev provides web development, chatbot, AI solution and IT consulting services.",
+    "services_text": "VektaDev provides web development, chatbot, and mobile app services.",
     "ip": "3. Intellectual Property",
     "ip_text": "All materials on the website are protected by copyright.",
     "liability": "4. Limitation of Liability",

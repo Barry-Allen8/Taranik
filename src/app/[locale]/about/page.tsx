@@ -19,8 +19,8 @@ export async function generateMetadata({
       "VektaDev team",
       "software engineers Poland",
       "custom web development company",
-      "AI development partner",
-      "IT consulting company",
+      "chatbot development partner",
+      "mobile app development company",
     ],
   };
 }

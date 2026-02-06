@@ -25,6 +25,17 @@ export function proxy(request: NextRequest) {
     return NextResponse.redirect(redirectUrl, 301);
   }
 
+  // Redirect removed service pages to the services index
+  const removedServicesPattern =
+    /^\/(?:(pl|en)\/)?services\/(ai-solutions|cloud|consulting)(\/.*)?$/;
+  const removedServicesMatch = pathname.match(removedServicesPattern);
+
+  if (removedServicesMatch) {
+    const locale = removedServicesMatch[1] || defaultLocale;
+    const redirectUrl = new URL(`/${locale}/services`, request.url);
+    return NextResponse.redirect(redirectUrl, 301);
+  }
+
   return intlMiddleware(request);
 }
 

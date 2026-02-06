@@ -16,10 +16,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/services",
     "/services/websites",
     "/services/chatbots",
-    "/services/ai-solutions",
     "/services/mobile-apps",
-    "/services/cloud",
-    "/services/consulting",
   ];
 
   const insightSlugs = await getInsightSlugs();

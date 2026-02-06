@@ -17,10 +17,10 @@ export async function generateMetadata({
     alternates: getSeoAlternates(locale, ROUTE),
     keywords: [
       "IT services",
-      "websites and chatbots",
-      "AI solutions for business",
-      "cloud and DevOps services",
-      "IT consulting Poland",
+      "web development services",
+      "chatbot development",
+      "mobile app development",
+      "software house Poland",
     ],
   };
 }

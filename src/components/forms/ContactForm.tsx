@@ -209,10 +209,7 @@ export default function ContactForm() {
           <option value="">{t("service_placeholder")}</option>
           <option value="websites">{tServices("websites")}</option>
           <option value="chatbots">{tServices("chatbots")}</option>
-          <option value="ai_solutions">{tServices("ai_solutions")}</option>
           <option value="mobile_apps">{tServices("mobile_apps")}</option>
-          <option value="cloud">{tServices("cloud")}</option>
-          <option value="consulting">{tServices("consulting")}</option>
         </select>
       </div>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import Card from "@/components/ui/Card";
-import { Globe, Bot, Brain, Smartphone, Cloud, Lightbulb } from "lucide-react";
+import { Globe, Bot, Smartphone } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
@@ -9,10 +9,7 @@ import { useTranslations } from "next-intl";
 const serviceKeys = [
   { key: "websites", icon: Globe, href: "/services/websites" },
   { key: "chatbots", icon: Bot, href: "/services/chatbots" },
-  { key: "ai_solutions", icon: Brain, href: "/services/ai-solutions" },
   { key: "mobile_apps", icon: Smartphone, href: "/services/mobile-apps" },
-  { key: "cloud", icon: Cloud, href: "/services/cloud" },
-  { key: "consulting", icon: Lightbulb, href: "/services/consulting" },
 ];
 
 export default function ServicesPageClient() {

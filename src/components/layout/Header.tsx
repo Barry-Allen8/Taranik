@@ -56,10 +56,7 @@ export default function Header() {
   const services = [
     { name: tServices("websites"), href: "/services/websites" },
     { name: tServices("chatbots"), href: "/services/chatbots" },
-    { name: tServices("ai_solutions"), href: "/services/ai-solutions" },
     { name: tServices("mobile_apps"), href: "/services/mobile-apps" },
-    { name: tServices("cloud"), href: "/services/cloud" },
-    { name: tServices("consulting"), href: "/services/consulting" },
   ];
 
   // Get path without locale
