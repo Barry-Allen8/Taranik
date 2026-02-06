@@ -22,7 +22,7 @@ type PointerEcho = {
 const MIN_PARTICLE_COUNT = 34;
 const MAX_PARTICLE_COUNT = 76;
 const PARTICLE_DENSITY_DIVISOR = 24000;
-const GRID_GAP = 72;
+
 const PARTICLE_LINK_DISTANCE = 146;
 const POINTER_LINK_DISTANCE = 168;
 const PARTICLE_MAX_SPEED = 0.32;
@@ -86,27 +86,7 @@ export default function HomeNetworkBackground() {
       particleNodes = createParticleNodes(viewportWidth, viewportHeight, particleCount);
     };
 
-    const drawGrid = (timestamp: number) => {
-      const horizontalOffset = reducedMotionEnabled ? 0 : (timestamp * 0.012) % GRID_GAP;
-      const verticalOffset = reducedMotionEnabled ? 0 : (timestamp * 0.008) % GRID_GAP;
 
-      renderingContext.lineWidth = 1;
-      renderingContext.strokeStyle = "rgba(148, 163, 184, 0.08)";
-
-      for (let xPosition = -GRID_GAP + horizontalOffset; xPosition <= viewportWidth + GRID_GAP; xPosition += GRID_GAP) {
-        renderingContext.beginPath();
-        renderingContext.moveTo(xPosition, 0);
-        renderingContext.lineTo(xPosition, viewportHeight);
-        renderingContext.stroke();
-      }
-
-      for (let yPosition = -GRID_GAP + verticalOffset; yPosition <= viewportHeight + GRID_GAP; yPosition += GRID_GAP) {
-        renderingContext.beginPath();
-        renderingContext.moveTo(0, yPosition);
-        renderingContext.lineTo(viewportWidth, yPosition);
-        renderingContext.stroke();
-      }
-    };
 
     const updateParticles = () => {
       if (reducedMotionEnabled) {
@@ -234,7 +214,7 @@ export default function HomeNetworkBackground() {
       const deltaMilliseconds = previousTimestamp === 0 ? 16.7 : timestamp - previousTimestamp;
       previousTimestamp = timestamp;
       renderingContext.clearRect(0, 0, viewportWidth, viewportHeight);
-      drawGrid(timestamp);
+
       updateParticles();
       drawParticleLinks();
       drawPointerLinks();
