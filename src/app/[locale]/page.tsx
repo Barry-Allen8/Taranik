@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import Hero from "@/components/sections/Hero";
 import { getSeoAlternates } from "@/lib/seo";
 import LatestReviewsSection from "@/components/sections/LatestReviewsSection";
+import HomeNetworkBackground from "@/components/sections/HomeNetworkBackground";
 
 const TrustedBySection = dynamic(
   () => import("@/components/sections/TrustedBySection"),
@@ -77,7 +78,8 @@ export default function Home({
   setRequestLocale(locale);
 
   return (
-    <>
+    <div className="relative isolate">
+      <HomeNetworkBackground />
       <Hero />
       <TrustedBySection />
       <ServicesSection />
@@ -86,6 +88,6 @@ export default function Home({
       <CaseStudiesSection />
       <ProcessSection />
       <CTASection />
-    </>
+    </div>
   );
 }
