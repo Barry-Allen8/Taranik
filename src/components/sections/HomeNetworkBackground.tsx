@@ -291,12 +291,12 @@ export default function HomeNetworkBackground() {
   }, []);
 
   return (
-    <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-30 overflow-hidden">
+    <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-30 overflow-hidden">
       <canvas
         ref={canvasRef}
-        className="h-full w-full opacity-60 [mask-image:radial-gradient(ellipse_90%_85%_at_50%_45%,black,transparent_100%)]"
+        className="h-full w-full opacity-62"
       />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(37,99,235,0.1),transparent_52%),radial-gradient(circle_at_80%_70%,rgba(16,185,129,0.08),transparent_56%)] opacity-65" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(37,99,235,0.1),transparent_52%),radial-gradient(circle_at_80%_70%,rgba(16,185,129,0.08),transparent_56%)] opacity-55" />
     </div>
   );
 }
