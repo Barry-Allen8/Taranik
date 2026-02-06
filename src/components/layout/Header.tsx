@@ -56,7 +56,10 @@ export default function Header() {
   const services = [
     { name: tServices("websites"), href: "/services/websites" },
     { name: tServices("chatbots"), href: "/services/chatbots" },
+    { name: tServices("ai_solutions"), href: "/services/ai-solutions" },
     { name: tServices("mobile_apps"), href: "/services/mobile-apps" },
+    { name: tServices("cloud"), href: "/services/cloud" },
+    { name: tServices("consulting"), href: "/services/consulting" },
   ];
 
   // Get path without locale
@@ -166,6 +169,16 @@ export default function Header() {
               {t("portfolio")}
             </Link>
             <Link
+              href="/insights"
+              locale={locale}
+              className={cn(
+                "transition-colors font-medium",
+                isActive("/insights") ? "text-primary" : "hover:text-primary"
+              )}
+            >
+              {t("insights")}
+            </Link>
+            <Link
               href="/about"
               locale={locale}
               className={cn(
@@ -262,7 +275,7 @@ export default function Header() {
           ref={mobileMenuRef}
           className={cn(
             "lg:hidden overflow-hidden transition-all duration-500 ease-out",
-            isMobileMenuOpen ? "max-h-[600px] opacity-100 mt-4" : "max-h-0 opacity-0 mt-0"
+            isMobileMenuOpen ? "max-h-[800px] opacity-100 mt-4" : "max-h-0 opacity-0 mt-0"
           )}
         >
           <nav className="py-4 border-t border-gray-100">
@@ -348,6 +361,17 @@ export default function Header() {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {t("about")}
+            </Link>
+            <Link
+              href="/insights"
+              locale={locale}
+              className={cn(
+                "block py-3 font-medium border-b border-gray-100 transition-colors",
+                isActive("/insights") ? "text-primary" : "hover:text-primary"
+              )}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {t("insights")}
             </Link>
             <Link
               href="/contact"

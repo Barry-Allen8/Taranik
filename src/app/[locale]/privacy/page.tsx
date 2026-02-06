@@ -16,6 +16,13 @@ export async function generateMetadata({ params: { locale } }: Props): Promise<M
     title: t("privacy.title"),
     description: t("privacy.description"),
     alternates: getSeoAlternates(locale, ROUTE),
+    keywords: [
+      "privacy policy",
+      "GDPR compliance",
+      "data protection",
+      "personal data rights",
+      "VektaDev privacy",
+    ],
   };
 }
 

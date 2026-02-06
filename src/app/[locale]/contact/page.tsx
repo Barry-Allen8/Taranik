@@ -1,36 +1,35 @@
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
-import { defaultLocale, locales } from "@/i18n";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getSeoAlternates } from "@/lib/seo";
 import ContactPageClient from "./page.client";
 
-const BASE_URL = "https://vektadev.com";
 const ROUTE = "/contact";
-
-const getLocalizedUrl = (locale: string, route: string) => {
-  const normalizedRoute = route === "/" ? "" : route;
-  const localePrefix = locale === defaultLocale ? "" : `/${locale}`;
-  return `${BASE_URL}${localePrefix}${normalizedRoute}`;
-};
-
-const getAlternates = (route: string) =>
-  Object.fromEntries(locales.map((locale) => [locale, getLocalizedUrl(locale, route)]));
 
 export async function generateMetadata({
   params: { locale },
 }: {
   params: { locale: string };
 }): Promise<Metadata> {
-  const t = await getTranslations("seo");
+  const t = await getTranslations({ locale, namespace: "seo" });
   return {
     title: t("contact.title"),
     description: t("contact.description"),
-    alternates: {
-      canonical: getLocalizedUrl(locale, ROUTE),
-      languages: getAlternates(ROUTE),
-    },
+    alternates: getSeoAlternates(locale, ROUTE),
+    keywords: [
+      "contact software company",
+      "book IT consultation",
+      "web development quote",
+      "AI project discovery call",
+      "VektaDev contact",
+    ],
   };
 }
 
-export default function ContactPage() {
+export default function ContactPage({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) {
+  setRequestLocale(locale);
   return <ContactPageClient />;
 }

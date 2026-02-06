@@ -2,9 +2,9 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Metadata } from "next";
 import { getSeoAlternates } from "@/lib/seo";
 import { getServiceSchema } from "@/lib/schema";
-import MobileAppsPageClient from "./MobileAppsPageClient";
+import ConsultingPageClient from "./ConsultingPageClient";
 
-const ROUTE = "/services/mobile-apps";
+const ROUTE = "/services/consulting";
 
 type Props = {
   params: { locale: string };
@@ -14,25 +14,25 @@ export async function generateMetadata({ params: { locale } }: Props): Promise<M
   const t = await getTranslations({ locale, namespace: "services" });
 
   return {
-    title: t("mobile_apps.metadata.title"),
-    description: t("mobile_apps.metadata.description"),
-    keywords: t("mobile_apps.metadata.keywords"),
+    title: t("consulting.metadata.title"),
+    description: t("consulting.metadata.description"),
+    keywords: t("consulting.metadata.keywords"),
     alternates: getSeoAlternates(locale, ROUTE),
     openGraph: {
-      title: t("mobile_apps.metadata.title"),
-      description: t("mobile_apps.metadata.description"),
+      title: t("consulting.metadata.title"),
+      description: t("consulting.metadata.description"),
       type: "website",
     },
   };
 }
 
-export default async function MobileAppsPage({ params: { locale } }: Props) {
+export default async function ConsultingPage({ params: { locale } }: Props) {
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "services" });
   const schema = getServiceSchema({
     locale,
-    name: t("mobile_apps.title"),
-    description: t("mobile_apps.description"),
+    name: t("consulting.title"),
+    description: t("consulting.description"),
     path: ROUTE,
   });
 
@@ -43,7 +43,7 @@ export default async function MobileAppsPage({ params: { locale } }: Props) {
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
-      <MobileAppsPageClient />
+      <ConsultingPageClient />
     </>
   );
 }

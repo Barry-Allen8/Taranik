@@ -1,6 +1,7 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Metadata } from "next";
 import { getSeoAlternates } from "@/lib/seo";
+import { getServiceSchema } from "@/lib/schema";
 import WebsitesPageClient from "./WebsitesPageClient";
 
 const ROUTE = "/services/websites";
@@ -25,7 +26,24 @@ export async function generateMetadata({ params: { locale } }: Props): Promise<M
   };
 }
 
-export default function WebsitesPage({ params: { locale } }: Props) {
+export default async function WebsitesPage({ params: { locale } }: Props) {
   setRequestLocale(locale);
-  return <WebsitesPageClient />;
+  const t = await getTranslations({ locale, namespace: "services" });
+  const schema = getServiceSchema({
+    locale,
+    name: t("websites.title"),
+    description: t("websites.description"),
+    path: ROUTE,
+  });
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+      <WebsitesPageClient />
+    </>
+  );
 }

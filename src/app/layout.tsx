@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { defaultLocale } from "@/i18n";
+import { getOrganizationSchema } from "@/lib/schema";
 import "./globals.css";
 
 const BASE_URL = "https://vektadev.com";
@@ -56,9 +57,16 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const organizationSchema = getOrganizationSchema();
+
   return (
     <html lang={defaultLocale}>
       <body className="font-sans antialiased">
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
         {children}
       </body>
     </html>

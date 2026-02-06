@@ -1,7 +1,7 @@
 "use client";
 
 import { Link } from "@/i18n/navigation";
-import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, ArrowRight, Send, Check } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Github, Mail, MapPin, Phone, ArrowRight, Send, Check } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import { type Locale } from "@/i18n";
@@ -130,6 +130,7 @@ export default function Footer() {
                 { icon: Facebook, href: "https://facebook.com/vektadev", label: "Facebook" },
                 { icon: Instagram, href: "https://instagram.com/vektadev", label: "Instagram" },
                 { icon: Linkedin, href: "https://linkedin.com/company/vektadev", label: "LinkedIn" },
+                { icon: Github, href: "https://github.com/vektadev", label: "GitHub" },
               ].map((social) => (
                 <motion.a
                   key={social.label}
@@ -161,7 +162,10 @@ export default function Footer() {
               {[
                 { href: "/services/websites", key: "websites" },
                 { href: "/services/chatbots", key: "chatbots" },
+                { href: "/services/ai-solutions", key: "ai_solutions" },
                 { href: "/services/mobile-apps", key: "mobile_apps" },
+                { href: "/services/cloud", key: "cloud" },
+                { href: "/services/consulting", key: "consulting" },
               ].map((item) => (
                 <li key={item.key}>
                   <Link
@@ -192,6 +196,7 @@ export default function Footer() {
               {[
                 { href: "/about", key: "about" },
                 { href: "/portfolio", key: "portfolio" },
+                { href: "/insights", key: "insights" },
                 { href: "/contact", key: "contact" },
               ].map((item) => (
                 <li key={item.key}>

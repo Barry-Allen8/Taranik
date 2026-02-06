@@ -2,6 +2,7 @@
   "navigation": {
     "services": "Services",
     "portfolio": "Portfolio",
+    "insights": "Insights",
     "about": "About",
     "contact": "Contact",
     "consultation": "Book consultation"
@@ -22,12 +23,31 @@
     "contact": {
       "title": "Contact VektaDev | Book a Consultation",
       "description": "Share your project goals and book a discovery call to explore how VektaDev can support your digital transformation."
+    },
+    "portfolio": {
+      "title": "Portfolio & Case Studies | Web, AI and Automation Projects | VektaDev",
+      "description": "Explore selected VektaDev projects: websites, chatbots, AI assistants and mobile apps with measurable business outcomes."
+    },
+    "privacy": {
+      "title": "Privacy Policy | GDPR and Data Protection | VektaDev",
+      "description": "Learn how VektaDev processes and protects personal data in line with GDPR, including retention, rights and contact details."
+    },
+    "terms": {
+      "title": "Terms of Use | VektaDev",
+      "description": "Read the website terms of use for VektaDev services, intellectual property and liability limitations."
+    },
+    "insights": {
+      "title": "Insights | Web Development, AI and Product Strategy | VektaDev",
+      "description": "Actionable articles on web performance, AI implementation and product strategy for growing businesses."
     }
   },
   "services_menu": {
     "websites": "Web Development",
     "chatbots": "Chatbots",
-    "mobile_apps": "Mobile Apps"
+    "ai_solutions": "AI Solutions",
+    "mobile_apps": "Mobile Apps",
+    "cloud": "Cloud Solutions",
+    "consulting": "IT Consulting"
   },
   "hero": {
     "badge": "Innovative IT solutions since 2020",
@@ -1048,6 +1068,8 @@
       "name_placeholder": "Your name",
       "email": "Email *",
       "email_placeholder": "your@email.com",
+      "email_validating": "Validating email...",
+      "email_valid": "Email looks good.",
       "phone": "Phone",
       "phone_placeholder": "+48 ___ ___ ___",
       "service": "Service",
@@ -1064,7 +1086,9 @@
           "too_short": "Name must be at least 2 characters"
         },
         "email": {
-          "invalid": "Invalid email format"
+          "invalid": "Invalid email format",
+          "disposable": "Disposable email addresses are not supported",
+          "validation_failed": "Couldn't validate your email right now"
         },
         "message": {
           "too_short": "Message must be at least 10 characters"
@@ -1189,6 +1213,8 @@
     "description": "Sample demo projects showcasing our capabilities",
     "all": "All",
     "view": "View",
+    "live_demo": "Live demo",
+    "video_demo": "Video demo",
     "no_projects": "No projects in this category",
     "demo_note": "Projects marked [Demo] are demonstration projects showing our technical capabilities",
     "categories": {
@@ -1382,6 +1408,16 @@
     "case_3_result_2": "Productivity increase",
     "view_case": "View details",
     "view_all": "View all projects"
+  },
+  "reviews": {
+    "title": "Latest Client Reviews",
+    "description": "Recent feedback from companies we've helped with websites, AI and automation.",
+    "view_source": "View source"
+  },
+  "insights": {
+    "title": "Insights",
+    "description": "Practical notes on web performance, AI implementation and product execution.",
+    "read_article": "Read article"
   },
   "cookies": {
     "title": "Cookie Consent",

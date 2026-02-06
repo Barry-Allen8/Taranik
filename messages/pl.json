@@ -2,6 +2,7 @@
   "navigation": {
     "services": "Usługi",
     "portfolio": "Portfolio",
+    "insights": "Insights",
     "about": "O nas",
     "contact": "Kontakt",
     "consultation": "Zamów konsultację"
@@ -22,12 +23,31 @@
     "contact": {
       "title": "Kontakt z VektaDev | Umów konsultację",
       "description": "Opowiedz o swoich potrzebach i umów bezpłatną rozmowę, aby sprawdzić, jak VektaDev wesprze cyfrową transformację."
+    },
+    "portfolio": {
+      "title": "Portfolio i Case Studies | Projekty WWW, AI i automatyzacji | VektaDev",
+      "description": "Poznaj wybrane realizacje VektaDev: strony internetowe, chatboty, asystenci AI i aplikacje mobilne z mierzalnymi efektami biznesowymi."
+    },
+    "privacy": {
+      "title": "Polityka prywatności | RODO i ochrona danych | VektaDev",
+      "description": "Sprawdź, jak VektaDev przetwarza i chroni dane osobowe zgodnie z RODO, w tym okresy przechowywania i prawa użytkownika."
+    },
+    "terms": {
+      "title": "Warunki użytkowania | VektaDev",
+      "description": "Zapoznaj się z warunkami korzystania z serwisu VektaDev, zasadami własności intelektualnej i odpowiedzialności."
+    },
+    "insights": {
+      "title": "Insights | Web development, AI i strategia produktu | VektaDev",
+      "description": "Praktyczne artykuły o wydajności stron, wdrożeniach AI i strategii produktu dla rozwijających się firm."
     }
   },
   "services_menu": {
     "websites": "Tworzenie stron",
     "chatbots": "Chatboty",
-    "mobile_apps": "Aplikacje mobilne"
+    "ai_solutions": "Rozwiązania AI",
+    "mobile_apps": "Aplikacje mobilne",
+    "cloud": "Rozwiązania chmurowe",
+    "consulting": "Konsulting IT"
   },
   "hero": {
     "badge": "Innowacyjne rozwiązania IT od 2020 roku",
@@ -1048,6 +1068,8 @@
       "name_placeholder": "Twoje imię",
       "email": "Email *",
       "email_placeholder": "twoj@email.com",
+      "email_validating": "Trwa walidacja adresu email...",
+      "email_valid": "Adres email wygląda poprawnie.",
       "phone": "Telefon",
       "phone_placeholder": "+48 ___ ___ ___",
       "service": "Usługa",
@@ -1064,7 +1086,9 @@
           "too_short": "Imię musi zawierać co najmniej 2 znaki"
         },
         "email": {
-          "invalid": "Nieprawidłowy format email"
+          "invalid": "Nieprawidłowy format email",
+          "disposable": "Adresy jednorazowe nie są obsługiwane",
+          "validation_failed": "Nie udało się zweryfikować adresu email"
         },
         "message": {
           "too_short": "Wiadomość musi zawierać co najmniej 10 znaków"
@@ -1189,6 +1213,8 @@
     "description": "Przykładowe projekty demonstracyjne pokazujące nasze możliwości",
     "all": "Wszystkie",
     "view": "Zobacz",
+    "live_demo": "Demo live",
+    "video_demo": "Demo wideo",
     "no_projects": "Brak projektów w tej kategorii",
     "demo_note": "Projekty oznaczone [Demo] to projekty demonstracyjne pokazujące nasze możliwości techniczne",
     "categories": {
@@ -1382,6 +1408,16 @@
     "case_3_result_2": "Wzrost produktywności",
     "view_case": "Zobacz szczegóły",
     "view_all": "Zobacz wszystkie projekty"
+  },
+  "reviews": {
+    "title": "Najnowsze opinie klientów",
+    "description": "Ostatnie opinie firm, którym pomogliśmy w obszarze stron WWW, AI i automatyzacji.",
+    "view_source": "Zobacz źródło"
+  },
+  "insights": {
+    "title": "Insights",
+    "description": "Praktyczne materiały o wydajności webowej, wdrożeniach AI i realizacji produktów cyfrowych.",
+    "read_article": "Czytaj artykuł"
   },
   "cookies": {
     "title": "Zgoda na pliki cookie",

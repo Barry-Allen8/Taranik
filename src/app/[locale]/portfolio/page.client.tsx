@@ -3,73 +3,10 @@
 import { useState } from "react";
 import Image from "next/image";
 import Card from "@/components/ui/Card";
-import { ExternalLink, Filter } from "lucide-react";
+import { ExternalLink, Filter, PlayCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
-
-// Project data with translation keys
-const projectsData = [
-    {
-        id: "1",
-        key: "electronics_shop",
-        slug: "electronics-shop-demo",
-        image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop",
-        category: "E-commerce",
-        categoryKey: "ecommerce",
-        technologies: ["Next.js", "Stripe", "PostgreSQL", "Tailwind CSS"],
-        year: 2024,
-    },
-    {
-        id: "2",
-        key: "restaurant_bot",
-        slug: "restaurant-bot-demo",
-        image: "https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=800&h=600&fit=crop",
-        category: "Chatbot",
-        categoryKey: "chatbot",
-        technologies: ["Python", "Telegram API", "ChatGPT", "PostgreSQL"],
-        year: 2024,
-    },
-    {
-        id: "3",
-        key: "corporate_website",
-        slug: "corporate-website-demo",
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
-        category: "Website",
-        categoryKey: "website",
-        technologies: ["Next.js", "Tailwind CSS", "Sanity CMS", "Vercel"],
-        year: 2024,
-    },
-    {
-        id: "4",
-        key: "ai_assistant",
-        slug: "ai-assistant-demo",
-        image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop",
-        category: "AI Solution",
-        categoryKey: "ai_solution",
-        technologies: ["ChatGPT API", "Node.js", "React", "MongoDB"],
-        year: 2024,
-    },
-    {
-        id: "5",
-        key: "fitness_app",
-        slug: "fitness-app-demo",
-        image: "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=800&h=600&fit=crop",
-        category: "Mobile App",
-        categoryKey: "mobile_app",
-        technologies: ["React Native", "Firebase", "Node.js", "Express"],
-        year: 2024,
-    },
-    {
-        id: "6",
-        key: "education_platform",
-        slug: "education-platform-demo",
-        image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&h=600&fit=crop",
-        category: "Website",
-        categoryKey: "website",
-        technologies: ["Next.js", "Prisma", "PostgreSQL", "AWS"],
-        year: 2024,
-    },
-];
+import { portfolioShowcase } from "@/data/portfolioShowcase";
 
 export default function PortfolioPageClient() {
     const t = useTranslations("portfolio");
@@ -85,8 +22,8 @@ export default function PortfolioPageClient() {
     ];
 
     const filteredProjects = activeCategory === "all"
-        ? projectsData
-        : projectsData.filter((p) => p.category === activeCategory);
+        ? portfolioShowcase
+        : portfolioShowcase.filter((p) => p.category === activeCategory);
 
     return (
         <div className="min-h-screen">
@@ -121,16 +58,19 @@ export default function PortfolioPageClient() {
                         {filteredProjects.map((project, idx) => (
                             <motion.div
                                 key={project.id}
+                                id={project.slug}
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.3, delay: idx * 0.1 }}
                             >
                                 <Card className="group cursor-pointer h-full">
-                                    <div className="relative w-full h-48 rounded-lg mb-4 overflow-hidden">
+                                    <div className="relative w-full aspect-[4/3] rounded-lg mb-4 overflow-hidden">
                                         <Image
                                             src={project.image}
                                             alt={t(`projects.${project.key}.title`)}
                                             fill
+                                            sizes="(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 100vw"
+                                            priority={idx === 0}
                                             className="object-cover group-hover:scale-110 transition-transform duration-300"
                                         />
                                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
@@ -155,6 +95,28 @@ export default function PortfolioPageClient() {
                                     </div>
                                     <div className="flex items-center justify-between pt-3 border-t border-border">
                                         <span className="text-sm text-muted">{project.year}</span>
+                                        <div className="flex items-center gap-4">
+                                            <a
+                                                href={project.liveUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
+                                            >
+                                                <ExternalLink className="w-4 h-4" />
+                                                {t("live_demo")}
+                                            </a>
+                                            {project.videoUrl && (
+                                                <a
+                                                    href={project.videoUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
+                                                >
+                                                    <PlayCircle className="w-4 h-4" />
+                                                    {t("video_demo")}
+                                                </a>
+                                            )}
+                                        </div>
                                     </div>
                                 </Card>
                             </motion.div>

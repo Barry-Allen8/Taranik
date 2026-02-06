@@ -11,23 +11,17 @@ const intlMiddleware = createMiddleware({
   localeDetection: false,
 });
 
-export default function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Handle redirects for removed /courses routes
   // Check for courses path in any locale
-  const coursesPattern = /^\/(pl|en)?\/courses(\/.*)?$/;
+  const coursesPattern = /^\/(?:(pl|en)\/)?courses(\/.*)?$/;
   const coursesMatch = pathname.match(coursesPattern);
   
   if (coursesMatch) {
     const locale = coursesMatch[1] || defaultLocale;
     const redirectUrl = new URL(`/${locale}/services`, request.url);
-    return NextResponse.redirect(redirectUrl, 301);
-  }
-
-  // Also handle /courses without locale prefix
-  if (pathname === "/courses" || pathname.startsWith("/courses/")) {
-    const redirectUrl = new URL(`/${defaultLocale}/services`, request.url);
     return NextResponse.redirect(redirectUrl, 301);
   }
 

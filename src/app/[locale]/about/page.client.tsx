@@ -3,7 +3,7 @@
 import { teamMembers } from "@/data/team";
 import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
-import { Target, Award, Users, Lightbulb, CheckCircle, MessageSquare, FileSearch, Rocket, Headphones, Clock, Shield, Users2 } from "lucide-react";
+import { Target, Award, Users, Lightbulb, CheckCircle, MessageSquare, FileSearch, Rocket, Headphones, Clock, Shield, Users2, Linkedin, Github } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
@@ -206,6 +206,34 @@ export default function AboutPageClient() {
                     <h3 className="text-lg font-semibold mb-1">{name}</h3>
                     <p className="text-primary text-sm mb-3">{position}</p>
                     <p className="text-muted text-sm">{bio}</p>
+                    {(member.social?.linkedin || member.social?.github) && (
+                      <div className="mt-4 flex items-center justify-center gap-3">
+                        {member.social?.linkedin && (
+                          <a
+                            href={member.social.linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`${name} on LinkedIn`}
+                            className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
+                          >
+                            <Linkedin className="w-4 h-4" />
+                            LinkedIn
+                          </a>
+                        )}
+                        {member.social?.github && (
+                          <a
+                            href={member.social.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`${name} on GitHub`}
+                            className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
+                          >
+                            <Github className="w-4 h-4" />
+                            GitHub
+                          </a>
+                        )}
+                      </div>
+                    )}
                   </Card>
                 </motion.div>
               );

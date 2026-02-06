@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { contactFormSchema, type ContactFormData } from "@/lib/validations";
@@ -26,19 +26,73 @@ export default function ContactForm() {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
+    clearErrors,
     reset,
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
   });
+  const [emailValidationState, setEmailValidationState] = useState<
+    "idle" | "validating" | "valid" | "invalid"
+  >("idle");
+  const [emailValidationMessage, setEmailValidationMessage] = useState<string | null>(null);
 
-  const translateError = (code?: string) => {
+  const translateError = useCallback((code?: string) => {
     if (!code) return undefined;
     try {
       return tErrors(code);
     } catch {
       return t("error");
     }
-  };
+  }, [t, tErrors]);
+
+  const validateEmailAsync = useCallback(
+    async (email: string) => {
+      const normalizedEmail = email.trim();
+      if (!normalizedEmail) {
+        setEmailValidationState("idle");
+        setEmailValidationMessage(null);
+        return true;
+      }
+
+      setEmailValidationState("validating");
+      setEmailValidationMessage(t("email_validating"));
+
+      try {
+        const response = await fetch("/api/contact/validate", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email: normalizedEmail }),
+        });
+
+        const payload = (await response.json().catch(() => null)) as
+          | { valid?: boolean; code?: string }
+          | null;
+
+        if (payload?.valid) {
+          clearErrors("email");
+          setEmailValidationState("valid");
+          setEmailValidationMessage(t("email_valid"));
+          return true;
+        }
+
+        const errorCode = payload?.code || "email.validation_failed";
+        setError("email", { type: "manual", message: errorCode });
+        setEmailValidationState("invalid");
+        setEmailValidationMessage(translateError(errorCode) || t("error"));
+        return false;
+      } catch {
+        const fallbackCode = "email.validation_failed";
+        setError("email", { type: "manual", message: fallbackCode });
+        setEmailValidationState("invalid");
+        setEmailValidationMessage(translateError(fallbackCode) || t("error"));
+        return false;
+      }
+    },
+    [clearErrors, setError, t, translateError]
+  );
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
@@ -46,6 +100,11 @@ export default function ContactForm() {
     setErrorMessage(null);
 
     try {
+      const emailIsValid = await validateEmailAsync(data.email);
+      if (!emailIsValid) {
+        throw new Error(translateError("email.validation_failed") || t("error"));
+      }
+
       // Get honeypot value from hidden field
       const honeypotInput = document.getElementById("website") as HTMLInputElement;
       const honeypotValue = honeypotInput?.value || "";
@@ -70,6 +129,8 @@ export default function ContactForm() {
       }
 
       setSubmitStatus("success");
+      setEmailValidationState("idle");
+      setEmailValidationMessage(null);
       reset();
     } catch (error) {
       setSubmitStatus("error");
@@ -80,6 +141,8 @@ export default function ContactForm() {
       setIsSubmitting(false);
     }
   };
+
+  const emailField = register("email");
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -108,9 +171,26 @@ export default function ContactForm() {
         label={t("email")}
         type="email"
         placeholder={t("email_placeholder")}
-        {...register("email")}
+        {...emailField}
+        onBlur={async (event) => {
+          emailField.onBlur(event);
+          await validateEmailAsync(event.target.value);
+        }}
+        onChange={(event) => {
+          emailField.onChange(event);
+          setEmailValidationState("idle");
+          setEmailValidationMessage(null);
+        }}
         error={translateError(errors.email?.message)}
       />
+      {emailValidationState !== "idle" && !errors.email && (
+        <p
+          className={`text-sm ${emailValidationState === "valid" ? "text-green-600" : "text-muted"}`}
+          aria-live="polite"
+        >
+          {emailValidationMessage}
+        </p>
+      )}
 
       <Input
         label={t("phone")}
@@ -129,7 +209,10 @@ export default function ContactForm() {
           <option value="">{t("service_placeholder")}</option>
           <option value="websites">{tServices("websites")}</option>
           <option value="chatbots">{tServices("chatbots")}</option>
-          <option value="mobile">{tServices("mobile_apps")}</option>
+          <option value="ai_solutions">{tServices("ai_solutions")}</option>
+          <option value="mobile_apps">{tServices("mobile_apps")}</option>
+          <option value="cloud">{tServices("cloud")}</option>
+          <option value="consulting">{tServices("consulting")}</option>
         </select>
       </div>
 
@@ -147,6 +230,8 @@ export default function ContactForm() {
 
       {submitStatus && (
         <div
+          role="status"
+          aria-live="polite"
           className={`p-4 rounded-lg ${submitStatus === "success"
               ? "bg-green-50 text-green-800 dark:bg-green-900/20 dark:text-green-400"
               : "bg-red-50 text-red-800 dark:bg-red-900/20 dark:text-red-400"

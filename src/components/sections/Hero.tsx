@@ -2,7 +2,8 @@
 
 import Button from "@/components/ui/Button";
 import { Link } from "@/i18n/navigation";
-import { ArrowRight, Sparkles, Code2, Cpu, Globe, Zap, Target, Rocket, Handshake, ShieldCheck } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, Sparkles, Target, Rocket, Handshake, ShieldCheck } from "lucide-react";
 import { LazyMotion, domAnimation, m } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import { type Locale } from "@/i18n";
@@ -31,6 +32,8 @@ const itemVariants = {
 export default function Hero() {
   const t = useTranslations("hero");
   const locale = useLocale() as Locale;
+  const heroImage =
+    "https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&crop=entropy&q=72&w=1400&h=1050&fm=avif";
 
   return (
     <LazyMotion features={domAnimation}>
@@ -125,74 +128,34 @@ export default function Hero() {
             </m.div>
           </m.div>
 
-          {/* Right - Simplified Illustration (desktop only) */}
+          {/* Right - Hero Image (desktop only) */}
           <m.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="relative hidden lg:flex items-center justify-center"
+            className="relative hidden lg:block"
           >
-            {/* Main circle - static rings for performance */}
-            <div className="relative w-[450px] h-[450px]">
-              {/* Outer ring - CSS animation instead of JS */}
-              <div className="absolute inset-0 rounded-full border-2 border-dashed border-primary/20 animate-[spin_20s_linear_infinite]" />
-              
-              {/* Middle ring */}
-              <div className="absolute inset-8 rounded-full border border-accent/30 animate-[spin_25s_linear_infinite_reverse]" />
-
-              {/* Inner gradient circle */}
-              <div className="absolute inset-16 rounded-full bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 backdrop-blur-sm" />
-
-              {/* Center content - simple float with CSS */}
-              <div className="absolute inset-0 flex items-center justify-center animate-[float_6s_ease-in-out_infinite]">
-                <div className="w-32 h-32 rounded-2xl bg-gradient-to-br from-primary to-accent shadow-2xl shadow-primary/30 flex items-center justify-center">
-                  <Code2 className="w-16 h-16 text-white" />
+            <div className="relative max-w-[560px] ml-auto">
+              <div className="absolute -inset-6 bg-gradient-to-r from-primary/30 to-accent/30 blur-3xl" />
+              <div className="relative overflow-hidden rounded-3xl border border-white/70 shadow-2xl">
+                <div className="relative aspect-[4/3]">
+                  <Image
+                    src={heroImage}
+                    alt="Team working on digital product strategy"
+                    fill
+                    priority
+                    sizes="(min-width: 1280px) 34vw, (min-width: 1024px) 42vw, 100vw"
+                    className="object-cover"
+                  />
                 </div>
               </div>
-
-              {/* Floating icons - CSS animations */}
-              <div className="absolute top-8 left-1/2 -translate-x-1/2 animate-[float_4s_ease-in-out_infinite]">
-                <div className="w-16 h-16 rounded-xl bg-white shadow-lg shadow-primary/10 flex items-center justify-center border border-primary/10">
-                  <Globe className="w-8 h-8 text-primary" />
-                </div>
+              <div className="absolute bottom-4 left-4 right-4 rounded-xl bg-black/55 px-4 py-3 backdrop-blur-sm">
+                <p className="text-sm font-medium text-white">{t("description")}</p>
               </div>
-
-              <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-[float_4s_ease-in-out_infinite_0.5s]">
-                <div className="w-16 h-16 rounded-xl bg-white shadow-lg shadow-accent/10 flex items-center justify-center border border-accent/10">
-                  <Cpu className="w-8 h-8 text-accent" />
-                </div>
-              </div>
-
-              <div className="absolute top-1/2 -translate-y-1/2 left-4 animate-[float_5s_ease-in-out_infinite_1s]">
-                <div className="w-14 h-14 rounded-xl bg-white shadow-lg shadow-secondary/10 flex items-center justify-center border border-secondary/10">
-                  <Zap className="w-7 h-7 text-secondary" />
-                </div>
-              </div>
-
-              <div className="absolute top-1/2 -translate-y-1/2 right-4 animate-[float_5s_ease-in-out_infinite_1.5s]">
-                <div className="w-14 h-14 rounded-xl bg-white shadow-lg shadow-primary/10 flex items-center justify-center border border-primary/10">
-                  <Sparkles className="w-7 h-7 text-primary" />
-                </div>
-              </div>
-
-              {/* Static connecting lines */}
-              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 450 450">
-                <path d="M225 80 L225 160" stroke="url(#lineGradient)" strokeWidth="2" strokeDasharray="4 4" />
-                <path d="M225 290 L225 370" stroke="url(#lineGradient)" strokeWidth="2" strokeDasharray="4 4" />
-                <path d="M80 225 L160 225" stroke="url(#lineGradient)" strokeWidth="2" strokeDasharray="4 4" />
-                <path d="M290 225 L370 225" stroke="url(#lineGradient)" strokeWidth="2" strokeDasharray="4 4" />
-                <defs>
-                  <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#2563eb" stopOpacity="0.5" />
-                    <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.5" />
-                  </linearGradient>
-                </defs>
-              </svg>
             </div>
           </m.div>
         </div>
       </div>
-
       {/* Scroll indicator - hidden on mobile */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce hidden md:block">
         <div className="w-6 h-10 rounded-full border-2 border-primary/30 flex justify-center pt-2">

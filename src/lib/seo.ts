@@ -4,13 +4,13 @@ const BASE_URL = "https://vektadev.com";
 
 /**
  * Generates the canonical URL for a given locale and route.
- * Uses the current localePrefix: "as-needed" convention:
- * - English (default): no prefix
- * - Other locales: /{locale} prefix
+ * Uses localePrefix: "always" convention:
+ * - English: /en prefix
+ * - Polish: /pl prefix
  */
 export const getCanonicalUrl = (locale: string, route: string): string => {
     const normalizedRoute = route === "/" ? "" : route;
-    const localePrefix = locale === defaultLocale ? "" : `/${locale}`;
+    const localePrefix = `/${locale}`;
     return `${BASE_URL}${localePrefix}${normalizedRoute}`;
 };
 

@@ -11,7 +11,7 @@ const caseStudies = [
   {
     id: 1,
     slug: "ecommerce-platform",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&crop=entropy&q=70&w=1200&h=750&fm=webp",
     icon: Globe,
     category: "E-commerce",
     titleKey: "case_1_title",
@@ -26,7 +26,7 @@ const caseStudies = [
   {
     id: 2,
     slug: "ai-chatbot",
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=500&fit=crop",
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&crop=entropy&q=70&w=1200&h=750&fm=webp",
     icon: Bot,
     category: "AI & Chatbots",
     titleKey: "case_2_title",
@@ -41,7 +41,7 @@ const caseStudies = [
   {
     id: 3,
     slug: "business-automation",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&crop=entropy&q=70&w=1200&h=750&fm=webp",
     icon: Cpu,
     category: "Automation",
     titleKey: "case_3_title",
@@ -117,6 +117,7 @@ export default function CaseStudiesSection() {
                       src={study.image}
                       alt={t(study.titleKey)}
                       fill
+                      sizes="(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 100vw"
                       className="object-cover group-hover:scale-110 transition-transform duration-700"
                     />
                     <div className={`absolute inset-0 bg-gradient-to-br ${study.color} opacity-0 group-hover:opacity-20 transition-opacity duration-500`} />
@@ -204,4 +205,3 @@ export default function CaseStudiesSection() {
     </section>
   );
 }
-

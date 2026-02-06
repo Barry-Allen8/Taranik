@@ -1,25 +1,53 @@
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import dynamic from "next/dynamic";
 import Hero from "@/components/sections/Hero";
-import TrustedBySection from "@/components/sections/TrustedBySection";
-import ServicesSection from "@/components/sections/ServicesSection";
-import WhyUsSection from "@/components/sections/WhyUsSection";
-import ProcessSection from "@/components/sections/ProcessSection";
-import CaseStudiesSection from "@/components/sections/CaseStudiesSection";
-import CTASection from "@/components/sections/CTASection";
-import { defaultLocale, locales } from "@/i18n";
+import { getSeoAlternates } from "@/lib/seo";
+import LatestReviewsSection from "@/components/sections/LatestReviewsSection";
 
-const BASE_URL = "https://vektadev.com";
+const TrustedBySection = dynamic(
+  () => import("@/components/sections/TrustedBySection"),
+  {
+    loading: () => <section className="py-12" />,
+  }
+);
+
+const ServicesSection = dynamic(
+  () => import("@/components/sections/ServicesSection"),
+  {
+    loading: () => <section id="services" className="section" />,
+  }
+);
+
+const WhyUsSection = dynamic(
+  () => import("@/components/sections/WhyUsSection"),
+  {
+    loading: () => <section className="section bg-card" />,
+  }
+);
+
+const CaseStudiesSection = dynamic(
+  () => import("@/components/sections/CaseStudiesSection"),
+  {
+    loading: () => <section className="section" />,
+  }
+);
+
+const ProcessSection = dynamic(
+  () => import("@/components/sections/ProcessSection"),
+  {
+    loading: () => <section className="section" />,
+  }
+);
+
+const CTASection = dynamic(
+  () => import("@/components/sections/CTASection"),
+  {
+    loading: () => <section className="section" />,
+  }
+);
+
 const ROUTE = "/";
-
-const getLocalizedUrl = (locale: string, route: string) => {
-  const normalizedRoute = route === "/" ? "" : route;
-  const localePrefix = locale === defaultLocale ? "" : `/${locale}`;
-  return `${BASE_URL}${localePrefix}${normalizedRoute}`;
-};
-
-const getAlternates = (route: string) =>
-  Object.fromEntries(locales.map((locale) => [locale, getLocalizedUrl(locale, route)]));
 
 export async function generateMetadata({
   params: { locale },
@@ -30,20 +58,31 @@ export async function generateMetadata({
   return {
     title: t("home.title"),
     description: t("home.description"),
-    alternates: {
-      canonical: getLocalizedUrl(locale, ROUTE),
-      languages: getAlternates(ROUTE),
-    },
+    alternates: getSeoAlternates(locale, ROUTE),
+    keywords: [
+      "software house Poland",
+      "web development",
+      "AI automation",
+      "chatbot development",
+      "digital transformation services",
+    ],
   };
 }
 
-export default function Home() {
+export default function Home({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) {
+  setRequestLocale(locale);
+
   return (
     <>
       <Hero />
       <TrustedBySection />
       <ServicesSection />
       <WhyUsSection />
+      <LatestReviewsSection locale={locale} />
       <CaseStudiesSection />
       <ProcessSection />
       <CTASection />

@@ -1,6 +1,7 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Metadata } from "next";
 import { getSeoAlternates } from "@/lib/seo";
+import { getServiceSchema } from "@/lib/schema";
 import ChatbotsPageClient from "./ChatbotsPageClient";
 
 const ROUTE = "/services/chatbots";
@@ -25,7 +26,24 @@ export async function generateMetadata({ params: { locale } }: Props): Promise<M
   };
 }
 
-export default function ChatbotsPage({ params: { locale } }: Props) {
+export default async function ChatbotsPage({ params: { locale } }: Props) {
   setRequestLocale(locale);
-  return <ChatbotsPageClient />;
+  const t = await getTranslations({ locale, namespace: "services" });
+  const schema = getServiceSchema({
+    locale,
+    name: t("chatbots.title"),
+    description: t("chatbots.description"),
+    path: ROUTE,
+  });
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+      <ChatbotsPageClient />
+    </>
+  );
 }

@@ -1,19 +1,9 @@
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
-import { defaultLocale, locales } from "@/i18n";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getSeoAlternates } from "@/lib/seo";
 import ServicesPageClient from "./page.client";
 
-const BASE_URL = "https://vektadev.com";
 const ROUTE = "/services";
-
-const getLocalizedUrl = (locale: string, route: string) => {
-  const normalizedRoute = route === "/" ? "" : route;
-  const localePrefix = locale === defaultLocale ? "" : `/${locale}`;
-  return `${BASE_URL}${localePrefix}${normalizedRoute}`;
-};
-
-const getAlternates = (route: string) =>
-  Object.fromEntries(locales.map((locale) => [locale, getLocalizedUrl(locale, route)]));
 
 export async function generateMetadata({
   params: { locale },
@@ -24,13 +14,22 @@ export async function generateMetadata({
   return {
     title: t("services.title"),
     description: t("services.description"),
-    alternates: {
-      canonical: getLocalizedUrl(locale, ROUTE),
-      languages: getAlternates(ROUTE),
-    },
+    alternates: getSeoAlternates(locale, ROUTE),
+    keywords: [
+      "IT services",
+      "websites and chatbots",
+      "AI solutions for business",
+      "cloud and DevOps services",
+      "IT consulting Poland",
+    ],
   };
 }
 
-export default function ServicesPage() {
+export default function ServicesPage({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) {
+  setRequestLocale(locale);
   return <ServicesPageClient />;
 }

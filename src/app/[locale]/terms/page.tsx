@@ -16,6 +16,13 @@ export async function generateMetadata({ params: { locale } }: Props): Promise<M
     title: t("terms.title"),
     description: t("terms.description"),
     alternates: getSeoAlternates(locale, ROUTE),
+    keywords: [
+      "terms of use",
+      "service terms",
+      "intellectual property",
+      "liability limitations",
+      "VektaDev terms",
+    ],
   };
 }
 
