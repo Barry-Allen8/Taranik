@@ -18,6 +18,10 @@ const GRID_GAP = 72;
 const PARTICLE_LINK_DISTANCE = 146;
 const POINTER_LINK_DISTANCE = 168;
 const PARTICLE_MAX_SPEED = 0.32;
+const PARTICLE_LINK_ALPHA_SCALE = 0.46;
+const PARTICLE_LINK_MIN_ALPHA = 0.09;
+const POINTER_LINK_ALPHA_SCALE = 0.65;
+const POINTER_LINK_MIN_ALPHA = 0.14;
 
 const randomInRange = (minimum: number, maximum: number) => Math.random() * (maximum - minimum) + minimum;
 
@@ -112,7 +116,7 @@ export default function HomeNetworkBackground() {
     };
 
     const drawParticleLinks = () => {
-      renderingContext.lineWidth = 0.8;
+      renderingContext.lineWidth = 1.15;
 
       for (let sourceIndex = 0; sourceIndex < particleNodes.length; sourceIndex += 1) {
         const sourceNode = particleNodes[sourceIndex];
@@ -127,8 +131,11 @@ export default function HomeNetworkBackground() {
             continue;
           }
 
-          const opacity = (1 - distance / PARTICLE_LINK_DISTANCE) * 0.26;
-          renderingContext.strokeStyle = `rgba(59, 130, 246, ${opacity})`;
+          const opacity = Math.max(
+            PARTICLE_LINK_MIN_ALPHA,
+            (1 - distance / PARTICLE_LINK_DISTANCE) * PARTICLE_LINK_ALPHA_SCALE
+          );
+          renderingContext.strokeStyle = `rgba(96, 165, 250, ${opacity})`;
           renderingContext.beginPath();
           renderingContext.moveTo(sourceNode.x, sourceNode.y);
           renderingContext.lineTo(targetNode.x, targetNode.y);
@@ -142,7 +149,7 @@ export default function HomeNetworkBackground() {
         return;
       }
 
-      renderingContext.lineWidth = 1;
+      renderingContext.lineWidth = 1.25;
 
       for (const node of particleNodes) {
         const distance = Math.hypot(node.x - pointerState.x, node.y - pointerState.y);
@@ -150,7 +157,10 @@ export default function HomeNetworkBackground() {
           continue;
         }
 
-        const opacity = (1 - distance / POINTER_LINK_DISTANCE) * 0.4;
+        const opacity = Math.max(
+          POINTER_LINK_MIN_ALPHA,
+          (1 - distance / POINTER_LINK_DISTANCE) * POINTER_LINK_ALPHA_SCALE
+        );
         renderingContext.strokeStyle = `rgba(56, 189, 248, ${opacity})`;
         renderingContext.beginPath();
         renderingContext.moveTo(node.x, node.y);
@@ -215,9 +225,9 @@ export default function HomeNetworkBackground() {
     <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-30 overflow-hidden">
       <canvas
         ref={canvasRef}
-        className="h-full w-full opacity-45 [mask-image:radial-gradient(ellipse_90%_85%_at_50%_45%,black,transparent_100%)]"
+        className="h-full w-full opacity-60 [mask-image:radial-gradient(ellipse_90%_85%_at_50%_45%,black,transparent_100%)]"
       />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(37,99,235,0.1),transparent_52%),radial-gradient(circle_at_80%_70%,rgba(16,185,129,0.08),transparent_56%)] opacity-80" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(37,99,235,0.1),transparent_52%),radial-gradient(circle_at_80%_70%,rgba(16,185,129,0.08),transparent_56%)] opacity-65" />
     </div>
   );
 }
