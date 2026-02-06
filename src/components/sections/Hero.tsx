@@ -202,18 +202,7 @@ export default function Hero() {
             }}
           />
 
-          {/* Animated grid pattern */}
-          <m.div
-            className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.1)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black,transparent)]"
-            animate={{
-              backgroundPosition: ['0px 0px', '60px 60px', '0px 0px'],
-            }}
-            transition={{
-              duration: 30,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          />
+
 
           {/* Floating particles */}
           {floatingParticles.map((particle, i) => (
@@ -386,7 +375,7 @@ export default function Hero() {
                     }
                     transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
                   />
-                  <div className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.14)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.14)_1px,transparent_1px)] bg-[size:30px_30px] opacity-30" />
+
                   <div className="hero-scanline pointer-events-none absolute inset-0" />
 
                   <m.div
