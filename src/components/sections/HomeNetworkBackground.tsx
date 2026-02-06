@@ -11,6 +11,14 @@ type ParticleNode = {
   opacity: number;
 };
 
+type PointerEcho = {
+  x: number;
+  y: number;
+  age: number;
+  duration: number;
+  maxRadius: number;
+};
+
 const MIN_PARTICLE_COUNT = 34;
 const MAX_PARTICLE_COUNT = 76;
 const PARTICLE_DENSITY_DIVISOR = 24000;
@@ -18,6 +26,8 @@ const GRID_GAP = 72;
 const PARTICLE_LINK_DISTANCE = 146;
 const POINTER_LINK_DISTANCE = 168;
 const PARTICLE_MAX_SPEED = 0.32;
+const POINTER_ECHO_INTERVAL = 90;
+const MAX_POINTER_ECHOES = 10;
 const PARTICLE_LINK_ALPHA_SCALE = 0.46;
 const PARTICLE_LINK_MIN_ALPHA = 0.09;
 const POINTER_LINK_ALPHA_SCALE = 0.65;
@@ -52,8 +62,9 @@ export default function HomeNetworkBackground() {
     let viewportWidth = 0;
     let viewportHeight = 0;
     let animationFrameId = 0;
+    let previousTimestamp = 0;
     let particleNodes: ParticleNode[] = [];
-    const pointerState = { x: 0, y: 0, active: false };
+    const pointerState = { x: 0, y: 0, active: false, lastEchoAt: 0, echoes: [] as PointerEcho[] };
 
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     let reducedMotionEnabled = reducedMotionQuery.matches;
@@ -169,6 +180,47 @@ export default function HomeNetworkBackground() {
       }
     };
 
+    const drawPointerEchoes = (deltaMilliseconds: number) => {
+      if (pointerState.active) {
+        const glowGradient = renderingContext.createRadialGradient(
+          pointerState.x,
+          pointerState.y,
+          0,
+          pointerState.x,
+          pointerState.y,
+          86
+        );
+        glowGradient.addColorStop(0, "rgba(125, 211, 252, 0.28)");
+        glowGradient.addColorStop(0.35, "rgba(56, 189, 248, 0.14)");
+        glowGradient.addColorStop(1, "rgba(56, 189, 248, 0)");
+
+        renderingContext.fillStyle = glowGradient;
+        renderingContext.beginPath();
+        renderingContext.arc(pointerState.x, pointerState.y, 86, 0, Math.PI * 2);
+        renderingContext.fill();
+      }
+
+      for (let echoIndex = pointerState.echoes.length - 1; echoIndex >= 0; echoIndex -= 1) {
+        const echo = pointerState.echoes[echoIndex];
+        echo.age += deltaMilliseconds;
+
+        if (echo.age >= echo.duration) {
+          pointerState.echoes.splice(echoIndex, 1);
+          continue;
+        }
+
+        const progress = echo.age / echo.duration;
+        const radius = 12 + echo.maxRadius * progress;
+        const opacity = (1 - progress) * 0.46;
+
+        renderingContext.lineWidth = 1.6 - progress;
+        renderingContext.strokeStyle = `rgba(125, 211, 252, ${opacity})`;
+        renderingContext.beginPath();
+        renderingContext.arc(echo.x, echo.y, radius, 0, Math.PI * 2);
+        renderingContext.stroke();
+      }
+    };
+
     const drawParticles = () => {
       for (const node of particleNodes) {
         renderingContext.fillStyle = `rgba(125, 211, 252, ${node.opacity})`;
@@ -179,11 +231,14 @@ export default function HomeNetworkBackground() {
     };
 
     const renderFrame = (timestamp: number) => {
+      const deltaMilliseconds = previousTimestamp === 0 ? 16.7 : timestamp - previousTimestamp;
+      previousTimestamp = timestamp;
       renderingContext.clearRect(0, 0, viewportWidth, viewportHeight);
       drawGrid(timestamp);
       updateParticles();
       drawParticleLinks();
       drawPointerLinks();
+      drawPointerEchoes(deltaMilliseconds);
       drawParticles();
       animationFrameId = window.requestAnimationFrame(renderFrame);
     };
@@ -192,6 +247,20 @@ export default function HomeNetworkBackground() {
       pointerState.x = event.clientX;
       pointerState.y = event.clientY;
       pointerState.active = true;
+
+      if (!reducedMotionEnabled && event.timeStamp - pointerState.lastEchoAt >= POINTER_ECHO_INTERVAL) {
+        pointerState.lastEchoAt = event.timeStamp;
+        pointerState.echoes.push({
+          x: event.clientX,
+          y: event.clientY,
+          age: 0,
+          duration: randomInRange(560, 860),
+          maxRadius: randomInRange(54, 92),
+        });
+        if (pointerState.echoes.length > MAX_POINTER_ECHOES) {
+          pointerState.echoes.shift();
+        }
+      }
     };
 
     const handlePointerLeave = () => {
