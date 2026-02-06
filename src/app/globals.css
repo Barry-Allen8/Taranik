@@ -692,3 +692,78 @@ h3 {
   animation: floatShape 10s ease-in-out infinite;
   pointer-events: none;
 }
+
+/* Hero visual scene animations */
+@keyframes heroCodeDrift {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.52;
+  }
+  45% {
+    transform: translate3d(9px, 0, 0);
+    opacity: 0.98;
+  }
+  70% {
+    transform: translate3d(-3px, 0, 0);
+    opacity: 0.75;
+  }
+}
+
+.hero-code-line {
+  animation: heroCodeDrift 6.6s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes heroChipFloat {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -9px, 0);
+  }
+}
+
+.hero-chip-float {
+  animation: heroChipFloat 6.8s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes heroScanline {
+  0% {
+    transform: translateY(-105%);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.18;
+  }
+  100% {
+    transform: translateY(105%);
+    opacity: 0;
+  }
+}
+
+.hero-scanline::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(56, 189, 248, 0.14) 45%,
+    rgba(125, 211, 252, 0.2) 50%,
+    rgba(56, 189, 248, 0.14) 55%,
+    transparent 100%
+  );
+  animation: heroScanline 6.2s linear infinite;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-code-line,
+  .hero-chip-float,
+  .hero-scanline::after {
+    animation: none !important;
+  }
+}

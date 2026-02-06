@@ -1,10 +1,10 @@
 "use client";
 
+import { type PointerEvent as ReactPointerEvent } from "react";
 import Button from "@/components/ui/Button";
 import { Link } from "@/i18n/navigation";
-import Image from "next/image";
 import { ArrowRight, Sparkles, Target, Rocket, Handshake, ShieldCheck } from "lucide-react";
-import { LazyMotion, domAnimation, m } from "framer-motion";
+import { LazyMotion, domAnimation, m, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import { type Locale } from "@/i18n";
 
@@ -55,11 +55,77 @@ const glowingOrbs = [
   { size: 15, left: "92%", top: "44%", duration: 7, delay: 1.9 },
 ];
 
+const heroCodeRows = [
+  "git checkout -b launch/vektadev-growth",
+  "pnpm run build:web --optimize=core-vitals",
+  "deploy web-development with edge rendering",
+  "sync chatbot workflows -> crm + whatsapp",
+  "ship mobile-app release candidate v2.4.0",
+  "monitor conversion_funnel and retention metrics",
+  "status: all systems operational",
+];
+
+const serviceChipSpecs = [
+  {
+    key: "websites",
+    containerClass: "left-3 top-3 sm:left-5 sm:top-5",
+    colorClass: "from-blue-500 to-cyan-400",
+    iconClass: "text-cyan-200",
+    delay: 0.1,
+  },
+  {
+    key: "chatbots",
+    containerClass: "right-3 top-10 sm:right-6 sm:top-14",
+    colorClass: "from-violet-500 to-fuchsia-400",
+    iconClass: "text-fuchsia-200",
+    delay: 0.45,
+  },
+  {
+    key: "mobile_apps",
+    containerClass: "left-8 bottom-20 sm:left-12 sm:bottom-24",
+    colorClass: "from-emerald-500 to-teal-400",
+    iconClass: "text-emerald-200",
+    delay: 0.85,
+  },
+] as const;
+
+const terminalIndicatorColors = ["bg-rose-400", "bg-amber-300", "bg-emerald-400"] as const;
+
 export default function Hero() {
   const t = useTranslations("hero");
+  const tServicesMenu = useTranslations("services_menu");
   const locale = useLocale() as Locale;
-  const heroImage =
-    "https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&crop=entropy&q=72&w=1400&h=1050&fm=avif";
+  const prefersReducedMotion = useReducedMotion();
+
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const smoothPointerX = useSpring(pointerX, { stiffness: 180, damping: 22, mass: 0.7 });
+  const smoothPointerY = useSpring(pointerY, { stiffness: 180, damping: 22, mass: 0.7 });
+
+  const cardRotateX = useTransform(smoothPointerY, [-0.5, 0.5], [10, -10]);
+  const cardRotateY = useTransform(smoothPointerX, [-0.5, 0.5], [-10, 10]);
+  const sceneShiftX = useTransform(smoothPointerX, [-0.5, 0.5], [-18, 18]);
+  const sceneShiftY = useTransform(smoothPointerY, [-0.5, 0.5], [-12, 12]);
+  const chipShiftX = useTransform(smoothPointerX, [-0.5, 0.5], [-12, 12]);
+  const chipShiftY = useTransform(smoothPointerY, [-0.5, 0.5], [-8, 8]);
+
+  const handlePointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (prefersReducedMotion) {
+      return;
+    }
+
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const xPosition = (event.clientX - bounds.left) / bounds.width;
+    const yPosition = (event.clientY - bounds.top) / bounds.height;
+
+    pointerX.set(xPosition - 0.5);
+    pointerY.set(yPosition - 0.5);
+  };
+
+  const handlePointerLeave = () => {
+    pointerX.set(0);
+    pointerY.set(0);
+  };
 
   return (
     <LazyMotion features={domAnimation}>
@@ -275,30 +341,116 @@ export default function Hero() {
               </m.div>
             </m.div>
 
-            {/* Right - Hero Image (desktop only) */}
+            {/* Right - Interactive Hero Scene */}
             <m.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="relative hidden lg:block"
+              className="relative"
             >
-              <div className="relative max-w-[560px] ml-auto">
-                <div className="absolute -inset-6 bg-gradient-to-r from-primary/35 to-accent/35 blur-3xl" />
-                <div className="relative overflow-hidden rounded-3xl border border-slate-700/80 shadow-2xl">
-                  <div className="relative aspect-[4/3]">
-                    <Image
-                      src={heroImage}
-                      alt="Team working on digital product strategy"
-                      fill
-                      priority
-                      sizes="(min-width: 1280px) 34vw, (min-width: 1024px) 42vw, 100vw"
-                      className="object-cover"
-                    />
+              <div className="relative max-w-[560px] mx-auto lg:ml-auto [perspective:1200px]">
+                <m.div
+                  className="absolute -inset-5 bg-gradient-to-r from-primary/30 via-accent/20 to-secondary/30 blur-3xl"
+                  animate={
+                    prefersReducedMotion
+                      ? undefined
+                      : {
+                          opacity: [0.55, 0.9, 0.55],
+                          scale: [1, 1.06, 1],
+                        }
+                  }
+                  transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+                />
+                <m.div
+                  onPointerMove={handlePointerMove}
+                  onPointerLeave={handlePointerLeave}
+                  className="relative overflow-hidden rounded-3xl border border-slate-600/80 bg-slate-950/80 shadow-2xl [transform-style:preserve-3d]"
+                  style={
+                    prefersReducedMotion
+                      ? undefined
+                      : {
+                          rotateX: cardRotateX,
+                          rotateY: cardRotateY,
+                        }
+                  }
+                >
+                  <m.div
+                    className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(37,99,235,0.3),transparent_52%),radial-gradient(circle_at_80%_30%,rgba(139,92,246,0.26),transparent_54%),radial-gradient(circle_at_60%_100%,rgba(16,185,129,0.24),transparent_60%)]"
+                    animate={
+                      prefersReducedMotion
+                        ? undefined
+                        : {
+                            opacity: [0.5, 0.85, 0.5],
+                            scale: [1, 1.04, 1],
+                          }
+                    }
+                    transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.14)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.14)_1px,transparent_1px)] bg-[size:30px_30px] opacity-30" />
+                  <div className="hero-scanline pointer-events-none absolute inset-0" />
+
+                  <m.div
+                    className="relative aspect-[4/3] p-4 pb-20 sm:p-6 sm:pb-24"
+                    style={
+                      prefersReducedMotion
+                        ? undefined
+                        : {
+                            x: sceneShiftX,
+                            y: sceneShiftY,
+                          }
+                    }
+                  >
+                    <div className="h-full rounded-2xl border border-slate-700/90 bg-slate-950/85 p-4 shadow-[0_22px_50px_rgba(2,6,23,0.55)] backdrop-blur-sm sm:p-5">
+                      <div className="mb-4 flex items-center justify-between border-b border-slate-800/80 pb-3">
+                        <div className="flex items-center gap-2">
+                          {terminalIndicatorColors.map((indicatorColor) => (
+                            <span key={indicatorColor} className={`h-2.5 w-2.5 rounded-full ${indicatorColor}`} />
+                          ))}
+                        </div>
+                        <p className="font-mono text-[11px] text-slate-400">vektadev/dev-console</p>
+                      </div>
+
+                      <div className="space-y-2.5 pt-1">
+                        {heroCodeRows.map((codeRow, index) => (
+                          <p
+                            key={codeRow}
+                            className="hero-code-line font-mono text-[11px] leading-relaxed text-slate-200/90 sm:text-xs"
+                            style={{
+                              animationDelay: `${index * 0.22}s`,
+                            }}
+                          >
+                            {codeRow}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+                  </m.div>
+
+                  {serviceChipSpecs.map((chipSpec) => (
+                    <m.div
+                      key={chipSpec.key}
+                      className={`hero-chip-float absolute rounded-full border border-slate-700/90 bg-slate-950/85 px-3 py-1.5 backdrop-blur-sm ${chipSpec.containerClass}`}
+                      style={{
+                        animationDelay: `${chipSpec.delay}s`,
+                        ...(prefersReducedMotion
+                          ? {}
+                          : {
+                              x: chipShiftX,
+                              y: chipShiftY,
+                            }),
+                      }}
+                    >
+                      <span className={`mr-2 inline-block h-2 w-2 rounded-full bg-gradient-to-r ${chipSpec.colorClass} ${chipSpec.iconClass}`} />
+                      <span className="text-[11px] font-semibold tracking-wide text-white/95">
+                        {tServicesMenu(chipSpec.key)}
+                      </span>
+                    </m.div>
+                  ))}
+
+                  <div className="absolute bottom-4 left-4 right-4 rounded-xl border border-slate-700/80 bg-slate-950/75 px-4 py-3 backdrop-blur-sm">
+                    <p className="text-sm font-medium text-white">{t("description")}</p>
                   </div>
-                </div>
-                <div className="absolute bottom-4 left-4 right-4 rounded-xl bg-slate-950/70 px-4 py-3 backdrop-blur-sm border border-slate-700/70">
-                  <p className="text-sm font-medium text-white">{t("description")}</p>
-                </div>
+                </m.div>
               </div>
             </m.div>
           </div>
