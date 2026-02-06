@@ -16,8 +16,66 @@ export default function WhyUsSection() {
   const t = useTranslations("why_us");
 
   return (
-    <section className="section bg-card">
-      <div className="container">
+    <section className="section bg-card relative overflow-hidden">
+      {/* Animated background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Animated gradient mesh */}
+        <motion.div
+          className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_20%_20%,rgba(37,99,235,0.08),transparent)]"
+          animate={{
+            opacity: [0.5, 1, 0.5],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute inset-0 bg-[radial-gradient(ellipse_50%_50%_at_80%_80%,rgba(139,92,246,0.06),transparent)]"
+          animate={{
+            opacity: [0.6, 1, 0.6],
+            scale: [1, 1.15, 1],
+          }}
+          transition={{
+            duration: 14,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2,
+          }}
+        />
+
+        {/* Floating orbs */}
+        {Array.from({ length: 5 }).map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full bg-gradient-to-br from-primary/10 to-accent/10 blur-xl"
+            style={{
+              width: `${Math.random() * 100 + 50}px`,
+              height: `${Math.random() * 100 + 50}px`,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              x: [0, Math.random() * 60 - 30, 0],
+              y: [0, Math.random() * 60 - 30, 0],
+              scale: [1, Math.random() * 0.4 + 0.8, 1],
+            }}
+            transition={{
+              duration: Math.random() * 10 + 10,
+              repeat: Infinity,
+              delay: Math.random() * 5,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
+
+        {/* Subtle grid pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(37,99,235,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(37,99,235,0.02)_1px,transparent_1px)] bg-[size:80px_80px] opacity-50" />
+      </div>
+
+      <div className="container relative z-10">
         <div className="section-title">
           <h2>{t("title")}</h2>
           <p>{t("description")}</p>

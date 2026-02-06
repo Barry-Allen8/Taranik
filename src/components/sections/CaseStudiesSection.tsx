@@ -77,8 +77,75 @@ export default function CaseStudiesSection() {
   const locale = useLocale() as Locale;
 
   return (
-    <section className="section bg-gradient-to-b from-white to-gray-50 overflow-hidden">
-      <div className="container">
+    <section className="section bg-gradient-to-b from-white to-gray-50 overflow-hidden relative">
+      {/* Animated background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Animated gradient blobs */}
+        <motion.div
+          className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-primary/5 to-accent/5 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.4, 0.7, 0.4],
+          }}
+          transition={{
+            duration: 14,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-br from-secondary/5 to-primary/5 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.15, 1],
+            opacity: [0.4, 0.6, 0.4],
+          }}
+          transition={{
+            duration: 16,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 3,
+          }}
+        />
+
+        {/* Floating particles */}
+        {Array.from({ length: 12 }).map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full bg-primary/5"
+            style={{
+              width: `${Math.random() * 6 + 3}px`,
+              height: `${Math.random() * 6 + 3}px`,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -90, 0],
+              opacity: [0, 0.6, 0],
+            }}
+            transition={{
+              duration: Math.random() * 9 + 7,
+              repeat: Infinity,
+              delay: Math.random() * 4,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
+
+        {/* Subtle geometric pattern */}
+        <motion.div
+          className="absolute inset-0 bg-[radial-gradient(circle_at_2px_2px,rgba(37,99,235,0.03)_1px,transparent_0)] bg-[size:40px_40px] opacity-50"
+          animate={{
+            backgroundPosition: ['0px 0px', '40px 40px', '0px 0px'],
+          }}
+          transition={{
+            duration: 30,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
+      </div>
+
+      <div className="container relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -121,7 +188,7 @@ export default function CaseStudiesSection() {
                       className="object-cover group-hover:scale-110 transition-transform duration-700"
                     />
                     <div className={`absolute inset-0 bg-gradient-to-br ${study.color} opacity-0 group-hover:opacity-20 transition-opacity duration-500`} />
-                    
+
                     {/* Category badge */}
                     <div className="absolute top-4 left-4">
                       <span className="px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-medium text-foreground">
