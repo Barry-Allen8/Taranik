@@ -407,6 +407,61 @@ h3 {
 
 /* ===== BACKGROUND ANIMATIONS ===== */
 
+/* Ambient background for non-home pages */
+@keyframes ambientDriftA {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.22;
+  }
+  50% {
+    transform: translate3d(1.5%, -2.5%, 0) scale(1.04);
+    opacity: 0.3;
+  }
+}
+
+@keyframes ambientDriftB {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.18;
+  }
+  50% {
+    transform: translate3d(-2.5%, 1.5%, 0) scale(1.03);
+    opacity: 0.24;
+  }
+}
+
+.page-ambient-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.page-ambient-bg::before,
+.page-ambient-bg::after {
+  content: "";
+  position: absolute;
+  inset: -18%;
+  background-repeat: no-repeat;
+  filter: blur(46px);
+  will-change: transform, opacity;
+}
+
+.page-ambient-bg::before {
+  background-image:
+    radial-gradient(44% 42% at 14% 24%, rgba(37, 99, 235, 0.12) 0%, transparent 72%),
+    radial-gradient(38% 34% at 82% 76%, rgba(16, 185, 129, 0.08) 0%, transparent 74%);
+  animation: ambientDriftA 38s ease-in-out infinite;
+}
+
+.page-ambient-bg::after {
+  background-image:
+    radial-gradient(36% 32% at 76% 18%, rgba(139, 92, 246, 0.09) 0%, transparent 72%),
+    radial-gradient(32% 30% at 20% 86%, rgba(37, 99, 235, 0.08) 0%, transparent 74%);
+  animation: ambientDriftB 46s ease-in-out infinite;
+}
+
 /* Animated gradient background */
 @keyframes gradientShift {
   0%, 100% {
@@ -763,7 +818,9 @@ h3 {
 @media (prefers-reduced-motion: reduce) {
   .hero-code-line,
   .hero-chip-float,
-  .hero-scanline::after {
+  .hero-scanline::after,
+  .page-ambient-bg::before,
+  .page-ambient-bg::after {
     animation: none !important;
   }
 }

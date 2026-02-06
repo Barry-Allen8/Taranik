@@ -20,10 +20,13 @@ export default function Header() {
   const pathname = usePathname();
 
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
-  const [langOpen, setLangOpen] = useState(false);
+  const [mobileMenuOpenPath, setMobileMenuOpenPath] = useState<string | null>(null);
+  const [servicesOpenPath, setServicesOpenPath] = useState<string | null>(null);
+  const [langOpenPath, setLangOpenPath] = useState<string | null>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const isMobileMenuOpen = mobileMenuOpenPath === pathname;
+  const servicesOpen = servicesOpenPath === pathname;
+  const langOpen = langOpenPath === pathname;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,19 +36,13 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on route change
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
-    setServicesOpen(false);
-  }, [pathname]);
-
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (langOpen) {
         const target = e.target as HTMLElement;
         if (!target.closest('[data-lang-switcher]')) {
-          setLangOpen(false);
+          setLangOpenPath(null);
         }
       }
     };
@@ -123,8 +120,8 @@ export default function Header() {
           <nav className="hidden lg:flex items-center gap-8">
             <div
               className="relative group"
-              onMouseEnter={() => setServicesOpen(true)}
-              onMouseLeave={() => setServicesOpen(false)}
+              onMouseEnter={() => setServicesOpenPath(pathname)}
+              onMouseLeave={() => setServicesOpenPath(null)}
             >
               <button
                 className={cn(
@@ -198,7 +195,9 @@ export default function Header() {
             {/* Modern Language Switcher - Pill Style */}
             <div className="relative" data-lang-switcher>
               <button
-                onClick={() => setLangOpen(!langOpen)}
+                onClick={() => setLangOpenPath((currentPath) => (
+                  currentPath === pathname ? null : pathname
+                ))}
                 className={cn(
                   "flex items-center gap-1.5 px-4 py-2.5 rounded-full border-2 transition-all duration-200",
                   "text-sm font-semibold tracking-wide",
@@ -222,7 +221,7 @@ export default function Header() {
                         key={loc}
                         onClick={() => {
                           switchLocale(loc);
-                          setLangOpen(false);
+                          setLangOpenPath(null);
                         }}
                         className={cn(
                           "w-full px-4 py-2.5 text-sm font-medium transition-all duration-150 text-left",
@@ -243,7 +242,9 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             className="lg:hidden p-2 rounded-lg hover:bg-slate-800 text-slate-200 transition-colors"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            onClick={() => setMobileMenuOpenPath((currentPath) => (
+              currentPath === pathname ? null : pathname
+            ))}
             aria-label="Toggle menu"
           >
             <div className="relative w-6 h-6">
@@ -293,7 +294,9 @@ export default function Header() {
                   "w-full text-left flex items-center justify-between py-3 font-medium transition-colors text-slate-200",
                   isServicesActive ? "text-primary" : "hover:text-primary"
                 )}
-                onClick={() => setServicesOpen(!servicesOpen)}
+                onClick={() => setServicesOpenPath((currentPath) => (
+                  currentPath === pathname ? null : pathname
+                ))}
               >
                 {t("services")}
                 <ChevronDown
@@ -319,7 +322,7 @@ export default function Header() {
                           ? "text-primary bg-primary/10 font-medium"
                           : "text-slate-300 hover:text-primary hover:bg-slate-800"
                       )}
-                      onClick={() => setIsMobileMenuOpen(false)}
+                      onClick={() => setMobileMenuOpenPath(null)}
                     >
                       {service.name}
                     </Link>
@@ -336,7 +339,7 @@ export default function Header() {
                 "block py-3 font-medium border-b border-slate-800 transition-colors text-slate-200",
                 isActive("/portfolio") ? "text-primary" : "hover:text-primary"
               )}
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={() => setMobileMenuOpenPath(null)}
             >
               {t("portfolio")}
             </Link>
@@ -347,7 +350,7 @@ export default function Header() {
                 "block py-3 font-medium border-b border-slate-800 transition-colors text-slate-200",
                 isActive("/about") ? "text-primary" : "hover:text-primary"
               )}
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={() => setMobileMenuOpenPath(null)}
             >
               {t("about")}
             </Link>
@@ -358,13 +361,13 @@ export default function Header() {
                 "block py-3 font-medium border-b border-slate-800 transition-colors text-slate-200",
                 isActive("/contact") ? "text-primary" : "hover:text-primary"
               )}
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={() => setMobileMenuOpenPath(null)}
             >
               {t("contact")}
             </Link>
 
             <Button className="w-full mt-4" asChild>
-              <Link href="/contact" locale={locale} onClick={() => setIsMobileMenuOpen(false)}>
+              <Link href="/contact" locale={locale} onClick={() => setMobileMenuOpenPath(null)}>
                 {t("consultation")}
               </Link>
             </Button>
