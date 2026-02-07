@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 
 const partners = [
@@ -16,71 +15,26 @@ export default function TrustedBySection() {
   const t = useTranslations("trusted");
 
   return (
-    <section className="py-12 bg-slate-950 border-y border-slate-800">
+    <section className="border-y border-[#25213c] bg-[#0f0e1d] py-12">
       <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-8"
-        >
-          <p className="text-sm font-medium text-slate-400 uppercase tracking-wider">
-            {t("title")}
-          </p>
-        </motion.div>
+        <p className="mb-8 text-center text-xs font-extrabold uppercase tracking-[0.14em] text-[#9f98c9]">
+          {t("title")}
+        </p>
 
-        {/* Logo carousel */}
         <div className="relative overflow-hidden">
-          <div className="flex animate-scroll">
-            {/* First set */}
+          <div className="animate-scroll flex">
             {[...partners, ...partners].map((partner, index) => (
-              <motion.div
-                key={index}
-                className="flex-shrink-0 mx-8"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <div className="w-32 h-16 flex items-center justify-center rounded-lg bg-slate-900/70 border border-slate-800 hover:border-primary/30 hover:bg-primary/10 transition-all duration-300 group">
-                  <span className="text-2xl font-bold text-slate-500 group-hover:text-primary transition-colors">
-                    {partner.logo}
-                  </span>
+              <div key={`${partner.name}-${index}`} className="mx-4 flex-shrink-0">
+                <div className="flex h-14 w-28 items-center justify-center rounded-xl border border-[#2f2b48] bg-[#17152a] text-lg font-extrabold text-[#8d86b3] transition-colors hover:border-primary/40 hover:text-primary">
+                  {partner.logo}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
 
-          {/* Gradient overlays */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-slate-950 to-transparent pointer-events-none z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-slate-950 to-transparent pointer-events-none z-10" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#0f0e1d] to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#0f0e1d] to-transparent" />
         </div>
-
-        {/* Tech stack badges */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-wrap justify-center gap-3 mt-10"
-        >
-          {["Next.js", "React", "TypeScript", "Node.js", "Python", "PostgreSQL", "AWS", "OpenAI"].map(
-            (tech, index) => (
-              <motion.span
-                key={tech}
-                className="px-4 py-2 text-sm font-medium bg-slate-900/70 text-slate-300 rounded-full border border-slate-800 hover:border-primary/30 hover:bg-primary/10 hover:text-primary transition-all duration-300 cursor-default"
-                whileHover={{ scale: 1.05 }}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4 + index * 0.05 }}
-              >
-                {tech}
-              </motion.span>
-            )
-          )}
-        </motion.div>
       </div>
 
       <style jsx>{`
@@ -92,9 +46,11 @@ export default function TrustedBySection() {
             transform: translateX(-50%);
           }
         }
+
         .animate-scroll {
           animation: scroll 20s linear infinite;
         }
+
         .animate-scroll:hover {
           animation-play-state: paused;
         }

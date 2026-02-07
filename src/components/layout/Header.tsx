@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Code2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Button from "@/components/ui/Button";
 import { useTranslations, useLocale } from "next-intl";
@@ -24,30 +24,34 @@ export default function Header() {
   const [servicesOpenPath, setServicesOpenPath] = useState<string | null>(null);
   const [langOpenPath, setLangOpenPath] = useState<string | null>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
+
   const isMobileMenuOpen = mobileMenuOpenPath === pathname;
   const servicesOpen = servicesOpenPath === pathname;
   const langOpen = langOpenPath === pathname;
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 24);
     };
-    window.addEventListener("scroll", handleScroll);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (langOpen) {
-        const target = e.target as HTMLElement;
-        if (!target.closest('[data-lang-switcher]')) {
-          setLangOpenPath(null);
-        }
+    const handleClickOutside = (event: MouseEvent) => {
+      if (!langOpen) {
+        return;
+      }
+
+      const target = event.target as HTMLElement;
+      if (!target.closest('[data-lang-switcher]')) {
+        setLangOpenPath(null);
       }
     };
-    document.addEventListener('click', handleClickOutside);
-    return () => document.removeEventListener('click', handleClickOutside);
+
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
   }, [langOpen]);
 
   const services = [
@@ -56,7 +60,6 @@ export default function Header() {
     { name: tServices("mobile_apps"), href: "/services/mobile-apps" },
   ];
 
-  // Get path without locale
   const getPathWithoutLocale = () => {
     const segments = pathname.split("/");
     if (locales.includes(segments[1] as Locale)) {
@@ -68,7 +71,6 @@ export default function Header() {
   const router = useRouter();
   const pathWithoutLocale = getPathWithoutLocale();
 
-  // Check if link is active
   const isActive = (href: string) => {
     if (href === "/") {
       return pathWithoutLocale === "/" || pathWithoutLocale === "";
@@ -85,66 +87,50 @@ export default function Header() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        "fixed inset-x-0 top-0 z-50 border-b transition-all duration-300",
         isScrolled
-          ? "bg-slate-950/90 backdrop-blur-xl shadow-[0_14px_40px_rgba(2,6,23,0.45)] border-b border-slate-800/70 py-3"
-          : "bg-slate-950/70 backdrop-blur-md border-b border-slate-900/70 py-4"
+          ? "border-[#2d2a45] bg-[#121022]/90 py-3 shadow-[0_20px_45px_rgba(5,4,14,0.55)] backdrop-blur-xl"
+          : "border-[#201d35]/70 bg-[#121022]/75 py-4 backdrop-blur-md"
       )}
     >
       <div className="container">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" locale={locale} className="flex items-center gap-2">
-            <svg
-              viewBox="0 0 265 229"
-              className="h-9 w-auto"
-              aria-label="VektaDev Logo"
-            >
-              <defs>
-                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#2563eb" />
-                  <stop offset="50%" stopColor="#8b5cf6" />
-                  <stop offset="100%" stopColor="#10b981" />
-                </linearGradient>
-              </defs>
-              <g fill="url(#logoGradient)">
-                <polygon points="265 0 251 24 133 229 118 203 133 178 177 101 221 24 133 24 147 0 265 0" />
-                <polygon points="178 48 133 126 118 152 103 178 88 152 14 24 0 0 30 0 44 24 103 126 118 101 133 76 149 48 178 48" />
-                <polygon points="118 50 103 76 88 50 59 0 88 0 118 50" />
-              </g>
-            </svg>
-            <span className="text-xl font-bold gradient-text hidden sm:inline">VektaDev</span>
+        <div className="flex items-center justify-between gap-4">
+          <Link href="/" locale={locale} className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 text-primary">
+              <Code2 className="h-5 w-5" />
+            </div>
+            <span className="text-xl font-extrabold tracking-tight text-white">VektaDev</span>
           </Link>
 
-          {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
             <div
-              className="relative group"
+              className="relative"
               onMouseEnter={() => setServicesOpenPath(pathname)}
               onMouseLeave={() => setServicesOpenPath(null)}
             >
               <button
                 className={cn(
-                  "flex items-center gap-1 transition-colors font-medium text-slate-200",
-                  isServicesActive ? "text-primary" : "hover:text-primary"
+                  "inline-flex items-center gap-1 text-sm font-semibold transition-colors",
+                  isServicesActive ? "text-primary" : "text-[#e9e6ff] hover:text-primary"
                 )}
               >
                 {t("services")}
-                <ChevronDown className="w-4 h-4" />
+                <ChevronDown className="h-4 w-4" />
               </button>
-              {servicesOpen && (
-                <div className="absolute top-full left-0 pt-2">
-                  <div className="bg-slate-900/95 shadow-2xl rounded-lg overflow-hidden w-56 border border-slate-800">
+
+              {servicesOpen ? (
+                <div className="absolute left-0 top-full pt-3">
+                  <div className="w-56 overflow-hidden rounded-xl border border-[#2d2a45] bg-[#1a182e]/95 shadow-2xl backdrop-blur">
                     {services.map((service) => (
                       <Link
                         key={service.href}
                         href={service.href}
                         locale={locale}
                         className={cn(
-                          "block px-4 py-3 transition-colors",
+                          "block px-4 py-3 text-sm font-medium transition-colors",
                           isActive(service.href)
                             ? "bg-primary text-white"
-                            : "text-slate-200 hover:bg-primary hover:text-white"
+                            : "text-[#d3cefa] hover:bg-primary/20 hover:text-white"
                         )}
                       >
                         {service.name}
@@ -152,14 +138,15 @@ export default function Header() {
                     ))}
                   </div>
                 </div>
-              )}
+              ) : null}
             </div>
+
             <Link
               href="/portfolio"
               locale={locale}
               className={cn(
-                "transition-colors font-medium text-slate-200",
-                isActive("/portfolio") ? "text-primary" : "hover:text-primary"
+                "text-sm font-semibold transition-colors",
+                isActive("/portfolio") ? "text-primary" : "text-[#e9e6ff] hover:text-primary"
               )}
             >
               {t("portfolio")}
@@ -168,8 +155,8 @@ export default function Header() {
               href="/about"
               locale={locale}
               className={cn(
-                "transition-colors font-medium text-slate-200",
-                isActive("/about") ? "text-primary" : "hover:text-primary"
+                "text-sm font-semibold transition-colors",
+                isActive("/about") ? "text-primary" : "text-[#e9e6ff] hover:text-primary"
               )}
             >
               {t("about")}
@@ -178,108 +165,95 @@ export default function Header() {
               href="/contact"
               locale={locale}
               className={cn(
-                "transition-colors font-medium text-slate-200",
-                isActive("/contact") ? "text-primary" : "hover:text-primary"
+                "text-sm font-semibold transition-colors",
+                isActive("/contact") ? "text-primary" : "text-[#e9e6ff] hover:text-primary"
               )}
             >
               {t("contact")}
             </Link>
           </nav>
 
-          {/* Right side: CTA + Language */}
-          <div className="hidden lg:flex items-center gap-4">
-            <Button asChild className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 border-0">
+          <div className="hidden lg:flex items-center gap-3">
+            <Button asChild className="neon-glow h-10 px-5 text-sm">
               <Link href="/contact" locale={locale}>{t("consultation")}</Link>
             </Button>
 
-            {/* Modern Language Switcher - Pill Style */}
             <div className="relative" data-lang-switcher>
               <button
-                onClick={() => setLangOpenPath((currentPath) => (
-                  currentPath === pathname ? null : pathname
-                ))}
+                onClick={() => setLangOpenPath((current) => (current === pathname ? null : pathname))}
                 className={cn(
-                  "flex items-center gap-1.5 px-4 py-2.5 rounded-full border-2 transition-all duration-200",
-                  "text-sm font-semibold tracking-wide",
+                  "inline-flex items-center gap-1.5 rounded-full border px-4 py-2 text-xs font-bold tracking-wider transition-all",
                   langOpen
-                    ? "border-primary bg-primary/10 text-primary"
-                    : "border-slate-700 hover:border-primary/50 text-slate-300 hover:text-primary"
+                    ? "border-primary bg-primary/15 text-primary"
+                    : "border-[#3a3656] text-[#d3cefa] hover:border-primary/60 hover:text-primary"
                 )}
               >
                 {localeLabels[locale]}
-                <ChevronDown className={cn(
-                  "w-3.5 h-3.5 transition-transform duration-200",
-                  langOpen && "rotate-180"
-                )} />
+                <ChevronDown className={cn("h-3.5 w-3.5 transition-transform", langOpen && "rotate-180")} />
               </button>
 
-              {langOpen && (
-                <div className="absolute top-full right-0 mt-2 z-50">
-                  <div className="bg-slate-900 shadow-lg rounded-xl border border-slate-800 overflow-hidden min-w-[100px]">
-                    {locales.map((loc) => (
-                      <button
-                        key={loc}
-                        onClick={() => {
-                          switchLocale(loc);
-                          setLangOpenPath(null);
-                        }}
-                        className={cn(
-                          "w-full px-4 py-2.5 text-sm font-medium transition-all duration-150 text-left",
-                          locale === loc
-                            ? "bg-primary text-white"
-                            : "text-slate-200 hover:bg-slate-800 hover:text-primary"
-                        )}
-                      >
-                        {localeLabels[loc]}
-                      </button>
-                    ))}
-                  </div>
+              {langOpen ? (
+                <div className="absolute right-0 top-full z-50 mt-2 overflow-hidden rounded-xl border border-[#2d2a45] bg-[#1a182e] shadow-xl">
+                  {locales.map((loc) => (
+                    <button
+                      key={loc}
+                      onClick={() => {
+                        switchLocale(loc);
+                        setLangOpenPath(null);
+                      }}
+                      className={cn(
+                        "block w-full px-4 py-2.5 text-left text-sm font-semibold transition-colors",
+                        locale === loc
+                          ? "bg-primary text-white"
+                          : "text-[#d3cefa] hover:bg-primary/20 hover:text-white"
+                      )}
+                    >
+                      {localeLabels[loc]}
+                    </button>
+                  ))}
                 </div>
-              )}
+              ) : null}
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2 rounded-lg hover:bg-slate-800 text-slate-200 transition-colors"
-            onClick={() => setMobileMenuOpenPath((currentPath) => (
-              currentPath === pathname ? null : pathname
-            ))}
+            className="lg:hidden rounded-lg p-2 text-[#e9e6ff] hover:bg-[#1f1d35]"
+            onClick={() => setMobileMenuOpenPath((current) => (current === pathname ? null : pathname))}
             aria-label="Toggle menu"
           >
-            <div className="relative w-6 h-6">
-              <Menu className={cn(
-                "w-6 h-6 absolute inset-0 transition-all duration-300",
-                isMobileMenuOpen ? "opacity-0 rotate-90 scale-0" : "opacity-100 rotate-0 scale-100"
-              )} />
-              <X className={cn(
-                "w-6 h-6 absolute inset-0 transition-all duration-300",
-                isMobileMenuOpen ? "opacity-100 rotate-0 scale-100" : "opacity-0 -rotate-90 scale-0"
-              )} />
+            <div className="relative h-6 w-6">
+              <Menu
+                className={cn(
+                  "absolute inset-0 h-6 w-6 transition-all duration-300",
+                  isMobileMenuOpen ? "rotate-90 scale-0 opacity-0" : "rotate-0 scale-100 opacity-100"
+                )}
+              />
+              <X
+                className={cn(
+                  "absolute inset-0 h-6 w-6 transition-all duration-300",
+                  isMobileMenuOpen ? "rotate-0 scale-100 opacity-100" : "-rotate-90 scale-0 opacity-0"
+                )}
+              />
             </div>
           </button>
         </div>
 
-        {/* Mobile Menu - Accordion Style */}
         <div
           ref={mobileMenuRef}
           className={cn(
-            "lg:hidden overflow-hidden transition-all duration-500 ease-out",
-            isMobileMenuOpen ? "max-h-[800px] opacity-100 mt-4" : "max-h-0 opacity-0 mt-0"
+            "overflow-hidden transition-all duration-500 lg:hidden",
+            isMobileMenuOpen ? "mt-4 max-h-[720px] opacity-100" : "mt-0 max-h-0 opacity-0"
           )}
         >
-          <nav className="py-4 border-t border-slate-800">
-            {/* Language Switcher Mobile - Pill Style */}
-            <div className="flex gap-2 pb-4 mb-4 border-b border-slate-800">
+          <nav className="rounded-2xl border border-[#2d2a45] bg-[#181629] p-4">
+            <div className="mb-4 flex gap-2 border-b border-[#2d2a45] pb-4">
               {locales.map((loc) => (
                 <button
                   key={loc}
                   onClick={() => switchLocale(loc)}
                   className={cn(
-                    "px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200",
-                    locale === loc
-                      ? "bg-primary text-white shadow-md"
-                      : "bg-slate-800 text-slate-200 hover:bg-slate-700"
+                    "rounded-full px-4 py-2 text-xs font-bold tracking-wider transition-colors",
+                    locale === loc ? "bg-primary text-white" : "bg-[#242039] text-[#d3cefa]"
                   )}
                 >
                   {localeLabels[loc]}
@@ -287,40 +261,35 @@ export default function Header() {
               ))}
             </div>
 
-            {/* Services Accordion */}
-            <div className="border-b border-slate-800">
+            <div className="border-b border-[#2d2a45] pb-2">
               <button
                 className={cn(
-                  "w-full text-left flex items-center justify-between py-3 font-medium transition-colors text-slate-200",
-                  isServicesActive ? "text-primary" : "hover:text-primary"
+                  "flex w-full items-center justify-between py-3 text-left text-sm font-semibold",
+                  isServicesActive ? "text-primary" : "text-[#ece9ff]"
                 )}
-                onClick={() => setServicesOpenPath((currentPath) => (
-                  currentPath === pathname ? null : pathname
-                ))}
+                onClick={() => setServicesOpenPath((current) => (current === pathname ? null : pathname))}
               >
                 {t("services")}
-                <ChevronDown
-                  className={cn(
-                    "w-5 h-5 transition-transform duration-300",
-                    servicesOpen && "rotate-180"
-                  )}
-                />
+                <ChevronDown className={cn("h-4 w-4 transition-transform", servicesOpen && "rotate-180")} />
               </button>
-              <div className={cn(
-                "overflow-hidden transition-all duration-300 ease-out",
-                servicesOpen ? "max-h-[300px] opacity-100 pb-2" : "max-h-0 opacity-0"
-              )}>
-                <div className="pl-4 space-y-1">
+
+              <div
+                className={cn(
+                  "overflow-hidden transition-all duration-300",
+                  servicesOpen ? "max-h-[280px] opacity-100" : "max-h-0 opacity-0"
+                )}
+              >
+                <div className="space-y-1 pb-2 pl-2">
                   {services.map((service) => (
                     <Link
                       key={service.href}
                       href={service.href}
                       locale={locale}
                       className={cn(
-                        "block py-2.5 px-3 rounded-lg transition-all duration-200",
+                        "block rounded-lg px-3 py-2 text-sm transition-colors",
                         isActive(service.href)
-                          ? "text-primary bg-primary/10 font-medium"
-                          : "text-slate-300 hover:text-primary hover:bg-slate-800"
+                          ? "bg-primary/20 text-primary"
+                          : "text-[#d3cefa] hover:bg-[#232038]"
                       )}
                       onClick={() => setMobileMenuOpenPath(null)}
                     >
@@ -331,42 +300,30 @@ export default function Header() {
               </div>
             </div>
 
-            {/* Other Links */}
-            <Link
-              href="/portfolio"
-              locale={locale}
-              className={cn(
-                "block py-3 font-medium border-b border-slate-800 transition-colors text-slate-200",
-                isActive("/portfolio") ? "text-primary" : "hover:text-primary"
-              )}
-              onClick={() => setMobileMenuOpenPath(null)}
-            >
-              {t("portfolio")}
-            </Link>
-            <Link
-              href="/about"
-              locale={locale}
-              className={cn(
-                "block py-3 font-medium border-b border-slate-800 transition-colors text-slate-200",
-                isActive("/about") ? "text-primary" : "hover:text-primary"
-              )}
-              onClick={() => setMobileMenuOpenPath(null)}
-            >
-              {t("about")}
-            </Link>
-            <Link
-              href="/contact"
-              locale={locale}
-              className={cn(
-                "block py-3 font-medium border-b border-slate-800 transition-colors text-slate-200",
-                isActive("/contact") ? "text-primary" : "hover:text-primary"
-              )}
-              onClick={() => setMobileMenuOpenPath(null)}
-            >
-              {t("contact")}
-            </Link>
+            <div className="space-y-1 py-3">
+              {[
+                { href: "/portfolio", label: t("portfolio") },
+                { href: "/about", label: t("about") },
+                { href: "/contact", label: t("contact") },
+              ].map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  locale={locale}
+                  className={cn(
+                    "block rounded-lg px-3 py-2 text-sm font-semibold transition-colors",
+                    isActive(item.href)
+                      ? "bg-primary/20 text-primary"
+                      : "text-[#ece9ff] hover:bg-[#232038]"
+                  )}
+                  onClick={() => setMobileMenuOpenPath(null)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
 
-            <Button className="w-full mt-4 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg shadow-orange-500/25 border-0 py-4 text-base" asChild>
+            <Button className="mt-3 w-full" asChild>
               <Link href="/contact" locale={locale} onClick={() => setMobileMenuOpenPath(null)}>
                 {t("consultation")}
               </Link>

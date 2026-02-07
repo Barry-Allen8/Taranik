@@ -1,8 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
-import { ArrowUpRight, Globe, Bot, Cpu, TrendingUp } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { type Locale } from "@/i18n";
@@ -10,279 +9,103 @@ import { type Locale } from "@/i18n";
 const caseStudies = [
   {
     id: 1,
-    slug: "ecommerce-platform",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&crop=entropy&q=70&w=1200&h=750&fm=webp",
-    icon: Globe,
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&crop=entropy&q=70&w=1400&h=900&fm=webp",
     category: "E-commerce",
     titleKey: "case_1_title",
     descriptionKey: "case_1_desc",
-    results: [
-      { value: "+150%", labelKey: "case_1_result_1" },
-      { value: "2.5s", labelKey: "case_1_result_2" },
-    ],
-    technologies: ["Next.js", "Stripe", "PostgreSQL"],
-    color: "from-blue-500 to-cyan-500",
+    tags: ["SaaS", "Web App"],
+    className: "",
   },
   {
     id: 2,
-    slug: "ai-chatbot",
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&crop=entropy&q=70&w=1200&h=750&fm=webp",
-    icon: Bot,
-    category: "AI & Chatbots",
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&crop=entropy&q=70&w=1400&h=900&fm=webp",
+    category: "AI",
     titleKey: "case_2_title",
     descriptionKey: "case_2_desc",
-    results: [
-      { value: "70%", labelKey: "case_2_result_1" },
-      { value: "24/7", labelKey: "case_2_result_2" },
-    ],
-    technologies: ["Python", "OpenAI", "Telegram API"],
-    color: "from-violet-500 to-purple-500",
+    tags: ["Chatbot", "Automation"],
+    className: "",
   },
   {
     id: 3,
-    slug: "business-automation",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&crop=entropy&q=70&w=1200&h=750&fm=webp",
-    icon: Cpu,
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&crop=entropy&q=70&w=1800&h=900&fm=webp",
     category: "Automation",
     titleKey: "case_3_title",
     descriptionKey: "case_3_desc",
-    results: [
-      { value: "85%", labelKey: "case_3_result_1" },
-      { value: "3x", labelKey: "case_3_result_2" },
-    ],
-    technologies: ["Node.js", "React", "MongoDB"],
-    color: "from-emerald-500 to-teal-500",
+    tags: ["Dashboard", "Enterprise"],
+    className: "md:col-span-2",
   },
-];
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.2 },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
-  },
-};
-
-const floatingParticles = [
-  { size: 4, left: "7%", top: "18%", duration: 10, delay: 0.2 },
-  { size: 5, left: "14%", top: "64%", duration: 12, delay: 1.1 },
-  { size: 6, left: "23%", top: "32%", duration: 9, delay: 2.2 },
-  { size: 4, left: "31%", top: "80%", duration: 11, delay: 1.9 },
-  { size: 5, left: "40%", top: "48%", duration: 13, delay: 0.7 },
-  { size: 6, left: "49%", top: "22%", duration: 10, delay: 1.5 },
-  { size: 4, left: "58%", top: "70%", duration: 12.5, delay: 2.8 },
-  { size: 5, left: "67%", top: "39%", duration: 9.5, delay: 0.9 },
-  { size: 6, left: "75%", top: "55%", duration: 11.5, delay: 2.1 },
-  { size: 4, left: "84%", top: "26%", duration: 10.5, delay: 1.3 },
-  { size: 5, left: "92%", top: "68%", duration: 12.8, delay: 2.5 },
-  { size: 6, left: "97%", top: "44%", duration: 9.8, delay: 0.5 },
-];
+] as const;
 
 export default function CaseStudiesSection() {
   const t = useTranslations("cases");
   const locale = useLocale() as Locale;
 
   return (
-    <section className="section bg-gradient-to-b from-slate-900 to-slate-950 overflow-hidden relative">
-      {/* Animated background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Animated gradient blobs */}
-        <motion.div
-          className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-primary/12 to-accent/10 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.4, 0.7, 0.4],
-          }}
-          transition={{
-            duration: 14,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-br from-secondary/12 to-primary/10 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.15, 1],
-            opacity: [0.4, 0.6, 0.4],
-          }}
-          transition={{
-            duration: 16,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 3,
-          }}
-        />
-
-        {/* Floating particles */}
-        {floatingParticles.map((particle, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full bg-primary/20"
-            style={{
-              width: `${particle.size}px`,
-              height: `${particle.size}px`,
-              left: particle.left,
-              top: particle.top,
-            }}
-            animate={{
-              y: [0, -90, 0],
-              opacity: [0, 0.6, 0],
-            }}
-            transition={{
-              duration: particle.duration,
-              repeat: Infinity,
-              delay: particle.delay,
-              ease: "easeInOut",
-            }}
-          />
-        ))}
-
-        {/* Subtle geometric pattern */}
-        <motion.div
-          className="absolute inset-0 bg-[radial-gradient(circle_at_2px_2px,rgba(148,163,184,0.12)_1px,transparent_0)] bg-[size:40px_40px] opacity-35"
-          animate={{
-            backgroundPosition: ['0px 0px', '40px 40px', '0px 0px'],
-          }}
-          transition={{
-            duration: 30,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        />
-      </div>
+    <section className="section relative overflow-hidden bg-[#121022]">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_90%_8%,rgba(82,57,243,0.18),transparent_40%)]" />
 
       <div className="container relative z-10">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="section-title"
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/5 rounded-full mb-4">
-            <TrendingUp className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-primary">{t("badge")}</span>
-          </div>
-          <h2 className="text-slate-100">{t("title")}</h2>
-          <p className="text-slate-300">{t("description")}</p>
-        </motion.div>
+        <div className="mb-12">
+          <span className="mb-2 block text-xs font-extrabold uppercase tracking-[0.15em] text-primary">{t("badge")}</span>
+          <h2 className="text-4xl font-extrabold tracking-tight text-white md:text-5xl">{t("title")}</h2>
+          <p className="mt-4 max-w-2xl text-lg text-[#bcb5df]">{t("description")}</p>
+        </div>
 
-        {/* Case Studies Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {caseStudies.map((study) => {
-            const Icon = study.icon;
-            return (
-              <motion.div
-                key={study.id}
-                variants={itemVariants}
-                className="group"
-              >
-                <div className="bg-slate-900/75 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 h-full flex flex-col border border-slate-800 hover:border-slate-700">
-                  {/* Image */}
-                  <div className="relative h-48 overflow-hidden">
-                    <Image
-                      src={study.image}
-                      alt={t(study.titleKey)}
-                      fill
-                      sizes="(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 100vw"
-                      className="object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                    <div className={`absolute inset-0 bg-gradient-to-br ${study.color} opacity-0 group-hover:opacity-20 transition-opacity duration-500`} />
+        <div className="grid grid-cols-1 gap-7 md:grid-cols-2">
+          {caseStudies.map((study) => (
+            <article
+              key={study.id}
+              className={`group relative overflow-hidden rounded-2xl border border-[#2f2a48] ${study.className}`}
+            >
+              <div className="relative aspect-video">
+                <Image
+                  src={study.image}
+                  alt={t(study.titleKey)}
+                  fill
+                  sizes="(min-width: 1024px) 45vw, 100vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0f0d1d]/95 via-[#0f0d1d]/55 to-transparent" />
+              </div>
 
-                    {/* Category badge */}
-                    <div className="absolute top-4 left-4">
-                      <span className="px-3 py-1 bg-slate-950/85 border border-slate-700/80 backdrop-blur-sm rounded-full text-xs font-medium text-slate-100">
-                        {study.category}
-                      </span>
-                    </div>
-
-                    {/* Icon */}
-                    <div className={`absolute bottom-4 right-4 w-12 h-12 bg-gradient-to-br ${study.color} rounded-xl flex items-center justify-center shadow-lg transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
-                      <Icon className="w-6 h-6 text-white" />
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-6 flex-1 flex flex-col">
-                    <h3 className="text-xl font-bold mb-2 text-slate-100 group-hover:text-primary transition-colors">
-                      {t(study.titleKey)}
-                    </h3>
-                    <p className="text-slate-300 text-sm mb-4 flex-1">
-                      {t(study.descriptionKey)}
-                    </p>
-
-                    {/* Results */}
-                    <div className="grid grid-cols-2 gap-4 mb-4 p-4 bg-slate-800/70 rounded-xl border border-slate-700/70">
-                      {study.results.map((result, idx) => (
-                        <div key={idx} className="text-center">
-                          <div className={`text-2xl font-bold bg-gradient-to-r ${study.color} bg-clip-text text-transparent`}>
-                            {result.value}
-                          </div>
-                          <div className="text-xs text-slate-300">{t(result.labelKey)}</div>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Technologies */}
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {study.technologies.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-2 py-1 bg-slate-800 border border-slate-700 text-xs font-medium text-slate-300 rounded"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Link to portfolio */}
-                    <Link
-                      href="/portfolio"
-                      locale={locale}
-                      className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all group/link"
-                    >
-                      {t("view_case")}
-                      <ArrowUpRight className="w-4 h-4 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
-                    </Link>
-                  </div>
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <div className="mb-3 flex flex-wrap gap-2">
+                  <span className="rounded-full border border-primary/35 bg-primary/20 px-3 py-1 text-xs font-bold text-white">
+                    {study.category}
+                  </span>
+                  {study.tags.map((tag) => (
+                    <span key={tag} className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-bold text-white">
+                      {tag}
+                    </span>
+                  ))}
                 </div>
-              </motion.div>
-            );
-          })}
-        </motion.div>
 
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-          className="text-center mt-12"
-        >
+                <h3 className="mb-2 text-2xl font-extrabold text-white">{t(study.titleKey)}</h3>
+                <p className="mb-4 max-w-2xl text-sm text-[#dbd6ff]">{t(study.descriptionKey)}</p>
+
+                <Link
+                  href="/portfolio"
+                  locale={locale}
+                  className="inline-flex items-center gap-2 text-sm font-bold text-primary transition-all group-hover:gap-3"
+                >
+                  {t("view_case")}
+                  <ArrowUpRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-12 text-center">
           <Link
             href="/portfolio"
             locale={locale}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-primary/10 hover:bg-primary/20 text-primary font-medium rounded-full transition-all duration-300 group border border-primary/20"
+            className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-6 py-3 text-sm font-bold text-primary transition-colors hover:bg-primary/20"
           >
             {t("view_all")}
-            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            <ArrowUpRight className="h-4 w-4" />
           </Link>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

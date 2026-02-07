@@ -10,20 +10,20 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: "#2563eb",
-          dark: "#1d4ed8",
+          DEFAULT: "#5239f3",
+          dark: "#432ccf",
         },
-        secondary: "#10b981",
-        accent: "#8b5cf6",
-        background: "#0b1120",
-        foreground: "#f8fafc",
-        muted: "#94a3b8",
-        card: "#111827",
-        border: "#1e293b",
+        secondary: "#7c66ff",
+        accent: "#9d8cff",
+        background: "#121022",
+        foreground: "#ffffff",
+        muted: "#a7a1cb",
+        card: "#1a182e",
+        border: "#2d2a45",
       },
       fontFamily: {
-        heading: ["ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif"],
-        body: ["ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif"],
+        heading: ["Manrope", "ui-sans-serif", "system-ui", "sans-serif"],
+        body: ["Manrope", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       boxShadow: {
         sm: "0 1px 2px rgba(0,0,0,0.05)",

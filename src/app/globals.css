@@ -1,19 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --primary: #2563eb;
-  --primary-dark: #1d4ed8;
-  --secondary: #10b981;
-  --accent: #8b5cf6;
-  --background: #0b1120;
-  --foreground: #f8fafc;
-  --muted: #94a3b8;
-  --card-bg: #111827;
-  --border: #1e293b;
+  --primary: #5239f3;
+  --primary-dark: #432ccf;
+  --secondary: #7c66ff;
+  --accent: #9d8cff;
+  --background: #121022;
+  --foreground: #ffffff;
+  --muted: #a7a1cb;
+  --card-bg: #1a182e;
+  --border: #2d2a45;
   color-scheme: dark;
 }
 
@@ -28,9 +28,12 @@ html {
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Manrope', sans-serif;
   color: var(--foreground);
-  background-color: var(--background);
+  background:
+    radial-gradient(circle at 15% 20%, rgba(82, 57, 243, 0.2), transparent 38%),
+    radial-gradient(circle at 80% 0%, rgba(124, 102, 255, 0.16), transparent 38%),
+    var(--background);
   line-height: 1.6;
 }
 
@@ -40,9 +43,10 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
   line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 h1 {
@@ -55,6 +59,17 @@ h2 {
 
 h3 {
   font-size: clamp(1.5rem, 3vw, 1.875rem);
+}
+
+.bg-grid {
+  background-size: 38px 38px;
+  background-image:
+    linear-gradient(to right, rgba(124, 102, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(124, 102, 255, 0.1) 1px, transparent 1px);
+}
+
+.neon-glow {
+  box-shadow: 0 0 24px rgba(82, 57, 243, 0.4);
 }
 
 /* ===== HEXAGON GRID PATTERN ===== */
@@ -233,11 +248,11 @@ h3 {
 
   0%,
   100% {
-    box-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
+    box-shadow: 0 0 20px rgba(82, 57, 243, 0.32);
   }
 
   50% {
-    box-shadow: 0 0 40px rgba(37, 99, 235, 0.6);
+    box-shadow: 0 0 40px rgba(82, 57, 243, 0.6);
   }
 }
 
@@ -395,23 +410,23 @@ h3 {
   }
 
   .btn {
-    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300 inline-flex items-center justify-center gap-2;
+    @apply px-6 py-3 rounded-xl font-bold transition-all duration-300 inline-flex items-center justify-center gap-2;
   }
 
   .btn-primary {
-    @apply bg-primary text-white hover:bg-primary-dark hover:shadow-lg transform hover:-translate-y-0.5;
+    @apply bg-primary text-white hover:bg-primary-dark hover:shadow-lg hover:shadow-primary/40 transform hover:-translate-y-0.5;
   }
 
   .btn-secondary {
-    @apply bg-secondary text-white hover:bg-green-600 hover:shadow-lg transform hover:-translate-y-0.5;
+    @apply bg-secondary text-white hover:bg-indigo-400 hover:shadow-lg transform hover:-translate-y-0.5;
   }
 
   .btn-outline {
-    @apply border-2 border-primary text-primary hover:bg-primary hover:text-white;
+    @apply border border-border text-slate-100 hover:bg-card hover:border-primary/50;
   }
 
   .card {
-    @apply bg-card border border-border/60 rounded-xl p-6 shadow-md hover:shadow-xl transition-shadow duration-300;
+    @apply bg-card/85 border border-border rounded-2xl p-6 shadow-sm hover:shadow-xl hover:shadow-primary/10 transition-shadow duration-300;
   }
 
   .gradient-text {
@@ -423,7 +438,7 @@ h3 {
   }
 
   .section-title h2 {
-    @apply mb-4;
+    @apply mb-4 text-slate-100;
   }
 
   .section-title p {

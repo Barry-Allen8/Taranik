@@ -8,7 +8,7 @@ function renderStars(rating: number) {
     return (
       <Star
         key={index}
-        className={`w-4 h-4 ${active ? "text-amber-400 fill-amber-400" : "text-slate-600"}`}
+        className={`h-4 w-4 ${active ? "fill-amber-400 text-amber-400" : "text-[#4a4568]"}`}
       />
     );
   });
@@ -25,47 +25,49 @@ export default async function LatestReviewsSection({
   ]);
 
   return (
-    <section className="section bg-gradient-to-b from-slate-950 to-slate-900" aria-labelledby="latest-reviews-title">
+    <section className="section bg-[#0f0e1d]" aria-labelledby="latest-reviews-title">
       <div className="container">
         <div className="section-title">
-          <h2 id="latest-reviews-title" className="text-slate-100">{t("title")}</h2>
-          <p className="text-slate-300">{t("description")}</p>
+          <h2 id="latest-reviews-title">{t("title")}</h2>
+          <p className="text-[#bcb5df]">{t("description")}</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {reviews.map((review, index) => (
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          {reviews.map((review) => (
             <article
               key={review.id}
-              className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6 shadow-sm animate-fade-in-up hover:-translate-y-1 hover:border-slate-700 transition-all duration-300"
-              style={{ animationDelay: `${index * 120}ms` }}
+              className="rounded-2xl border border-[#2f2b48] bg-[#17152a]/95 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/45"
               itemScope
               itemType="https://schema.org/Review"
             >
-              <div className="flex items-center justify-between gap-2 mb-3">
-                <p className="font-semibold" itemProp="author">
+              <div className="mb-3 flex items-center justify-between gap-2">
+                <p className="font-semibold text-white" itemProp="author">
                   {review.author}
                 </p>
                 <div className="flex items-center gap-1" aria-label={`${review.rating} out of 5`}>
                   {renderStars(review.rating)}
                 </div>
               </div>
-              <p className="text-slate-300 text-sm leading-relaxed mb-4" itemProp="reviewBody">
+
+              <p className="mb-4 text-sm leading-relaxed text-[#c2bce4]" itemProp="reviewBody">
                 {review.text}
               </p>
-              <div className="flex items-center justify-between text-xs text-slate-400">
+
+              <div className="flex items-center justify-between text-xs text-[#9790be]">
                 <span>{review.source}</span>
                 <time dateTime={review.date}>{new Date(review.date).toLocaleDateString(locale)}</time>
               </div>
-              {review.profileUrl && (
+
+              {review.profileUrl ? (
                 <a
                   href={review.profileUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block mt-4 text-sm text-primary hover:underline"
+                  className="mt-4 inline-block text-sm font-bold text-primary hover:underline"
                 >
                   {t("view_source")}
                 </a>
-              )}
+              ) : null}
             </article>
           ))}
         </div>

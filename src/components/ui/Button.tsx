@@ -15,7 +15,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         "btn-primary": variant === "primary",
         "btn-secondary": variant === "secondary",
         "btn-outline": variant === "outline",
-        "bg-transparent hover:bg-slate-800/70": variant === "ghost",
+        "bg-transparent hover:bg-[#232038] text-white": variant === "ghost",
         "px-4 py-2 text-sm": size === "sm",
         "px-6 py-3": size === "md",
         "px-8 py-4 text-lg": size === "lg",

@@ -1,9 +1,8 @@
 "use client";
 
 import { Link } from "@/i18n/navigation";
-import { Facebook, Instagram, Linkedin, Github, Mail, MapPin, Phone, ArrowRight, Send, Check } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Github, Mail, MapPin, Phone, ArrowRight, Send, Check, Code2 } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
-import { motion } from "framer-motion";
 import { type Locale } from "@/i18n";
 import { useState } from "react";
 
@@ -23,108 +22,60 @@ export default function Footer() {
     if (!email || isLoading) return;
 
     setIsLoading(true);
-
-    // Simulate API call - replace with actual newsletter API
-    await new Promise(resolve => setTimeout(resolve, 800));
-
+    await new Promise((resolve) => setTimeout(resolve, 800));
     setIsSubmitted(true);
     setEmail("");
     setIsLoading(false);
-
-    // Reset success state after 5 seconds
     setTimeout(() => setIsSubmitted(false), 5000);
   };
 
   return (
-    <footer className="bg-gradient-to-b from-slate-900 to-slate-950 text-white relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
-      </div>
-
-      <div className="container py-16 relative z-10">
-        {/* Top CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="bg-gradient-to-r from-primary/20 to-accent/20 rounded-2xl p-8 md:p-12 mb-16 backdrop-blur-sm border border-white/10"
-        >
-          <div className="grid md:grid-cols-2 gap-8 items-center">
+    <footer className="border-t border-[#25213c] bg-[#0b0a16] pt-16 pb-8">
+      <div className="container">
+        <div className="mb-14 rounded-2xl border border-[#2f2b48] bg-primary/10 p-8 md:p-10">
+          <div className="grid items-center gap-6 md:grid-cols-2">
             <div>
-              <h3 className="text-2xl md:text-3xl font-bold mb-4">{t("newsletter_title")}</h3>
-              <p className="text-gray-300">{t("newsletter_desc")}</p>
+              <h3 className="mb-3 text-2xl font-extrabold text-white md:text-3xl">{t("newsletter_title")}</h3>
+              <p className="text-[#c4bde7]">{t("newsletter_desc")}</p>
             </div>
+
             <form onSubmit={handleNewsletterSubmit}>
               <div className="flex gap-3">
-                <div className="flex-1 relative">
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder={t("newsletter_placeholder")}
-                    required
-                    className="w-full px-5 py-4 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
-                  />
-                </div>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder={t("newsletter_placeholder")}
+                  required
+                  className="w-full rounded-xl border border-[#403a63] bg-[#17152a] px-4 py-3 text-white placeholder:text-[#9a93bf] focus:border-primary focus:outline-none"
+                />
                 <button
                   type="submit"
                   disabled={isLoading || isSubmitted}
-                  className={`px-6 py-4 rounded-xl font-semibold flex items-center gap-2 transition-all duration-300 ${isSubmitted
-                      ? "bg-green-500 text-white"
-                      : "bg-gradient-to-r from-primary to-accent hover:shadow-lg hover:shadow-primary/25 text-white"
-                    } ${isLoading ? "opacity-70 cursor-wait" : ""}`}
+                  className={`inline-flex items-center gap-2 rounded-xl px-4 py-3 font-bold text-white transition-colors ${
+                    isSubmitted ? "bg-emerald-500" : "bg-primary hover:bg-primary-dark"
+                  } ${isLoading ? "cursor-wait opacity-80" : ""}`}
                 >
-                  {isSubmitted ? (
-                    <Check className="w-5 h-5" />
-                  ) : (
-                    <Send className={`w-5 h-5 ${isLoading ? "animate-pulse" : ""}`} />
-                  )}
+                  {isSubmitted ? <Check className="h-5 w-5" /> : <Send className="h-5 w-5" />}
                   <span className="hidden sm:inline">
                     {isSubmitted ? t("newsletter_success") : t("newsletter_button")}
                   </span>
                 </button>
               </div>
-              {isSubmitted && (
-                <p className="text-sm text-green-400 mt-3">{t("newsletter_success_message")}</p>
-              )}
+              {isSubmitted ? <p className="mt-3 text-sm text-emerald-400">{t("newsletter_success_message")}</p> : null}
             </form>
           </div>
-        </motion.div>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Company Info */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-          >
-            <Link href="/" locale={locale} className="flex items-center gap-2 mb-4">
-              <svg
-                viewBox="0 0 265 229"
-                className="h-9 w-auto"
-                aria-label="VektaDev Logo"
-              >
-                <defs>
-                  <linearGradient id="footerLogoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#2563eb" />
-                    <stop offset="50%" stopColor="#8b5cf6" />
-                    <stop offset="100%" stopColor="#10b981" />
-                  </linearGradient>
-                </defs>
-                <g fill="url(#footerLogoGradient)">
-                  <polygon points="265 0 251 24 133 229 118 203 133 178 177 101 221 24 133 24 147 0 265 0" />
-                  <polygon points="178 48 133 126 118 152 103 178 88 152 14 24 0 0 30 0 44 24 103 126 118 101 133 76 149 48 178 48" />
-                  <polygon points="118 50 103 76 88 50 59 0 88 0 118 50" />
-                </g>
-              </svg>
-              <span className="text-xl font-bold gradient-text">VektaDev</span>
+        <div className="mb-12 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <Link href="/" locale={locale} className="mb-4 inline-flex items-center gap-3 text-white">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 text-primary">
+                <Code2 className="h-5 w-5" />
+              </div>
+              <span className="text-xl font-extrabold">VektaDev</span>
             </Link>
-            <p className="text-gray-400 mb-6 leading-relaxed">
-              {t("description")}
-            </p>
+            <p className="mb-5 text-sm leading-relaxed text-[#a59fc9]">{t("description")}</p>
             <div className="flex gap-3">
               {[
                 { icon: Facebook, href: "https://facebook.com/vektadev", label: "Facebook" },
@@ -132,154 +83,95 @@ export default function Footer() {
                 { icon: Linkedin, href: "https://linkedin.com/company/vektadev", label: "LinkedIn" },
                 { icon: Github, href: "https://github.com/vektadev", label: "GitHub" },
               ].map((social) => (
-                <motion.a
+                <a
                   key={social.label}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-lg bg-white/5 hover:bg-primary flex items-center justify-center transition-all duration-300 border border-white/10 hover:border-primary"
-                  whileHover={{ y: -3 }}
+                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#2f2b48] bg-[#17152a] text-[#c7c1e8] transition-colors hover:border-primary/50 hover:text-primary"
                   aria-label={social.label}
                 >
-                  <social.icon className="w-5 h-5" />
-                </motion.a>
+                  <social.icon className="h-5 w-5" />
+                </a>
               ))}
             </div>
-          </motion.div>
+          </div>
 
-          {/* Services */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-          >
-            <h4 className="font-semibold text-lg mb-6 flex items-center gap-2">
-              <span className="w-2 h-2 bg-primary rounded-full" />
-              {t("services_title")}
-            </h4>
-            <ul className="space-y-3">
+          <div>
+            <h4 className="mb-4 text-sm font-extrabold uppercase tracking-[0.12em] text-white">{t("services_title")}</h4>
+            <ul className="space-y-2 text-sm text-[#a59fc9]">
               {[
                 { href: "/services/websites", key: "websites" },
                 { href: "/services/chatbots", key: "chatbots" },
                 { href: "/services/mobile-apps", key: "mobile_apps" },
               ].map((item) => (
                 <li key={item.key}>
-                  <Link
-                    href={item.href}
-                    locale={locale}
-                    className="text-gray-400 hover:text-white flex items-center gap-2 group transition-colors"
-                  >
-                    <ArrowRight className="w-4 h-4 opacity-0 -ml-6 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />
+                  <Link href={item.href} locale={locale} className="inline-flex items-center gap-2 transition-colors hover:text-primary">
+                    <ArrowRight className="h-3.5 w-3.5" />
                     {tServices(item.key)}
                   </Link>
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
 
-          {/* Company */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-          >
-            <h4 className="font-semibold text-lg mb-6 flex items-center gap-2">
-              <span className="w-2 h-2 bg-accent rounded-full" />
-              {t("company_title")}
-            </h4>
-            <ul className="space-y-3">
+          <div>
+            <h4 className="mb-4 text-sm font-extrabold uppercase tracking-[0.12em] text-white">{t("company_title")}</h4>
+            <ul className="space-y-2 text-sm text-[#a59fc9]">
               {[
                 { href: "/about", key: "about" },
                 { href: "/portfolio", key: "portfolio" },
                 { href: "/contact", key: "contact" },
               ].map((item) => (
                 <li key={item.key}>
-                  <Link
-                    href={item.href}
-                    locale={locale}
-                    className="text-gray-400 hover:text-white flex items-center gap-2 group transition-colors"
-                  >
-                    <ArrowRight className="w-4 h-4 opacity-0 -ml-6 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />
+                  <Link href={item.href} locale={locale} className="inline-flex items-center gap-2 transition-colors hover:text-primary">
+                    <ArrowRight className="h-3.5 w-3.5" />
                     {tNav(item.key)}
                   </Link>
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
 
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-          >
-            <h4 className="font-semibold text-lg mb-6 flex items-center gap-2">
-              <span className="w-2 h-2 bg-secondary rounded-full" />
-              {t("contact_title")}
-            </h4>
-            <ul className="space-y-4">
+          <div>
+            <h4 className="mb-4 text-sm font-extrabold uppercase tracking-[0.12em] text-white">{t("contact_title")}</h4>
+            <ul className="space-y-3 text-sm text-[#a59fc9]">
               <li>
                 <a
                   href="https://maps.google.com/?q=ul.+Michała+Kajki+10-12,+10-547+Olsztyn,+Poland"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-start gap-3 text-gray-400 hover:text-white transition-colors group"
+                  className="flex items-start gap-3"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-white/5 group-hover:bg-primary/20 flex items-center justify-center flex-shrink-0 transition-colors">
-                    <MapPin className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="text-white font-medium">{t("address")}</p>
-                    <p className="text-sm">{t("working_hours")}</p>
-                  </div>
+                  <MapPin className="mt-0.5 h-4 w-4 text-primary" />
+                  <span>{t("address")}</span>
                 </a>
               </li>
               <li>
-                <a
-                  href="tel:+48537890776"
-                  className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group"
-                >
-                  <div className="w-10 h-10 rounded-lg bg-white/5 group-hover:bg-primary/20 flex items-center justify-center flex-shrink-0 transition-colors">
-                    <Phone className="w-5 h-5" />
-                  </div>
-                  <div className="text-white font-medium">
-                    <div>+48 537 890 776</div>
-                    <div>+48 733 264 543</div>
-                  </div>
+                <a href="tel:+48537890776" className="flex items-center gap-3">
+                  <Phone className="h-4 w-4 text-primary" />
+                  <span>+48 537 890 776</span>
                 </a>
               </li>
               <li>
-                <a
-                  href="mailto:hello@vektadev.com"
-                  className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group"
-                >
-                  <div className="w-10 h-10 rounded-lg bg-white/5 group-hover:bg-primary/20 flex items-center justify-center flex-shrink-0 transition-colors">
-                    <Mail className="w-5 h-5" />
-                  </div>
-                  <span className="text-white font-medium">hello@vektadev.com</span>
+                <a href="mailto:hello@vektadev.com" className="flex items-center gap-3">
+                  <Mail className="h-4 w-4 text-primary" />
+                  <span>hello@vektadev.com</span>
                 </a>
               </li>
             </ul>
-          </motion.div>
+          </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="border-t border-white/10 mt-12 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-500 text-sm">
-              © {currentYear} VektaDev. {t("rights")}
-            </p>
-            <div className="flex flex-wrap justify-center gap-6 text-sm">
-              <Link href="/privacy" locale={locale} className="text-gray-500 hover:text-white transition-colors">
-                {t("privacy")}
-              </Link>
-              <Link href="/terms" locale={locale} className="text-gray-500 hover:text-white transition-colors">
-                {t("terms")}
-              </Link>
-            </div>
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-[#25213c] pt-6 text-sm md:flex-row">
+          <p className="text-[#8f88b5]">© {currentYear} VektaDev. {t("rights")}</p>
+          <div className="flex gap-6 text-[#8f88b5]">
+            <Link href="/privacy" locale={locale} className="transition-colors hover:text-primary">
+              {t("privacy")}
+            </Link>
+            <Link href="/terms" locale={locale} className="transition-colors hover:text-primary">
+              {t("terms")}
+            </Link>
           </div>
         </div>
       </div>
