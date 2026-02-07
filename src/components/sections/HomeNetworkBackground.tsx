@@ -35,8 +35,8 @@ const BLOBS: AuroraBlob[] = [
   { xFactor: 0.3, yFactor: 0.76, radius: 460, speed: 0.11, phase: 2.8, color: "lime" },
 ];
 
-const GRID_SIZE = 40;
-const GRID_MAX_SHIFT = 14;
+const GRID_SIZE = 80;
+const GRID_MAX_SHIFT = 24;
 const ECHO_INTERVAL_MS = 85;
 const ECHO_MAX_COUNT = 9;
 const ECHO_MIN_DURATION = 620;
