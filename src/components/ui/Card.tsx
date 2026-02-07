@@ -10,7 +10,7 @@ export default function Card({ className, hover = true, children, ...props }: Ca
     <div
       className={cn(
         "card",
-        hover && "hover:transform hover:-translate-y-1 transition-transform",
+        hover && "hover:-translate-y-1.5 hover:border-primary/50 hover:shadow-[0_24px_52px_rgba(2,6,23,0.52)]",
         className
       )}
       {...props}

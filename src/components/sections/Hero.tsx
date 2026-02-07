@@ -5,94 +5,76 @@ import Button from "@/components/ui/Button";
 import { Link } from "@/i18n/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { type Locale } from "@/i18n";
+import { ArrowRight } from "lucide-react";
 
 export default function Hero() {
   const t = useTranslations("hero");
   const locale = useLocale() as Locale;
 
   return (
-    <header className="relative flex min-h-screen items-center overflow-hidden pb-16 pt-24">
-      <div className="absolute inset-0 bg-grid" />
-      <div className="scanline-overlay" />
-
-      <div className="pointer-events-none absolute left-8 top-24 hidden data-overlay lg:block">
-        SYS.STATUS: ACTIVE
-        <br />
-        UPLINK: STABLE
-        <br />
-        ENCRYPTION: AES-256
-        <br />
-        LATENCY: 14MS
-      </div>
-
-      <div className="pointer-events-none absolute bottom-20 right-8 hidden text-right data-overlay lg:block">
-        LOCATION: 37.7749 N
-        <br />
-        THREAT_LEVEL: NULL
-        <br />
-        LOAD_CORE: 42%
-      </div>
+    <header className="relative overflow-hidden pb-24 pt-32 md:pb-28 md:pt-36">
+      <div className="absolute inset-0 bg-grid opacity-25" />
+      <div className="pointer-events-none absolute left-1/2 top-[-22%] h-[640px] w-[640px] -translate-x-1/2 rounded-full bg-primary/10 blur-[120px]" />
 
       <div className="container relative z-10">
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+        <div className="grid items-center gap-14 lg:grid-cols-2">
           <div className="text-center lg:text-left">
-            <div className="mb-8 inline-flex items-center gap-2 border border-primary px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.22em] text-primary">
-              <span className="h-1.5 w-1.5 bg-primary shadow-[0_0_8px_#39ff14]" />
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-semibold text-primary">
+              <span className="h-2 w-2 rounded-full bg-primary" />
               {t("badge")}
             </div>
 
-            <h1 className="glitch-text mb-7 text-5xl font-black leading-none tracking-tight text-white sm:text-6xl lg:text-7xl">
+            <h1 className="glitch-text mb-6 max-w-3xl text-balance text-5xl font-bold text-slate-50 sm:text-6xl lg:text-7xl">
               {t("title")}
               <br />
               <span className="gradient-text">{t("title_gradient")}</span>
             </h1>
 
-            <p className="mx-auto mb-10 max-w-xl text-sm leading-relaxed uppercase tracking-[0.08em] text-[#777777] lg:mx-0">
+            <p className="mx-auto mb-9 max-w-xl text-lg leading-relaxed text-slate-300 lg:mx-0">
               {t("description")}
             </p>
 
             <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:justify-center lg:justify-start">
-              <Button asChild size="lg" className="px-10">
-                <Link href="/contact" locale={locale}>{t("cta_primary")}</Link>
+              <Button asChild size="lg" className="px-9">
+                <Link href="/contact" locale={locale}>
+                  {t("cta_primary")}
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
               </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="secondary"
-                className="px-10"
-              >
+              <Button asChild size="lg" variant="secondary" className="px-9">
                 <a href="#services">{t("cta_secondary")}</a>
               </Button>
             </div>
 
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
               {[t("stats.individual"), t("stats.modern"), t("stats.partnership"), t("stats.quality")].map((label) => (
-                <div key={label} className="border border-[#161616] bg-[#050505] px-3 py-2 text-[10px] font-bold uppercase tracking-[0.12em] text-[#8a8a8a]">
+                <div
+                  key={label}
+                  className="rounded-2xl border border-slate-700/45 bg-slate-900/45 px-3 py-2.5 text-xs font-medium text-slate-300"
+                >
                   {label}
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="relative mx-auto w-full max-w-[530px]">
-            <div className="sharp-card relative overflow-hidden border border-primary/35 bg-black p-1">
-              <div className="relative aspect-square overflow-hidden border border-[#1b1b1b]">
+          <div className="relative mx-auto w-full max-w-[560px]">
+            <div className="relative overflow-hidden rounded-[2rem] border border-primary/30 bg-slate-900/60 p-2 shadow-2xl shadow-black/35 backdrop-blur-xl">
+              <div className="relative aspect-[1.1/1] overflow-hidden rounded-[1.65rem] border border-slate-700/50">
                 <Image
-                  src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200"
-                  alt="Abstract cybernetic architecture"
+                  src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1400"
+                  alt="Abstract digital architecture"
                   fill
                   sizes="(min-width: 1024px) 42vw, 90vw"
-                  className="object-cover grayscale brightness-75 transition duration-700 hover:grayscale-0 hover:brightness-100"
+                  className="object-cover"
                   priority
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/65 via-transparent to-transparent" />
               </div>
 
-              <div className="absolute -right-3 top-6 border border-primary/45 bg-black px-3 py-2 text-[9px] uppercase tracking-[0.16em] text-primary">
-                X: 142.09
-                <br />
-                Y: -88.11
-                <br />
-                Z: 1042.8
+              <div className="absolute right-7 top-7 rounded-2xl border border-primary/30 bg-[#081228]/92 px-4 py-3 backdrop-blur-lg">
+                <p className="text-[11px] text-slate-400">Growth Impact</p>
+                <p className="text-xl font-semibold text-primary">+24.8%</p>
               </div>
             </div>
           </div>

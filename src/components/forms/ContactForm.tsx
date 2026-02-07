@@ -145,7 +145,7 @@ export default function ContactForm() {
   const emailField = register("email");
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
       {/* Honeypot field - hidden from users, visible to bots */}
       <div className="absolute -left-[9999px] opacity-0" aria-hidden="true">
         <label htmlFor="website">
@@ -185,7 +185,7 @@ export default function ContactForm() {
       />
       {emailValidationState !== "idle" && !errors.email && (
         <p
-          className={`text-xs uppercase tracking-[0.14em] ${emailValidationState === "valid" ? "text-primary" : "text-[#6f6f6f]"}`}
+          className={`text-sm ${emailValidationState === "valid" ? "text-primary" : "text-slate-400"}`}
           aria-live="polite"
         >
           {emailValidationMessage}
@@ -201,7 +201,7 @@ export default function ContactForm() {
       />
 
       <div>
-        <label className="mb-2 block text-[10px] font-bold uppercase tracking-[0.2em] text-[#6f6f6f]">{t("service")}</label>
+        <label className="mb-2 block text-sm font-medium text-slate-300">{t("service")}</label>
         <div className="relative">
           <select
             {...register("service")}
@@ -212,7 +212,7 @@ export default function ContactForm() {
             <option value="chatbots">{tServices("chatbots")}</option>
             <option value="mobile_apps">{tServices("mobile_apps")}</option>
           </select>
-          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4 text-[#6f6f6f]">
+          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4 text-slate-500">
             <ChevronDown className="w-5 h-5" />
           </div>
         </div>
@@ -225,7 +225,7 @@ export default function ContactForm() {
         error={translateError(errors.message?.message)}
       />
 
-      <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+      <Button type="submit" size="lg" className="w-full py-3.5" disabled={isSubmitting}>
         {isSubmitting ? t("submitting") : t("submit")}
         <Send className="w-5 h-5" />
       </Button>
@@ -235,10 +235,10 @@ export default function ContactForm() {
           <div
             role="status"
             aria-live="polite"
-            className={`border p-4 text-xs uppercase tracking-[0.14em] ${
+            className={`rounded-xl border p-4 text-sm ${
               submitStatus === "success"
                 ? "border-primary/45 bg-primary/10 text-primary"
-                : "border-red-500/50 bg-red-950/20 text-red-400"
+                : "border-red-500/55 bg-red-950/25 text-red-300"
               }`}
           >
             {submitStatus === "success"

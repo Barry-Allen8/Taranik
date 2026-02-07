@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { ButtonHTMLAttributes, forwardRef, ReactElement, cloneElement } from "react";
+import { ButtonHTMLAttributes, cloneElement, forwardRef, ReactElement } from "react";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "outline" | "ghost";
@@ -15,10 +15,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         "btn-primary": variant === "primary",
         "btn-secondary": variant === "secondary",
         "btn-outline": variant === "outline",
-        "border border-[#1f3a26] bg-transparent text-[#b9b9b9] hover:border-primary/70 hover:text-primary": variant === "ghost",
-        "px-4 py-2 text-sm": size === "sm",
-        "px-6 py-3": size === "md",
-        "px-8 py-4 text-sm": size === "lg",
+        "border-slate-700 bg-slate-900/35 text-slate-200 hover:border-slate-500 hover:bg-slate-900/60": variant === "ghost",
+        "px-4 py-2 text-xs": size === "sm",
+        "px-6 py-3 text-sm": size === "md",
+        "px-8 py-4 text-base": size === "lg",
       },
       className
     );
@@ -32,11 +32,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     }
 
     return (
-      <button
-        className={classes}
-        ref={ref}
-        {...props}
-      >
+      <button className={classes} ref={ref} {...props}>
         {children}
       </button>
     );

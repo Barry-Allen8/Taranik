@@ -24,25 +24,25 @@ export default function CookieBanner() {
       className="fixed bottom-0 left-0 right-0 z-50 p-4"
     >
       <div className="container">
-        <div className="cyber-panel border-primary/35 p-4 md:p-5">
-          <div className="mb-4 flex items-center gap-3 border-b border-primary/20 pb-3">
+        <div className="cyber-panel border-slate-700/65 bg-[#081228]/92 p-4 md:p-5">
+          <div className="mb-4 flex items-center gap-3 border-b border-slate-700/55 pb-3">
             <Cookie className="h-5 w-5 text-primary" aria-hidden="true" />
-            <h2 id="cookie-banner-title" className="futuristic-font text-sm font-black tracking-[0.15em] text-white">
+            <h2 id="cookie-banner-title" className="futuristic-font text-base font-semibold text-slate-100">
               {t("title")}
             </h2>
           </div>
 
-          <p id="cookie-banner-description" className="mb-4 text-xs leading-relaxed text-[#8a8a8a]">
+          <p id="cookie-banner-description" className="mb-4 text-sm leading-relaxed text-slate-300">
             {t("description")}
           </p>
 
-          <div className="mb-5 flex items-start gap-2 border border-[#1a1a1a] bg-black/60 p-3">
+          <div className="mb-5 flex items-start gap-2 rounded-xl border border-slate-700/55 bg-slate-900/45 p-3">
             <Shield className="mt-0.5 h-4 w-4 text-primary" aria-hidden="true" />
-            <p className="text-[11px] leading-relaxed text-[#787878]">{t("essential_info")}</p>
+            <p className="text-sm leading-relaxed text-slate-300">{t("essential_info")}</p>
           </div>
 
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <Link href="/privacy" locale={locale} className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary hover:text-primary/80">
+            <Link href="/privacy" locale={locale} className="text-sm font-medium text-primary hover:text-primary/80">
               {t("privacy_link")}
             </Link>
 
@@ -50,14 +50,14 @@ export default function CookieBanner() {
               <button
                 type="button"
                 onClick={rejectNonEssential}
-                className="border border-[#1f1f1f] bg-black px-4 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#8a8a8a] hover:text-white"
+                className="rounded-full border border-slate-600 bg-slate-900/45 px-5 py-2 text-sm font-medium text-slate-200 transition-colors hover:border-slate-400"
               >
                 {t("reject")}
               </button>
               <button
                 type="button"
                 onClick={acceptAll}
-                className="border border-primary bg-primary px-4 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-black hover:bg-primary-dark"
+                className="rounded-full border border-primary bg-primary px-5 py-2 text-sm font-semibold text-slate-950 transition-colors hover:bg-primary-dark"
               >
                 {t("accept")}
               </button>

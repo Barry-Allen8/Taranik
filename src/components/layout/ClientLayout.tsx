@@ -3,12 +3,8 @@
 import { usePathname } from "next/navigation";
 import CookieBanner from "@/components/ui/CookieBanner";
 import { locales } from "@/i18n";
+import { cn } from "@/lib/utils";
 
-/**
- * Client-side layout wrapper.
- * Renders client-only components like CookieBanner that require
- * browser APIs (localStorage, etc.) and should not be server-rendered.
- */
 export default function ClientLayout({
   children,
 }: {
@@ -23,7 +19,7 @@ export default function ClientLayout({
 
   return (
     <div className="relative isolate min-h-screen overflow-x-clip">
-      {!isHomePage ? <div aria-hidden="true" className="page-ambient-bg" /> : null}
+      <div aria-hidden="true" className={cn("page-ambient-bg", isHomePage && "opacity-80")} />
       {children}
       <CookieBanner />
     </div>

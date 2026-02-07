@@ -4,39 +4,36 @@ import { MessageSquare, Palette, Code, TestTube, Rocket } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 const stepKeys = [
-  { key: "consultation", icon: MessageSquare, code: "01_SCAN" },
-  { key: "design", icon: Palette, code: "02_FORGE" },
-  { key: "development", icon: Code, code: "03_CODE" },
-  { key: "testing", icon: TestTube, code: "04_TEST" },
-  { key: "launch", icon: Rocket, code: "05_SYNC" },
+  { key: "consultation", icon: MessageSquare },
+  { key: "design", icon: Palette },
+  { key: "development", icon: Code },
+  { key: "testing", icon: TestTube },
+  { key: "launch", icon: Rocket },
 ] as const;
 
 export default function ProcessSection() {
   const t = useTranslations("process");
 
   return (
-    <section className="section border-y border-primary/15 bg-black" id="process">
+    <section className="section border-y border-slate-700/40 bg-[#030b1f]/45" id="process">
       <div className="container">
-        <div className="mb-20 text-center">
-          <h2 className="mb-4 text-4xl font-black text-white md:text-5xl">
-            SYSTEM <span className="text-primary">PROTOCOLS</span>
-          </h2>
-          <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#646464]">{t("description")}</p>
+        <div className="mb-16 text-center">
+          <h2 className="mb-4 text-4xl text-slate-100 md:text-5xl">{t("title")}</h2>
+          <p className="mx-auto max-w-2xl text-base text-slate-400">{t("description")}</p>
         </div>
 
-        <div className="relative grid grid-cols-1 gap-10 md:grid-cols-5 md:gap-6">
-          <div className="absolute left-0 right-0 top-8 hidden h-px bg-[#1f1f1f] md:block" />
+        <div className="relative grid grid-cols-1 gap-6 md:grid-cols-5">
+          <div className="absolute left-10 right-10 top-9 hidden h-px bg-slate-700/50 md:block" />
 
-          {stepKeys.map((step) => (
-            <div key={step.key} className="group relative text-center">
-              <div className="relative z-10 mx-auto mb-6 flex h-16 w-16 items-center justify-center border border-[#272727] bg-black transition-colors group-hover:border-primary">
-                <step.icon className="h-5 w-5 text-primary" />
+          {stepKeys.map((step, index) => (
+            <div key={step.key} className="relative z-10 text-center">
+              <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl border border-primary/30 bg-primary/10 text-primary">
+                <step.icon className="h-6 w-6" />
               </div>
 
-              <h3 className="mb-2 text-xs font-black tracking-[0.2em] text-white">{step.code}</h3>
-              <p className="mx-auto max-w-[220px] text-[10px] uppercase leading-relaxed tracking-[0.12em] text-[#6f6f6f]">
-                {t(`steps.${step.key}.description`)}
-              </p>
+              <p className="mb-2 text-xs font-medium uppercase tracking-[0.18em] text-slate-500">Step {index + 1}</p>
+              <h3 className="mb-2 text-base text-slate-100">{t(`steps.${step.key}.title`)}</h3>
+              <p className="text-sm leading-relaxed text-slate-400">{t(`steps.${step.key}.description`)}</p>
             </div>
           ))}
         </div>

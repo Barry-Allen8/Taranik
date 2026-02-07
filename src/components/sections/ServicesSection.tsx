@@ -1,14 +1,14 @@
 "use client";
 
-import { Globe, Bot, Smartphone } from "lucide-react";
+import { Globe, Bot, Smartphone, ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { type Locale } from "@/i18n";
 
 const serviceKeys = [
-  { key: "websites", href: "/services/websites", icon: Globe, index: "0x001", accent: "text-primary", bar: "w-[86%] bg-primary shadow-[0_0_8px_#39ff14]" },
-  { key: "chatbots", href: "/services/chatbots", icon: Bot, index: "0x002", accent: "text-secondary", bar: "w-[72%] bg-secondary shadow-[0_0_8px_#bc13fe]" },
-  { key: "mobile_apps", href: "/services/mobile-apps", icon: Smartphone, index: "0x003", accent: "text-primary", bar: "w-full bg-primary shadow-[0_0_8px_#39ff14]" },
+  { key: "websites", href: "/services/websites", icon: Globe },
+  { key: "chatbots", href: "/services/chatbots", icon: Bot },
+  { key: "mobile_apps", href: "/services/mobile-apps", icon: Smartphone },
 ] as const;
 
 export default function ServicesSection() {
@@ -16,52 +16,55 @@ export default function ServicesSection() {
   const locale = useLocale() as Locale;
 
   return (
-    <section id="services" className="section relative overflow-hidden border-y border-primary/15 bg-black">
-      <div className="absolute inset-0 bg-grid opacity-80" />
-
+    <section id="services" className="section relative overflow-hidden">
+      <div className="absolute inset-0 bg-grid opacity-20" />
       <div className="container relative z-10">
-        <div className="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <div className="mb-14 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
-            <h2 className="mb-4 text-4xl font-black tracking-tight text-white md:text-5xl">
-              CORE <span className="text-primary">DIRECTIVES</span>
-            </h2>
-            <p className="text-xs uppercase tracking-[0.16em] text-[#666666]">
-              {t("description")}
-            </p>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-primary/85">Our Expertise</p>
+            <h2 className="mb-4 text-4xl text-slate-100 md:text-5xl">{t("title")}</h2>
+            <p className="text-base text-slate-400">{t("description")}</p>
           </div>
 
           <Link
             href="/services"
             locale={locale}
-            className="text-[10px] font-black uppercase tracking-[0.24em] text-primary hover:underline"
+            className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary-dark"
           >
-            [ VIEW_ALL_ASSETS ]
+            {t("learn_more")}
+            <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
 
         <div className="grid grid-cols-1 gap-7 md:grid-cols-3">
           {serviceKeys.map((service) => {
             const Icon = service.icon;
+            const features = (t.raw(`${service.key}.features`) as string[]).slice(0, 3);
+
             return (
-              <Link key={service.key} href={service.href} locale={locale} className="group sharp-card border border-[#181818] bg-[#050505] p-8 transition-all hover:border-primary/60">
-                <div className="mb-7 flex items-start justify-between">
-                  <Icon className={`h-7 w-7 ${service.accent}`} />
-                  <span className="text-[10px] font-bold text-[#494949]">{service.index}</span>
+              <Link
+                key={service.key}
+                href={service.href}
+                locale={locale}
+                className="group sharp-card border-slate-700/45 p-7 transition-all hover:border-primary/45"
+              >
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-primary/30 bg-primary/10 text-primary">
+                  <Icon className="h-5 w-5" />
                 </div>
 
-                <h3 className={`mb-3 text-xl font-black ${service.accent}`}>{t(`${service.key}.title`)}</h3>
-                <p className="mb-7 text-xs uppercase leading-relaxed tracking-[0.08em] text-[#646464]">
-                  {t(`${service.key}.description`)}
-                </p>
+                <h3 className="mb-2 text-2xl text-slate-100 transition-colors group-hover:text-primary">
+                  {t(`${service.key}.title`)}
+                </h3>
+                <p className="mb-6 text-sm leading-relaxed text-slate-400">{t(`${service.key}.description`)}</p>
 
-                <div className="space-y-2">
-                  <div className="h-[4px] w-full bg-[#111111]">
-                    <div className={`h-full ${service.bar}`} />
-                  </div>
-                  <p className={`text-[9px] font-bold uppercase tracking-[0.22em] ${service.accent}`}>
-                    {(t.raw(`${service.key}.features`) as string[])[0]}
-                  </p>
-                </div>
+                <ul className="space-y-2">
+                  {features.map((feature) => (
+                    <li key={feature} className="flex items-start gap-2 text-sm text-slate-300">
+                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
               </Link>
             );
           })}

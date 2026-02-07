@@ -1,7 +1,7 @@
 "use client";
 
 import ContactForm from "@/components/forms/ContactForm";
-import { MapPin, Phone, Mail, Clock, TerminalSquare } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, AtSign, Globe } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 export default function ContactPageClient() {
@@ -14,86 +14,80 @@ export default function ContactPageClient() {
 
   return (
     <div className="min-h-screen">
-      <section className="section border-b border-primary/20 bg-black">
+      <section className="section">
         <div className="container">
-          <div className="max-w-4xl">
-            <div className="mb-4 inline-flex border border-primary/40 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.22em] text-primary">
-              Establishing Secure Connection...
-            </div>
-            <h1 className="glitch-text mb-4 text-5xl font-black text-white md:text-7xl">
-              CONNECT_<span className="text-primary">TERMINAL</span>
-            </h1>
-            <p className="max-w-3xl text-xs uppercase tracking-[0.14em] text-[#636363]">
-              {t("description")}
-            </p>
-          </div>
-        </div>
-      </section>
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
+            <div>
+              <span className="mb-5 inline-flex rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-primary">
+                Contact Us
+              </span>
+              <h1 className="mb-5 text-5xl text-slate-100 md:text-7xl">
+                Let&apos;s build
+                <br />
+                <span className="text-slate-500">the future</span>
+                <br />
+                together.
+              </h1>
+              <p className="mb-10 max-w-md text-lg leading-relaxed text-slate-300">{t("description")}</p>
 
-      <section className="section bg-black">
-        <div className="container">
-          <div className="grid grid-cols-1 gap-10 lg:grid-cols-12">
-            <div className="lg:col-span-8">
-              <div className="cyber-panel p-6 md:p-8">
-                <div className="mb-8 flex items-center justify-between border-b border-[#171717] pb-4">
-                  <div className="flex items-center gap-2">
-                    <span className="h-2.5 w-2.5 rounded-full bg-red-600" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-yellow-600" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-green-600" />
-                    <span className="ml-3 text-[10px] uppercase tracking-[0.22em] text-[#545454]">COMMS_INTERFACE</span>
+              <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+                <div className="space-y-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-700/60 bg-slate-900/55">
+                    <AtSign className="h-4 w-4 text-primary" />
                   </div>
-                  <span className="text-[10px] uppercase tracking-[0.18em] text-primary">ID: 0xFD-992-K8</span>
+                  <div>
+                    <h3 className="text-base font-semibold text-slate-100">{t("email")}</h3>
+                    <a href={`mailto:${emailAddress}`} className="text-sm text-slate-400 hover:text-primary">{emailAddress}</a>
+                  </div>
                 </div>
 
-                <ContactForm />
-              </div>
-            </div>
-
-            <div className="lg:col-span-4">
-              <div className="cyber-panel h-full border-primary/25 p-6">
-                <div className="mb-6 flex items-center justify-between border-b border-[#171717] pb-4">
-                  <h2 className="text-sm font-black tracking-[0.18em] text-white">SYSTEM_LOG</h2>
-                  <TerminalSquare className="h-4 w-4 text-primary" />
+                <div className="space-y-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-700/60 bg-slate-900/55">
+                    <MapPin className="h-4 w-4 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="text-base font-semibold text-slate-100">{t("address")}</h3>
+                    <p className="text-sm text-slate-400">{tFooter("address")}</p>
+                  </div>
                 </div>
 
-                <div className="space-y-5 text-xs uppercase tracking-[0.11em]">
-                  <div className="flex items-start gap-3 text-[#787878]">
-                    <MapPin className="mt-0.5 h-4 w-4 text-primary" />
-                    <div>
-                      <p className="mb-1 text-[10px] tracking-[0.18em] text-primary">{t("address")}</p>
-                      <p>{tFooter("address")}</p>
-                    </div>
+                <div className="space-y-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-700/60 bg-slate-900/55">
+                    <Phone className="h-4 w-4 text-primary" />
                   </div>
-
-                  <div className="flex items-start gap-3 text-[#787878]">
-                    <Phone className="mt-0.5 h-4 w-4 text-primary" />
-                    <div>
-                      <p className="mb-1 text-[10px] tracking-[0.18em] text-primary">{t("phone")}</p>
+                  <div>
+                    <h3 className="text-base font-semibold text-slate-100">{t("phone")}</h3>
+                    <div className="flex flex-col gap-1">
                       {phoneNumbers.map((phone) => (
-                        <a key={phone} href={buildTelHref(phone)} className="block hover:text-primary">
+                        <a key={phone} href={buildTelHref(phone)} className="text-sm text-slate-400 hover:text-primary">
                           {phone}
                         </a>
                       ))}
                     </div>
                   </div>
+                </div>
 
-                  <div className="flex items-start gap-3 text-[#787878]">
-                    <Mail className="mt-0.5 h-4 w-4 text-primary" />
-                    <div>
-                      <p className="mb-1 text-[10px] tracking-[0.18em] text-primary">{t("email")}</p>
-                      <a href={`mailto:${emailAddress}`} className="hover:text-primary">{emailAddress}</a>
-                    </div>
+                <div className="space-y-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-700/60 bg-slate-900/55">
+                    <Clock className="h-4 w-4 text-primary" />
                   </div>
-
-                  <div className="flex items-start gap-3 text-[#787878]">
-                    <Clock className="mt-0.5 h-4 w-4 text-primary" />
-                    <div>
-                      <p className="mb-1 text-[10px] tracking-[0.18em] text-primary">{t("hours")}</p>
-                      <p>{tFooter("working_hours")}</p>
-                      <p>{tFooter("weekend")}</p>
-                    </div>
+                  <div>
+                    <h3 className="text-base font-semibold text-slate-100">{t("hours")}</h3>
+                    <p className="text-sm text-slate-400">{tFooter("working_hours")}</p>
+                    <p className="text-sm text-slate-400">{tFooter("weekend")}</p>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="absolute inset-0 rounded-[2rem] bg-primary/10 blur-3xl" />
+              <div className="relative rounded-[2rem] border border-slate-700/55 bg-[#081228]/86 p-6 shadow-2xl shadow-black/35 backdrop-blur-xl md:p-10">
+                <div className="mb-6 flex items-center justify-between border-b border-slate-700/55 pb-4">
+                  <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-300">{t("title")}</h2>
+                  <Globe className="h-4 w-4 text-primary" />
+                </div>
+                <ContactForm />
               </div>
             </div>
           </div>

@@ -8,7 +8,7 @@ function renderStars(rating: number) {
     return (
       <Star
         key={index}
-        className={`h-3.5 w-3.5 ${active ? "fill-primary text-primary" : "text-[#313131]"}`}
+        className={`h-4 w-4 ${active ? "fill-primary text-primary" : "text-slate-700"}`}
       />
     );
   });
@@ -25,10 +25,10 @@ export default async function LatestReviewsSection({
   ]);
 
   return (
-    <section className="section border-y border-primary/10 bg-[#050505]" aria-labelledby="latest-reviews-title">
+    <section className="section border-y border-slate-700/40 bg-[#030b1f]/55" aria-labelledby="latest-reviews-title">
       <div className="container">
         <div className="section-title">
-          <h2 id="latest-reviews-title">CLIENT FEEDBACK</h2>
+          <h2 id="latest-reviews-title">{t("title")}</h2>
           <p>{t("description")}</p>
         </div>
 
@@ -36,12 +36,12 @@ export default async function LatestReviewsSection({
           {reviews.map((review) => (
             <article
               key={review.id}
-              className="sharp-card border border-[#161616] bg-black p-6"
+              className="sharp-card border-slate-700/45 p-6"
               itemScope
               itemType="https://schema.org/Review"
             >
               <div className="mb-3 flex items-center justify-between gap-2">
-                <p className="text-xs font-bold uppercase tracking-[0.14em] text-white" itemProp="author">
+                <p className="text-sm font-semibold text-slate-100" itemProp="author">
                   {review.author}
                 </p>
                 <div className="flex items-center gap-1" aria-label={`${review.rating} out of 5`}>
@@ -49,11 +49,11 @@ export default async function LatestReviewsSection({
                 </div>
               </div>
 
-              <p className="mb-5 text-xs uppercase leading-relaxed tracking-[0.08em] text-[#6d6d6d]" itemProp="reviewBody">
+              <p className="mb-5 text-sm leading-relaxed text-slate-300" itemProp="reviewBody">
                 {review.text}
               </p>
 
-              <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.1em] text-[#4f4f4f]">
+              <div className="flex items-center justify-between text-xs text-slate-400">
                 <span>{review.source}</span>
                 <time dateTime={review.date}>{new Date(review.date).toLocaleDateString(locale)}</time>
               </div>
@@ -63,7 +63,7 @@ export default async function LatestReviewsSection({
                   href={review.profileUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-4 inline-block text-[10px] font-bold uppercase tracking-[0.2em] text-primary hover:underline"
+                  className="mt-4 inline-block text-xs font-medium text-primary hover:text-primary-dark"
                 >
                   {t("view_source")}
                 </a>

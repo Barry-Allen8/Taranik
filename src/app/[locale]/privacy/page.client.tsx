@@ -8,124 +8,145 @@ export default function PrivacyPageClient() {
 
   return (
     <div className="min-h-screen">
-      <section className="section border-b border-primary/15 bg-black">
+      <section className="section border-b border-slate-700/45">
         <div className="container">
           <div className="max-w-4xl">
-            <span className="mb-4 inline-block border border-primary/40 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em] text-primary">
-              {"// DATA_PROTOCOLS"}
+            <span className="mb-4 inline-flex rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-semibold text-primary">
+              Privacy
             </span>
-            <h1 className="mb-4 text-5xl font-black text-white md:text-6xl">{t("title")}</h1>
-            <p className="text-xs uppercase tracking-[0.14em] text-[#666666]">{t("last_updated")}</p>
+            <h1 className="mb-4 text-5xl text-slate-100 md:text-6xl">{t("title")}</h1>
+            <p className="text-sm text-slate-400">{t("last_updated")}</p>
           </div>
         </div>
       </section>
 
-      <section className="section bg-[#050505]">
+      <section className="section">
         <div className="container">
           <div className="mx-auto max-w-5xl">
-            <Card className="sharp-card border-[#171717] bg-black p-8 md:p-10">
-              <div className="space-y-8 text-xs uppercase tracking-[0.1em] text-[#707070]">
+            <Card className="border-slate-700/45 bg-slate-900/45 p-8 md:p-10">
+              <div className="space-y-8 text-sm leading-relaxed text-slate-300">
                 <section>
-                  <h2 className="mb-3 text-xl font-black text-white">{t("intro.title")}</h2>
+                  <h2 className="mb-3 text-2xl text-slate-100">{t("intro.title")}</h2>
                   <p>{t("intro.text")}</p>
                 </section>
 
                 <section>
-                  <h2 className="mb-3 text-xl font-black text-white">{t("controller.title")}</h2>
+                  <h2 className="mb-3 text-2xl text-slate-100">{t("controller.title")}</h2>
                   <p className="mb-3">{t("controller.text")}</p>
                   <ul className="space-y-2">
                     {(t.raw("controller.details") as string[]).map((item) => (
-                      <li key={item}><span className="mr-2 text-primary">&gt;&gt;</span>{item}</li>
+                      <li key={item} className="flex gap-2">
+                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary" />
+                        <span>{item}</span>
+                      </li>
                     ))}
                   </ul>
                 </section>
 
                 <section>
-                  <h2 className="mb-3 text-xl font-black text-white">{t("collection.title")}</h2>
+                  <h2 className="mb-3 text-2xl text-slate-100">{t("collection.title")}</h2>
                   <p className="mb-3">{t("collection.text")}</p>
-                  <ul className="space-y-2 mb-3">
+                  <ul className="mb-3 space-y-2">
                     {(t.raw("collection.items") as string[]).map((item) => (
-                      <li key={item}><span className="mr-2 text-primary">&gt;&gt;</span>{item}</li>
+                      <li key={item} className="flex gap-2">
+                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary" />
+                        <span>{item}</span>
+                      </li>
                     ))}
                   </ul>
-                  <h3 className="mb-2 text-base font-black text-primary">{t("collection.automatic_title")}</h3>
+                  <h3 className="mb-2 text-lg text-primary">{t("collection.automatic_title")}</h3>
                   <p>{t("collection.automatic_text")}</p>
                 </section>
 
                 <section>
-                  <h2 className="mb-3 text-xl font-black text-white">{t("purpose.title")}</h2>
+                  <h2 className="mb-3 text-2xl text-slate-100">{t("purpose.title")}</h2>
                   <p className="mb-3">{t("purpose.text")}</p>
                   <ul className="space-y-2">
                     {(t.raw("purpose.items") as string[]).map((item) => (
-                      <li key={item}><span className="mr-2 text-primary">&gt;&gt;</span>{item}</li>
+                      <li key={item} className="flex gap-2">
+                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary" />
+                        <span>{item}</span>
+                      </li>
                     ))}
                   </ul>
                 </section>
 
                 <section>
-                  <h2 className="mb-3 text-xl font-black text-white">{t("legal_basis.title")}</h2>
+                  <h2 className="mb-3 text-2xl text-slate-100">{t("legal_basis.title")}</h2>
                   <p className="mb-3">{t("legal_basis.text")}</p>
                   <ul className="space-y-2">
                     {(t.raw("legal_basis.items") as string[]).map((item) => (
-                      <li key={item}><span className="mr-2 text-primary">&gt;&gt;</span>{item}</li>
+                      <li key={item} className="flex gap-2">
+                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary" />
+                        <span>{item}</span>
+                      </li>
                     ))}
                   </ul>
                 </section>
 
                 <section>
-                  <h2 className="mb-3 text-xl font-black text-white">{t("third_parties.title")}</h2>
+                  <h2 className="mb-3 text-2xl text-slate-100">{t("third_parties.title")}</h2>
                   <p className="mb-3">{t("third_parties.text")}</p>
-                  <ul className="space-y-2 mb-3">
+                  <ul className="mb-3 space-y-2">
                     {(t.raw("third_parties.items") as string[]).map((item) => (
-                      <li key={item}><span className="mr-2 text-primary">&gt;&gt;</span>{item}</li>
+                      <li key={item} className="flex gap-2">
+                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary" />
+                        <span>{item}</span>
+                      </li>
                     ))}
                   </ul>
-                  <p className="text-[#8f8f8f]">{t("third_parties.note")}</p>
+                  <p className="text-slate-400">{t("third_parties.note")}</p>
                 </section>
 
                 <section>
-                  <h2 className="mb-3 text-xl font-black text-white">{t("cookies.title")}</h2>
+                  <h2 className="mb-3 text-2xl text-slate-100">{t("cookies.title")}</h2>
                   <p>{t("cookies.text")}</p>
                 </section>
 
                 <section>
-                  <h2 className="mb-3 text-xl font-black text-white">{t("retention.title")}</h2>
+                  <h2 className="mb-3 text-2xl text-slate-100">{t("retention.title")}</h2>
                   <p>{t("retention.text")}</p>
                 </section>
 
                 <section>
-                  <h2 className="mb-3 text-xl font-black text-white">{t("rights.title")}</h2>
+                  <h2 className="mb-3 text-2xl text-slate-100">{t("rights.title")}</h2>
                   <p className="mb-3">{t("rights.text")}</p>
-                  <ul className="space-y-2 mb-3">
+                  <ul className="mb-3 space-y-2">
                     {(t.raw("rights.items") as string[]).map((item) => (
-                      <li key={item}><span className="mr-2 text-primary">&gt;&gt;</span>{item}</li>
+                      <li key={item} className="flex gap-2">
+                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary" />
+                        <span>{item}</span>
+                      </li>
                     ))}
                   </ul>
                   <p className="text-primary">{t("rights.exercise")}</p>
                 </section>
 
                 <section>
-                  <h2 className="mb-3 text-xl font-black text-white">{t("security.title")}</h2>
+                  <h2 className="mb-3 text-2xl text-slate-100">{t("security.title")}</h2>
                   <p>{t("security.text")}</p>
                 </section>
 
                 <section>
-                  <h2 className="mb-3 text-xl font-black text-white">{t("changes.title")}</h2>
+                  <h2 className="mb-3 text-2xl text-slate-100">{t("changes.title")}</h2>
                   <p>{t("changes.text")}</p>
                 </section>
 
                 <section>
-                  <h2 className="mb-3 text-xl font-black text-white">{t("contact.title")}</h2>
+                  <h2 className="mb-3 text-2xl text-slate-100">{t("contact.title")}</h2>
                   <p className="mb-3">{t("contact.text")}</p>
                   <ul className="space-y-2">
                     {(t.raw("contact.details") as string[]).map((item) => (
-                      <li key={item}><span className="mr-2 text-primary">&gt;&gt;</span>{item}</li>
+                      <li key={item} className="flex gap-2">
+                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary" />
+                        <span>{item}</span>
+                      </li>
                     ))}
                   </ul>
                 </section>
 
                 <section>
-                  <h2 className="mb-3 text-xl font-black text-white">{t("complaints.title")}</h2>
+                  <h2 className="mb-3 text-2xl text-slate-100">{t("complaints.title")}</h2>
                   <p>{t("complaints.text")}</p>
                 </section>
               </div>
