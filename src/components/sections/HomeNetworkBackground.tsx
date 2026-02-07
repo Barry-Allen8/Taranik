@@ -2,281 +2,293 @@
 
 import { useEffect, useRef } from "react";
 
-type ParticleNode = {
-  x: number;
-  y: number;
-  velocityX: number;
-  velocityY: number;
+type AuroraBlob = {
+  xFactor: number;
+  yFactor: number;
   radius: number;
-  opacity: number;
+  speed: number;
+  phase: number;
+  color: "lime" | "cyan";
 };
 
-type PointerEcho = {
+type EchoRipple = {
   x: number;
   y: number;
   age: number;
   duration: number;
-  maxRadius: number;
+  radius: number;
 };
 
-const MIN_PARTICLE_COUNT = 34;
-const MAX_PARTICLE_COUNT = 76;
-const PARTICLE_DENSITY_DIVISOR = 24000;
+type PointerState = {
+  x: number;
+  y: number;
+  targetX: number;
+  targetY: number;
+  active: boolean;
+  echoes: EchoRipple[];
+};
 
-const PARTICLE_LINK_DISTANCE = 146;
-const POINTER_LINK_DISTANCE = 168;
-const PARTICLE_MAX_SPEED = 0.32;
-const POINTER_ECHO_INTERVAL = 90;
-const MAX_POINTER_ECHOES = 10;
-const PARTICLE_LINK_ALPHA_SCALE = 0.46;
-const PARTICLE_LINK_MIN_ALPHA = 0.09;
-const POINTER_LINK_ALPHA_SCALE = 0.65;
-const POINTER_LINK_MIN_ALPHA = 0.14;
+const BLOBS: AuroraBlob[] = [
+  { xFactor: 0.2, yFactor: 0.18, radius: 430, speed: 0.12, phase: 0.2, color: "cyan" },
+  { xFactor: 0.82, yFactor: 0.2, radius: 480, speed: 0.1, phase: 1.4, color: "lime" },
+  { xFactor: 0.68, yFactor: 0.78, radius: 420, speed: 0.14, phase: 2.1, color: "cyan" },
+  { xFactor: 0.3, yFactor: 0.76, radius: 460, speed: 0.11, phase: 2.8, color: "lime" },
+];
 
-const randomInRange = (minimum: number, maximum: number) => Math.random() * (maximum - minimum) + minimum;
+const GRID_SIZE = 40;
+const GRID_MAX_SHIFT = 14;
+const ECHO_INTERVAL_MS = 85;
+const ECHO_MAX_COUNT = 9;
+const ECHO_MIN_DURATION = 620;
+const ECHO_MAX_DURATION = 980;
 
-const createParticleNodes = (viewportWidth: number, viewportHeight: number, count: number): ParticleNode[] =>
-  Array.from({ length: count }, () => ({
-    x: randomInRange(0, viewportWidth),
-    y: randomInRange(0, viewportHeight),
-    velocityX: randomInRange(-PARTICLE_MAX_SPEED, PARTICLE_MAX_SPEED),
-    velocityY: randomInRange(-PARTICLE_MAX_SPEED, PARTICLE_MAX_SPEED),
-    radius: randomInRange(1.2, 2.4),
-    opacity: randomInRange(0.25, 0.7),
-  }));
+const lerp = (start: number, end: number, value: number) => start + (end - start) * value;
 
-export default function HomeNetworkBackground() {
+const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
+
+export default function HomeNetworkBackground({
+  intensity = 1,
+}: {
+  intensity?: number;
+}) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
-    const canvasElement = canvasRef.current;
-    if (!canvasElement) {
+    const canvas = canvasRef.current;
+    if (!canvas) {
       return;
     }
 
-    const renderingContext = canvasElement.getContext("2d");
-    if (!renderingContext) {
+    const context = canvas.getContext("2d", { alpha: true });
+    if (!context) {
       return;
     }
 
-    let viewportWidth = 0;
-    let viewportHeight = 0;
-    let animationFrameId = 0;
-    let previousTimestamp = 0;
-    let particleNodes: ParticleNode[] = [];
-    const pointerState = { x: 0, y: 0, active: false, lastEchoAt: 0, echoes: [] as PointerEcho[] };
+    let width = 0;
+    let height = 0;
+    let rafId = 0;
+    let previousTime = 0;
+    let lastEchoAt = 0;
+
+    const pointer: PointerState = {
+      x: 0,
+      y: 0,
+      targetX: 0,
+      targetY: 0,
+      active: false,
+      echoes: [],
+    };
 
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    let reducedMotionEnabled = reducedMotionQuery.matches;
+    let reducedMotion = reducedMotionQuery.matches;
 
-    const setupCanvas = () => {
-      viewportWidth = canvasElement.clientWidth;
-      viewportHeight = canvasElement.clientHeight;
+    const resize = () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      context.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const devicePixelRatio = Math.min(window.devicePixelRatio || 1, 2);
-      canvasElement.width = Math.floor(viewportWidth * devicePixelRatio);
-      canvasElement.height = Math.floor(viewportHeight * devicePixelRatio);
-      renderingContext.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
-
-      const particleCount = Math.min(
-        MAX_PARTICLE_COUNT,
-        Math.max(MIN_PARTICLE_COUNT, Math.floor((viewportWidth * viewportHeight) / PARTICLE_DENSITY_DIVISOR))
-      );
-
-      particleNodes = createParticleNodes(viewportWidth, viewportHeight, particleCount);
+      if (!pointer.active) {
+        pointer.x = width * 0.5;
+        pointer.y = height * 0.5;
+        pointer.targetX = pointer.x;
+        pointer.targetY = pointer.y;
+      }
     };
 
+    const drawAurora = (timeSeconds: number) => {
+      for (const blob of BLOBS) {
+        const waveX = Math.sin(timeSeconds * blob.speed + blob.phase) * (28 * intensity);
+        const waveY = Math.cos(timeSeconds * blob.speed * 0.85 + blob.phase) * (24 * intensity);
+        const x = width * blob.xFactor + waveX;
+        const y = height * blob.yFactor + waveY;
 
+        const gradient = context.createRadialGradient(x, y, 0, x, y, blob.radius);
 
-    const updateParticles = () => {
-      if (reducedMotionEnabled) {
+        if (blob.color === "lime") {
+          gradient.addColorStop(0, `rgba(190, 242, 100, ${0.12 * intensity})`);
+          gradient.addColorStop(0.36, `rgba(163, 230, 53, ${0.08 * intensity})`);
+          gradient.addColorStop(1, "rgba(163, 230, 53, 0)");
+        } else {
+          gradient.addColorStop(0, `rgba(34, 211, 238, ${0.1 * intensity})`);
+          gradient.addColorStop(0.34, `rgba(56, 189, 248, ${0.07 * intensity})`);
+          gradient.addColorStop(1, "rgba(56, 189, 248, 0)");
+        }
+
+        context.fillStyle = gradient;
+        context.beginPath();
+        context.arc(x, y, blob.radius, 0, Math.PI * 2);
+        context.fill();
+      }
+    };
+
+    const drawParallaxGrid = () => {
+      const nx = pointer.x / Math.max(width, 1) - 0.5;
+      const ny = pointer.y / Math.max(height, 1) - 0.5;
+      const offsetX = nx * GRID_MAX_SHIFT * intensity;
+      const offsetY = ny * GRID_MAX_SHIFT * intensity;
+
+      context.strokeStyle = "rgba(148, 163, 184, 0.08)";
+      context.lineWidth = 1;
+
+      const startX = -GRID_SIZE + offsetX;
+      const startY = -GRID_SIZE + offsetY;
+
+      for (let x = startX; x < width + GRID_SIZE; x += GRID_SIZE) {
+        context.beginPath();
+        context.moveTo(x, 0);
+        context.lineTo(x, height);
+        context.stroke();
+      }
+
+      for (let y = startY; y < height + GRID_SIZE; y += GRID_SIZE) {
+        context.beginPath();
+        context.moveTo(0, y);
+        context.lineTo(width, y);
+        context.stroke();
+      }
+    };
+
+    const drawPointerGlow = () => {
+      if (!pointer.active) {
         return;
       }
 
-      for (const node of particleNodes) {
-        node.x += node.velocityX;
-        node.y += node.velocityY;
+      const gradient = context.createRadialGradient(pointer.x, pointer.y, 0, pointer.x, pointer.y, 120);
+      gradient.addColorStop(0, "rgba(190, 242, 100, 0.14)");
+      gradient.addColorStop(0.45, "rgba(56, 189, 248, 0.08)");
+      gradient.addColorStop(1, "rgba(56, 189, 248, 0)");
 
-        if (node.x <= 0 || node.x >= viewportWidth) {
-          node.velocityX *= -1;
-        }
-        if (node.y <= 0 || node.y >= viewportHeight) {
-          node.velocityY *= -1;
-        }
-      }
+      context.fillStyle = gradient;
+      context.beginPath();
+      context.arc(pointer.x, pointer.y, 120, 0, Math.PI * 2);
+      context.fill();
     };
 
-    const drawParticleLinks = () => {
-      renderingContext.lineWidth = 1.15;
-
-      for (let sourceIndex = 0; sourceIndex < particleNodes.length; sourceIndex += 1) {
-        const sourceNode = particleNodes[sourceIndex];
-
-        for (let targetIndex = sourceIndex + 1; targetIndex < particleNodes.length; targetIndex += 1) {
-          const targetNode = particleNodes[targetIndex];
-          const deltaX = sourceNode.x - targetNode.x;
-          const deltaY = sourceNode.y - targetNode.y;
-          const distance = Math.hypot(deltaX, deltaY);
-
-          if (distance > PARTICLE_LINK_DISTANCE) {
-            continue;
-          }
-
-          const opacity = Math.max(
-            PARTICLE_LINK_MIN_ALPHA,
-            (1 - distance / PARTICLE_LINK_DISTANCE) * PARTICLE_LINK_ALPHA_SCALE
-          );
-          renderingContext.strokeStyle = `rgba(96, 165, 250, ${opacity})`;
-          renderingContext.beginPath();
-          renderingContext.moveTo(sourceNode.x, sourceNode.y);
-          renderingContext.lineTo(targetNode.x, targetNode.y);
-          renderingContext.stroke();
-        }
-      }
-    };
-
-    const drawPointerLinks = () => {
-      if (!pointerState.active) {
-        return;
-      }
-
-      renderingContext.lineWidth = 1.25;
-
-      for (const node of particleNodes) {
-        const distance = Math.hypot(node.x - pointerState.x, node.y - pointerState.y);
-        if (distance > POINTER_LINK_DISTANCE) {
-          continue;
-        }
-
-        const opacity = Math.max(
-          POINTER_LINK_MIN_ALPHA,
-          (1 - distance / POINTER_LINK_DISTANCE) * POINTER_LINK_ALPHA_SCALE
-        );
-        renderingContext.strokeStyle = `rgba(56, 189, 248, ${opacity})`;
-        renderingContext.beginPath();
-        renderingContext.moveTo(node.x, node.y);
-        renderingContext.lineTo(pointerState.x, pointerState.y);
-        renderingContext.stroke();
-      }
-    };
-
-    const drawPointerEchoes = (deltaMilliseconds: number) => {
-      if (pointerState.active) {
-        const glowGradient = renderingContext.createRadialGradient(
-          pointerState.x,
-          pointerState.y,
-          0,
-          pointerState.x,
-          pointerState.y,
-          86
-        );
-        glowGradient.addColorStop(0, "rgba(125, 211, 252, 0.28)");
-        glowGradient.addColorStop(0.35, "rgba(56, 189, 248, 0.14)");
-        glowGradient.addColorStop(1, "rgba(56, 189, 248, 0)");
-
-        renderingContext.fillStyle = glowGradient;
-        renderingContext.beginPath();
-        renderingContext.arc(pointerState.x, pointerState.y, 86, 0, Math.PI * 2);
-        renderingContext.fill();
-      }
-
-      for (let echoIndex = pointerState.echoes.length - 1; echoIndex >= 0; echoIndex -= 1) {
-        const echo = pointerState.echoes[echoIndex];
-        echo.age += deltaMilliseconds;
+    const drawEchoes = (deltaMs: number) => {
+      for (let i = pointer.echoes.length - 1; i >= 0; i -= 1) {
+        const echo = pointer.echoes[i];
+        echo.age += deltaMs;
 
         if (echo.age >= echo.duration) {
-          pointerState.echoes.splice(echoIndex, 1);
+          pointer.echoes.splice(i, 1);
           continue;
         }
 
         const progress = echo.age / echo.duration;
-        const radius = 12 + echo.maxRadius * progress;
-        const opacity = (1 - progress) * 0.46;
+        const radius = 10 + echo.radius * progress;
+        const alpha = (1 - progress) * 0.34 * intensity;
 
-        renderingContext.lineWidth = 1.6 - progress;
-        renderingContext.strokeStyle = `rgba(125, 211, 252, ${opacity})`;
-        renderingContext.beginPath();
-        renderingContext.arc(echo.x, echo.y, radius, 0, Math.PI * 2);
-        renderingContext.stroke();
+        context.strokeStyle = `rgba(190, 242, 100, ${alpha})`;
+        context.lineWidth = 1.8 - progress;
+        context.beginPath();
+        context.arc(echo.x, echo.y, radius, 0, Math.PI * 2);
+        context.stroke();
       }
     };
 
-    const drawParticles = () => {
-      for (const node of particleNodes) {
-        renderingContext.fillStyle = `rgba(125, 211, 252, ${node.opacity})`;
-        renderingContext.beginPath();
-        renderingContext.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-        renderingContext.fill();
-      }
+    const drawVignette = () => {
+      const vignette = context.createRadialGradient(
+        width * 0.5,
+        height * 0.45,
+        Math.min(width, height) * 0.2,
+        width * 0.5,
+        height * 0.45,
+        Math.max(width, height) * 0.75
+      );
+      vignette.addColorStop(0, "rgba(2, 6, 23, 0)");
+      vignette.addColorStop(1, "rgba(2, 6, 23, 0.56)");
+
+      context.fillStyle = vignette;
+      context.fillRect(0, 0, width, height);
     };
 
-    const renderFrame = (timestamp: number) => {
-      const deltaMilliseconds = previousTimestamp === 0 ? 16.7 : timestamp - previousTimestamp;
-      previousTimestamp = timestamp;
-      renderingContext.clearRect(0, 0, viewportWidth, viewportHeight);
+    const frame = (time: number) => {
+      const deltaMs = previousTime === 0 ? 16.7 : time - previousTime;
+      previousTime = time;
 
-      updateParticles();
-      drawParticleLinks();
-      drawPointerLinks();
-      drawPointerEchoes(deltaMilliseconds);
-      drawParticles();
-      animationFrameId = window.requestAnimationFrame(renderFrame);
+      if (!reducedMotion) {
+        pointer.x = lerp(pointer.x, pointer.targetX, 0.13);
+        pointer.y = lerp(pointer.y, pointer.targetY, 0.13);
+      } else {
+        pointer.x = pointer.targetX;
+        pointer.y = pointer.targetY;
+      }
+
+      context.clearRect(0, 0, width, height);
+
+      const timeSeconds = time * 0.001;
+      drawAurora(reducedMotion ? 0 : timeSeconds);
+      drawParallaxGrid();
+      drawPointerGlow();
+      drawEchoes(deltaMs);
+      drawVignette();
+
+      rafId = window.requestAnimationFrame(frame);
     };
 
     const handlePointerMove = (event: PointerEvent) => {
-      pointerState.x = event.clientX;
-      pointerState.y = event.clientY;
-      pointerState.active = true;
+      pointer.active = true;
+      pointer.targetX = event.clientX;
+      pointer.targetY = event.clientY;
 
-      if (!reducedMotionEnabled && event.timeStamp - pointerState.lastEchoAt >= POINTER_ECHO_INTERVAL) {
-        pointerState.lastEchoAt = event.timeStamp;
-        pointerState.echoes.push({
+      if (reducedMotion) {
+        return;
+      }
+
+      if (event.timeStamp - lastEchoAt >= ECHO_INTERVAL_MS) {
+        lastEchoAt = event.timeStamp;
+        pointer.echoes.push({
           x: event.clientX,
           y: event.clientY,
           age: 0,
-          duration: randomInRange(560, 860),
-          maxRadius: randomInRange(54, 92),
+          duration: randomInRange(ECHO_MIN_DURATION, ECHO_MAX_DURATION),
+          radius: randomInRange(56, 106),
         });
-        if (pointerState.echoes.length > MAX_POINTER_ECHOES) {
-          pointerState.echoes.shift();
+
+        if (pointer.echoes.length > ECHO_MAX_COUNT) {
+          pointer.echoes.shift();
         }
       }
     };
 
     const handlePointerLeave = () => {
-      pointerState.active = false;
+      pointer.active = false;
+      pointer.targetX = width * 0.5;
+      pointer.targetY = height * 0.45;
     };
 
     const handleReducedMotionChange = (event: MediaQueryListEvent) => {
-      reducedMotionEnabled = event.matches;
+      reducedMotion = event.matches;
+      pointer.echoes = [];
     };
 
-    setupCanvas();
-    animationFrameId = window.requestAnimationFrame(renderFrame);
+    resize();
+    rafId = window.requestAnimationFrame(frame);
 
-    window.addEventListener("resize", setupCanvas, { passive: true });
+    window.addEventListener("resize", resize, { passive: true });
     window.addEventListener("pointermove", handlePointerMove, { passive: true });
     window.addEventListener("pointerleave", handlePointerLeave);
     window.addEventListener("pointercancel", handlePointerLeave);
     reducedMotionQuery.addEventListener("change", handleReducedMotionChange);
 
     return () => {
-      window.cancelAnimationFrame(animationFrameId);
-      window.removeEventListener("resize", setupCanvas);
+      window.cancelAnimationFrame(rafId);
+      window.removeEventListener("resize", resize);
       window.removeEventListener("pointermove", handlePointerMove);
       window.removeEventListener("pointerleave", handlePointerLeave);
       window.removeEventListener("pointercancel", handlePointerLeave);
       reducedMotionQuery.removeEventListener("change", handleReducedMotionChange);
     };
-  }, []);
+  }, [intensity]);
 
   return (
-    <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-30 overflow-hidden">
-      <canvas
-        ref={canvasRef}
-        className="h-full w-full opacity-62"
-      />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(37,99,235,0.1),transparent_52%),radial-gradient(circle_at_80%_70%,rgba(16,185,129,0.08),transparent_56%)] opacity-55" />
+    <div className="pointer-events-none fixed inset-0 z-[-2] overflow-hidden">
+      <canvas ref={canvasRef} className="h-full w-full" aria-hidden="true" />
+      <div className="ambient-scanline" aria-hidden="true" />
+      <div className="ambient-noise" aria-hidden="true" />
     </div>
   );
 }

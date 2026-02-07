@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import CookieBanner from "@/components/ui/CookieBanner";
 import { locales } from "@/i18n";
-import { cn } from "@/lib/utils";
+import HomeNetworkBackground from "@/components/sections/HomeNetworkBackground";
 
 export default function ClientLayout({
   children,
@@ -19,7 +19,7 @@ export default function ClientLayout({
 
   return (
     <div className="relative isolate min-h-screen overflow-x-clip">
-      <div aria-hidden="true" className={cn("page-ambient-bg", isHomePage && "opacity-80")} />
+      <HomeNetworkBackground intensity={isHomePage ? 1 : 0.88} />
       {children}
       <CookieBanner />
     </div>
