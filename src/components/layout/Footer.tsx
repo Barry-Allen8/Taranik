@@ -253,13 +253,13 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:vektadev@gmail.com"
+                  href="mailto:hello@vektadev.com"
                   className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group"
                 >
                   <div className="w-10 h-10 rounded-lg bg-white/5 group-hover:bg-primary/20 flex items-center justify-center flex-shrink-0 transition-colors">
                     <Mail className="w-5 h-5" />
                   </div>
-                  <span className="text-white font-medium">vektadev@gmail.com</span>
+                  <span className="text-white font-medium">hello@vektadev.com</span>
                 </a>
               </li>
             </ul>

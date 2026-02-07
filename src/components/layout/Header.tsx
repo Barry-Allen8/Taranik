@@ -188,7 +188,7 @@ export default function Header() {
 
           {/* Right side: CTA + Language */}
           <div className="hidden lg:flex items-center gap-4">
-            <Button asChild>
+            <Button asChild className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 border-0">
               <Link href="/contact" locale={locale}>{t("consultation")}</Link>
             </Button>
 
@@ -366,7 +366,7 @@ export default function Header() {
               {t("contact")}
             </Link>
 
-            <Button className="w-full mt-4" asChild>
+            <Button className="w-full mt-4 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg shadow-orange-500/25 border-0 py-4 text-base" asChild>
               <Link href="/contact" locale={locale} onClick={() => setMobileMenuOpenPath(null)}>
                 {t("consultation")}
               </Link>

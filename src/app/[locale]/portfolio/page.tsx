@@ -46,7 +46,6 @@ export default async function PortfolioPage({ params: { locale } }: Props) {
     <>
       <script
         type="application/ld+json"
-        // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
       <PortfolioPageClient />
