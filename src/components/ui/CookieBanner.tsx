@@ -3,25 +3,14 @@
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { useCookieConsent } from "@/lib/useCookieConsent";
-import { Cookie, Shield, X } from "lucide-react";
+import { Cookie, Shield } from "lucide-react";
 import { type Locale } from "@/i18n";
 
-/**
- * GDPR-compliant cookie consent banner.
- * - Shows on first visit only (until user makes a choice)
- * - Stores choice in localStorage (key: "cookie_consent")
- * - Provides Accept All and Reject Non-Essential options
- * - Links to Privacy Policy page
- * - Accessible (ARIA, keyboard navigation)
- * - Responsive (mobile + desktop)
- * - Fixed at bottom, doesn't block scrolling
- */
 export default function CookieBanner() {
   const t = useTranslations("cookies");
   const locale = useLocale() as Locale;
   const { hasConsent, isLoading, acceptAll, rejectNonEssential } = useCookieConsent();
 
-  // Don't render during SSR or loading, or if consent already given
   if (isLoading || hasConsent) {
     return null;
   }
@@ -32,70 +21,46 @@ export default function CookieBanner() {
       aria-modal="false"
       aria-labelledby="cookie-banner-title"
       aria-describedby="cookie-banner-description"
-      className="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6"
+      className="fixed bottom-0 left-0 right-0 z-50 p-4"
     >
-      <div className="container max-w-5xl mx-auto">
-        <div className="bg-slate-900 rounded-2xl shadow-2xl border border-slate-800 overflow-hidden">
-          {/* Header */}
-          <div className="bg-gradient-to-r from-primary/15 to-accent/15 px-4 py-3 md:px-6 md:py-4 border-b border-slate-800">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-                <Cookie className="w-5 h-5 text-primary" aria-hidden="true" />
-              </div>
-              <h2
-                id="cookie-banner-title"
-                className="font-semibold text-slate-100 text-lg"
-              >
-                {t("title")}
-              </h2>
-            </div>
+      <div className="container">
+        <div className="cyber-panel border-primary/35 p-4 md:p-5">
+          <div className="mb-4 flex items-center gap-3 border-b border-primary/20 pb-3">
+            <Cookie className="h-5 w-5 text-primary" aria-hidden="true" />
+            <h2 id="cookie-banner-title" className="futuristic-font text-sm font-black tracking-[0.15em] text-white">
+              {t("title")}
+            </h2>
           </div>
 
-          {/* Content */}
-          <div className="p-4 md:p-6">
-            <p
-              id="cookie-banner-description"
-              className="text-slate-300 text-sm md:text-base leading-relaxed mb-4"
-            >
-              {t("description")}
-            </p>
+          <p id="cookie-banner-description" className="mb-4 text-xs leading-relaxed text-[#8a8a8a]">
+            {t("description")}
+          </p>
 
-            {/* Essential cookies info */}
-            <div className="flex items-start gap-3 p-3 bg-slate-800/60 rounded-lg mb-5">
-              <Shield className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
-              <p className="text-sm text-slate-300">
-                {t("essential_info")}
-              </p>
-            </div>
+          <div className="mb-5 flex items-start gap-2 border border-[#1a1a1a] bg-black/60 p-3">
+            <Shield className="mt-0.5 h-4 w-4 text-primary" aria-hidden="true" />
+            <p className="text-[11px] leading-relaxed text-[#787878]">{t("essential_info")}</p>
+          </div>
 
-            {/* Actions */}
-            <div className="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
-              {/* Privacy Policy Link */}
-              <Link
-                href="/privacy"
-                locale={locale}
-                className="text-sm text-primary hover:text-primary/80 underline underline-offset-2 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <Link href="/privacy" locale={locale} className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary hover:text-primary/80">
+              {t("privacy_link")}
+            </Link>
+
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <button
+                type="button"
+                onClick={rejectNonEssential}
+                className="border border-[#1f1f1f] bg-black px-4 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#8a8a8a] hover:text-white"
               >
-                {t("privacy_link")}
-              </Link>
-
-              {/* Buttons */}
-              <div className="flex flex-col sm:flex-row gap-3">
-                <button
-                  type="button"
-                  onClick={rejectNonEssential}
-                  className="px-5 py-2.5 text-sm font-medium text-slate-200 bg-slate-800 hover:bg-slate-700 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2"
-                >
-                  {t("reject")}
-                </button>
-                <button
-                  type="button"
-                  onClick={acceptAll}
-                  className="px-5 py-2.5 text-sm font-medium text-white bg-primary hover:bg-primary/90 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-                >
-                  {t("accept")}
-                </button>
-              </div>
+                {t("reject")}
+              </button>
+              <button
+                type="button"
+                onClick={acceptAll}
+                className="border border-primary bg-primary px-4 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-black hover:bg-primary-dark"
+              >
+                {t("accept")}
+              </button>
             </div>
           </div>
         </div>

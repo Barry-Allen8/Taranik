@@ -8,7 +8,7 @@ function renderStars(rating: number) {
     return (
       <Star
         key={index}
-        className={`h-4 w-4 ${active ? "fill-amber-400 text-amber-400" : "text-[#4a4568]"}`}
+        className={`h-3.5 w-3.5 ${active ? "fill-primary text-primary" : "text-[#313131]"}`}
       />
     );
   });
@@ -25,23 +25,23 @@ export default async function LatestReviewsSection({
   ]);
 
   return (
-    <section className="section bg-[#0f0e1d]" aria-labelledby="latest-reviews-title">
+    <section className="section border-y border-primary/10 bg-[#050505]" aria-labelledby="latest-reviews-title">
       <div className="container">
         <div className="section-title">
-          <h2 id="latest-reviews-title">{t("title")}</h2>
-          <p className="text-[#bcb5df]">{t("description")}</p>
+          <h2 id="latest-reviews-title">CLIENT FEEDBACK</h2>
+          <p>{t("description")}</p>
         </div>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {reviews.map((review) => (
             <article
               key={review.id}
-              className="rounded-2xl border border-[#2f2b48] bg-[#17152a]/95 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/45"
+              className="sharp-card border border-[#161616] bg-black p-6"
               itemScope
               itemType="https://schema.org/Review"
             >
               <div className="mb-3 flex items-center justify-between gap-2">
-                <p className="font-semibold text-white" itemProp="author">
+                <p className="text-xs font-bold uppercase tracking-[0.14em] text-white" itemProp="author">
                   {review.author}
                 </p>
                 <div className="flex items-center gap-1" aria-label={`${review.rating} out of 5`}>
@@ -49,11 +49,11 @@ export default async function LatestReviewsSection({
                 </div>
               </div>
 
-              <p className="mb-4 text-sm leading-relaxed text-[#c2bce4]" itemProp="reviewBody">
+              <p className="mb-5 text-xs uppercase leading-relaxed tracking-[0.08em] text-[#6d6d6d]" itemProp="reviewBody">
                 {review.text}
               </p>
 
-              <div className="flex items-center justify-between text-xs text-[#9790be]">
+              <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.1em] text-[#4f4f4f]">
                 <span>{review.source}</span>
                 <time dateTime={review.date}>{new Date(review.date).toLocaleDateString(locale)}</time>
               </div>
@@ -63,7 +63,7 @@ export default async function LatestReviewsSection({
                   href={review.profileUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-4 inline-block text-sm font-bold text-primary hover:underline"
+                  className="mt-4 inline-block text-[10px] font-bold uppercase tracking-[0.2em] text-primary hover:underline"
                 >
                   {t("view_source")}
                 </a>

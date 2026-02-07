@@ -1,36 +1,38 @@
 "use client";
 
-import Card from "@/components/ui/Card";
 import { Award, Users, Zap, Shield } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 const featureKeys = [
-  { key: "professionalism", icon: Award },
-  { key: "speed", icon: Zap },
-  { key: "reliability", icon: Shield },
-  { key: "individual", icon: Users },
+  { key: "professionalism", icon: Award, idx: "A1" },
+  { key: "speed", icon: Zap, idx: "A2" },
+  { key: "reliability", icon: Shield, idx: "A3" },
+  { key: "individual", icon: Users, idx: "A4" },
 ] as const;
 
 export default function WhyUsSection() {
   const t = useTranslations("why_us");
 
   return (
-    <section className="section bg-[#121022]">
+    <section className="section bg-[#050505]">
       <div className="container">
         <div className="section-title">
-          <h2>{t("title")}</h2>
-          <p className="text-[#bcb5df]">{t("description")}</p>
+          <h2>INTEL MATRIX</h2>
+          <p>{t("description")}</p>
         </div>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           {featureKeys.map((feature) => (
-            <Card key={feature.key} className="h-full border-[#2f2b48] bg-[#17152a]/95 text-center hover:border-primary/45">
-              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/15 text-primary">
-                <feature.icon className="h-6 w-6" />
+            <article key={feature.key} className="sharp-card border border-[#171717] bg-black p-6">
+              <div className="mb-4 flex items-center justify-between">
+                <feature.icon className="h-5 w-5 text-primary" />
+                <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#525252]">{feature.idx}</span>
               </div>
-              <h3 className="mb-2 text-lg font-extrabold text-white">{t(`${feature.key}.title`)}</h3>
-              <p className="text-sm leading-relaxed text-[#bcb5df]">{t(`${feature.key}.description`)}</p>
-            </Card>
+              <h3 className="mb-3 text-base font-black text-white">{t(`${feature.key}.title`)}</h3>
+              <p className="text-xs uppercase leading-relaxed tracking-[0.1em] text-[#646464]">
+                {t(`${feature.key}.description`)}
+              </p>
+            </article>
           ))}
         </div>
       </div>

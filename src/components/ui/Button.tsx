@@ -15,10 +15,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         "btn-primary": variant === "primary",
         "btn-secondary": variant === "secondary",
         "btn-outline": variant === "outline",
-        "bg-transparent hover:bg-[#232038] text-white": variant === "ghost",
+        "border border-[#1f3a26] bg-transparent text-[#b9b9b9] hover:border-primary/70 hover:text-primary": variant === "ghost",
         "px-4 py-2 text-sm": size === "sm",
         "px-6 py-3": size === "md",
-        "px-8 py-4 text-lg": size === "lg",
+        "px-8 py-4 text-sm": size === "lg",
       },
       className
     );

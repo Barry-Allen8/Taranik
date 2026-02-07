@@ -11,30 +11,25 @@ export default function NotFound() {
   const locale = useLocale() as Locale;
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10">
-      <div className="container">
-        <div className="max-w-2xl mx-auto text-center">
-          <div className="text-9xl font-bold gradient-text mb-8">404</div>
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">
-            {t("title")}
-          </h1>
-          <p className="text-xl text-muted mb-8">
-            {t("description")}
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button asChild>
-              <Link href="/" locale={locale}>
-                <Home className="w-5 h-5" />
-                {t("home")}
-              </Link>
-            </Button>
-            <Button variant="outline" asChild>
-              <Link href="/contact" locale={locale}>
-                <ArrowLeft className="w-5 h-5" />
-                {t("contact")}
-              </Link>
-            </Button>
-          </div>
+    <div className="min-h-screen flex items-center justify-center bg-black px-4">
+      <div className="w-full max-w-3xl border border-primary/20 bg-[#050505] p-8 text-center">
+        <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.24em] text-primary">{"// route_not_found"}</p>
+        <div className="glitch-text mb-6 text-8xl font-black text-white md:text-9xl">404</div>
+        <h1 className="mb-4 text-3xl font-black text-white md:text-4xl">{t("title")}</h1>
+        <p className="mb-8 text-xs uppercase tracking-[0.12em] text-[#6a6a6a]">{t("description")}</p>
+        <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <Button asChild>
+            <Link href="/" locale={locale}>
+              <Home className="h-4 w-4" />
+              {t("home")}
+            </Link>
+          </Button>
+          <Button variant="outline" asChild>
+            <Link href="/contact" locale={locale}>
+              <ArrowLeft className="h-4 w-4" />
+              {t("contact")}
+            </Link>
+          </Button>
         </div>
       </div>
     </div>

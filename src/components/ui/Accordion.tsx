@@ -24,23 +24,23 @@ export default function Accordion({ items, className }: AccordionProps) {
   return (
     <div className={cn("space-y-3", className)}>
       {items.map((item, index) => (
-        <div key={index} className="border border-border rounded-lg overflow-hidden">
+        <div key={index} className="sharp-card border border-[#1a1a1a] bg-black overflow-hidden">
           <button
             onClick={() => toggle(index)}
-            className="w-full px-6 py-4 flex justify-between items-center bg-card hover:bg-slate-800/60 transition-colors"
+            className="flex w-full items-center justify-between px-5 py-4 text-left transition-colors hover:bg-[#050505]"
           >
-            <span className="font-semibold text-left">{item.title}</span>
+            <span className="text-xs font-black uppercase tracking-[0.12em] text-white">{item.title}</span>
             <ChevronDown
               className={cn(
-                "w-5 h-5 transition-transform duration-300",
-                openIndex === index && "transform rotate-180"
+                "h-4 w-4 text-primary transition-transform duration-300",
+                openIndex === index && "rotate-180"
               )}
             />
           </button>
           <div
             className={cn(
-              "px-6 overflow-hidden transition-all duration-300",
-              openIndex === index ? "py-4 max-h-96" : "max-h-0"
+              "overflow-hidden px-5 text-xs uppercase tracking-[0.1em] text-[#6f6f6f] transition-all duration-300",
+              openIndex === index ? "max-h-[340px] py-4" : "max-h-0"
             )}
           >
             {item.content}

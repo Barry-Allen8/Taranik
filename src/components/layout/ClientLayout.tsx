@@ -23,19 +23,7 @@ export default function ClientLayout({
 
   return (
     <div className="relative isolate min-h-screen overflow-x-clip">
-      {!isHomePage ? (
-        <div aria-hidden="true" className="page-ambient-bg">
-          <div className="blob-1" />
-          <div className="blob-2" />
-          <div className="blob-3" />
-          <div className="particle" />
-          <div className="particle" />
-          <div className="particle" />
-          <div className="particle" />
-          <div className="particle" />
-          <div className="particle" />
-        </div>
-      ) : null}
+      {!isHomePage ? <div aria-hidden="true" className="page-ambient-bg" /> : null}
       {children}
       <CookieBanner />
     </div>

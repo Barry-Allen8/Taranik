@@ -1,15 +1,14 @@
 "use client";
 
-import Card from "@/components/ui/Card";
-import { Globe, Bot, Smartphone, ArrowRight } from "lucide-react";
+import { Globe, Bot, Smartphone } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { type Locale } from "@/i18n";
 
 const serviceKeys = [
-  { key: "websites", icon: Globe, href: "/services/websites" },
-  { key: "chatbots", icon: Bot, href: "/services/chatbots" },
-  { key: "mobile_apps", icon: Smartphone, href: "/services/mobile-apps" },
+  { key: "websites", href: "/services/websites", icon: Globe, index: "0x001", accent: "text-primary", bar: "w-[86%] bg-primary shadow-[0_0_8px_#39ff14]" },
+  { key: "chatbots", href: "/services/chatbots", icon: Bot, index: "0x002", accent: "text-secondary", bar: "w-[72%] bg-secondary shadow-[0_0_8px_#bc13fe]" },
+  { key: "mobile_apps", href: "/services/mobile-apps", icon: Smartphone, index: "0x003", accent: "text-primary", bar: "w-full bg-primary shadow-[0_0_8px_#39ff14]" },
 ] as const;
 
 export default function ServicesSection() {
@@ -17,63 +16,52 @@ export default function ServicesSection() {
   const locale = useLocale() as Locale;
 
   return (
-    <section id="services" className="section relative overflow-hidden border-y border-[#25213c] bg-[#0f0e1d]">
-      <div className="absolute inset-0 bg-grid opacity-35" />
-      <div className="pointer-events-none absolute -top-24 right-0 h-72 w-72 rounded-full bg-primary/20 blur-[110px]" />
+    <section id="services" className="section relative overflow-hidden border-y border-primary/15 bg-black">
+      <div className="absolute inset-0 bg-grid opacity-80" />
 
       <div className="container relative z-10">
-        <div className="mb-14 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div className="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
-            <span className="mb-3 inline-block text-xs font-extrabold uppercase tracking-[0.15em] text-primary">
-              {t("title")}
-            </span>
-            <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-white md:text-5xl">
-              Engineering <span className="text-primary">Excellence</span>
+            <h2 className="mb-4 text-4xl font-black tracking-tight text-white md:text-5xl">
+              CORE <span className="text-primary">DIRECTIVES</span>
             </h2>
-            <p className="text-lg text-[#bcb5df]">{t("description")}</p>
+            <p className="text-xs uppercase tracking-[0.16em] text-[#666666]">
+              {t("description")}
+            </p>
           </div>
 
           <Link
             href="/services"
             locale={locale}
-            className="inline-flex items-center gap-2 text-sm font-bold text-primary transition-all hover:gap-3"
+            className="text-[10px] font-black uppercase tracking-[0.24em] text-primary hover:underline"
           >
-            {t("learn_more")}
-            <ArrowRight className="h-4 w-4" />
+            [ VIEW_ALL_ASSETS ]
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-7 md:grid-cols-3">
           {serviceKeys.map((service) => {
             const Icon = service.icon;
-            const features = (t.raw(`${service.key}.features`) as string[]).slice(0, 3);
-
             return (
-              <Link key={service.key} href={service.href} locale={locale} className="group block h-full">
-                <Card className="relative h-full overflow-hidden border-[#2f2b48] bg-[#17152a]/95 p-7 hover:border-primary/60">
-                  <Icon className="pointer-events-none absolute -right-7 top-5 h-24 w-24 text-primary/10 transition-transform duration-500 group-hover:scale-110" />
+              <Link key={service.key} href={service.href} locale={locale} className="group sharp-card border border-[#181818] bg-[#050505] p-8 transition-all hover:border-primary/60">
+                <div className="mb-7 flex items-start justify-between">
+                  <Icon className={`h-7 w-7 ${service.accent}`} />
+                  <span className="text-[10px] font-bold text-[#494949]">{service.index}</span>
+                </div>
 
-                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/15 text-primary transition-colors group-hover:bg-primary group-hover:text-white">
-                    <Icon className="h-7 w-7" />
+                <h3 className={`mb-3 text-xl font-black ${service.accent}`}>{t(`${service.key}.title`)}</h3>
+                <p className="mb-7 text-xs uppercase leading-relaxed tracking-[0.08em] text-[#646464]">
+                  {t(`${service.key}.description`)}
+                </p>
+
+                <div className="space-y-2">
+                  <div className="h-[4px] w-full bg-[#111111]">
+                    <div className={`h-full ${service.bar}`} />
                   </div>
-
-                  <h3 className="mb-3 text-xl font-extrabold text-white">{t(`${service.key}.title`)}</h3>
-                  <p className="mb-6 text-sm leading-relaxed text-[#bcb5df]">{t(`${service.key}.description`)}</p>
-
-                  <ul className="mb-7 space-y-2">
-                    {features.map((feature) => (
-                      <li key={feature} className="flex items-center gap-2 text-sm font-medium text-[#f1eeff]">
-                        <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="inline-flex items-center gap-2 text-sm font-bold text-primary transition-all group-hover:gap-3">
-                    {t("learn_more")}
-                    <ArrowRight className="h-4 w-4" />
-                  </div>
-                </Card>
+                  <p className={`text-[9px] font-bold uppercase tracking-[0.22em] ${service.accent}`}>
+                    {(t.raw(`${service.key}.features`) as string[])[0]}
+                  </p>
+                </div>
               </Link>
             );
           })}

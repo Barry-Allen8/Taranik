@@ -10,20 +10,20 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: "#5239f3",
-          dark: "#432ccf",
+          DEFAULT: "#39ff14",
+          dark: "#21d103",
         },
-        secondary: "#7c66ff",
-        accent: "#9d8cff",
-        background: "#121022",
+        secondary: "#bc13fe",
+        accent: "#0ef0ff",
+        background: "#000000",
         foreground: "#ffffff",
-        muted: "#a7a1cb",
-        card: "#1a182e",
-        border: "#2d2a45",
+        muted: "#707070",
+        card: "#050505",
+        border: "#173120",
       },
       fontFamily: {
-        heading: ["Manrope", "ui-sans-serif", "system-ui", "sans-serif"],
-        body: ["Manrope", "ui-sans-serif", "system-ui", "sans-serif"],
+        heading: ["Orbitron", "ui-sans-serif", "system-ui", "sans-serif"],
+        body: ["JetBrains Mono", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
       },
       boxShadow: {
         sm: "0 1px 2px rgba(0,0,0,0.05)",

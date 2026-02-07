@@ -1,35 +1,30 @@
 import Link from "next/link";
 import { defaultLocale } from "@/i18n";
 
-// This is the root not-found page for requests outside locale routing.
-// It provides a basic fallback in English and redirects to the default locale.
 export default function RootNotFound() {
   return (
     <html lang={defaultLocale}>
-      <body className="font-sans antialiased">
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
-          <div className="max-w-2xl mx-auto text-center px-4">
-            <div className="text-9xl font-bold bg-gradient-to-r from-blue-600 via-purple-500 to-green-500 bg-clip-text text-transparent mb-8">
-              404
-            </div>
-            <h1 className="text-3xl md:text-4xl font-bold mb-4">
-              Page Not Found
-            </h1>
-            <p className="text-xl text-slate-300 mb-8">
+      <body className="antialiased">
+        <div className="min-h-screen flex items-center justify-center bg-black px-4 text-white">
+          <div className="w-full max-w-3xl border border-[#173120] bg-[#050505] p-8 text-center">
+            <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.24em] text-[#39ff14]">{"// route_not_found"}</p>
+            <div className="mb-6 text-8xl font-black md:text-9xl">404</div>
+            <h1 className="mb-4 text-3xl font-black md:text-4xl">Page Not Found</h1>
+            <p className="mb-8 text-xs uppercase tracking-[0.12em] text-[#707070]">
               Sorry, but the page you are looking for does not exist or has been moved.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href={`/${defaultLocale}`}
-                className="px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors inline-flex items-center gap-2"
+                className="inline-flex items-center gap-2 border border-[#39ff14] bg-[#39ff14] px-6 py-3 text-xs font-black uppercase tracking-[0.2em] text-black"
               >
-                🏠 Home
+                Home
               </Link>
               <Link
                 href={`/${defaultLocale}/contact`}
-                className="px-6 py-3 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary hover:text-white transition-colors inline-flex items-center gap-2"
+                className="inline-flex items-center gap-2 border border-[#39ff14]/60 px-6 py-3 text-xs font-black uppercase tracking-[0.2em] text-[#39ff14]"
               >
-                ✉️ Contact us
+                Contact
               </Link>
             </div>
           </div>

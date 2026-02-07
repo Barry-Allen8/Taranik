@@ -20,33 +20,25 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-red-50 to-orange-50">
-      <div className="container">
-        <div className="max-w-2xl mx-auto text-center">
-          <div className="w-24 h-24 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-8">
-            <span className="text-5xl">⚠️</span>
-          </div>
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">
-            {t("title")}
-          </h1>
-          <p className="text-xl text-muted mb-8">
-            {t("description")}
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button onClick={reset}>
-              <RefreshCw className="w-5 h-5" />
-              {t("try_again")}
-            </Button>
-            <Button variant="outline" asChild>
-              <Link href="/">
-                <Home className="w-5 h-5" />
-                {t("go_home")}
-              </Link>
-            </Button>
-          </div>
+    <div className="min-h-screen flex items-center justify-center bg-black px-4">
+      <div className="w-full max-w-3xl border border-red-500/35 bg-[#050505] p-8 text-center">
+        <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.24em] text-red-400">{"// system_fault"}</p>
+        <div className="mb-6 text-7xl font-black text-red-400">ERR</div>
+        <h1 className="mb-4 text-3xl font-black text-white md:text-4xl">{t("title")}</h1>
+        <p className="mb-8 text-xs uppercase tracking-[0.12em] text-[#6a6a6a]">{t("description")}</p>
+        <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <Button onClick={reset}>
+            <RefreshCw className="h-4 w-4" />
+            {t("try_again")}
+          </Button>
+          <Button variant="outline" asChild>
+            <Link href="/">
+              <Home className="h-4 w-4" />
+              {t("go_home")}
+            </Link>
+          </Button>
         </div>
       </div>
     </div>
   );
 }
-

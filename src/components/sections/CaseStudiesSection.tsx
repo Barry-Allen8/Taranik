@@ -1,7 +1,6 @@
 "use client";
 
 import { useTranslations, useLocale } from "next-intl";
-import { ArrowUpRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { type Locale } from "@/i18n";
@@ -10,29 +9,22 @@ const caseStudies = [
   {
     id: 1,
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&crop=entropy&q=70&w=1400&h=900&fm=webp",
-    category: "E-commerce",
     titleKey: "case_1_title",
     descriptionKey: "case_1_desc",
-    tags: ["SaaS", "Web App"],
-    className: "",
+    tags: ["Web3", "FinTech"],
+    color: "text-primary",
+    badgeColor: "bg-primary text-black",
+    status: "VERIFIED_BUILD",
   },
   {
     id: 2,
     image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&crop=entropy&q=70&w=1400&h=900&fm=webp",
-    category: "AI",
     titleKey: "case_2_title",
     descriptionKey: "case_2_desc",
-    tags: ["Chatbot", "Automation"],
-    className: "",
-  },
-  {
-    id: 3,
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&crop=entropy&q=70&w=1800&h=900&fm=webp",
-    category: "Automation",
-    titleKey: "case_3_title",
-    descriptionKey: "case_3_desc",
-    tags: ["Dashboard", "Enterprise"],
-    className: "md:col-span-2",
+    tags: ["BioTech", "LLM"],
+    color: "text-secondary",
+    badgeColor: "bg-secondary text-white",
+    status: "NODE_ACTIVE",
   },
 ] as const;
 
@@ -41,69 +33,61 @@ export default function CaseStudiesSection() {
   const locale = useLocale() as Locale;
 
   return (
-    <section className="section relative overflow-hidden bg-[#121022]">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_90%_8%,rgba(82,57,243,0.18),transparent_40%)]" />
+    <section className="section relative overflow-hidden bg-[#050505]">
+      <div className="absolute inset-0 bg-grid opacity-75" />
 
       <div className="container relative z-10">
-        <div className="mb-12">
-          <span className="mb-2 block text-xs font-extrabold uppercase tracking-[0.15em] text-primary">{t("badge")}</span>
-          <h2 className="text-4xl font-extrabold tracking-tight text-white md:text-5xl">{t("title")}</h2>
-          <p className="mt-4 max-w-2xl text-lg text-[#bcb5df]">{t("description")}</p>
+        <div className="mb-14">
+          <span className="mb-3 block text-[10px] font-black uppercase tracking-[0.28em] text-primary">
+            {"// CLASSIFIED_PORTFOLIO"}
+          </span>
+          <h2 className="text-4xl font-black tracking-tight text-white md:text-5xl">OPERATIONS</h2>
+          <p className="mt-4 max-w-2xl text-xs uppercase tracking-[0.16em] text-[#5f5f5f]">{t("description")}</p>
         </div>
 
-        <div className="grid grid-cols-1 gap-7 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-9 lg:grid-cols-2">
           {caseStudies.map((study) => (
-            <article
-              key={study.id}
-              className={`group relative overflow-hidden rounded-2xl border border-[#2f2a48] ${study.className}`}
-            >
+            <article key={study.id} className="group relative overflow-hidden border border-[#171717] bg-black">
               <div className="relative aspect-video">
                 <Image
                   src={study.image}
                   alt={t(study.titleKey)}
                   fill
-                  sizes="(min-width: 1024px) 45vw, 100vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  sizes="(min-width: 1024px) 48vw, 100vw"
+                  className="object-cover brightness-50 transition-all duration-700 group-hover:scale-110 group-hover:brightness-100"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0f0d1d]/95 via-[#0f0d1d]/55 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
               </div>
 
               <div className="absolute bottom-0 left-0 right-0 p-6">
-                <div className="mb-3 flex flex-wrap gap-2">
-                  <span className="rounded-full border border-primary/35 bg-primary/20 px-3 py-1 text-xs font-bold text-white">
-                    {study.category}
-                  </span>
-                  {study.tags.map((tag) => (
-                    <span key={tag} className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-bold text-white">
-                      {tag}
-                    </span>
-                  ))}
+                <div className="translate-y-3 transition-transform duration-300 group-hover:translate-y-0">
+                  <h3 className={`mb-2 text-3xl font-black ${study.color}`}>{t(study.titleKey)}</h3>
+                  <p className="mb-5 text-xs uppercase tracking-[0.1em] text-[#787878] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    {t(study.descriptionKey)}
+                  </p>
+                  <div className="flex gap-3">
+                    {study.tags.map((tag, index) => (
+                      <span
+                        key={tag}
+                        className={`px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] ${index === 0 ? study.badgeColor : "border border-[#4a4a4a] text-white"}`}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
+              </div>
 
-                <h3 className="mb-2 text-2xl font-extrabold text-white">{t(study.titleKey)}</h3>
-                <p className="mb-4 max-w-2xl text-sm text-[#dbd6ff]">{t(study.descriptionKey)}</p>
-
-                <Link
-                  href="/portfolio"
-                  locale={locale}
-                  className="inline-flex items-center gap-2 text-sm font-bold text-primary transition-all group-hover:gap-3"
-                >
-                  {t("view_case")}
-                  <ArrowUpRight className="h-4 w-4" />
-                </Link>
+              <div className={`absolute right-4 top-4 text-[9px] font-bold uppercase tracking-[0.18em] ${study.color}`}>
+                {study.status}
               </div>
             </article>
           ))}
         </div>
 
-        <div className="mt-12 text-center">
-          <Link
-            href="/portfolio"
-            locale={locale}
-            className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-6 py-3 text-sm font-bold text-primary transition-colors hover:bg-primary/20"
-          >
-            {t("view_all")}
-            <ArrowUpRight className="h-4 w-4" />
+        <div className="mt-10 text-right">
+          <Link href="/portfolio" locale={locale} className="text-[10px] font-black uppercase tracking-[0.24em] text-primary hover:underline">
+            [ {t("view_all")} ]
           </Link>
         </div>
       </div>

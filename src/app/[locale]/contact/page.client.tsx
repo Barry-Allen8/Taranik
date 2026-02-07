@@ -1,8 +1,7 @@
 "use client";
 
 import ContactForm from "@/components/forms/ContactForm";
-import Card from "@/components/ui/Card";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, TerminalSquare } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 export default function ContactPageClient() {
@@ -15,84 +14,86 @@ export default function ContactPageClient() {
 
   return (
     <div className="min-h-screen">
-      <section className="section bg-gradient-to-br from-primary/10 to-accent/10">
+      <section className="section border-b border-primary/20 bg-black">
         <div className="container">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">{t("title")}</h1>
-            <p className="text-xl text-muted">{t("description")}</p>
+          <div className="max-w-4xl">
+            <div className="mb-4 inline-flex border border-primary/40 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.22em] text-primary">
+              Establishing Secure Connection...
+            </div>
+            <h1 className="glitch-text mb-4 text-5xl font-black text-white md:text-7xl">
+              CONNECT_<span className="text-primary">TERMINAL</span>
+            </h1>
+            <p className="max-w-3xl text-xs uppercase tracking-[0.14em] text-[#636363]">
+              {t("description")}
+            </p>
           </div>
         </div>
       </section>
 
-      <section className="section">
+      <section className="section bg-black">
         <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div>
-              <h2 className="text-2xl font-bold mb-6">{t("form_title")}</h2>
-              <ContactForm />
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-12">
+            <div className="lg:col-span-8">
+              <div className="cyber-panel p-6 md:p-8">
+                <div className="mb-8 flex items-center justify-between border-b border-[#171717] pb-4">
+                  <div className="flex items-center gap-2">
+                    <span className="h-2.5 w-2.5 rounded-full bg-red-600" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-yellow-600" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-green-600" />
+                    <span className="ml-3 text-[10px] uppercase tracking-[0.22em] text-[#545454]">COMMS_INTERFACE</span>
+                  </div>
+                  <span className="text-[10px] uppercase tracking-[0.18em] text-primary">ID: 0xFD-992-K8</span>
+                </div>
+
+                <ContactForm />
+              </div>
             </div>
 
-            <div>
-              <h2 className="text-2xl font-bold mb-6">{t("info_title")}</h2>
-              <div className="space-y-6">
-                <Card>
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <MapPin className="w-6 h-6 text-primary" />
-                    </div>
+            <div className="lg:col-span-4">
+              <div className="cyber-panel h-full border-primary/25 p-6">
+                <div className="mb-6 flex items-center justify-between border-b border-[#171717] pb-4">
+                  <h2 className="text-sm font-black tracking-[0.18em] text-white">SYSTEM_LOG</h2>
+                  <TerminalSquare className="h-4 w-4 text-primary" />
+                </div>
+
+                <div className="space-y-5 text-xs uppercase tracking-[0.11em]">
+                  <div className="flex items-start gap-3 text-[#787878]">
+                    <MapPin className="mt-0.5 h-4 w-4 text-primary" />
                     <div>
-                      <h3 className="font-semibold mb-1">{t("address")}</h3>
-                      <p className="text-muted">{tFooter("address")}</p>
+                      <p className="mb-1 text-[10px] tracking-[0.18em] text-primary">{t("address")}</p>
+                      <p>{tFooter("address")}</p>
                     </div>
                   </div>
-                </Card>
 
-                <Card>
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Phone className="w-6 h-6 text-primary" />
-                    </div>
+                  <div className="flex items-start gap-3 text-[#787878]">
+                    <Phone className="mt-0.5 h-4 w-4 text-primary" />
                     <div>
-                      <h3 className="font-semibold mb-1">{t("phone")}</h3>
+                      <p className="mb-1 text-[10px] tracking-[0.18em] text-primary">{t("phone")}</p>
                       {phoneNumbers.map((phone) => (
-                        <a
-                          key={phone}
-                          href={buildTelHref(phone)}
-                          className="text-muted hover:text-primary transition-colors block"
-                        >
+                        <a key={phone} href={buildTelHref(phone)} className="block hover:text-primary">
                           {phone}
                         </a>
                       ))}
                     </div>
                   </div>
-                </Card>
 
-                <Card>
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Mail className="w-6 h-6 text-primary" />
-                    </div>
+                  <div className="flex items-start gap-3 text-[#787878]">
+                    <Mail className="mt-0.5 h-4 w-4 text-primary" />
                     <div>
-                      <h3 className="font-semibold mb-1">{t("email")}</h3>
-                      <a href={`mailto:${emailAddress}`} className="text-muted hover:text-primary transition-colors">
-                        {emailAddress}
-                      </a>
+                      <p className="mb-1 text-[10px] tracking-[0.18em] text-primary">{t("email")}</p>
+                      <a href={`mailto:${emailAddress}`} className="hover:text-primary">{emailAddress}</a>
                     </div>
                   </div>
-                </Card>
 
-                <Card>
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Clock className="w-6 h-6 text-primary" />
-                    </div>
+                  <div className="flex items-start gap-3 text-[#787878]">
+                    <Clock className="mt-0.5 h-4 w-4 text-primary" />
                     <div>
-                      <h3 className="font-semibold mb-1">{t("hours")}</h3>
-                      <p className="text-muted">{tFooter("working_hours")}</p>
-                      <p className="text-muted">{tFooter("weekend")}</p>
+                      <p className="mb-1 text-[10px] tracking-[0.18em] text-primary">{t("hours")}</p>
+                      <p>{tFooter("working_hours")}</p>
+                      <p>{tFooter("weekend")}</p>
                     </div>
                   </div>
-                </Card>
+                </div>
               </div>
             </div>
           </div>
