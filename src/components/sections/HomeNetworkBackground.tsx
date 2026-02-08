@@ -154,22 +154,6 @@ export default function HomeNetworkBackground({
       }
     };
 
-    const drawPointerGlow = () => {
-      if (!pointer.active) {
-        return;
-      }
-
-      const gradient = context.createRadialGradient(pointer.x, pointer.y, 0, pointer.x, pointer.y, 120);
-      gradient.addColorStop(0, "rgba(190, 242, 100, 0.14)");
-      gradient.addColorStop(0.45, "rgba(56, 189, 248, 0.08)");
-      gradient.addColorStop(1, "rgba(56, 189, 248, 0)");
-
-      context.fillStyle = gradient;
-      context.beginPath();
-      context.arc(pointer.x, pointer.y, 120, 0, Math.PI * 2);
-      context.fill();
-    };
-
     const drawCometTrail = (deltaMs: number) => {
       const deltaScale = deltaMs / 16.7;
       const drag = Math.pow(TRAIL_DRAG, deltaScale);
@@ -259,7 +243,6 @@ export default function HomeNetworkBackground({
       const timeSeconds = time * 0.001;
       drawAurora(reducedMotion ? 0 : timeSeconds);
       drawParallaxGrid();
-      drawPointerGlow();
       drawCometTrail(deltaMs);
       drawVignette();
 
