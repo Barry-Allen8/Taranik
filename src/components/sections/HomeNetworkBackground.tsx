@@ -7,8 +7,6 @@ type ConstellationNode = {
   y: number;
   vx: number;
   vy: number;
-  pullX: number;
-  pullY: number;
   size: number;
   twinklePhase: number;
   twinkleSpeed: number;
@@ -39,12 +37,13 @@ const CONSTELLATION_MIN_NODES = 28;
 const CONSTELLATION_MAX_NODES = 92;
 const CONSTELLATION_LINK_DISTANCE = 228;
 const CONSTELLATION_POINTER_RADIUS = 220;
-const CONSTELLATION_MAGNET_STRENGTH = 0.22;
-const CONSTELLATION_MAGNET_MAX_PULL = 42;
-const CONSTELLATION_MAGNET_SMOOTHING = 0.14;
 const CONSTELLATION_EDGE_PADDING = 24;
 const CONSTELLATION_MIN_SPEED = 0.12;
 const CONSTELLATION_MAX_SPEED = 0.34;
+const ELECTRIC_ARC_RADIUS = 228;
+const ELECTRIC_ARC_MAX_TARGETS = 4;
+const ELECTRIC_ARC_SEGMENTS = 8;
+const ELECTRIC_ARC_NOISE = 18;
 const TRAIL_EMIT_INTERVAL_MS = 14;
 const TRAIL_MAX_POINTS = 30;
 const TRAIL_MIN_LIFE_MS = 260;
@@ -102,8 +101,6 @@ export default function HomeNetworkBackground({
         y: randomInRange(-CONSTELLATION_EDGE_PADDING, height + CONSTELLATION_EDGE_PADDING),
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed,
-        pullX: 0,
-        pullY: 0,
         size: randomInRange(1.1, 2.6),
         twinklePhase: randomInRange(0, Math.PI * 2),
         twinkleSpeed: randomInRange(0.55, 1.35),
@@ -165,46 +162,13 @@ export default function HomeNetworkBackground({
         }
       }
 
-      for (const node of constellation) {
-        let targetPullX = 0;
-        let targetPullY = 0;
-
-        if (!reducedMotion && pointer.active) {
-          const dx = pointer.x - node.x;
-          const dy = pointer.y - node.y;
-          const distanceSq = dx * dx + dy * dy;
-
-          if (distanceSq < pointerRadiusSq) {
-            const distance = Math.sqrt(distanceSq);
-            const influence = (1 - distance / CONSTELLATION_POINTER_RADIUS) ** 2;
-            const pullScale = influence * CONSTELLATION_MAGNET_STRENGTH;
-            targetPullX = dx * pullScale;
-            targetPullY = dy * pullScale;
-
-            const pullDistance = Math.hypot(targetPullX, targetPullY);
-            if (pullDistance > CONSTELLATION_MAGNET_MAX_PULL) {
-              const cappedScale = CONSTELLATION_MAGNET_MAX_PULL / pullDistance;
-              targetPullX *= cappedScale;
-              targetPullY *= cappedScale;
-            }
-          }
-        }
-
-        node.pullX = lerp(node.pullX, targetPullX, CONSTELLATION_MAGNET_SMOOTHING);
-        node.pullY = lerp(node.pullY, targetPullY, CONSTELLATION_MAGNET_SMOOTHING);
-      }
-
       for (let i = 0; i < constellation.length; i += 1) {
         const a = constellation[i];
-        const aX = a.x + a.pullX;
-        const aY = a.y + a.pullY;
 
         for (let j = i + 1; j < constellation.length; j += 1) {
           const b = constellation[j];
-          const bX = b.x + b.pullX;
-          const bY = b.y + b.pullY;
-          const dx = bX - aX;
-          const dy = bY - aY;
+          const dx = b.x - a.x;
+          const dy = b.y - a.y;
           const distanceSq = dx * dx + dy * dy;
 
           if (distanceSq > linkDistanceSq) {
@@ -213,8 +177,8 @@ export default function HomeNetworkBackground({
 
           const distance = Math.sqrt(distanceSq);
           const proximity = 1 - distance / linkDistance;
-          const centerX = (aX + bX) * 0.5;
-          const centerY = (aY + bY) * 0.5;
+          const centerX = (a.x + b.x) * 0.5;
+          const centerY = (a.y + b.y) * 0.5;
           let pointerBoost = 0;
 
           if (pointer.active) {
@@ -237,23 +201,21 @@ export default function HomeNetworkBackground({
               : `rgba(56, 189, 248, ${alpha})`;
           context.lineWidth = 0.45 + proximity * 0.95;
           context.beginPath();
-          context.moveTo(aX, aY);
-          context.lineTo(bX, bY);
+          context.moveTo(a.x, a.y);
+          context.lineTo(b.x, b.y);
           context.stroke();
         }
       }
 
       for (const node of constellation) {
-        const nodeX = node.x + node.pullX;
-        const nodeY = node.y + node.pullY;
         const twinkle = reducedMotion
           ? 0.8
           : 0.55 + ((Math.sin(timeSeconds * node.twinkleSpeed + node.twinklePhase) + 1) * 0.5) * 0.45;
 
         let pointerBoost = 0;
         if (pointer.active) {
-          const pointerDx = nodeX - pointer.x;
-          const pointerDy = nodeY - pointer.y;
+          const pointerDx = node.x - pointer.x;
+          const pointerDy = node.y - pointer.y;
           const pointerDistanceSq = pointerDx * pointerDx + pointerDy * pointerDy;
           if (pointerDistanceSq < pointerRadiusSq) {
             pointerBoost = (1 - Math.sqrt(pointerDistanceSq) / CONSTELLATION_POINTER_RADIUS) * 0.26;
@@ -268,7 +230,102 @@ export default function HomeNetworkBackground({
             ? `rgba(190, 242, 100, ${alpha})`
             : `rgba(56, 189, 248, ${alpha})`;
         context.beginPath();
-        context.arc(nodeX, nodeY, radius, 0, Math.PI * 2);
+        context.arc(node.x, node.y, radius, 0, Math.PI * 2);
+        context.fill();
+      }
+    };
+
+    const drawElectricArcs = (timeSeconds: number) => {
+      if (!pointer.active || reducedMotion) {
+        return;
+      }
+
+      const maxDistance = ELECTRIC_ARC_RADIUS + intensity * 16;
+      const maxDistanceSq = maxDistance * maxDistance;
+      const nearby: Array<{ node: ConstellationNode; distance: number }> = [];
+
+      for (const node of constellation) {
+        const dx = node.x - pointer.x;
+        const dy = node.y - pointer.y;
+        const distanceSq = dx * dx + dy * dy;
+
+        if (distanceSq > maxDistanceSq) {
+          continue;
+        }
+
+        nearby.push({
+          node,
+          distance: Math.sqrt(distanceSq),
+        });
+      }
+
+      if (nearby.length === 0) {
+        return;
+      }
+
+      nearby.sort((a, b) => a.distance - b.distance);
+      const targetCount = Math.min(ELECTRIC_ARC_MAX_TARGETS, nearby.length);
+
+      for (let i = 0; i < targetCount; i += 1) {
+        const { node, distance } = nearby[i];
+        const safeDistance = Math.max(distance, 1);
+        const proximity = 1 - safeDistance / maxDistance;
+        const phase = timeSeconds * 24 + i * 1.7;
+        const flicker = 0.45 + ((Math.sin(phase) + 1) * 0.5) * 0.55;
+
+        if (flicker < 0.52 && i > 0) {
+          continue;
+        }
+
+        const alpha = proximity * (0.2 + flicker * 0.5) * intensity;
+        if (alpha <= 0.06) {
+          continue;
+        }
+
+        const directionX = (node.x - pointer.x) / safeDistance;
+        const directionY = (node.y - pointer.y) / safeDistance;
+        const normalX = -directionY;
+        const normalY = directionX;
+
+        context.lineCap = "round";
+        context.lineJoin = "round";
+        context.beginPath();
+
+        for (let segment = 0; segment <= ELECTRIC_ARC_SEGMENTS; segment += 1) {
+          const t = segment / ELECTRIC_ARC_SEGMENTS;
+
+          let x = lerp(pointer.x, node.x, t);
+          let y = lerp(pointer.y, node.y, t);
+
+          if (segment > 0 && segment < ELECTRIC_ARC_SEGMENTS) {
+            const envelope = Math.max(0, 1 - Math.abs(t - 0.5) * 1.8);
+            const jitter =
+              (Math.sin(timeSeconds * 32 + segment * 2.1 + i * 0.9) +
+                Math.sin(timeSeconds * 19 + segment * 3.5 + i * 1.3)) *
+              0.5;
+            const jitterAmplitude = ELECTRIC_ARC_NOISE * envelope * (0.6 + flicker * 0.5);
+            x += normalX * jitter * jitterAmplitude;
+            y += normalY * jitter * jitterAmplitude;
+          }
+
+          if (segment === 0) {
+            context.moveTo(x, y);
+          } else {
+            context.lineTo(x, y);
+          }
+        }
+
+        context.strokeStyle = `rgba(56, 189, 248, ${alpha})`;
+        context.lineWidth = 1 + proximity * 1.25;
+        context.stroke();
+
+        context.strokeStyle = `rgba(190, 242, 100, ${alpha * 0.74})`;
+        context.lineWidth = 0.55 + proximity * 0.75;
+        context.stroke();
+
+        context.fillStyle = `rgba(190, 242, 100, ${alpha * 0.92})`;
+        context.beginPath();
+        context.arc(node.x, node.y, 0.9 + proximity * 1.4, 0, Math.PI * 2);
         context.fill();
       }
     };
@@ -361,6 +418,7 @@ export default function HomeNetworkBackground({
 
       const timeSeconds = time * 0.001;
       drawConstellation(deltaMs, reducedMotion ? 0 : timeSeconds);
+      drawElectricArcs(reducedMotion ? 0 : timeSeconds);
       drawCometTrail(deltaMs);
       drawVignette();
 
