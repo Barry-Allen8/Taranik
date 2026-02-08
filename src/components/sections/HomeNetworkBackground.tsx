@@ -32,10 +32,10 @@ type PointerState = {
   trail: CometTrailPoint[];
 };
 
-const CONSTELLATION_PIXELS_PER_NODE = 42000;
+const CONSTELLATION_PIXELS_PER_NODE = 30000;
 const CONSTELLATION_MIN_NODES = 28;
-const CONSTELLATION_MAX_NODES = 68;
-const CONSTELLATION_LINK_DISTANCE = 190;
+const CONSTELLATION_MAX_NODES = 92;
+const CONSTELLATION_LINK_DISTANCE = 228;
 const CONSTELLATION_POINTER_RADIUS = 220;
 const CONSTELLATION_EDGE_PADDING = 24;
 const CONSTELLATION_MIN_SPEED = 0.12;
@@ -187,7 +187,7 @@ export default function HomeNetworkBackground({
           }
 
           const alpha = proximity * proximity * (0.14 + intensity * 0.11) + pointerBoost;
-          if (alpha <= 0.004) {
+          if (alpha <= 0.0025) {
             continue;
           }
 
