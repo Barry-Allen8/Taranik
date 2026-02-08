@@ -2,12 +2,14 @@
 
 import { useEffect, useRef } from "react";
 
-type AuroraBlob = {
-  xFactor: number;
-  yFactor: number;
-  radius: number;
-  speed: number;
-  phase: number;
+type ConstellationNode = {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  size: number;
+  twinklePhase: number;
+  twinkleSpeed: number;
   color: "lime" | "cyan";
 };
 
@@ -30,15 +32,14 @@ type PointerState = {
   trail: CometTrailPoint[];
 };
 
-const BLOBS: AuroraBlob[] = [
-  { xFactor: 0.2, yFactor: 0.18, radius: 430, speed: 0.12, phase: 0.2, color: "cyan" },
-  { xFactor: 0.82, yFactor: 0.2, radius: 480, speed: 0.1, phase: 1.4, color: "lime" },
-  { xFactor: 0.68, yFactor: 0.78, radius: 420, speed: 0.14, phase: 2.1, color: "cyan" },
-  { xFactor: 0.3, yFactor: 0.76, radius: 460, speed: 0.11, phase: 2.8, color: "lime" },
-];
-
-const GRID_SIZE = 80;
-const GRID_MAX_SHIFT = 24;
+const CONSTELLATION_PIXELS_PER_NODE = 42000;
+const CONSTELLATION_MIN_NODES = 28;
+const CONSTELLATION_MAX_NODES = 68;
+const CONSTELLATION_LINK_DISTANCE = 190;
+const CONSTELLATION_POINTER_RADIUS = 220;
+const CONSTELLATION_EDGE_PADDING = 24;
+const CONSTELLATION_MIN_SPEED = 0.12;
+const CONSTELLATION_MAX_SPEED = 0.34;
 const TRAIL_EMIT_INTERVAL_MS = 14;
 const TRAIL_MAX_POINTS = 30;
 const TRAIL_MIN_LIFE_MS = 260;
@@ -46,6 +47,7 @@ const TRAIL_MAX_LIFE_MS = 520;
 const TRAIL_DRAG = 0.9;
 
 const lerp = (start: number, end: number, value: number) => start + (end - start) * value;
+const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
 
 const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
 
@@ -84,6 +86,36 @@ export default function HomeNetworkBackground({
 
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     let reducedMotion = reducedMotionQuery.matches;
+    const constellation: ConstellationNode[] = [];
+
+    const createConstellationNode = (): ConstellationNode => {
+      const angle = randomInRange(0, Math.PI * 2);
+      const speed = randomInRange(CONSTELLATION_MIN_SPEED, CONSTELLATION_MAX_SPEED);
+
+      return {
+        x: randomInRange(-CONSTELLATION_EDGE_PADDING, width + CONSTELLATION_EDGE_PADDING),
+        y: randomInRange(-CONSTELLATION_EDGE_PADDING, height + CONSTELLATION_EDGE_PADDING),
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        size: randomInRange(1.1, 2.6),
+        twinklePhase: randomInRange(0, Math.PI * 2),
+        twinkleSpeed: randomInRange(0.55, 1.35),
+        color: Math.random() > 0.64 ? "lime" : "cyan",
+      };
+    };
+
+    const initializeConstellation = () => {
+      const targetCount = clamp(
+        Math.round((width * height) / CONSTELLATION_PIXELS_PER_NODE),
+        CONSTELLATION_MIN_NODES,
+        CONSTELLATION_MAX_NODES
+      );
+
+      constellation.length = 0;
+      for (let i = 0; i < targetCount; i += 1) {
+        constellation.push(createConstellationNode());
+      }
+    };
 
     const resize = () => {
       width = window.innerWidth;
@@ -93,6 +125,8 @@ export default function HomeNetworkBackground({
       canvas.height = Math.floor(height * dpr);
       context.setTransform(dpr, 0, 0, dpr, 0, 0);
 
+      initializeConstellation();
+
       if (!pointer.active) {
         pointer.x = width * 0.5;
         pointer.y = height * 0.5;
@@ -101,56 +135,99 @@ export default function HomeNetworkBackground({
       }
     };
 
-    const drawAurora = (timeSeconds: number) => {
-      for (const blob of BLOBS) {
-        const waveX = Math.sin(timeSeconds * blob.speed + blob.phase) * (28 * intensity);
-        const waveY = Math.cos(timeSeconds * blob.speed * 0.85 + blob.phase) * (24 * intensity);
-        const x = width * blob.xFactor + waveX;
-        const y = height * blob.yFactor + waveY;
+    const drawConstellation = (deltaMs: number, timeSeconds: number) => {
+      const deltaScale = deltaMs / 16.7;
+      const linkDistance = CONSTELLATION_LINK_DISTANCE + intensity * 14;
+      const linkDistanceSq = linkDistance * linkDistance;
+      const pointerRadiusSq = CONSTELLATION_POINTER_RADIUS * CONSTELLATION_POINTER_RADIUS;
 
-        const gradient = context.createRadialGradient(x, y, 0, x, y, blob.radius);
+      if (!reducedMotion) {
+        for (const node of constellation) {
+          node.x += node.vx * deltaScale;
+          node.y += node.vy * deltaScale;
 
-        if (blob.color === "lime") {
-          gradient.addColorStop(0, `rgba(190, 242, 100, ${0.12 * intensity})`);
-          gradient.addColorStop(0.36, `rgba(163, 230, 53, ${0.08 * intensity})`);
-          gradient.addColorStop(1, "rgba(163, 230, 53, 0)");
-        } else {
-          gradient.addColorStop(0, `rgba(34, 211, 238, ${0.1 * intensity})`);
-          gradient.addColorStop(0.34, `rgba(56, 189, 248, ${0.07 * intensity})`);
-          gradient.addColorStop(1, "rgba(56, 189, 248, 0)");
+          if (node.x < -CONSTELLATION_EDGE_PADDING || node.x > width + CONSTELLATION_EDGE_PADDING) {
+            node.vx *= -1;
+            node.x = clamp(node.x, -CONSTELLATION_EDGE_PADDING, width + CONSTELLATION_EDGE_PADDING);
+          }
+
+          if (node.y < -CONSTELLATION_EDGE_PADDING || node.y > height + CONSTELLATION_EDGE_PADDING) {
+            node.vy *= -1;
+            node.y = clamp(node.y, -CONSTELLATION_EDGE_PADDING, height + CONSTELLATION_EDGE_PADDING);
+          }
+        }
+      }
+
+      for (let i = 0; i < constellation.length; i += 1) {
+        const a = constellation[i];
+
+        for (let j = i + 1; j < constellation.length; j += 1) {
+          const b = constellation[j];
+          const dx = b.x - a.x;
+          const dy = b.y - a.y;
+          const distanceSq = dx * dx + dy * dy;
+
+          if (distanceSq > linkDistanceSq) {
+            continue;
+          }
+
+          const distance = Math.sqrt(distanceSq);
+          const proximity = 1 - distance / linkDistance;
+          const centerX = (a.x + b.x) * 0.5;
+          const centerY = (a.y + b.y) * 0.5;
+          let pointerBoost = 0;
+
+          if (pointer.active) {
+            const pointerDx = centerX - pointer.x;
+            const pointerDy = centerY - pointer.y;
+            const pointerDistanceSq = pointerDx * pointerDx + pointerDy * pointerDy;
+            if (pointerDistanceSq < pointerRadiusSq) {
+              pointerBoost = (1 - Math.sqrt(pointerDistanceSq) / CONSTELLATION_POINTER_RADIUS) * 0.18;
+            }
+          }
+
+          const alpha = proximity * proximity * (0.14 + intensity * 0.11) + pointerBoost;
+          if (alpha <= 0.004) {
+            continue;
+          }
+
+          context.strokeStyle =
+            (i + j) % 6 === 0
+              ? `rgba(190, 242, 100, ${alpha * 0.84})`
+              : `rgba(56, 189, 248, ${alpha})`;
+          context.lineWidth = 0.45 + proximity * 0.95;
+          context.beginPath();
+          context.moveTo(a.x, a.y);
+          context.lineTo(b.x, b.y);
+          context.stroke();
+        }
+      }
+
+      for (const node of constellation) {
+        const twinkle = reducedMotion
+          ? 0.8
+          : 0.55 + ((Math.sin(timeSeconds * node.twinkleSpeed + node.twinklePhase) + 1) * 0.5) * 0.45;
+
+        let pointerBoost = 0;
+        if (pointer.active) {
+          const pointerDx = node.x - pointer.x;
+          const pointerDy = node.y - pointer.y;
+          const pointerDistanceSq = pointerDx * pointerDx + pointerDy * pointerDy;
+          if (pointerDistanceSq < pointerRadiusSq) {
+            pointerBoost = (1 - Math.sqrt(pointerDistanceSq) / CONSTELLATION_POINTER_RADIUS) * 0.26;
+          }
         }
 
-        context.fillStyle = gradient;
+        const alpha = (node.color === "lime" ? 0.3 : 0.36) * twinkle * intensity + pointerBoost;
+        const radius = node.size * (0.7 + twinkle * 0.75);
+
+        context.fillStyle =
+          node.color === "lime"
+            ? `rgba(190, 242, 100, ${alpha})`
+            : `rgba(56, 189, 248, ${alpha})`;
         context.beginPath();
-        context.arc(x, y, blob.radius, 0, Math.PI * 2);
+        context.arc(node.x, node.y, radius, 0, Math.PI * 2);
         context.fill();
-      }
-    };
-
-    const drawParallaxGrid = () => {
-      const nx = pointer.x / Math.max(width, 1) - 0.5;
-      const ny = pointer.y / Math.max(height, 1) - 0.5;
-      const offsetX = nx * GRID_MAX_SHIFT * intensity;
-      const offsetY = ny * GRID_MAX_SHIFT * intensity;
-
-      context.strokeStyle = "rgba(148, 163, 184, 0.08)";
-      context.lineWidth = 1;
-
-      const startX = -GRID_SIZE + offsetX;
-      const startY = -GRID_SIZE + offsetY;
-
-      for (let x = startX; x < width + GRID_SIZE; x += GRID_SIZE) {
-        context.beginPath();
-        context.moveTo(x, 0);
-        context.lineTo(x, height);
-        context.stroke();
-      }
-
-      for (let y = startY; y < height + GRID_SIZE; y += GRID_SIZE) {
-        context.beginPath();
-        context.moveTo(0, y);
-        context.lineTo(width, y);
-        context.stroke();
       }
     };
 
@@ -241,8 +318,7 @@ export default function HomeNetworkBackground({
       context.clearRect(0, 0, width, height);
 
       const timeSeconds = time * 0.001;
-      drawAurora(reducedMotion ? 0 : timeSeconds);
-      drawParallaxGrid();
+      drawConstellation(deltaMs, reducedMotion ? 0 : timeSeconds);
       drawCometTrail(deltaMs);
       drawVignette();
 
