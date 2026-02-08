@@ -305,8 +305,81 @@ a {
   }
 }
 
+@keyframes heroEdgeTraceSpin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.hero-tilt-card {
+  --hero-rotate-x: 0deg;
+  --hero-rotate-y: 0deg;
+  transform-style: preserve-3d;
+  transform: perspective(1200px) rotateX(var(--hero-rotate-x)) rotateY(var(--hero-rotate-y));
+  transition: transform 220ms ease, box-shadow 220ms ease;
+  will-change: transform;
+}
+
+.hero-tilt-card:hover {
+  box-shadow:
+    0 28px 60px rgba(2, 6, 23, 0.64),
+    0 0 0 1px rgba(190, 242, 100, 0.18);
+}
+
+.hero-tilt-media {
+  --hero-shift-x: 0px;
+  --hero-shift-y: 0px;
+  transform: translate3d(var(--hero-shift-x), var(--hero-shift-y), 0) scale(1.055);
+  transition: transform 240ms ease-out;
+  will-change: transform;
+}
+
+.hero-edge-trace {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 12;
+  padding: 1px;
+  border-radius: inherit;
+  opacity: 0;
+  background: conic-gradient(
+    from 0deg,
+    rgba(190, 242, 100, 0) 0deg,
+    rgba(190, 242, 100, 0.9) 74deg,
+    rgba(56, 189, 248, 0.95) 175deg,
+    rgba(56, 189, 248, 0) 258deg,
+    rgba(190, 242, 100, 0) 360deg
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.35));
+  transition: opacity 180ms ease;
+}
+
+.hero-tilt-card:hover .hero-edge-trace {
+  opacity: 1;
+  animation: heroEdgeTraceSpin 2.6s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .ambient-noise {
     animation: none;
+  }
+
+  .hero-tilt-card {
+    transform: none;
+    transition: none;
+  }
+
+  .hero-tilt-media {
+    transform: none;
+    transition: none;
+  }
+
+  .hero-edge-trace,
+  .hero-tilt-card:hover .hero-edge-trace {
+    animation: none;
+    opacity: 0;
   }
 }

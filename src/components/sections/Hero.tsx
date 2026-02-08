@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, type PointerEvent as ReactPointerEvent } from "react";
 import Button from "@/components/ui/Button";
 import { Link } from "@/i18n/navigation";
 import { useTranslations, useLocale } from "next-intl";
@@ -9,6 +10,84 @@ import { ArrowRight } from "lucide-react";
 export default function Hero() {
   const t = useTranslations("hero");
   const locale = useLocale() as Locale;
+  const tiltCardRef = useRef<HTMLDivElement | null>(null);
+  const tiltMediaRef = useRef<HTMLDivElement | null>(null);
+  const rafRef = useRef<number | null>(null);
+  const pointerRef = useRef({ x: 0, y: 0 });
+  const reducedMotionRef = useRef(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const syncReducedMotion = () => {
+      reducedMotionRef.current = mediaQuery.matches;
+    };
+
+    syncReducedMotion();
+    mediaQuery.addEventListener("change", syncReducedMotion);
+
+    return () => {
+      mediaQuery.removeEventListener("change", syncReducedMotion);
+      if (rafRef.current !== null) {
+        window.cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
+      }
+    };
+  }, []);
+
+  const applyTilt = () => {
+    rafRef.current = null;
+    const card = tiltCardRef.current;
+    const media = tiltMediaRef.current;
+
+    if (!card || !media) {
+      return;
+    }
+
+    const rotateX = -pointerRef.current.y * 6;
+    const rotateY = pointerRef.current.x * 8;
+    const shiftX = -pointerRef.current.x * 12;
+    const shiftY = -pointerRef.current.y * 12;
+
+    card.style.setProperty("--hero-rotate-x", `${rotateX}deg`);
+    card.style.setProperty("--hero-rotate-y", `${rotateY}deg`);
+    media.style.setProperty("--hero-shift-x", `${shiftX}px`);
+    media.style.setProperty("--hero-shift-y", `${shiftY}px`);
+  };
+
+  const queueTiltUpdate = () => {
+    if (rafRef.current === null) {
+      rafRef.current = window.requestAnimationFrame(applyTilt);
+    }
+  };
+
+  const handleHeroPointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (reducedMotionRef.current) {
+      return;
+    }
+
+    const card = tiltCardRef.current;
+    if (!card) {
+      return;
+    }
+
+    const rect = card.getBoundingClientRect();
+    if (rect.width === 0 || rect.height === 0) {
+      return;
+    }
+
+    const normalizedX = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+    const normalizedY = ((event.clientY - rect.top) / rect.height) * 2 - 1;
+
+    pointerRef.current.x = Math.max(-1, Math.min(1, normalizedX));
+    pointerRef.current.y = Math.max(-1, Math.min(1, normalizedY));
+    queueTiltUpdate();
+  };
+
+  const resetHeroTilt = () => {
+    pointerRef.current.x = 0;
+    pointerRef.current.y = 0;
+    queueTiltUpdate();
+  };
 
   return (
     <header className="relative overflow-hidden pb-24 pt-32 md:pb-28 md:pt-36">
@@ -58,20 +137,29 @@ export default function Hero() {
           </div>
 
           <div className="relative mx-auto w-full max-w-[560px]">
-            <div className="relative overflow-hidden rounded-[2rem] border border-primary/30 bg-slate-900/60 p-2 shadow-2xl shadow-black/35 backdrop-blur-xl">
+            <div
+              ref={tiltCardRef}
+              onPointerMove={handleHeroPointerMove}
+              onPointerLeave={resetHeroTilt}
+              onPointerCancel={resetHeroTilt}
+              className="hero-tilt-card group relative overflow-hidden rounded-[2rem] border border-primary/30 bg-slate-900/60 p-2 shadow-2xl shadow-black/35 backdrop-blur-xl"
+            >
+              <div className="hero-edge-trace" aria-hidden="true" />
               <div className="relative aspect-[1.1/1] overflow-hidden rounded-[1.65rem] border border-slate-700/50">
-                <video
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  className="h-full w-full object-cover"
-                  aria-hidden="true"
-                >
-                  <source src="/videos/hero-case-1.mp4" type="video/mp4" />
-                </video>
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/65 via-transparent to-transparent" />
+                <div ref={tiltMediaRef} className="hero-tilt-media relative h-full w-full">
+                  <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    className="h-full w-full object-cover"
+                    aria-hidden="true"
+                  >
+                    <source src="/videos/hero-case-1.mp4" type="video/mp4" />
+                  </video>
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/65 via-transparent to-transparent" />
+                </div>
               </div>
 
               <div className="absolute right-7 top-7 rounded-2xl border border-primary/30 bg-[#081228]/92 px-4 py-3 backdrop-blur-lg">
