@@ -144,7 +144,7 @@ export default function Hero() {
               onPointerCancel={resetHeroTilt}
               className="hero-tilt-card group relative overflow-hidden rounded-[2rem] border border-primary/30 bg-slate-900/60 p-2 shadow-2xl shadow-black/35 backdrop-blur-xl"
             >
-              <div className="hero-edge-trace" aria-hidden="true" />
+              <div className="hero-neon-pulse" aria-hidden="true" />
               <div className="relative aspect-[1.1/1] overflow-hidden rounded-[1.65rem] border border-slate-700/50">
                 <div ref={tiltMediaRef} className="hero-tilt-media relative h-full w-full">
                   <video
