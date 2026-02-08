@@ -11,12 +11,14 @@ type AuroraBlob = {
   color: "lime" | "cyan";
 };
 
-type EchoRipple = {
+type CometTrailPoint = {
   x: number;
   y: number;
+  vx: number;
+  vy: number;
   age: number;
-  duration: number;
-  radius: number;
+  life: number;
+  size: number;
 };
 
 type PointerState = {
@@ -25,7 +27,7 @@ type PointerState = {
   targetX: number;
   targetY: number;
   active: boolean;
-  echoes: EchoRipple[];
+  trail: CometTrailPoint[];
 };
 
 const BLOBS: AuroraBlob[] = [
@@ -37,10 +39,11 @@ const BLOBS: AuroraBlob[] = [
 
 const GRID_SIZE = 80;
 const GRID_MAX_SHIFT = 24;
-const ECHO_INTERVAL_MS = 85;
-const ECHO_MAX_COUNT = 9;
-const ECHO_MIN_DURATION = 620;
-const ECHO_MAX_DURATION = 980;
+const TRAIL_EMIT_INTERVAL_MS = 14;
+const TRAIL_MAX_POINTS = 30;
+const TRAIL_MIN_LIFE_MS = 260;
+const TRAIL_MAX_LIFE_MS = 520;
+const TRAIL_DRAG = 0.9;
 
 const lerp = (start: number, end: number, value: number) => start + (end - start) * value;
 
@@ -68,7 +71,7 @@ export default function HomeNetworkBackground({
     let height = 0;
     let rafId = 0;
     let previousTime = 0;
-    let lastEchoAt = 0;
+    let lastTrailAt = 0;
 
     const pointer: PointerState = {
       x: 0,
@@ -76,7 +79,7 @@ export default function HomeNetworkBackground({
       targetX: 0,
       targetY: 0,
       active: false,
-      echoes: [],
+      trail: [],
     };
 
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -167,25 +170,59 @@ export default function HomeNetworkBackground({
       context.fill();
     };
 
-    const drawEchoes = (deltaMs: number) => {
-      for (let i = pointer.echoes.length - 1; i >= 0; i -= 1) {
-        const echo = pointer.echoes[i];
-        echo.age += deltaMs;
+    const drawCometTrail = (deltaMs: number) => {
+      const deltaScale = deltaMs / 16.7;
+      const drag = Math.pow(TRAIL_DRAG, deltaScale);
 
-        if (echo.age >= echo.duration) {
-          pointer.echoes.splice(i, 1);
+      for (let i = pointer.trail.length - 1; i >= 0; i -= 1) {
+        const point = pointer.trail[i];
+        point.age += deltaMs;
+
+        if (point.age >= point.life) {
+          pointer.trail.splice(i, 1);
           continue;
         }
 
-        const progress = echo.age / echo.duration;
-        const radius = 10 + echo.radius * progress;
-        const alpha = (1 - progress) * 0.34 * intensity;
+        point.x += point.vx * deltaScale;
+        point.y += point.vy * deltaScale;
+        point.vx *= drag;
+        point.vy *= drag;
+      }
 
-        context.strokeStyle = `rgba(190, 242, 100, ${alpha})`;
-        context.lineWidth = 1.8 - progress;
+      if (pointer.trail.length < 2) {
+        return;
+      }
+
+      for (let i = 1; i < pointer.trail.length; i += 1) {
+        const previous = pointer.trail[i - 1];
+        const current = pointer.trail[i];
+        const previousLife = 1 - previous.age / previous.life;
+        const currentLife = 1 - current.age / current.life;
+        const life = Math.min(previousLife, currentLife);
+
+        if (life <= 0) {
+          continue;
+        }
+
+        const t = i / (pointer.trail.length - 1);
+        const alpha = life * (0.08 + t * 0.46) * intensity;
+
+        context.strokeStyle = `rgba(56, 189, 248, ${alpha})`;
+        context.lineWidth = Math.max(0.8, current.size * (0.8 + t * 0.8));
+        context.lineCap = "round";
         context.beginPath();
-        context.arc(echo.x, echo.y, radius, 0, Math.PI * 2);
+        context.moveTo(previous.x, previous.y);
+        context.lineTo(current.x, current.y);
         context.stroke();
+
+        if (t > 0.45) {
+          context.strokeStyle = `rgba(190, 242, 100, ${alpha * 0.72})`;
+          context.lineWidth = Math.max(0.6, current.size * 0.45);
+          context.beginPath();
+          context.moveTo(previous.x, previous.y);
+          context.lineTo(current.x, current.y);
+          context.stroke();
+        }
       }
     };
 
@@ -223,13 +260,16 @@ export default function HomeNetworkBackground({
       drawAurora(reducedMotion ? 0 : timeSeconds);
       drawParallaxGrid();
       drawPointerGlow();
-      drawEchoes(deltaMs);
+      drawCometTrail(deltaMs);
       drawVignette();
 
       rafId = window.requestAnimationFrame(frame);
     };
 
     const handlePointerMove = (event: PointerEvent) => {
+      const previousTargetX = pointer.targetX;
+      const previousTargetY = pointer.targetY;
+
       pointer.active = true;
       pointer.targetX = event.clientX;
       pointer.targetY = event.clientY;
@@ -238,18 +278,34 @@ export default function HomeNetworkBackground({
         return;
       }
 
-      if (event.timeStamp - lastEchoAt >= ECHO_INTERVAL_MS) {
-        lastEchoAt = event.timeStamp;
-        pointer.echoes.push({
-          x: event.clientX,
-          y: event.clientY,
+      if (event.timeStamp - lastTrailAt >= TRAIL_EMIT_INTERVAL_MS) {
+        lastTrailAt = event.timeStamp;
+
+        const dx = event.clientX - previousTargetX;
+        const dy = event.clientY - previousTargetY;
+        const distance = Math.hypot(dx, dy);
+        const normalized = distance > 0 ? distance : 1;
+        const directionX = dx / normalized;
+        const directionY = dy / normalized;
+        const speed = Math.min(distance, 28);
+        const spread = 0.55 + speed * 0.045;
+
+        pointer.trail.push({
+          x: event.clientX - directionX * 3,
+          y: event.clientY - directionY * 3,
+          vx:
+            -directionX * (0.75 + speed * 0.08) +
+            randomInRange(-spread, spread),
+          vy:
+            -directionY * (0.75 + speed * 0.08) +
+            randomInRange(-spread, spread),
           age: 0,
-          duration: randomInRange(ECHO_MIN_DURATION, ECHO_MAX_DURATION),
-          radius: randomInRange(56, 106),
+          life: randomInRange(TRAIL_MIN_LIFE_MS, TRAIL_MAX_LIFE_MS),
+          size: randomInRange(2.4, 4.8) + speed * 0.04,
         });
 
-        if (pointer.echoes.length > ECHO_MAX_COUNT) {
-          pointer.echoes.shift();
+        if (pointer.trail.length > TRAIL_MAX_POINTS) {
+          pointer.trail.shift();
         }
       }
     };
@@ -262,7 +318,7 @@ export default function HomeNetworkBackground({
 
     const handleReducedMotionChange = (event: MediaQueryListEvent) => {
       reducedMotion = event.matches;
-      pointer.echoes = [];
+      pointer.trail = [];
     };
 
     resize();
