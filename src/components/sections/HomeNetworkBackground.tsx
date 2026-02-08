@@ -13,44 +13,14 @@ type ConstellationNode = {
   color: "lime" | "cyan";
 };
 
-type CometTrailPoint = {
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-  age: number;
-  life: number;
-  size: number;
-};
-
-type PointerState = {
-  x: number;
-  y: number;
-  targetX: number;
-  targetY: number;
-  active: boolean;
-  trail: CometTrailPoint[];
-};
-
 const CONSTELLATION_PIXELS_PER_NODE = 30000;
 const CONSTELLATION_MIN_NODES = 28;
 const CONSTELLATION_MAX_NODES = 92;
 const CONSTELLATION_LINK_DISTANCE = 228;
-const CONSTELLATION_POINTER_RADIUS = 220;
 const CONSTELLATION_EDGE_PADDING = 24;
 const CONSTELLATION_MIN_SPEED = 0.12;
 const CONSTELLATION_MAX_SPEED = 0.34;
-const ELECTRIC_ARC_RADIUS = 228;
-const ELECTRIC_ARC_MAX_TARGETS = 4;
-const ELECTRIC_ARC_SEGMENTS = 8;
-const ELECTRIC_ARC_NOISE = 18;
-const TRAIL_EMIT_INTERVAL_MS = 14;
-const TRAIL_MAX_POINTS = 30;
-const TRAIL_MIN_LIFE_MS = 260;
-const TRAIL_MAX_LIFE_MS = 520;
-const TRAIL_DRAG = 0.9;
 
-const lerp = (start: number, end: number, value: number) => start + (end - start) * value;
 const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
 
 const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
@@ -77,16 +47,6 @@ export default function HomeNetworkBackground({
     let height = 0;
     let rafId = 0;
     let previousTime = 0;
-    let lastTrailAt = 0;
-
-    const pointer: PointerState = {
-      x: 0,
-      y: 0,
-      targetX: 0,
-      targetY: 0,
-      active: false,
-      trail: [],
-    };
 
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     let reducedMotion = reducedMotionQuery.matches;
@@ -130,20 +90,12 @@ export default function HomeNetworkBackground({
       context.setTransform(dpr, 0, 0, dpr, 0, 0);
 
       initializeConstellation();
-
-      if (!pointer.active) {
-        pointer.x = width * 0.5;
-        pointer.y = height * 0.5;
-        pointer.targetX = pointer.x;
-        pointer.targetY = pointer.y;
-      }
     };
 
     const drawConstellation = (deltaMs: number, timeSeconds: number) => {
       const deltaScale = deltaMs / 16.7;
       const linkDistance = CONSTELLATION_LINK_DISTANCE + intensity * 14;
       const linkDistanceSq = linkDistance * linkDistance;
-      const pointerRadiusSq = CONSTELLATION_POINTER_RADIUS * CONSTELLATION_POINTER_RADIUS;
 
       if (!reducedMotion) {
         for (const node of constellation) {
@@ -177,20 +129,7 @@ export default function HomeNetworkBackground({
 
           const distance = Math.sqrt(distanceSq);
           const proximity = 1 - distance / linkDistance;
-          const centerX = (a.x + b.x) * 0.5;
-          const centerY = (a.y + b.y) * 0.5;
-          let pointerBoost = 0;
-
-          if (pointer.active) {
-            const pointerDx = centerX - pointer.x;
-            const pointerDy = centerY - pointer.y;
-            const pointerDistanceSq = pointerDx * pointerDx + pointerDy * pointerDy;
-            if (pointerDistanceSq < pointerRadiusSq) {
-              pointerBoost = (1 - Math.sqrt(pointerDistanceSq) / CONSTELLATION_POINTER_RADIUS) * 0.18;
-            }
-          }
-
-          const alpha = proximity * proximity * (0.14 + intensity * 0.11) + pointerBoost;
+          const alpha = proximity * proximity * (0.14 + intensity * 0.11);
           if (alpha <= 0.0025) {
             continue;
           }
@@ -211,18 +150,7 @@ export default function HomeNetworkBackground({
         const twinkle = reducedMotion
           ? 0.8
           : 0.55 + ((Math.sin(timeSeconds * node.twinkleSpeed + node.twinklePhase) + 1) * 0.5) * 0.45;
-
-        let pointerBoost = 0;
-        if (pointer.active) {
-          const pointerDx = node.x - pointer.x;
-          const pointerDy = node.y - pointer.y;
-          const pointerDistanceSq = pointerDx * pointerDx + pointerDy * pointerDy;
-          if (pointerDistanceSq < pointerRadiusSq) {
-            pointerBoost = (1 - Math.sqrt(pointerDistanceSq) / CONSTELLATION_POINTER_RADIUS) * 0.26;
-          }
-        }
-
-        const alpha = (node.color === "lime" ? 0.3 : 0.36) * twinkle * intensity + pointerBoost;
+        const alpha = (node.color === "lime" ? 0.3 : 0.36) * twinkle * intensity;
         const radius = node.size * (0.7 + twinkle * 0.75);
 
         context.fillStyle =
@@ -232,157 +160,6 @@ export default function HomeNetworkBackground({
         context.beginPath();
         context.arc(node.x, node.y, radius, 0, Math.PI * 2);
         context.fill();
-      }
-    };
-
-    const drawElectricArcs = (timeSeconds: number) => {
-      if (!pointer.active || reducedMotion) {
-        return;
-      }
-
-      const maxDistance = ELECTRIC_ARC_RADIUS + intensity * 16;
-      const maxDistanceSq = maxDistance * maxDistance;
-      const nearby: Array<{ node: ConstellationNode; distance: number }> = [];
-
-      for (const node of constellation) {
-        const dx = node.x - pointer.x;
-        const dy = node.y - pointer.y;
-        const distanceSq = dx * dx + dy * dy;
-
-        if (distanceSq > maxDistanceSq) {
-          continue;
-        }
-
-        nearby.push({
-          node,
-          distance: Math.sqrt(distanceSq),
-        });
-      }
-
-      if (nearby.length === 0) {
-        return;
-      }
-
-      nearby.sort((a, b) => a.distance - b.distance);
-      const targetCount = Math.min(ELECTRIC_ARC_MAX_TARGETS, nearby.length);
-
-      for (let i = 0; i < targetCount; i += 1) {
-        const { node, distance } = nearby[i];
-        const safeDistance = Math.max(distance, 1);
-        const proximity = 1 - safeDistance / maxDistance;
-        const phase = timeSeconds * 24 + i * 1.7;
-        const flicker = 0.45 + ((Math.sin(phase) + 1) * 0.5) * 0.55;
-
-        if (flicker < 0.52 && i > 0) {
-          continue;
-        }
-
-        const alpha = proximity * (0.2 + flicker * 0.5) * intensity;
-        if (alpha <= 0.06) {
-          continue;
-        }
-
-        const directionX = (node.x - pointer.x) / safeDistance;
-        const directionY = (node.y - pointer.y) / safeDistance;
-        const normalX = -directionY;
-        const normalY = directionX;
-
-        context.lineCap = "round";
-        context.lineJoin = "round";
-        context.beginPath();
-
-        for (let segment = 0; segment <= ELECTRIC_ARC_SEGMENTS; segment += 1) {
-          const t = segment / ELECTRIC_ARC_SEGMENTS;
-
-          let x = lerp(pointer.x, node.x, t);
-          let y = lerp(pointer.y, node.y, t);
-
-          if (segment > 0 && segment < ELECTRIC_ARC_SEGMENTS) {
-            const envelope = Math.max(0, 1 - Math.abs(t - 0.5) * 1.8);
-            const jitter =
-              (Math.sin(timeSeconds * 32 + segment * 2.1 + i * 0.9) +
-                Math.sin(timeSeconds * 19 + segment * 3.5 + i * 1.3)) *
-              0.5;
-            const jitterAmplitude = ELECTRIC_ARC_NOISE * envelope * (0.6 + flicker * 0.5);
-            x += normalX * jitter * jitterAmplitude;
-            y += normalY * jitter * jitterAmplitude;
-          }
-
-          if (segment === 0) {
-            context.moveTo(x, y);
-          } else {
-            context.lineTo(x, y);
-          }
-        }
-
-        context.strokeStyle = `rgba(56, 189, 248, ${alpha})`;
-        context.lineWidth = 1 + proximity * 1.25;
-        context.stroke();
-
-        context.strokeStyle = `rgba(190, 242, 100, ${alpha * 0.74})`;
-        context.lineWidth = 0.55 + proximity * 0.75;
-        context.stroke();
-
-        context.fillStyle = `rgba(190, 242, 100, ${alpha * 0.92})`;
-        context.beginPath();
-        context.arc(node.x, node.y, 0.9 + proximity * 1.4, 0, Math.PI * 2);
-        context.fill();
-      }
-    };
-
-    const drawCometTrail = (deltaMs: number) => {
-      const deltaScale = deltaMs / 16.7;
-      const drag = Math.pow(TRAIL_DRAG, deltaScale);
-
-      for (let i = pointer.trail.length - 1; i >= 0; i -= 1) {
-        const point = pointer.trail[i];
-        point.age += deltaMs;
-
-        if (point.age >= point.life) {
-          pointer.trail.splice(i, 1);
-          continue;
-        }
-
-        point.x += point.vx * deltaScale;
-        point.y += point.vy * deltaScale;
-        point.vx *= drag;
-        point.vy *= drag;
-      }
-
-      if (pointer.trail.length < 2) {
-        return;
-      }
-
-      for (let i = 1; i < pointer.trail.length; i += 1) {
-        const previous = pointer.trail[i - 1];
-        const current = pointer.trail[i];
-        const previousLife = 1 - previous.age / previous.life;
-        const currentLife = 1 - current.age / current.life;
-        const life = Math.min(previousLife, currentLife);
-
-        if (life <= 0) {
-          continue;
-        }
-
-        const t = i / (pointer.trail.length - 1);
-        const alpha = life * (0.08 + t * 0.46) * intensity;
-
-        context.strokeStyle = `rgba(56, 189, 248, ${alpha})`;
-        context.lineWidth = Math.max(0.8, current.size * (0.8 + t * 0.8));
-        context.lineCap = "round";
-        context.beginPath();
-        context.moveTo(previous.x, previous.y);
-        context.lineTo(current.x, current.y);
-        context.stroke();
-
-        if (t > 0.45) {
-          context.strokeStyle = `rgba(190, 242, 100, ${alpha * 0.72})`;
-          context.lineWidth = Math.max(0.6, current.size * 0.45);
-          context.beginPath();
-          context.moveTo(previous.x, previous.y);
-          context.lineTo(current.x, current.y);
-          context.stroke();
-        }
       }
     };
 
@@ -406,95 +183,28 @@ export default function HomeNetworkBackground({
       const deltaMs = previousTime === 0 ? 16.7 : time - previousTime;
       previousTime = time;
 
-      if (!reducedMotion) {
-        pointer.x = lerp(pointer.x, pointer.targetX, 0.13);
-        pointer.y = lerp(pointer.y, pointer.targetY, 0.13);
-      } else {
-        pointer.x = pointer.targetX;
-        pointer.y = pointer.targetY;
-      }
-
       context.clearRect(0, 0, width, height);
 
       const timeSeconds = time * 0.001;
       drawConstellation(deltaMs, reducedMotion ? 0 : timeSeconds);
-      drawElectricArcs(reducedMotion ? 0 : timeSeconds);
-      drawCometTrail(deltaMs);
       drawVignette();
 
       rafId = window.requestAnimationFrame(frame);
     };
 
-    const handlePointerMove = (event: PointerEvent) => {
-      const previousTargetX = pointer.targetX;
-      const previousTargetY = pointer.targetY;
-
-      pointer.active = true;
-      pointer.targetX = event.clientX;
-      pointer.targetY = event.clientY;
-
-      if (reducedMotion) {
-        return;
-      }
-
-      if (event.timeStamp - lastTrailAt >= TRAIL_EMIT_INTERVAL_MS) {
-        lastTrailAt = event.timeStamp;
-
-        const dx = event.clientX - previousTargetX;
-        const dy = event.clientY - previousTargetY;
-        const distance = Math.hypot(dx, dy);
-        const normalized = distance > 0 ? distance : 1;
-        const directionX = dx / normalized;
-        const directionY = dy / normalized;
-        const speed = Math.min(distance, 28);
-        const spread = 0.55 + speed * 0.045;
-
-        pointer.trail.push({
-          x: event.clientX - directionX * 3,
-          y: event.clientY - directionY * 3,
-          vx:
-            -directionX * (0.75 + speed * 0.08) +
-            randomInRange(-spread, spread),
-          vy:
-            -directionY * (0.75 + speed * 0.08) +
-            randomInRange(-spread, spread),
-          age: 0,
-          life: randomInRange(TRAIL_MIN_LIFE_MS, TRAIL_MAX_LIFE_MS),
-          size: randomInRange(2.4, 4.8) + speed * 0.04,
-        });
-
-        if (pointer.trail.length > TRAIL_MAX_POINTS) {
-          pointer.trail.shift();
-        }
-      }
-    };
-
-    const handlePointerLeave = () => {
-      pointer.active = false;
-      pointer.targetX = width * 0.5;
-      pointer.targetY = height * 0.45;
-    };
-
     const handleReducedMotionChange = (event: MediaQueryListEvent) => {
       reducedMotion = event.matches;
-      pointer.trail = [];
     };
 
     resize();
     rafId = window.requestAnimationFrame(frame);
 
     window.addEventListener("resize", resize, { passive: true });
-    window.addEventListener("pointermove", handlePointerMove, { passive: true });
-    window.addEventListener("pointerleave", handlePointerLeave);
-    window.addEventListener("pointercancel", handlePointerLeave);
     reducedMotionQuery.addEventListener("change", handleReducedMotionChange);
 
     return () => {
       window.cancelAnimationFrame(rafId);
       window.removeEventListener("resize", resize);
-      window.removeEventListener("pointermove", handlePointerMove);
-      window.removeEventListener("pointerleave", handlePointerLeave);
-      window.removeEventListener("pointercancel", handlePointerLeave);
       reducedMotionQuery.removeEventListener("change", handleReducedMotionChange);
     };
   }, [intensity]);
