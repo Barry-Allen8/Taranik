@@ -9,7 +9,7 @@ import { ArrowUpRight } from "lucide-react";
 const caseStudies = [
   {
     id: 1,
-    image: "https://biuro-rachunkowe-ksiegowa.vercel.app/logo.png",
+    image: "https://biuro-rachunkowe-ksiegowa.vercel.app/hero-workspace.webp",
     titleKey: "case_1_title",
     descriptionKey: "case_1_desc",
     tags: ["Accounting", "Website"],
