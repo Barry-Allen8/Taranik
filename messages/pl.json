@@ -770,8 +770,8 @@
     },
     "projects": {
       "electronics_shop": {
-        "title": "[Demo] Sklep internetowy z elektroniką",
-        "description": "Projekt demonstracyjny: w pełni funkcjonalny sklep internetowy z integracją płatności, systemem filtrowania i kontem osobistym"
+        "title": "Strona biura rachunkowego (Bydgoszcz)",
+        "description": "Strona firmowa dla Izabeli Romańskiej Księgowa Dla Ciebie z prezentacją usług, lokalnym SEO i naciskiem na pozyskiwanie zapytań."
       },
       "restaurant_bot": {
         "title": "[Demo] Bot Telegram dla restauracji",
@@ -938,8 +938,8 @@
     "badge": "Case Studies",
     "title": "Nasze projekty",
     "description": "Przykłady zrealizowanych projektów i osiągniętych rezultatów",
-    "case_1_title": "Platforma E-commerce",
-    "case_1_desc": "Nowoczesny sklep internetowy z integracją płatności i automatyzacją procesów",
+    "case_1_title": "Strona biura rachunkowego",
+    "case_1_desc": "Realizacja dla Izabeli Romańskiej Księgowa Dla Ciebie (Bydgoszcz), nastawiona na prezentację usług i generowanie kontaktów.",
     "case_1_result_1": "Wzrost sprzedaży",
     "case_1_result_2": "Czas ładowania",
     "case_2_title": "Chatbot AI dla obsługi klienta",

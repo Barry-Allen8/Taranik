@@ -770,8 +770,8 @@
     },
     "projects": {
       "electronics_shop": {
-        "title": "[Demo] Electronics Online Store",
-        "description": "Demo project: full-featured online store with payment integration, filtering system and personal account"
+        "title": "Accounting Office Website (Bydgoszcz)",
+        "description": "Corporate website for Izabela Romańska Księgowa Dla Ciebie with service presentation, local SEO and contact conversion focus."
       },
       "restaurant_bot": {
         "title": "[Demo] Restaurant Telegram Bot",
@@ -938,8 +938,8 @@
     "badge": "Case Studies",
     "title": "Our Projects",
     "description": "Examples of completed projects and achieved results",
-    "case_1_title": "E-commerce Platform",
-    "case_1_desc": "Modern online store with payment integration and process automation",
+    "case_1_title": "Accounting Office Website",
+    "case_1_desc": "Website for Izabela Romańska Księgowa Dla Ciebie (Bydgoszcz) focused on services, trust and lead generation.",
     "case_1_result_1": "Sales increase",
     "case_1_result_2": "Load time",
     "case_2_title": "AI Customer Support Chatbot",
