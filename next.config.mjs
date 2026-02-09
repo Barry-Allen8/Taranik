@@ -15,6 +15,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "biuro-rachunkowe-ksiegowa.vercel.app",
       },
+      {
+        protocol: "https",
+        hostname: "karpol.vercel.app",
+      },
     ],
   },
 };
