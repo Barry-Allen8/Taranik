@@ -25,6 +25,15 @@ const caseStudies = [
     href: "https://karpol.vercel.app/",
     external: true,
   },
+  {
+    id: 3,
+    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1600&q=80",
+    titleKey: "case_3_title",
+    descriptionKey: "case_3_desc",
+    tags: ["Legal", "Website"],
+    href: "https://prawnik-omega.vercel.app/",
+    external: true,
+  },
 ] as const;
 
 export default function CaseStudiesSection() {
