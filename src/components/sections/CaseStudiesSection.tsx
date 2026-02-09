@@ -18,12 +18,12 @@ const caseStudies = [
   },
   {
     id: 2,
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&crop=entropy&q=70&w=1400&h=900&fm=webp",
+    image: "https://karpol.vercel.app/hero-dashboard.png",
     titleKey: "case_2_title",
     descriptionKey: "case_2_desc",
-    tags: ["BioTech", "LLM"],
-    href: "/portfolio",
-    external: false,
+    tags: ["Automotive", "Website"],
+    href: "https://karpol.vercel.app/",
+    external: true,
   },
 ] as const;
 
