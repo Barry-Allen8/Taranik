@@ -168,7 +168,7 @@ export default function WebsitesPageClient() {
             {packages.map((pkg) => (
               <Card
                 key={pkg.key}
-                className={`relative border bg-slate-900/45 ${pkg.recommended ? "border-primary" : "border-slate-700/45"}`}
+                className={`relative flex h-full flex-col border bg-slate-900/45 ${pkg.recommended ? "border-primary" : "border-slate-700/45"}`}
               >
                 {pkg.recommended ? (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full border border-primary bg-primary px-3 py-1 text-xs font-semibold text-slate-950">
@@ -186,7 +186,7 @@ export default function WebsitesPageClient() {
                     </li>
                   ))}
                 </ul>
-                <Button className="w-full" variant={pkg.recommended ? "primary" : "outline"} asChild>
+                <Button className="mt-auto w-full" variant={pkg.recommended ? "primary" : "outline"} asChild>
                   <Link href="/contact">{t("order")}</Link>
                 </Button>
               </Card>
