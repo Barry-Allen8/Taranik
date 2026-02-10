@@ -117,11 +117,6 @@ export default function CaseStudiesSection() {
           })}
         </div>
 
-        <div className="mt-10 text-right">
-          <Link href="/portfolio" locale={locale} className="text-sm font-medium text-primary hover:text-primary-dark">
-            {t("view_all")}
-          </Link>
-        </div>
       </div>
     </section>
   );

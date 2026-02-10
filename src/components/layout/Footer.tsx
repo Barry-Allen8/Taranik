@@ -41,7 +41,6 @@ export default function Footer() {
             <h4 className="mb-4 text-sm font-semibold text-slate-200">{t("company_title")}</h4>
             <ul className="space-y-2.5 text-sm text-slate-400">
               <li><Link href="/about" locale={locale} className="cyber-link">{tNav("about")}</Link></li>
-              <li><Link href="/portfolio" locale={locale} className="cyber-link">{tNav("portfolio")}</Link></li>
               <li><Link href="/contact" locale={locale} className="cyber-link">{tNav("contact")}</Link></li>
               <li><a href="mailto:hello@vektadev.com" className="cyber-link">hello@vektadev.com</a></li>
             </ul>

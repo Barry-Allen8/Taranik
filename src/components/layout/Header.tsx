@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
-import { Menu, X, ChevronDown, LayoutGrid } from "lucide-react";
+import { Menu, X, LayoutGrid } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Button from "@/components/ui/Button";
 import { useTranslations, useLocale } from "next-intl";
@@ -21,7 +21,6 @@ export default function Header() {
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
 
   useEffect(() => {
@@ -35,6 +34,11 @@ export default function Header() {
     { name: tServices("chatbots"), href: "/services/chatbots" },
     { name: tServices("mobile_apps"), href: "/services/mobile-apps" },
   ];
+  const navItems = [
+    ...services,
+    { name: t("about"), href: "/about" },
+    { name: t("contact"), href: "/contact" },
+  ];
 
   const getPathWithoutLocale = () => {
     const segments = pathname.split("/");
@@ -46,7 +50,6 @@ export default function Header() {
 
   const router = useRouter();
   const pathWithoutLocale = getPathWithoutLocale();
-  const isServicesActive = pathWithoutLocale.startsWith("/services");
 
   const isActive = (href: string) => {
     if (href === "/") {
@@ -80,66 +83,20 @@ export default function Header() {
             </span>
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-9 text-sm font-medium text-slate-300">
-            <div
-              className="relative"
-              onMouseEnter={() => setServicesOpen(true)}
-              onMouseLeave={() => setServicesOpen(false)}
-            >
-              <button
+          <nav className="hidden lg:flex items-center gap-7 text-sm font-medium text-slate-300">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                locale={locale}
                 className={cn(
-                  "inline-flex items-center gap-1.5 transition-colors",
-                  isServicesActive ? "text-primary" : "hover:text-primary"
+                  "transition-colors",
+                  isActive(item.href) ? "text-primary" : "hover:text-primary"
                 )}
               >
-                {t("services")}
-                <ChevronDown className="h-4 w-4" />
-              </button>
-
-              {servicesOpen ? (
-                <div className="absolute left-0 top-full pt-3">
-                  <div className="w-64 rounded-2xl border border-slate-700/70 bg-[#081228]/92 p-2 shadow-2xl shadow-black/45 backdrop-blur-xl">
-                    {services.map((service) => (
-                      <Link
-                        key={service.href}
-                        href={service.href}
-                        locale={locale}
-                        className={cn(
-                          "block rounded-xl px-3 py-2.5 text-sm transition-colors",
-                          isActive(service.href)
-                            ? "bg-primary/20 text-primary"
-                            : "text-slate-300 hover:bg-slate-800/60 hover:text-primary"
-                        )}
-                      >
-                        {service.name}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              ) : null}
-            </div>
-
-            <Link
-              href="/portfolio"
-              locale={locale}
-              className={cn(isActive("/portfolio") ? "text-primary" : "hover:text-primary")}
-            >
-              {t("portfolio")}
-            </Link>
-            <Link
-              href="/about"
-              locale={locale}
-              className={cn(isActive("/about") ? "text-primary" : "hover:text-primary")}
-            >
-              {t("about")}
-            </Link>
-            <Link
-              href="/contact"
-              locale={locale}
-              className={cn(isActive("/contact") ? "text-primary" : "hover:text-primary")}
-            >
-              {t("contact")}
-            </Link>
+                {item.name}
+              </Link>
+            ))}
           </nav>
 
           <div className="hidden lg:flex items-center gap-3">
@@ -200,31 +157,8 @@ export default function Header() {
               ))}
             </div>
 
-            <p className="mb-2 text-xs font-semibold text-slate-400">{t("services")}</p>
-            <div className="mb-5 space-y-1.5">
-              {services.map((service) => (
-                <Link
-                  key={service.href}
-                  href={service.href}
-                  locale={locale}
-                  className={cn(
-                    "block rounded-xl border px-3 py-2.5 text-sm",
-                    isActive(service.href)
-                      ? "border-primary/40 bg-primary/15 text-primary"
-                      : "border-slate-700/60 text-slate-300"
-                  )}
-                >
-                  {service.name}
-                </Link>
-              ))}
-            </div>
-
             <div className="space-y-1">
-              {[
-                { href: "/portfolio", label: t("portfolio") },
-                { href: "/about", label: t("about") },
-                { href: "/contact", label: t("contact") },
-              ].map((item) => (
+              {navItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
@@ -234,7 +168,7 @@ export default function Header() {
                     isActive(item.href) ? "text-primary" : "text-slate-200"
                   )}
                 >
-                  {item.label}
+                  {item.name}
                 </Link>
               ))}
             </div>

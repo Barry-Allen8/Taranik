@@ -27,7 +27,7 @@ export default function ServicesSection() {
           </div>
 
           <Link
-            href="/services"
+            href="/services/websites"
             locale={locale}
             className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary-dark"
           >

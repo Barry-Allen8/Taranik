@@ -21,18 +21,18 @@ export function proxy(request: NextRequest) {
   
   if (coursesMatch) {
     const locale = coursesMatch[1] || defaultLocale;
-    const redirectUrl = new URL(`/${locale}/services`, request.url);
+    const redirectUrl = new URL(`/${locale}/services/websites`, request.url);
     return NextResponse.redirect(redirectUrl, 301);
   }
 
-  // Redirect removed service pages to the services index
+  // Redirect removed service pages to the primary service page
   const removedServicesPattern =
     /^\/(?:(pl|en)\/)?services\/(ai-solutions|cloud|consulting)(\/.*)?$/;
   const removedServicesMatch = pathname.match(removedServicesPattern);
 
   if (removedServicesMatch) {
     const locale = removedServicesMatch[1] || defaultLocale;
-    const redirectUrl = new URL(`/${locale}/services`, request.url);
+    const redirectUrl = new URL(`/${locale}/services/websites`, request.url);
     return NextResponse.redirect(redirectUrl, 301);
   }
 

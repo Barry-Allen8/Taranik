@@ -22,7 +22,7 @@ export default function CTASection() {
               <Link href="/contact" locale={locale}>{t("button_primary")}</Link>
             </Button>
             <Button asChild size="lg" variant="secondary" className="px-10">
-              <Link href="/portfolio" locale={locale}>{t("button_secondary")}</Link>
+              <Link href="/about" locale={locale}>{t("button_secondary")}</Link>
             </Button>
           </div>
         </div>
