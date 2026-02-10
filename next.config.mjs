@@ -19,6 +19,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "karpol.vercel.app",
       },
+      {
+        protocol: "https",
+        hostname: "drewniana-noga.vercel.app",
+      },
     ],
   },
 };

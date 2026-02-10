@@ -36,7 +36,7 @@ const caseStudies = [
   },
   {
     id: 4,
-    image: "https://images.unsplash.com/photo-1611516491426-03025e6043c8?auto=format&fit=crop&w=1600&q=80",
+    image: "https://drewniana-noga.vercel.app/img/Hero%20image.jpeg",
     titleKey: "case_4_title",
     descriptionKey: "case_4_desc",
     tags: ["Craft", "Website"],
