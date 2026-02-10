@@ -19,14 +19,14 @@ export default function ContactPageClient() {
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
             <div>
               <span className="mb-5 inline-flex rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-primary">
-                Contact Us
+                {t("badge")}
               </span>
               <h1 className="mb-5 text-5xl text-slate-100 md:text-7xl">
-                Let&apos;s build
+                {t("hero_line_1")}
                 <br />
-                <span className="text-slate-500">the future</span>
+                <span className="text-slate-500">{t("hero_line_2")}</span>
                 <br />
-                together.
+                {t("hero_line_3")}
               </h1>
               <p className="mb-10 max-w-md text-lg leading-relaxed text-slate-300">{t("description")}</p>
 

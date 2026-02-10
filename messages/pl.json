@@ -596,6 +596,10 @@
   },
   "contact": {
     "title": "Skontaktuj się z nami",
+    "badge": "Skontaktuj się",
+    "hero_line_1": "Zbudujmy",
+    "hero_line_2": "przyszłość",
+    "hero_line_3": "razem.",
     "description": "Gotowy do omówienia projektu? Zostaw zgłoszenie, a my skontaktujemy się z Tobą wkrótce",
     "form_title": "Formularz kontaktowy",
     "info_title": "Informacje kontaktowe",
