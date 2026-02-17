@@ -56,10 +56,10 @@ const caseStudies = [
   {
     id: 6,
     image:
-      "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1600&q=80",
     titleKey: "case_6_title",
     descriptionKey: "case_6_desc",
-    tags: ["AI", "Website"],
+    tags: ["1:1 Video Calls", "Stripe", "Firebase"],
     href: "https://warmvoice-ce08f.web.app/",
     external: true,
   },
