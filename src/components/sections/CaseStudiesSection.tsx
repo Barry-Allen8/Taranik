@@ -43,6 +43,26 @@ const caseStudies = [
     href: "https://drewniana-noga.vercel.app/",
     external: true,
   },
+  {
+    id: 5,
+    image:
+      "https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=1600&q=80",
+    titleKey: "case_5_title",
+    descriptionKey: "case_5_desc",
+    tags: ["Restaurant", "Website"],
+    href: "https://sushi-kama.vercel.app/",
+    external: true,
+  },
+  {
+    id: 6,
+    image:
+      "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1600&q=80",
+    titleKey: "case_6_title",
+    descriptionKey: "case_6_desc",
+    tags: ["AI", "Website"],
+    href: "https://warmvoice-ce08f.web.app/",
+    external: true,
+  },
 ] as const;
 
 export default function CaseStudiesSection() {
