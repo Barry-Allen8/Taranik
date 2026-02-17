@@ -18,7 +18,7 @@ const caseStudies = [
   },
   {
     id: 2,
-    image: "https://karpol.vercel.app/hero-dashboard.png",
+    image: "/images/karpol.png",
     titleKey: "case_2_title",
     descriptionKey: "case_2_desc",
     tags: ["Automotive", "Website"],
@@ -49,14 +49,13 @@ const caseStudies = [
       "https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=1600&q=80",
     titleKey: "case_5_title",
     descriptionKey: "case_5_desc",
-    tags: ["Restaurant", "Website"],
+    tags: ["Restaurant", "Supabase", "Website"],
     href: "https://sushi-kama.vercel.app/",
     external: true,
   },
   {
     id: 6,
-    image:
-      "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1600&q=80",
+    image: "/images/warmvoice.png",
     titleKey: "case_6_title",
     descriptionKey: "case_6_desc",
     tags: ["1:1 Video Calls", "Stripe", "Firebase"],
