@@ -40,11 +40,33 @@ export default async function LatestReviewsSection({
               itemScope
               itemType="https://schema.org/Review"
             >
+              <div
+                itemProp="itemReviewed"
+                itemScope
+                itemType="https://schema.org/LocalBusiness"
+                hidden
+              >
+                <meta itemProp="name" content="VektaDev" />
+              </div>
+
               <div className="mb-3 flex items-center justify-between gap-2">
-                <p className="text-sm font-semibold text-slate-100" itemProp="author">
-                  {review.author}
+                <p
+                  className="text-sm font-semibold text-slate-100"
+                  itemProp="author"
+                  itemScope
+                  itemType="https://schema.org/Person"
+                >
+                  <span itemProp="name">{review.author}</span>
                 </p>
-                <div className="flex items-center gap-1" aria-label={`${review.rating} out of 5`}>
+                <div
+                  className="flex items-center gap-1"
+                  aria-label={`${review.rating} out of 5`}
+                  itemProp="reviewRating"
+                  itemScope
+                  itemType="https://schema.org/Rating"
+                >
+                  <meta itemProp="ratingValue" content={String(review.rating)} />
+                  <meta itemProp="bestRating" content="5" />
                   {renderStars(review.rating)}
                 </div>
               </div>
@@ -55,7 +77,7 @@ export default async function LatestReviewsSection({
 
               <div className="flex items-center justify-between text-xs text-slate-400">
                 <span>{review.source}</span>
-                <time dateTime={review.date}>{new Date(review.date).toLocaleDateString(locale)}</time>
+                <time dateTime={review.date} itemProp="datePublished">{new Date(review.date).toLocaleDateString(locale)}</time>
               </div>
 
               {review.profileUrl ? (
